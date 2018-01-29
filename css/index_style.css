@@ -1,0 +1,371 @@
+.html,body{
+	margin: 0px auto;
+	background: #333;
+	font-family: 'Montserrat', sans-serif;
+	//color: white;
+}
+
+.box{
+	position: relative;
+	width: 100%;
+
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.top{
+	position: relative;
+	width: 100%;
+	height: 600px;
+	background-image: url("../images/top_img3.jpg");
+	background-size: cover;
+	background-position: center center;
+}
+.box-about{
+	position: relative;
+	float: left;
+	min-height: 1px;
+}
+
+.box-skills{
+	position: relative;
+	float: left;
+	background: #ffffff;
+	min-height: 1px;
+	color: #000;
+}
+
+.web-title{
+	position: absolute;
+	margin:auto;
+	width: 100%;
+	height: 600px;
+	line-height: 600px;
+	font-size: 60pt;
+	text-align:center;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.web-title-2{
+	position: absolute;
+	margin:auto;
+	width: 100%;
+	height: 600px;
+	line-height: 750px;
+	font-size: 10pt;
+	text-align:center;
+	color: #ccc;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.menu-bar{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 66px;
+	background: rgba(0,0,0,0.3);
+}
+
+.menu-full{
+	margin: auto;
+	width: 900px;
+	height: 66px;
+	line-height: 66px;
+	font-size: 12pt;
+	color: white;
+}
+.menu-full a{
+	text-decoration:none;
+	color: rgba(255,255,255,0.7);
+}
+.menu-full a:hover{
+	text-decoration:none;
+	color: white;
+}
+
+.menu-btn{
+	display:inline-block;
+	padding-left: 18px;
+	padding-right: 18px;
+	text-align:center;
+	color: rgba(255,255,255,0.7);
+	font-weight: Regular;
+	font-family: 'Montserrat', sans-serif;
+}
+.menu-btn:hover{
+	cursor: pointer;
+	color: white;
+	border-bottom: 4px solid #FFC815;
+}
+
+.menu-mobile{
+	display: none;
+}
+
+.menu-btn-mobile{
+	display: none;
+}
+
+.menu-icon-box{
+	display:inline-block;
+	width: 280px;
+	height: 66px;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align:center;
+}
+
+.menu-icon-btn{
+	display:inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align:center;
+	color: rgba(255,255,255,0.7);
+}
+.menu-icon-btn:hover{
+	cursor: pointer;
+	color: white;
+	border-bottom: 4px solid #FFC815;
+}
+
+
+
+.menu-bar-btn{
+	display: none;
+}
+
+
+
+.box-title{
+	position: relative;
+	display: inline-block;
+	width: auto;
+	background:  #FFC815;
+	height: 66px;
+}
+.font-box-title{
+	color: #333;
+	padding: 15px;
+	font-size: 53px;
+    font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.font-title{
+	font-size: 20pt;
+	color: white;
+	padding: 15px 15px 0px 0px; 
+}
+.font-black{
+	color:black;
+}
+.font-center{
+	text-align: center;
+}
+
+
+.font-l-title{
+	font-size: 30pt;
+	color: white;
+	padding: 0px 0px 0px 0px;
+}
+
+.font-s-title{
+	font-size: 10pt;
+	color: white;
+	padding: 0px 0px 10px 0px;
+}
+
+.font-m-title{
+	font-size: 14pt;
+	color: white;
+	line-height: 18pt;	
+	padding: 0px 0px 10px 0px;
+}
+
+.about_pic{
+	text-align: center;
+}
+
+.about_pic img{
+	width: 90%;
+	height: 90%;
+}
+
+.about_main{
+	//background: rgba(255,255,255,0.1);
+}
+
+.font-yellow{
+	color: #FFC815;
+}
+
+.title-line{
+	border-left: 4px solid #FFC815;
+}
+
+.title-line-{
+	border-bottom: 4px solid #FFC815;
+}
+
+/*
+進度條 開始
+*/
+.right{
+    position: relative;
+    margin: 0px auto;
+    margin-top: 30px;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+.rightcircle{
+    width: 60px;
+    height: 60px;
+    border:8px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    right: 0;
+    border-top:8px solid  #FFC815;
+    border-right:8px solid  #FFC815;
+    -webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+
+.leftcircle{
+    width: 60px;
+    height: 60px;
+    border:8px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    right: 0;
+    border-top:8px solid  #FFC815;
+    border-right:8px solid  #FFC815;
+    -webkit-transform : rotate(-135deg);
+    -moz-transform : rotate(-135deg);
+    -o-transform : rotate(-135deg);
+    transform : rotate(-135deg); /* 旋转135度 */
+}
+
+.valuecircle{
+	width: 86px;
+	height: 78px;
+	line-height: 78px;
+	text-align:center;
+	color: #333;
+}
+
+
+.html5css3_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.html5css3_num_r{
+	-webkit-transform : rotate(-171deg);
+    -moz-transform : rotate(-171deg);
+    -o-transform : rotate(-171deg);
+    transform : rotate(-171deg); /* 旋转135度 */
+}
+
+.phpmysql_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.phpmysql_num_r{
+	-webkit-transform : rotate(-225deg);
+    -moz-transform : rotate(-225deg);
+    -o-transform : rotate(-225deg);
+    transform : rotate(-225deg); /* 旋转135度 */
+}
+
+.javascript_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.javascript_num_r{
+	-webkit-transform : rotate(-255deg);
+    -moz-transform : rotate(-255deg);
+    -o-transform : rotate(-255deg);
+    transform : rotate(-255deg); /* 旋转135度 */
+}
+
+.jquery_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.jquery_num_r{
+	-webkit-transform : rotate(-225deg);
+    -moz-transform : rotate(-225deg);
+    -o-transform : rotate(-225deg);
+    transform : rotate(-225deg); /* 旋转135度 */
+}
+
+
+.ps_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.ps_num_r{
+	-webkit-transform : rotate(-171deg);
+    -moz-transform : rotate(-171deg);
+    -o-transform : rotate(-171deg);
+    transform : rotate(-171deg); /* 旋转135度 */
+}
+
+.illustrator_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.illustrator_num_r{
+	-webkit-transform : rotate(-225deg);
+    -moz-transform : rotate(-225deg);
+    -o-transform : rotate(-225deg);
+    transform : rotate(-225deg); /* 旋转135度 */
+}
+
+.sketch_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.sketch_num_r{
+	-webkit-transform : rotate(-225deg);
+    -moz-transform : rotate(-225deg);
+    -o-transform : rotate(-225deg);
+    transform : rotate(-225deg); /* 旋转135度 */
+}
+
+.max_num_l{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转45度 */
+}
+.max_num_r{
+	-webkit-transform : rotate(45deg);
+    -moz-transform : rotate(45deg);
+    -o-transform : rotate(45deg);
+    transform : rotate(45deg); /* 旋转135度 */
+}
+
+
+/* 進度條結束*/

@@ -1,0 +1,394 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.container{
+	position: relative;
+	margin:0px auto;
+	width: 1200px;
+	min-height: 1px;
+	clear: both;
+}
+
+.container-fluid{
+	margin:0px auto;
+	width: 100%;
+	clear: both;
+}
+
+.row{
+	position: relative;
+	margin: 0px auto;
+	width: calc(100% - 0px);
+	padding: 0px;
+	clear: both;
+}
+
+.col-padding-0{
+	padding: 0;
+}
+/* for 1199 up  */
+
+.col-lg-12{
+	position: relative;
+	float: left;
+	width: calc(100% - 30px);
+	padding: 15px;
+
+}
+.col-lg-11{
+	position: relative;
+	float: left;
+	width: calc(91.66% - 30px);
+	padding: 15px;
+}
+.col-lg-10{
+	position: relative;
+	float: left;
+	width: calc(83.33% - 30px);
+	padding: 15px;
+}
+.col-lg-9{
+	position: relative;
+	float: left;
+	width: calc(75% - 30px);
+	padding: 15px;
+}
+.col-lg-8{
+	position: relative;
+	float: left;
+	width: calc(66.66% - 30px);
+	padding: 15px;
+}
+.col-lg-7{
+	position: relative;
+	float: left;
+	width: calc(58.31% - 30px);
+	padding: 15px;
+}
+.col-lg-6{
+	position: relative;
+	float: left;
+	width: calc(50% - 30px);
+	padding: 15px;
+}
+.col-lg-5{
+	position: relative;
+	float: left;
+	width: calc(41.65% - 30px);
+	padding: 15px;
+}
+.col-lg-4{
+	position: relative;
+	float: left;
+	width: calc(33.33% - 30px);
+	padding: 15px;
+}
+.col-lg-3{
+	position: relative;
+	float: left;
+	width: calc(25% - 30px);
+	padding: 15px;
+
+}
+.col-lg-2{
+	position: relative;
+	float: left;
+	width: calc(16.66% - 30px);
+	padding: 15px;
+}
+.col-lg-1{
+	position: relative;
+	float: left;
+	width: calc(8.33% - 30px);
+	padding: 15px;
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+
+.container{
+	width: 100%;
+}
+
+.col-md-12{
+	position: relative;
+	float: left;
+	width: calc(100% - 30px);
+	padding: 15px;
+}
+.col-md-11{
+	position: relative;
+	float: left;
+	width: calc(91.66% - 30px);
+	padding: 15px;
+}
+.col-md-10{
+	position: relative;
+	float: left;
+	width: calc(83.33% - 30px);
+	padding: 15px;
+}
+.col-md-9{
+	position: relative;
+	float: left;
+	width: calc(75% - 30px);
+	padding: 15px;
+}
+.col-md-8{
+	position: relative;
+	float: left;
+	width: calc(66.66% - 30px);
+	padding: 15px;
+}
+.col-md-7{
+	position: relative;
+	float: left;
+	width: calc(58.31% - 30px);
+	padding: 15px;
+}
+.col-md-6{
+	position: relative;
+	float: left;
+	width: calc(50% - 30px);
+	padding: 15px;
+}
+.col-md-5{
+	position: relative;
+	float: left;
+	width: calc(41.65% - 30px);
+	padding: 15px;
+}
+.col-md-4{
+	position: relative;
+	float: left;
+	width: calc(33.33% - 30px);
+	padding: 15px;
+}
+.col-md-3{
+	position: relative;
+	float: left;
+	width: calc(25% - 30px);
+	padding: 15px;
+}
+.col-md-2{
+	position: relative;
+	float: left;
+	width: calc(16.66% - 30px);
+	padding: 15px;
+}
+.col-md-1{
+	position: relative;
+	float: left;
+	width: calc(8.33% - 30px);
+	padding: 15px;
+}
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+.container{
+	width: 100%;
+}
+
+.col-sm-12{
+	position: relative;
+	float: left;
+	width: calc(100% - 30px);
+	padding: 15px;
+}
+.col-sm-11{
+	position: relative;
+	float: left;
+	width: calc(91.66% - 30px);
+	padding: 15px;
+}
+.col-sm-10{
+	position: relative;
+	float: left;
+	width: calc(83.33% - 30px);
+	padding: 15px;
+}
+.col-sm-9{
+	position: relative;
+	float: left;
+	width: calc(75% - 30px);
+	padding: 15px;
+}
+.col-sm-8{
+	position: relative;
+	float: left;
+	width: calc(66.66% - 30px);
+	padding: 15px;
+}
+.col-sm-7{
+	position: relative;
+	float: left;
+	width: calc(58.31% - 30px);
+	padding: 15px;
+}
+.col-sm-6{
+	position: relative;
+	float: left;
+	width: calc(50% - 30px);
+	padding: 15px;
+}
+.col-sm-5{
+	position: relative;
+	float: left;
+	width: calc(41.65% - 30px);
+	padding: 15px;
+}
+.col-sm-4{
+	position: relative;
+	float: left;
+	width: calc(33.33% - 30px);
+	padding: 15px;
+}
+.col-sm-3{
+	position: relative;
+	float: left;
+	width: calc(25% - 30px);
+	padding: 15px;
+}
+.col-sm-2{
+	position: relative;
+	float: left;
+	width: calc(16.66% - 30px);
+	padding: 15px;
+}
+.col-sm-1{
+	position: relative;
+	float: left;
+	width: calc(8.33% - 30px);
+	padding: 15px;
+}
+
+}
+
+@media screen  and (max-width: 767px) {
+
+.container{
+	width: 100%;
+}
+
+.col-xs-12{
+	position: relative;
+	float: left;
+	width: calc(100% - 30px);
+	padding: 15px;
+}
+.col-xs-11{
+	position: relative;
+	float: left;
+	width: calc(91.66% - 30px);
+	padding: 15px;
+}
+.col-xs-10{
+	position: relative;
+	float: left;
+	width: calc(83.33% - 30px);
+	padding: 15px;
+}
+.col-xs-9{
+	position: relative;
+	float: left;
+	width: calc(75% - 30px);
+	padding: 15px;
+}
+.col-xs-8{
+	position: relative;
+	float: left;
+	width: calc(66.66% - 30px);
+	padding: 15px;
+}
+.col-xs-7{
+	position: relative;
+	float: left;
+	width: calc(58.31% - 30px);
+	padding: 15px;
+}
+.col-xs-6{
+	position: relative;
+	float: left;
+	width: calc(50% - 30px);
+	padding: 15px;
+}
+.col-xs-5{
+	position: relative;
+	float: left;
+	width: calc(41.65% - 30px);
+	padding: 15px;
+}
+.col-xs-4{
+	position: relative;
+	float: left;
+	width: calc(33.33% - 30px);
+	padding: 15px;
+}
+.col-xs-3{
+	position: relative;
+	float: left;
+	width: calc(25% - 30px);
+	padding: 15px;
+}
+.col-xs-2{
+	position: relative;
+	float: left;
+	width: calc(16.66% - 30px);
+	padding: 15px;
+}
+.col-xs-1{
+	position: relative;
+	float: left;
+	width: calc(8.33% - 30px);
+	padding: 15px;
+}
+
+}
