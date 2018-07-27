@@ -173,6 +173,7 @@
         }
 
         function reStartGame() {
+            $("#gamePaper").fadeOut(1000);
             $("#mes").text("");
             if (getSorce() == 0) {
                 alert("可憐的窮光蛋!!送你1000!!");
@@ -275,7 +276,13 @@
                 var list = i + 1;
                 $(".code").last().append('<div class="spanBox"><i style="font-size:0.8rem;">' + list + '</i><span>' + rand012() + '</span><span>' + rand012() + '</span><span>' + rand012() + '</span></div>');
             }
-            $(".spanBox").fadeIn(500);
+
+
+            $(".spanBox").fadeIn(500, function () {
+                $("#gamePaper").fadeIn(500, function () {
+
+                });
+            });
             $(".spanBox").each(function (e) {
 
                 $(this).find("span").each(function (i) {
