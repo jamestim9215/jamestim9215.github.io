@@ -173,7 +173,6 @@
         }
 
         function reStartGame() {
-            $("#promo").fadeOut(1000);
             $("#mes").text("");
             if (getSorce() == 0) {
                 alert("可憐的窮光蛋!!送你1000!!");
@@ -269,6 +268,9 @@
 
                     $("#cash").text(getSorce());
 
+                },
+                scratchDown: function(){
+                    $(".spanBox").fadeIn(500);
                 }
             });
 
@@ -278,11 +280,7 @@
             }
 
 
-            $(".spanBox").fadeIn(500, function () {
-                $("#promo").fadeIn(500, function () {
-
-                });
-            });
+            
             $(".spanBox").each(function (e) {
 
                 $(this).find("span").each(function (i) {
