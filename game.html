@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮樂遊戲</title>
+    <style>
+        body {
+            user-select: none;
+            /* background: #ddd; */
+        }
+
+        .gamePaper {
+            position: fixed;
+            background-image: url(./images/game.png);
+            background-size: cover;
+            width: 400px;
+            height: 600px;
+            left: calc(50% - 200px);
+            top: 5vh;
+        }
+
+        .luckynumber {
+            position: absolute;
+            width: 400px;
+            height: 100px;
+            z-index: 1;
+            left: calc(50% - 200px);
+            top: 190px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+
+        .scratchpad {
+            position: relative;
+            margin: 0 auto;
+            margin-top: 233px;
+            width: 320px;
+            height: 320px;
+        }
+
+        .scratchpad img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+        }
+
+        .scratchpad .code {
+            position: absolute;
+            width: 100%;
+            height: 320px;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            color: rgb(216, 135, 135);
+            text-align: left;
+            font-size: 2rem;
+        }
+
+        .scratchpad .code .spanBox {
+            position: relative;
+            display: none;
+            width: 290px;
+            height: 64px;
+            line-height: 56px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .bingo {
+            position: absolute;
+            top: 20%;
+            width: calc(90% - 6px);
+            height: calc(60% - 6px);
+            border-radius: 5px;
+            border: 3px solid red;
+        }
+
+        .spanBox span {
+            height: 60px;
+            background: #eee;
+            text-align: center;
+            color: #999;
+            margin: 0 5px;
+            padding: 0 5px;
+            font-size: 1.2rem;
+        }
+
+        .scratchpad canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+        }
+
+        .btn {
+            position: absolute;
+            z-index: 2;
+            font-size: 1rem;
+            padding: 5px;
+            color: #ffae00;
+            background: #fff;
+            border: 1px solid #ffae00;
+            border-radius: 5px;
+            transition: 0.5s all;
+            cursor: pointer;
+        }
+
+        .messagebox {
+            position: absolute;
+            z-index: 999;
+            width: 200px;
+            height: 600px;
+            left: -200px;
+            /* background: #ffae00; */
+        }
+
+        .btn:hover {
+            background: #ffae00;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gamePaper">
+        <div class="messagebox">
+            <h2>
+                <b>目前擁有點數 : </b>
+                <br>
+                <span id="cash"></span>
+            </h2>
+            <button class="btn reStartGame">新的一張</button>
+            <br>
+            <h3 style="color: #999">
+                規則:
+                <br> 1. 重新進入頁面會重置遊戲，預設 1000點。
+                <br> 2. 每新的一張扣100點，未刮開70%的刮刮卡不會判定中獎金額!!
+                <br> 3. 請刮開至少70%，獎項會自動判定。
+                <br> 4. 快來累積分數八!!
+
+            </h3>
+            <h1 id="mes"></h1>
+        </div>
+        <div class="luckynumber">刮出三個一樣的金額即得該獎金</div>
+        <!-- <div id="promo" class="scratchpad">
+            <div class="code">折價券！
+                <br>1QAZ2WSX3EDC</div>
+        </div> -->
+    </div>
+
+
+    <!-- <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/wScratchPad.js"></script>
+    <script>
+        var GameSorce = 1000;
+        var sorcelist = [["0", "0", "0"], ["0", "0", "0"], ["0", "0", "0"], ["0", "0", "0"], ["0", "0", "0"]];
+        $("#cash").text(GameSorce);
+
+        function getSorce() {
+            return GameSorce;
+        }
+
+        function setSorce(num) {
+            GameSorce = GameSorce + num;
+        }
+
+        function reStartGame() {
+            $("#mes").text("");
+            if (getSorce() == 0) {
+                alert("可憐的窮光蛋!!送你1000!!");
+                setSorce(1000);
+            } else {
+                setSorce(-100);
+                removeGame();
+            }
+            $("#cash").text(getSorce());
+
+        }
+
+        function removeGame() {
+            $('#promo').remove();
+            setGame();
+        }
+
+        function weightedRand(spec) {
+            var i, j, table = [];
+            for (i in spec) {
+                for (j = 0; j < spec[i] * 10; j++) {
+                    table.push(i);
+                }
+            }
+            return function () {
+                return table[Math.floor(Math.random() * table.length)];
+            }
+        }
+        var rand012 = weightedRand({
+            100: 35,
+            500: 25,
+            1000: 20,
+            66000: 15,
+            1000000: 10
+        });
+        // console.log(rand012());
+        function check() {
+            var total = 0;
+            // $(".spanBox").each(function (e) {
+            //     var num = 0;
+            //     var span = ["0", "0", "0"];
+            //     $(this).find("span").each(function (i) {
+            //         span[i] = parseInt($(this).text());
+            //     });
+            //     if (span[0] == span[1] && span[1] == span[2]) {
+            //         total = total + span[0];
+            //         $(this).last().append('<div class="bingo"></div>');
+            //     }
+            // });
+
+            for (var i = 0; i < 5; i++) {
+                var num = 0;
+                if (sorcelist[i][0] == sorcelist[i][1] && sorcelist[i][1] == sorcelist[i][2]) {
+                    total = total + parseInt(sorcelist[i][0]);
+                    $(".spanBox").eq(i).last().append('<div class="bingo"></div>');
+                }
+            }
+
+
+            if (total == 0) {
+                // console.log("哭哭沒中");
+                $("#mes").text("哭哭沒中");
+                // removeGame();
+            } else {
+                // console.log("中了!!!" + total);
+                $("#mes").text("恭賀老爺!恭喜夫人!!您中了" + total);
+                // removeGame();
+                setSorce(total);
+            }
+        }
+
+        function setGame() {
+            var num = Math.floor((Math.random() * 10) + 1);
+            $(".gamePaper").last().append(
+                '<div id="promo" class="scratchpad">' +
+                '<div class="code"></div>' +
+                '</div>'
+            );
+
+
+            $('#promo').wScratchPad({
+                size: 30,
+                bg: './images/bg.png',
+                realtime: true,
+                // fg: 'https://www.toptal.com/designers/subtlepatterns/patterns/grey_wash_wall.png',
+                fg: './images/cover/' + num + '.jpg',
+                'cursor': 'url("images/coin.png") 5 5, default',
+                scratchMove: function (e, percent) {
+                    if (percent > 70 && percent < 100) {
+                        this.clear();
+                        check();
+                    }
+
+                    $("#cash").text(getSorce());
+
+                }
+            });
+
+            for (var i = 0; i < 5; i++) {
+                var list = i + 1;
+                $(".code").last().append('<div class="spanBox"><i style="font-size:0.8rem;">' + list + '</i><span>' + rand012() + '</span><span>' + rand012() + '</span><span>' + rand012() + '</span></div>');
+            }
+            $(".spanBox").fadeIn(500);
+            $(".spanBox").each(function (e) {
+
+                $(this).find("span").each(function (i) {
+                    sorcelist[e][i] = $(this).text();
+                });
+            });
+        }
+
+        $(".reStartGame").on('click', function () {
+            reStartGame();
+        });
+        // setGame();
+    </script>
+</body>
+
+</html>
