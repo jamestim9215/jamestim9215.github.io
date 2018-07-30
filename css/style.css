@@ -1,0 +1,123 @@
+body {
+    user-select: none;
+    /* background: #ddd; */
+    margin: 0px auto;
+}
+
+.gamePaper {
+    position: relative;
+    background-image: url(../images/game.png);
+    background-size: cover;
+    width: 320px;
+    height: 480px;
+    margin: 0% auto;
+    margin-top: 10px;
+}
+
+.luckynumber {
+    position: absolute;
+    width: 320px;
+    height: 100px;
+    z-index: 1;
+    left: calc(50% - 160px);
+    top: 150px;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+}
+
+
+.scratchpad {
+    position: absolute;
+    top: 186px;
+    left: 32px;
+    width: 256px;
+    height: 256px;
+}
+
+.scratchpad img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+.scratchpad .code {
+    position: absolute;
+    width: 100%;
+    height: 256px;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    color: rgb(216, 135, 135);
+    text-align: left;
+    font-size: 2rem;
+}
+
+.scratchpad .code .spanBox {
+    position: relative;
+    display: none;
+    width: 256px;
+    height: 51px;
+    line-height: 40px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.bingo {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: calc(90%);
+    height: calc(80% - 8px);
+    border-radius: 8px;
+    border: 3px solid red;
+}
+
+.spanBox span {
+    height: 60px;
+    background: #eee;
+    text-align: center;
+    color: #999;
+    margin: 0 5px;
+    padding: 0 5px;
+    font-size: 1rem;
+}
+
+.scratchpad canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.messagebox {
+    position: relative;
+    width: 100%;
+    margin:0 auto;
+    margin-bottom: 80px;
+}
+
+.menu{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    background: rgba(255, 153, 0,1);
+    line-height: 60px;
+    color: white;
+    font-size: 1.2rem;
+}
+
+#mes{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 40px;
+    bottom: 60px;
+    background: rgba(255, 153, 0,0.5);
+    color: #ff6400;
+    line-height: 2rem;
+    font-size: 1.5rem;
+}
