@@ -42,10 +42,11 @@ function weightedRand(spec) {
 
 var rand012 = weightedRand({
     100: 35,
-    500: 25,
-    1000: 20,
-    50000: 15,
-    1000000: 10
+    200: 30,
+    500: 15,
+    1000: 10,
+    100000: 6,
+    1000000: 4
 });
 // console.log(rand012());
 function check() {
