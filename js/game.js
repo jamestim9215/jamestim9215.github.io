@@ -111,3 +111,7 @@ function setGame() {
 $(".reStartGame").on('click', function () {
     reStartGame();
 });
+
+$(".otherGame").on('click',function(){
+    alert("尚未開放!!");
+});
