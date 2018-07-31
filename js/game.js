@@ -172,6 +172,7 @@ $(".btn-next").on('click', function () {
     var num = Math.floor((Math.random() * 10) + 1);
     _game3 = true;
     $(".gameSelect").text("?");
+    $("#mes").text('');
     $(".btn-next").fadeOut(5);
     $(".btn-restart").fadeOut(5, function () {
         $(".btn-box").fadeIn(250);
