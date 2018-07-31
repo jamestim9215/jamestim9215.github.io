@@ -23,10 +23,16 @@
                     </b>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-outline-light  reStartGame">新的一張</button>
+                    <button class="btn btn-outline-light  reStartGame">新的一局</button>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-outline-light  otherGame">拉霸機</button>
+                    <select id="game-select" class="form-control-sm btn-outline-light mt-2">
+                        <option value="0">Games</option>
+                        <option value="1">刮刮樂</option>
+                        <option value="2">拉霸機</option>
+                        <option value="3">比大小</option>
+                    </select>
+                    <!-- <button class="btn btn-outline-light  otherGame">拉霸機</button> -->
                 </div>
             </div>
         </div>
@@ -35,30 +41,76 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 p-0">
-                <div class="gamePaper">
-
+                <!--start 刮刮樂 -->
+                <div class="gamePaper game-1">
                     <div class="luckynumber">刮出三個一樣的金額即得該獎金</div>
-                    <!-- <div id="promo" class="scratchpad">
-            <div class="code">折價券！
-                <br>1QAZ2WSX3EDC</div>
-        </div> -->
                 </div>
+                <!--end 刮刮樂 -->
+
+
+                <!--start 比大小 -->
+                <div class="gamePaper3 game-3" style="display: none;">
+                    <div class="luckynumber3">猜中大小即得雙倍獎金</div>
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col-12" style="margin-top: 130px">
+                                <h3>目前賭金:</h3>
+                            </div>
+                            <div class="col-12 h3 mb-3">
+                                <div id="game2-val" class="bg-info">0</div>
+                            </div>
+                            <div class="col-5  h4 px-3">
+                                <span class="p-2 num-l">?</span>
+                            </div>
+                            <div class="col-2 h4 gameSelect">?</div>
+                            <div class="col-5 h4 px-3">
+                                <div class="game3-cover"></div>
+                                <span class="p-2 num-r">8</span>
+                            </div>
+                            <div class="col-12 p-3 btn-box" style="display: none;">
+                                <button class="btn btn-danger btn-block btn-big" value=">">大 > </button>
+                                <button class="btn btn-danger btn-block btn-smill" value="<">小 < </button>
+                            </div>
+                            <div class="col-12 p-3 btn-next-box">
+                                <button class="btn btn-danger btn-block btn-next" style="display: none;">繼續</button>
+                                <button class="btn btn-danger btn-block btn-restart" style="display: none;">結束這局</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end 比大小 -->
+
             </div>
             <div class="col-12">
-                <div class="messagebox">
-
-
+                <!--start 刮刮樂說明 -->
+                <div class="messagebox game-1">
                     <br>
                     <h3 style="color: #999">
                         規則:
-                        <br> 1. 重新進入頁面會重置遊戲，預設 1000點。
-                        <br> 2. 每新的一張扣100點，未刮開70%的刮刮卡不會判定中獎金額!!
-                        <br> 3. 請刮開至少70%，獎項會自動判定。
-                        <br> 4. 快來累積分數八!!
+                        <br> 1. 每新的一張扣100點，未刮開70%的刮刮卡不會判定中獎金額!!
+                        <br> 2. 請刮開至少70%，獎項會自動判定。
                     </h3>
                     <br>
                     <br>
                 </div>
+                <!--end 刮刮樂說明 -->
+
+                <!--start 比大小說明 -->
+                <div class="messagebox game-3" style="display: none;">
+                    <br>
+                    <h3 style="color: #999">
+                        規則:
+                        <br> 1. 每次賭金為200
+                        <br> 2. 猜中大小獎金雙倍,可選擇繼續猜，或者結束這局(獎金折半)
+                        <br> 3. 猜錯獎金歸0
+                        <br> 4. 數字範圍 1 ~ 10
+                        <br> 5. 數字一樣則算輸
+                    </h3>
+                    <br>
+                    <br>
+                </div>
+                <!--end 比大小說明 -->
+
             </div>
         </div>
     </div>
