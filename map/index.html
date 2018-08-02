@@ -32,8 +32,8 @@
 
 <body>
     <div class="menu">
-        <button class="login-fb">FB 登入打卡</button>
-        
+        <!-- <button class="login-fb">FB 登入打卡</button> -->
+
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
     </div>
@@ -43,10 +43,13 @@
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '229915024520608',
-                autoLogAppEvents: true,
+                cookie: true,
                 xfbml: true,
-                version: 'v3.1'
+                version: 'V3.1'
             });
+
+            FB.AppEvents.logPageView();
+
         };
 
         (function (d, s, id) {
@@ -57,13 +60,13 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        $(".login-fb").on('click', function () {
-            console.log("login");
+        // $(".login-fb").on('click', function () {
+        //     console.log("login");
 
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-        });
+        //     FB.getLoginStatus(function (response) {
+        //         statusChangeCallback(response);
+        //     });
+        // });
 
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
