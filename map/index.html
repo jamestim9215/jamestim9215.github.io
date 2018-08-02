@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>地圖</title>
+    <style type="text/css" media="screen">
+        .html,
+        body {
+            margin: 0 auto;
+        }
+
+        .menu {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: black;
+            color: #fff;
+        }
+
+        #map {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            height: calc(100% - 100px);
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button class="login-fb">FB 登入打卡</button>
+        
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+    </div>
+    <div id="map"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '229915024520608',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.1'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        $(".login-fb").on('click', function () {
+            console.log("login");
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        });
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+        function initMap() {
+            var latlng = { lat: 25.046891, lng: 121.516602 }; // 台北車站的經緯度
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3, //放大的倍率
+                center: latlng, //初始化的地圖中心位置
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 13
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#144b53"
+                            },
+                            {
+                                "lightness": 14
+                            },
+                            {
+                                "weight": 1.4
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#08304b"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#0c4152"
+                            },
+                            {
+                                "lightness": 5
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#0b434f"
+                            },
+                            {
+                                "lightness": 25
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#0b3d51"
+                            },
+                            {
+                                "lightness": 16
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#146474"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#021019"
+                            }
+                        ]
+                    }
+                ]
+            });
+            // var marker = new google.maps.Marker({
+            //     position: latlng,
+            //     map: map
+            // });
+
+            var icon_path = "images/";
+            var icons = {
+                wizard: {
+                    name: 'wizard',
+                    icon: icon_path + "003-location.png"
+                }
+            };
+            //--------下面是呼叫一個新marker------
+            for (var i = 0; i <= 3; i++) {
+                lat = latlng.lat - 10;
+                lng = latlng.lng - 10;
+                latlng = { lat: lat, lng: lng };
+                console.log(lat.toFixed(6));
+                console.log(lng.toFixed(6));
+                console.log(i);
+
+                if (i == 0) {
+                    var marker = new google.maps.Marker({
+                        position: latlng, //marker的放置位置
+                        icon: icons.wizard.icon,
+                        map: map
+                    });
+                } else if (i == 1) {
+                    var marker = new google.maps.Marker({
+                        position: latlng, //marker的放置位置
+                        icon: icons.wizard.icon,
+                        map: map
+                    });
+                } else if (i == 2) {
+                    var marker = new google.maps.Marker({
+                        position: latlng, //marker的放置位置
+                        icon: icons.wizard.icon,
+                        map: map
+                    });
+                }
+            }
+        }   //init_end
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initMap">
+    </script>
+</body>
+
+</html>
