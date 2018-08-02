@@ -40,14 +40,14 @@
     <div id="map"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-        var userId;
+        var userUrl;
 
-        function setUserId(id){
-            userId = id;
+        function setUrl(url){
+            userUrl = url;
         }
 
-        function getUserId(){
-            return userId;
+        function getUrl(){
+            return userUrl;
         }
         window.fbAsyncInit = function () {
             FB.init({
@@ -89,8 +89,8 @@
                         {},
                         function (response) {
                             // Insert your code here
-                            console.log(response);
-                            
+                            console.log(response.data.url);
+                            setUrl(response.data.url);
                         }
                     );
                     });
