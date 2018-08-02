@@ -78,15 +78,25 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10, //放大的倍率
+                zoom: 5, //放大的倍率
                 center: latlng, //初始化的地圖中心位置
                 styles: [
                     {
                         "featureType": "all",
                         "stylers": [
                             {
-                                "visibility": "off"
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#ff6400"
                             }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels",
+                        "stylers": [
+                            { "visibility": "off" }
                         ]
                     },
                     {
@@ -96,7 +106,7 @@
                                 "visibility": "on"
                             },
                             {
-                                "lightness": 100
+                                "color": "#333333"
                             }
                         ]
                     }
@@ -106,14 +116,29 @@
             //     position: latlng,
             //     map: map
             // });
-            // var icon_path = "images/";
-            // var icons = {
-            //     wizard: {
-            //         name: 'wizard',
-            //         icon: icon_path + "003-location.png"
-            //     }
-            // };
-            // //--------下面是呼叫一個新marker------
+            var icon_path = "images/";
+            var icons = {
+                wizard: {
+                    name: 'wizard',
+                    icon: icon_path + "003-location.png"
+                }
+            };
+
+            var marker = new google.maps.Marker({
+                position: latlng, //marker的放置位置
+                icon: icons.wizard.icon,
+                map: map
+            });
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                console.log(event.latLng.toString());
+                var marker = new google.maps.Marker({
+                    position: event.latLng, //marker的放置位置
+                    icon: getUrl(),
+                    map: map
+                });
+            });
+            //--------下面是呼叫一個新marker------
             // for (var i = 0; i <= 3; i++) {
             //     lat = latlng.lat - 10;
             //     lng = latlng.lng - 10;
@@ -143,7 +168,6 @@
             //     }
             // }
         }   //init_end
-
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
                 // console.log('statusChangeCallback');
@@ -166,11 +190,9 @@
                                 // Insert your code here
                                 console.log(response.data.url);
                                 setUrl(response.data.url);
-                                var marker = new google.maps.Marker({
-                                    position: latlng, //marker的放置位置
-                                    icon: response.data.url,
-                                    map: map
-                                });
+
+
+
                             }
                         );
                     });
@@ -181,7 +203,11 @@
                     // document.getElementById('status').innerHTML = 'Please log into this app.';
                 }
             });
+
+
         }
+
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initMap">
     </script>
