@@ -78,141 +78,25 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 3, //放大的倍率
+                zoom: 10, //放大的倍率
                 center: latlng, //初始化的地圖中心位置
                 styles: [
                     {
                         "featureType": "all",
-                        "elementType": "labels.text.fill",
                         "stylers": [
                             {
-                                "color": "#ffffff"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            },
-                            {
-                                "lightness": 13
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry.stroke",
-                        "stylers": [
-                            {
-                                "color": "#144b53"
-                            },
-                            {
-                                "lightness": 14
-                            },
-                            {
-                                "weight": 1.4
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "color": "#08304b"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#0c4152"
-                            },
-                            {
-                                "lightness": 5
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.stroke",
-                        "stylers": [
-                            {
-                                "color": "#0b434f"
-                            },
-                            {
-                                "lightness": 25
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "geometry.stroke",
-                        "stylers": [
-                            {
-                                "color": "#0b3d51"
-                            },
-                            {
-                                "lightness": 16
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.local",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#000000"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "color": "#146474"
+                                "visibility": "off"
                             }
                         ]
                     },
                     {
                         "featureType": "water",
-                        "elementType": "all",
                         "stylers": [
                             {
-                                "color": "#021019"
+                                "visibility": "on"
+                            },
+                            {
+                                "lightness": 100
                             }
                         ]
                     }
@@ -273,9 +157,9 @@
                     // console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function (response) {
                         console.log(response);
-                        // setUserId(response.id);
+                        setUserId(response.name);
                         FB.api(
-                            '/'+response.id+'/picture?redirect=false',
+                            '/' + response.id + '/picture?redirect=false',
                             'GET',
                             {},
                             function (response) {
