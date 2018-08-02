@@ -40,6 +40,15 @@
     <div id="map"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
+        var userId;
+
+        function setUserId(id){
+            userId = id;
+        }
+
+        function getUserId(){
+            return userId;
+        }
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '229915024520608',
@@ -72,14 +81,23 @@
                     // Logged into your app and Facebook.
                     console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function (response) {
+                        console.log(response.userID);
                         console.log('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
-                          'Thanks for logging in, ' + response.name + '!';
+                            'Thanks for logging in, ' + response.name + '!';
                     });
+
+                    FB.api(
+                        '/{user-id}/picture',
+                        'GET',
+                        {},
+                        function (response) {
+                            // Insert your code here
+                        }
+                    );
                 } else {
                     // The person is not logged into your app or we are unable to tell.
-                    document.getElementById('status').innerHTML = 'Please log ' +
-                      'into this app.';
+                    // document.getElementById('status').innerHTML = 'Please log into this app.';
                 }
             });
         }
