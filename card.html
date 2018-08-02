@@ -60,6 +60,18 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/wScratchPad.js"></script>
 	<script>
+		
+		function weightedRand(spec) {
+			var i, j, table = [];
+			for (i in spec) {
+				for (j = 0; j < spec[i] * 10; j++) {
+					table.push(i);
+				}
+			}
+			return function () {
+				return table[Math.floor(Math.random() * table.length)];
+			}
+		}
 
 		var rand01 = weightedRand({
 			188: 100,
@@ -71,7 +83,7 @@
 
 		$('#promo').wScratchPad({
 			size: 15,
-			bg: 'images/EC_coupons_'+rand01()+'.png',
+			bg: 'images/EC_coupons_' + rand01() + '.png',
 			realtime: true,
 			fg: 'images/cards/EC_coupons_cover-01.jpg',
 			'cursor': 'url("images/coin.png") 5 5, default',
