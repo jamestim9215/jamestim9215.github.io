@@ -70,189 +70,194 @@
         }(document, 'script', 'facebook-jssdk'));
 
         var latlng = { lat: 25.046891, lng: 121.516602 }; // 台北車站的經緯度
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 3, //放大的倍率
-            center: latlng, //初始化的地圖中心位置
-            styles: [
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        },
-                        {
-                            "lightness": 13
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#144b53"
-                        },
-                        {
-                            "lightness": 14
-                        },
-                        {
-                            "weight": 1.4
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#08304b"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#0c4152"
-                        },
-                        {
-                            "lightness": 5
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#0b434f"
-                        },
-                        {
-                            "lightness": 25
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#0b3d51"
-                        },
-                        {
-                            "lightness": 16
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#146474"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#021019"
-                        }
-                    ]
-                }
-            ]
-        });
+        var map;
         // var marker = new google.maps.Marker({
         //     position: latlng,
         //     map: map
         // });
 
         function initMap() {
-            var icon_path = "images/";
-            var icons = {
-                wizard: {
-                    name: 'wizard',
-                    icon: icon_path + "003-location.png"
-                }
-            };
-            //--------下面是呼叫一個新marker------
-            for (var i = 0; i <= 3; i++) {
-                lat = latlng.lat - 10;
-                lng = latlng.lng - 10;
-                latlng = { lat: lat, lng: lng };
-                // console.log(lat.toFixed(6));
-                // console.log(lng.toFixed(6));
-                // console.log(i);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3, //放大的倍率
+                center: latlng, //初始化的地圖中心位置
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 13
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#144b53"
+                            },
+                            {
+                                "lightness": 14
+                            },
+                            {
+                                "weight": 1.4
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#08304b"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#0c4152"
+                            },
+                            {
+                                "lightness": 5
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#0b434f"
+                            },
+                            {
+                                "lightness": 25
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#0b3d51"
+                            },
+                            {
+                                "lightness": 16
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#146474"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#021019"
+                            }
+                        ]
+                    }
+                ]
+            });
+            // var marker = new google.maps.Marker({
+            //     position: latlng,
+            //     map: map
+            // });
+            // var icon_path = "images/";
+            // var icons = {
+            //     wizard: {
+            //         name: 'wizard',
+            //         icon: icon_path + "003-location.png"
+            //     }
+            // };
+            // //--------下面是呼叫一個新marker------
+            // for (var i = 0; i <= 3; i++) {
+            //     lat = latlng.lat - 10;
+            //     lng = latlng.lng - 10;
+            //     latlng = { lat: lat, lng: lng };
+            //     // console.log(lat.toFixed(6));
+            //     // console.log(lng.toFixed(6));
+            //     // console.log(i);
 
-                if (i == 0) {
-                    var marker = new google.maps.Marker({
-                        position: latlng, //marker的放置位置
-                        icon: icons.wizard.icon,
-                        map: map
-                    });
-                } else if (i == 1) {
-                    var marker = new google.maps.Marker({
-                        position: latlng, //marker的放置位置
-                        icon: icons.wizard.icon,
-                        map: map
-                    });
-                } else if (i == 2) {
-                    var marker = new google.maps.Marker({
-                        position: latlng, //marker的放置位置
-                        icon: icons.wizard.icon,
-                        map: map
-                    });
-                }
-            }
+            //     if (i == 0) {
+            //         var marker = new google.maps.Marker({
+            //             position: latlng, //marker的放置位置
+            //             icon: icons.wizard.icon,
+            //             map: map
+            //         });
+            //     } else if (i == 1) {
+            //         var marker = new google.maps.Marker({
+            //             position: latlng, //marker的放置位置
+            //             icon: icons.wizard.icon,
+            //             map: map
+            //         });
+            //     } else if (i == 2) {
+            //         var marker = new google.maps.Marker({
+            //             position: latlng, //marker的放置位置
+            //             icon: icons.wizard.icon,
+            //             map: map
+            //         });
+            //     }
+            // }
         }   //init_end
 
         function checkLoginState() {
