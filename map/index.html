@@ -275,7 +275,7 @@
                         console.log(response);
                         // setUserId(response.id);
                         FB.api(
-                            '/'+response.id+'picture?redirect=false',
+                            '/'+response.id+'/picture?redirect=false',
                             'GET',
                             {},
                             function (response) {
