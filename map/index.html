@@ -72,7 +72,7 @@
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
                 // console.log('statusChangeCallback');
-                console.log(response);
+                // console.log(response);
                 // The response object is returned with a status field that lets the
                 // app know the current login status of the person.
                 // Full docs on the response object can be found in the documentation
@@ -81,16 +81,18 @@
                     // Logged into your app and Facebook.
                     // console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function (response) {
-                        console.log(response);
-                        // console.log('Successful login for: ' + response.name);
+                        // console.log(response);
+                        setUserId(response.id);
                     });
 
                     FB.api(
-                        '/{user-id}/picture',
+                        '/'+getUserId()+'/picture',
                         'GET',
                         {},
                         function (response) {
                             // Insert your code here
+                            console.log(response);
+                            
                         }
                     );
                 } else {
