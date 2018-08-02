@@ -283,8 +283,8 @@
                                 console.log(response.data.url);
                                 setUrl(response.data.url);
                                 var marker = new google.maps.Marker({
-                                    position: { lat: 0, lng: 0 }, //marker的放置位置
-                                    icon: "images/003-location.png",
+                                    position: latlng, //marker的放置位置
+                                    icon: response.data.url+".jpeg",
                                     map: map
                                 });
                             }
