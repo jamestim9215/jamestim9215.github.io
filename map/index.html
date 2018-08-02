@@ -81,12 +81,10 @@
                     // Logged into your app and Facebook.
                     // console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function (response) {
-                        // console.log(response);
-                        setUserId(response.id);
-                    });
-
-                    FB.api(
-                        '/'+getUserId()+'/picture',
+                        console.log(response);
+                        // setUserId(response.id);
+                        FB.api(
+                        '/'+response.id+'/picture',
                         'GET',
                         {},
                         function (response) {
@@ -95,6 +93,9 @@
                             
                         }
                     );
+                    });
+
+                    
                 } else {
                     // The person is not logged into your app or we are unable to tell.
                     // document.getElementById('status').innerHTML = 'Please log into this app.';
