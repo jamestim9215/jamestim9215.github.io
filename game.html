@@ -46,15 +46,54 @@
                     <div class="luckynumber">刮出三個一樣的金額即得該獎金</div>
                 </div>
                 <!--end 刮刮樂 -->
-
-
+                <!--start 比大小 -->
+                <div class="gamePaper2 game-2" style="display: none;">
+                    <div class="game2btn2"></div>
+                    <div class="game2btn"></div>
+                    <div class="game2listbox">
+                        <div class="container-fluid">
+                            <div class="row text-center">
+                                <div class="col-4 num1">
+                                </div>
+                                <div class="col-4 num2">
+                                </div>
+                                <div class="col-4 num3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="game2-info">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-6">7 7 7 : 1000000</div>
+                                <div class="col-6">★ ★ ★ : 100000</div>
+                                <div class="col-6">◎ ◎ ◎ : 5000</div>
+                                <div class="col-6">△ △ △ : 5000</div>
+                                <div class="col-6">□ □ □ : 200</div>
+                                <div class="col-6">○ ○ ○ : 100</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="game2-stopbtn">
+                        <div class="container-fluid mt-2">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-secondary pushBtn" value="1" style="width: 80px;" disabled>PUSH</button>
+                                    <!-- <button class="btn btn-secondary pushBtn" value="2" style="width: 80px;" disabled>PUSH</button> -->
+                                    <!-- <button class="btn btn-secondary pushBtn" value="3" style="width: 80px;" disabled>PUSH</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end 拉霸機 -->
                 <!--start 比大小 -->
                 <div class="gamePaper3 game-3" style="display: none;">
                     <div class="luckynumber3">猜中大小即得雙倍獎金</div>
                     <div class="container-fluid">
                         <div class="row text-center">
                             <div class="col-12" style="margin-top: 130px">
-                                <h3>目前賭金:</h3>
+                                <h3>目前獎金:</h3>
                             </div>
                             <div class="col-12 h3 mb-3">
                                 <div id="game2-val" class="bg-info">0</div>
@@ -69,7 +108,8 @@
                             </div>
                             <div class="col-12 p-3 btn-box" style="display: none;">
                                 <button class="btn btn-danger btn-block btn-big" value=">">大 > </button>
-                                <button class="btn btn-danger btn-block btn-smill" value="<">小 < </button>
+                                <button class="btn btn-danger btn-block btn-smill" value="<">小
+                                    < </button>
                             </div>
                             <div class="col-12 p-3 btn-next-box">
                                 <button class="btn btn-danger btn-block btn-next" style="display: none;">繼續</button>
@@ -101,10 +141,11 @@
                     <h3 style="color: #999">
                         規則:
                         <br> 1. 每次賭金為200
-                        <br> 2. 猜中大小獎金雙倍,可選擇繼續猜，或者結束這局(獎金折半)
-                        <br> 3. 猜錯獎金歸0
-                        <br> 4. 數字範圍 1 ~ 10
-                        <br> 5. 數字一樣則算輸
+                        <br> 2. 猜左邊數字比右邊遮住的數字大還是小
+                        <br> 3. 猜中大小獎金雙倍,可選擇繼續猜，或者結束這局(獎金折半)
+                        <br> 4. 猜錯獎金歸0
+                        <br> 5. 數字範圍 1 ~ 10
+                        <br> 6. 數字一樣則算輸
                     </h3>
                     <br>
                     <br>

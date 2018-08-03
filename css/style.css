@@ -14,6 +14,88 @@ body {
     margin-top: 10px;
 }
 
+.gamePaper2 {
+    position: relative;
+    background-image: url(../images/paper2.png);
+    background-size: cover;
+    width: 320px;
+    height: 480px;
+    margin: 0% auto;
+    margin-top: 10px;
+}
+
+.game2btn {
+    position: absolute;
+    background-image: url(../images/game2btn.png);
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    right: -40px;
+    top:65px;
+    transform: translateY(0px);
+    transition: 0.8s all;
+    cursor: pointer;
+}
+.game2btn2 {
+    position: absolute;
+    background-image: url(../images/game2btn2.png);
+    background-size: cover;
+    width: 40px;
+    height: 200px;
+    right: -40px;
+    top:65px;
+    transform: rotateX(0deg);
+    transition: 0.8s all;
+}
+.game2btn-active{
+    transform: translateY(160px);
+}
+.game2btn2-active{
+    transform: rotateX(180deg);
+}
+.game2-info{
+    position: absolute;
+    left: 25px;
+    bottom: 80px;
+    width: calc(100% - 50px);
+    height: 170px;
+    background: #ffe7a4;
+    border: 10px solid #ffba01;
+    font-size: 0.8rem;
+    line-height: 30px;
+    color:#ca0000;
+}
+
+.game2-stopbtn{
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    background: #ca0000;
+}
+.game2listbox{
+    position: absolute;
+    top: 131px;
+    left: 35px;
+    width: 250px;
+    height: 210px;
+    /* background: #eee; */
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+}
+
+.game2listbox span{
+    line-height: 70px;
+    font-size: 3rem;
+    color:#ca0000;
+}
+
+.move{
+    transform: translateY(-100%);
+}
+
+
 .gamePaper3 {
     position: relative;
     background-image: url(../images/paper3.png);
