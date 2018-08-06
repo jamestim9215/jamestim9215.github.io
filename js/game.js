@@ -38,7 +38,7 @@ function changeGame(lastType, newType) {
 
 function reStartGame() {
     $("#mes").text("");
-    if (getSorce() == 0) {
+    if (getSorce() <= 0) {
         alert("可憐的窮光蛋!!送你1000!!");
         setSorce(1000);
     } else {
@@ -423,10 +423,15 @@ firebase.initializeApp(config);
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 var dbId = "";
-
+//去除html标签
+function deleteHtmlTag(str) {
+    str = str.replace(/<[^>]+>|&[^>]+;/g, "").trim();//去掉所有的html标签和&nbsp;之类的特殊符合
+    return str;
+}
 $(".newUserBtn").on('click', function () {
     var newUser = $("#new-user-name").val();
     if (newUser != "") {
+        newUser = deleteHtmlTag(newUser);
         db.collection("user-sorce").where("name", "==", newUser).get().then(function (querySnapshot) {
             var i = 0;
             querySnapshot.forEach(function (doc) {
