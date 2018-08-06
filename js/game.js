@@ -115,11 +115,8 @@ function checkpoint(type) {
         }
     } else {
         if (_l < _r) {
-            console.log("< win");
-
             return 1;
         } else {
-            console.log("< lose");
             return 0;
         }
     }
@@ -445,7 +442,7 @@ $(".newUserBtn").on('click', function () {
                     sorce: 1000,
                     time: time
                 }).then(function (docRef) {
-                    console.log("Document written with ID: ", docRef.id);
+                    // console.log("Document written with ID: ", docRef.id);
                     dbId = docRef.id;
                 }).catch(function (error) {
                     console.error("Error adding document: ", error);
@@ -469,7 +466,7 @@ function updateFirebaseDb(sorce) {
         sorce: sorce,
         time: time
     }).then(function () {
-        console.log("Document successfully updated!");
+        // console.log("Document successfully updated!");
     }).catch(function (error) {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
@@ -483,7 +480,7 @@ $(".rankBtn").on('click', function () {
         var i=1;
         $(".rankbox table tbody").children().remove();
         querySnapshot.forEach(function(doc) {
-            console.log(doc.data());
+            // console.log(doc.data());
             $(".rankbox table tbody").last().append('<tr><td><b>'+i+'</b></td><td>'+doc.data().name+'</td><td>'+doc.data().sorce+'</td><td>'+doc.data().time+'</td></tr>');
             i++;
         });
