@@ -442,7 +442,7 @@ $(".newUserBtn").on('click', function () {
                 var time = new Date();
                 db.collection("user-sorce").add({
                     name: newUser,
-                    sorce: "1000",
+                    sorce: 1000,
                     time: time
                 }).then(function (docRef) {
                     console.log("Document written with ID: ", docRef.id);
@@ -481,7 +481,9 @@ $(".rankBtn").on('click', function () {
     $("body").css("overflow", "hidden");
     db.collection("user-sorce").orderBy("sorce", "desc").limit(5).get().then(function(querySnapshot) {
         var i=1;
+        $(".rankbox table tbody").children().remove();
         querySnapshot.forEach(function(doc) {
+            console.log(doc.data());
             $(".rankbox table tbody").last().append('<tr><td><b>'+i+'</b></td><td>'+doc.data().name+'</td><td>'+doc.data().sorce+'</td><td>'+doc.data().time+'</td></tr>');
             i++;
         });
