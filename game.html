@@ -13,6 +13,7 @@
 
 <body>
 
+
     <div class="new-user-box">
         <div class="new-user-input-box">
             <span class="display-2">HELLO !! </span>
@@ -25,153 +26,171 @@
         </div>
     </div>
 
-    <div id="mes" class="text-center"></div>
-    <div class="menu">
+        <div id="mes" class="text-center"></div>
+        <div class="menu">
 
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-4 user-info">
-                    User :
-                    <b>
-                        <span id="userName">No User</span>
-                    </b>
-                    <br> Sorce :
-                    <b>
-                        <span id="cash"></span>
-                    </b>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-outline-light  reStartGame">新的一局</button>
-                </div>
-                <div class="col-4">
-                    <select id="game-select" class="form-control-sm btn-outline-light mt-2">
-                        <option value="0">Games</option>
-                        <option value="1">刮刮樂</option>
-                        <option value="2">拉霸機</option>
-                        <option value="3">比大小</option>
-                    </select>
-                    <!-- <button class="btn btn-outline-light  otherGame">拉霸機</button> -->
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-4 user-info">
+                        User :
+                        <b>
+                            <span id="userName">No User</span>
+                        </b>
+                        <br> Sorce :
+                        <b>
+                            <span id="cash"></span>
+                        </b>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-outline-light  reStartGame">新的一局</button>
+                    </div>
+                    <div class="col-4">
+                        <select id="game-select" class="form-control-sm btn-outline-light mt-2">
+                            <option value="0">Games</option>
+                            <option value="1">刮刮樂</option>
+                            <option value="2">拉霸機</option>
+                            <option value="3">比大小</option>
+                        </select>
+                        <!-- <button class="btn btn-outline-light  otherGame">拉霸機</button> -->
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 p-0">
-                <!--start 刮刮樂 -->
-                <div class="gamePaper game-1">
-                    <div class="luckynumber">刮出三個一樣的金額即得該獎金</div>
-                </div>
-                <!--end 刮刮樂 -->
-                <!--start 比大小 -->
-                <div class="gamePaper2 game-2" style="display: none;">
-                    <div class="game2btn2"></div>
-                    <div class="game2btn"></div>
-                    <div class="game2listbox">
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <!--start 刮刮樂 -->
+                    <div class="gamePaper game-1">
+                        <div class="luckynumber">刮出三個一樣的金額即得該獎金</div>
+                    </div>
+                    <!--end 刮刮樂 -->
+                    <!--start 比大小 -->
+                    <div class="gamePaper2 game-2" style="display: none;">
+                        <div class="game2btn2"></div>
+                        <div class="game2btn"></div>
+                        <div class="game2listbox">
+                            <div class="container-fluid">
+                                <div class="row text-center">
+                                    <div class="col-4 num1">
+                                    </div>
+                                    <div class="col-4 num2">
+                                    </div>
+                                    <div class="col-4 num3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game2-info">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-6">7 7 7 : 1000000</div>
+                                    <div class="col-6">★ ★ ★ : 50000</div>
+                                    <div class="col-6">◎ ◎ ◎ : 10000</div>
+                                    <div class="col-6">△ △ △ : 500</div>
+                                    <div class="col-6">○ ○ ○ : 100</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game2-stopbtn">
+                            <div class="container-fluid mt-2">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-secondary pushBtn" value="1" style="width: 80px;" disabled>PUSH</button>
+                                        <!-- <button class="btn btn-secondary pushBtn" value="2" style="width: 80px;" disabled>PUSH</button> -->
+                                        <!-- <button class="btn btn-secondary pushBtn" value="3" style="width: 80px;" disabled>PUSH</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end 拉霸機 -->
+                    <!--start 比大小 -->
+                    <div class="gamePaper3 game-3" style="display: none;">
+                        <div class="luckynumber3">猜中大小即得雙倍獎金</div>
                         <div class="container-fluid">
                             <div class="row text-center">
-                                <div class="col-4 num1">
+                                <div class="col-12" style="margin-top: 130px">
+                                    <h3>目前獎金:</h3>
                                 </div>
-                                <div class="col-4 num2">
+                                <div class="col-12 h3 mb-3">
+                                    <div id="game2-val" class="bg-info">0</div>
                                 </div>
-                                <div class="col-4 num3">
+                                <div class="col-5  h4 px-3">
+                                    <span class="p-2 num-l">?</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game2-info">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6">7 7 7 : 1000000</div>
-                                <div class="col-6">★ ★ ★ : 50000</div>
-                                <div class="col-6">◎ ◎ ◎ : 10000</div>
-                                <div class="col-6">△ △ △ : 500</div>
-                                <div class="col-6">○ ○ ○ : 100</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game2-stopbtn">
-                        <div class="container-fluid mt-2">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <button class="btn btn-secondary pushBtn" value="1" style="width: 80px;" disabled>PUSH</button>
-                                    <!-- <button class="btn btn-secondary pushBtn" value="2" style="width: 80px;" disabled>PUSH</button> -->
-                                    <!-- <button class="btn btn-secondary pushBtn" value="3" style="width: 80px;" disabled>PUSH</button> -->
+                                <div class="col-2 h4 gameSelect">?</div>
+                                <div class="col-5 h4 px-3">
+                                    <div class="game3-cover"></div>
+                                    <span class="p-2 num-r">8</span>
+                                </div>
+                                <div class="col-12 p-3 btn-box" style="display: none;">
+                                    <button class="btn btn-danger btn-block btn-big" value=">">大 > </button>
+                                    <button class="btn btn-danger btn-block btn-smill" value="<">小
+                                        < </button>
+                                </div>
+                                <div class="col-12 p-3 btn-next-box">
+                                    <button class="btn btn-danger btn-block btn-next" style="display: none;">繼續</button>
+                                    <button class="btn btn-danger btn-block btn-restart" style="display: none;">結束這局</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- end 拉霸機 -->
-                <!--start 比大小 -->
-                <div class="gamePaper3 game-3" style="display: none;">
-                    <div class="luckynumber3">猜中大小即得雙倍獎金</div>
-                    <div class="container-fluid">
-                        <div class="row text-center">
-                            <div class="col-12" style="margin-top: 130px">
-                                <h3>目前獎金:</h3>
-                            </div>
-                            <div class="col-12 h3 mb-3">
-                                <div id="game2-val" class="bg-info">0</div>
-                            </div>
-                            <div class="col-5  h4 px-3">
-                                <span class="p-2 num-l">?</span>
-                            </div>
-                            <div class="col-2 h4 gameSelect">?</div>
-                            <div class="col-5 h4 px-3">
-                                <div class="game3-cover"></div>
-                                <span class="p-2 num-r">8</span>
-                            </div>
-                            <div class="col-12 p-3 btn-box" style="display: none;">
-                                <button class="btn btn-danger btn-block btn-big" value=">">大 > </button>
-                                <button class="btn btn-danger btn-block btn-smill" value="<">小
-                                    < </button>
-                            </div>
-                            <div class="col-12 p-3 btn-next-box">
-                                <button class="btn btn-danger btn-block btn-next" style="display: none;">繼續</button>
-                                <button class="btn btn-danger btn-block btn-restart" style="display: none;">結束這局</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end 比大小 -->
+                    <!--end 比大小 -->
 
-            </div>
-            <div class="col-12">
-                <!--start 刮刮樂說明 -->
-                <div class="messagebox game-1">
-                    <br>
-                    <h3 style="color: #999">
-                        規則:
-                        <br> 1. 每新的一張扣100點，未刮開70%的刮刮卡不會判定中獎金額!!
-                        <br> 2. 請刮開至少70%，獎項會自動判定。
-                    </h3>
-                    <br>
-                    <br>
                 </div>
-                <!--end 刮刮樂說明 -->
+                <div class="col-12">
+                    <!--start 刮刮樂說明 -->
+                    <div class="messagebox game-1">
+                        <br>
+                        <h3 style="color: #999">
+                            規則:
+                            <br> 1. 每新的一張扣100點，未刮開70%的刮刮卡不會判定中獎金額!!
+                            <br> 2. 請刮開至少70%，獎項會自動判定。
+                        </h3>
+                        <br>
+                        <br>
+                    </div>
+                    <!--end 刮刮樂說明 -->
 
-                <!--start 比大小說明 -->
-                <div class="messagebox game-3" style="display: none;">
-                    <br>
-                    <h3 style="color: #999">
-                        規則:
-                        <br> 1. 每次賭金為200
-                        <br> 2. 猜左邊數字比右邊遮住的數字大還是小
-                        <br> 3. 猜中大小獎金雙倍,可選擇繼續猜，或者結束這局(獎金折半)
-                        <br> 4. 猜錯獎金歸0
-                        <br> 5. 數字範圍 1 ~ 10
-                        <br> 6. 數字一樣則算輸
-                    </h3>
-                    <br>
-                    <br>
+                    <!--start 比大小說明 -->
+                    <div class="messagebox game-3" style="display: none;">
+                        <br>
+                        <h3 style="color: #999">
+                            規則:
+                            <br> 1. 每次賭金為200
+                            <br> 2. 猜左邊數字比右邊遮住的數字大還是小
+                            <br> 3. 猜中大小獎金雙倍,可選擇繼續猜，或者結束這局(獎金折半)
+                            <br> 4. 猜錯獎金歸0
+                            <br> 5. 數字範圍 1 ~ 10
+                            <br> 6. 數字一樣則算輸
+                        </h3>
+                        <br>
+                        <br>
+                    </div>
+                    <!--end 比大小說明 -->
+
                 </div>
-                <!--end 比大小說明 -->
-
             </div>
         </div>
+    <div class="btn rankBtn"> Ranking </div>
+    <div class="rankbox">
+        <div class="btn rankBtnClose"> Close </div>
+        <div class="display-2 text-light">RANKING</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>名字</th>
+                    <th>分數</th>
+                    <th>時間</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
+
+
 
 
 
@@ -183,7 +202,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/wScratchPad.js"></script>
-    
+
 
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>

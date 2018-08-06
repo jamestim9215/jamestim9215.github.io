@@ -12,6 +12,39 @@ body {
     100% {color: #000000;}
 }
 
+.rankBtn{
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    color: #fff;
+    background: rgba(255, 180, 68, 0.5);
+    
+}
+.rankBtnClose{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #fff;
+    background: rgba(255, 180, 68, 0.5);
+}
+.rankbox{
+    position: fixed;
+    left: 0;
+    top: -100vh;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: #ca0000;
+    transition: 0.5s all;
+    padding: 0 15px;
+    color: #fff;
+}
+
+.rankbox-active{
+    top: 0;
+}
+
 .new-user-box{
     position: fixed;
     z-index: 9999;

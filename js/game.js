@@ -456,7 +456,7 @@ $(".newUserBtn").on('click', function () {
         }).catch(function (error) {
             console.log("Error getting documents: ", error);
         });
-    }else{
+    } else {
         alert("請填寫名字!!");
     }
 
@@ -475,3 +475,22 @@ function updateFirebaseDb(sorce) {
         console.error("Error updating document: ", error);
     });
 }
+
+$(".rankBtn").on('click', function () {
+    $(".rankbox").addClass("rankbox-active");
+    $("body").css("overflow", "hidden");
+    db.collection("user-sorce").orderBy("sorce", "desc").limit(5).get().then(function(querySnapshot) {
+        var i=1;
+        querySnapshot.forEach(function(doc) {
+            $(".rankbox table tbody").last().append('<tr><td><b>'+i+'</b></td><td>'+doc.data().name+'</td><td>'+doc.data().sorce+'</td><td>'+doc.data().time+'</td></tr>');
+            i++;
+        });
+    });
+});
+
+$(".rankBtnClose").on('click', function () {
+    $(".rankbox").removeClass("rankbox-active");
+    setTimeout(function(){
+        $("body").css("overflow", "auto");
+    },500);
+});
