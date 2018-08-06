@@ -20,14 +20,23 @@ body {
     background: rgba(255, 180, 68, 0.5);
     
 }
-.rankBtnClose{
+
+.infoBtn{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    color: #fff;
+    background: rgba(255, 180, 68, 0.5);
+    
+}
+.BtnClose{
     position: absolute;
     right: 15px;
     top: 15px;
     color: #fff;
     background: rgba(255, 180, 68, 0.5);
 }
-.rankbox{
+.rankbox,.infobox{
     position: fixed;
     left: 0;
     top: -100vh;
@@ -41,7 +50,7 @@ body {
     color: #fff;
 }
 
-.rankbox-active{
+.box-active{
     top: 0;
 }
 

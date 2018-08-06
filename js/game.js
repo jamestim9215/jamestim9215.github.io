@@ -474,7 +474,7 @@ function updateFirebaseDb(sorce) {
 }
 
 $(".rankBtn").on('click', function () {
-    $(".rankbox").addClass("rankbox-active");
+    $(".rankbox").addClass("box-active");
     $("body").css("overflow", "hidden");
     db.collection("user-sorce").orderBy("sorce", "desc").limit(5).get().then(function(querySnapshot) {
         var i=1;
@@ -487,8 +487,17 @@ $(".rankBtn").on('click', function () {
     });
 });
 
-$(".rankBtnClose").on('click', function () {
-    $(".rankbox").removeClass("rankbox-active");
+$(".infoBtn").on('click', function () {
+    $(".infobox").addClass("box-active");
+    $("body").css("overflow", "hidden");
+});
+
+$(".BtnClose").on('click', function () {
+    $(".rankbox").removeClass("box-active");
+    setTimeout(function(){
+        $("body").css("overflow", "auto");
+    },500);
+    $(".infobox").removeClass("box-active");
     setTimeout(function(){
         $("body").css("overflow", "auto");
     },500);
