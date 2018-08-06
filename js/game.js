@@ -16,6 +16,11 @@ function setSorce(num) {
     GameSorce = GameSorce + num;
 }
 
+function showSorce() {
+    updateFirebaseDb(GameSorce);
+    $("#cash").text(getSorce());
+}
+
 var rand01 = weightedRand({
     100: 35,
     200: 30,
@@ -39,8 +44,7 @@ function reStartGame() {
     } else {
         removeGame();
     }
-    $("#cash").text(getSorce());
-
+    showSorce();
 }
 
 function removeGame() {
@@ -182,7 +186,7 @@ $(".btn-restart").on('click', function () {
     if (_game3sorce > 0) {
         $("#mes").text('你贏了' + _game3sorce);
     }
-    $("#cash").text(getSorce());
+    showSorce();
     $(".btn-next").fadeOut();
     $(".btn-restart").fadeOut();
     $(".gameSelect").text("?");
@@ -209,8 +213,8 @@ function setGame() {
             if (percent > 70 && percent < 100) {
                 this.clear();
                 check();
+                showSorce();
             }
-            $("#cash").text(getSorce());
         },
         scratchDown: function () {
             $(".spanBox").fadeIn(50);
@@ -271,7 +275,6 @@ var point2 = {
 }
 
 function setGame2() {
-    $("#cash").text(getSorce());
     $(".game2btn").addClass("game2btn-active");
     $(".game2btn2").addClass("game2btn2-active");
     $(".pushBtn").removeClass("btn-secondary");
@@ -344,42 +347,42 @@ function checkGame2() {
     if (num[0][0] == num[1][0] && num[1][0] == num[2][0]) {
         var str = num[0][0] + num[1][0] + num[2][0];
         total2 = total2 + parseInt(point2[str]);
-        $("#num-0-0").css({"animation":"example 1.5s infinite"});
-        $("#num-1-0").css({"animation":"example 1.5s infinite"});
-        $("#num-2-0").css({"animation":"example 1.5s infinite"});
+        $("#num-0-0").css({ "animation": "example 1.5s infinite" });
+        $("#num-1-0").css({ "animation": "example 1.5s infinite" });
+        $("#num-2-0").css({ "animation": "example 1.5s infinite" });
     }
     if (num[0][1] == num[1][1] && num[1][1] == num[2][1]) {
         var str = num[0][1] + num[1][1] + num[2][1];
         total2 = total2 + parseInt(point2[str]);
-        $("#num-0-1").css({"animation":"example 1.5s infinite"});
-        $("#num-1-1").css({"animation":"example 1.5s infinite"});
-        $("#num-2-1").css({"animation":"example 1.5s infinite"});
+        $("#num-0-1").css({ "animation": "example 1.5s infinite" });
+        $("#num-1-1").css({ "animation": "example 1.5s infinite" });
+        $("#num-2-1").css({ "animation": "example 1.5s infinite" });
     }
     if (num[0][2] == num[1][2] && num[1][2] == num[2][2]) {
         var str = num[0][2] + num[1][2] + num[2][2];
         total2 = total2 + parseInt(point2[str]);
-        $("#num-0-2").css({"animation":"example 1.5s infinite"});
-        $("#num-1-2").css({"animation":"example 1.5s infinite"});
-        $("#num-2-2").css({"animation":"example 1.5s infinite"});
+        $("#num-0-2").css({ "animation": "example 1.5s infinite" });
+        $("#num-1-2").css({ "animation": "example 1.5s infinite" });
+        $("#num-2-2").css({ "animation": "example 1.5s infinite" });
     }
     if (num[0][0] == num[1][1] && num[1][1] == num[2][2]) {
         var str = num[0][0] + num[1][1] + num[2][2];
         total2 = total2 + parseInt(point2[str]);
-        $("#num-0-0").css({"animation":"example 1.5s infinite"});
-        $("#num-1-1").css({"animation":"example 1.5s infinite"});
-        $("#num-2-2").css({"animation":"example 1.5s infinite"});
+        $("#num-0-0").css({ "animation": "example 1.5s infinite" });
+        $("#num-1-1").css({ "animation": "example 1.5s infinite" });
+        $("#num-2-2").css({ "animation": "example 1.5s infinite" });
     }
     if (num[0][2] == num[1][1] && num[1][1] == num[2][0]) {
         var str = num[0][2] + num[1][1] + num[2][0];
         total2 = total2 + parseInt(point2[str]);
-        $("#num-0-2").css({"animation":"example 1.5s infinite"});
-        $("#num-1-1").css({"animation":"example 1.5s infinite"});
-        $("#num-2-0").css({"animation":"example 1.5s infinite"});
+        $("#num-0-2").css({ "animation": "example 1.5s infinite" });
+        $("#num-1-1").css({ "animation": "example 1.5s infinite" });
+        $("#num-2-0").css({ "animation": "example 1.5s infinite" });
     }
     $("#mes").text("");
     setSorce(total2);
     if (total2 != 0) $("#mes").text("恭賀老爺!恭喜夫人!!您中了" + total2);
-    $("#cash").text(getSorce());
+    showSorce();
 
 }
 
@@ -408,3 +411,67 @@ $(".pushBtn").on('click', function () {
 
 
 });
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDp4Y5yD8-hmbJORVm1WLMCaqtNo3GUwxE",
+    authDomain: "raygames-80b7d.firebaseapp.com",
+    // databaseURL: "https://raygames-80b7d.firebaseio.com",
+    projectId: "raygames-80b7d",
+    // storageBucket: "raygames-80b7d.appspot.com",
+    // messagingSenderId: "870358241848"
+};
+firebase.initializeApp(config);
+
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+var dbId = "";
+
+$(".newUserBtn").on('click', function () {
+    var newUser = $("#new-user-name").val();
+    if (newUser != "") {
+        db.collection("user-sorce").where("name", "==", newUser).get().then(function (querySnapshot) {
+            var i = 0;
+            querySnapshot.forEach(function (doc) {
+                if (doc.id != "") {
+                    alert("已經有人使用這個名字囉!!");
+                }
+                i++;
+            });
+            if (i == 0) {
+                var time = new Date();
+                db.collection("user-sorce").add({
+                    name: newUser,
+                    sorce: "1000",
+                    time: time
+                }).then(function (docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    dbId = docRef.id;
+                }).catch(function (error) {
+                    console.error("Error adding document: ", error);
+                });
+                $("#userName").text(newUser);
+                $(".new-user-box").fadeOut(250);
+            }
+        }).catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
+    }else{
+        alert("請填寫名字!!");
+    }
+
+});
+
+function updateFirebaseDb(sorce) {
+    var time = new Date();
+    var washingtonRef = db.collection("user-sorce").doc(dbId);
+    return washingtonRef.update({
+        sorce: sorce,
+        time: time
+    }).then(function () {
+        console.log("Document successfully updated!");
+    }).catch(function (error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+    });
+}

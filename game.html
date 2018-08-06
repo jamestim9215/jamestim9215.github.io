@@ -5,19 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>刮刮樂遊戲</title>
+    <title>Ray的糞GAME</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
+    <div class="new-user-box">
+        <div class="new-user-input-box">
+            <span class="display-2">HELLO !! </span>
+            <span class="h1">Welcome to My Game .</span>
+            <h4 class="text-warning mt-3">Please Enter Your Name.</h4>
+            <input type="text" class="form-control" id="new-user-name">
+            <div class="text-right">
+                <button class="btn btn-warning mt-2 newUserBtn">Let's Go !</button>
+            </div>
+        </div>
+    </div>
+
     <div id="mes" class="text-center"></div>
     <div class="menu">
 
         <div class="container-fluid">
             <div class="row text-center">
-                <div class="col-4">
+                <div class="col-4 user-info">
+                    User :
+                    <b>
+                        <span id="userName">No User</span>
+                    </b>
+                    <br> Sorce :
                     <b>
                         <span id="cash"></span>
                     </b>
@@ -65,7 +83,7 @@
                     <div class="game2-info">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-6">7  7  7 : 1000000</div>
+                                <div class="col-6">7 7 7 : 1000000</div>
                                 <div class="col-6">★ ★ ★ : 50000</div>
                                 <div class="col-6">◎ ◎ ◎ : 10000</div>
                                 <div class="col-6">△ △ △ : 500</div>
@@ -165,6 +183,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/wScratchPad.js"></script>
+    
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="js/game.js"></script>
 </body>
 
