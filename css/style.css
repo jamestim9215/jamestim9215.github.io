@@ -4,6 +4,14 @@ body {
     margin: 0px auto;
 }
 
+@keyframes example {
+    0%   {color: #000000;}
+    25%  {color: #ff0000;}
+    50%  {color: #000000;}
+    75%  {color: #ff0000;}
+    100% {color: #000000;}
+}
+
 .gamePaper {
     position: relative;
     background-image: url(../images/game.png);
@@ -56,13 +64,13 @@ body {
 .game2-info{
     position: absolute;
     left: 25px;
-    bottom: 80px;
+    bottom: 60px;
     width: calc(100% - 50px);
-    height: 170px;
+    height: 60px;
     background: #ffe7a4;
-    border: 10px solid #ffba01;
+    /* border: 10px solid #ffba01; */
     font-size: 0.8rem;
-    line-height: 30px;
+    line-height: 20px;
     color:#ca0000;
 }
 
@@ -88,7 +96,7 @@ body {
 .game2listbox span{
     line-height: 70px;
     font-size: 3rem;
-    color:#ca0000;
+    color:#000000;
 }
 
 .move{

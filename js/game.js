@@ -255,11 +255,11 @@ initial();
 
 // game2
 var rand02 = weightedRand({
-    "○": 50,
-    "△": 50,
-    "◎": 0,
-    "★": 0,
-    "7": 0
+    "○": 40,
+    "△": 30,
+    "◎": 15,
+    "★": 10,
+    "7": 5
 });
 
 var point2 = {
@@ -310,7 +310,7 @@ function read_index(index) {
 function seticon(index) {
     var v = index + 1;
     $(".num" + v).children().remove();
-    $(".num" + v).last().append('<span id="num-' + index + '-0">' + rand02() + '</span><br><span id="num-' + index + '-1">' + rand02() + '</span><br><span id="num-' + index + '-2">' + rand02() + '</span>');
+    $(".num" + v).last().append('<span style="width:100%" id="num-' + index + '-0">' + rand02() + '</span><br><span id="num-' + index + '-1">' + rand02() + '</span><br><span id="num-' + index + '-2">' + rand02() + '</span>');
     if (_index[index] < 9) {
         _index[index]++;
     } else {
@@ -334,6 +334,7 @@ function startGame2(index) {
 
 function checkGame2() {
     var num = [[], [], []];
+    var total2 = 0;
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
             num[i][j] = $("#num-" + i + "-" + j).text();
@@ -341,26 +342,45 @@ function checkGame2() {
     }
     // console.log(num);
     if (num[0][0] == num[1][0] && num[1][0] == num[2][0]) {
-        var str = num[0][0]+num[1][0]+num[2][0];
-        console.log(str);
+        var str = num[0][0] + num[1][0] + num[2][0];
+        total2 = total2 + parseInt(point2[str]);
+        $("#num-0-0").css({"animation":"example 1.5s infinite"});
+        $("#num-1-0").css({"animation":"example 1.5s infinite"});
+        $("#num-2-0").css({"animation":"example 1.5s infinite"});
     }
     if (num[0][1] == num[1][1] && num[1][1] == num[2][1]) {
-        var str = num[0][1]+num[1][1]+num[2][1];
-        console.log(str);
+        var str = num[0][1] + num[1][1] + num[2][1];
+        total2 = total2 + parseInt(point2[str]);
+        $("#num-0-1").css({"animation":"example 1.5s infinite"});
+        $("#num-1-1").css({"animation":"example 1.5s infinite"});
+        $("#num-2-1").css({"animation":"example 1.5s infinite"});
     }
     if (num[0][2] == num[1][2] && num[1][2] == num[2][2]) {
-        var str = num[0][2]+num[1][2]+num[2][2];
-        console.log(str);
+        var str = num[0][2] + num[1][2] + num[2][2];
+        total2 = total2 + parseInt(point2[str]);
+        $("#num-0-2").css({"animation":"example 1.5s infinite"});
+        $("#num-1-2").css({"animation":"example 1.5s infinite"});
+        $("#num-2-2").css({"animation":"example 1.5s infinite"});
     }
     if (num[0][0] == num[1][1] && num[1][1] == num[2][2]) {
-        var str = num[0][0]+num[1][1]+num[2][2];
-        console.log(str);
+        var str = num[0][0] + num[1][1] + num[2][2];
+        total2 = total2 + parseInt(point2[str]);
+        $("#num-0-0").css({"animation":"example 1.5s infinite"});
+        $("#num-1-1").css({"animation":"example 1.5s infinite"});
+        $("#num-2-2").css({"animation":"example 1.5s infinite"});
     }
     if (num[0][2] == num[1][1] && num[1][1] == num[2][0]) {
-        var str = num[0][2]+num[1][1]+num[2][0];
-        console.log(str);
+        var str = num[0][2] + num[1][1] + num[2][0];
+        total2 = total2 + parseInt(point2[str]);
+        $("#num-0-2").css({"animation":"example 1.5s infinite"});
+        $("#num-1-1").css({"animation":"example 1.5s infinite"});
+        $("#num-2-0").css({"animation":"example 1.5s infinite"});
     }
-    
+    $("#mes").text("");
+    setSorce(total2);
+    if (total2 != 0) $("#mes").text("恭賀老爺!恭喜夫人!!您中了" + total2);
+    $("#cash").text(getSorce());
+
 }
 
 function stopGame2(index) {
