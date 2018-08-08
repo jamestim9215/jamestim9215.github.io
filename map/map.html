@@ -82,7 +82,7 @@
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
     </div>
-    <div id="listings" style="display: none">
+    <div id="listings" style="display: none;">
         <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
             Marker 01
         </div>
@@ -197,37 +197,6 @@
                 minZoom: 2,
                 center: new google.maps.LatLng(0, -30),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [
-                    {
-                        "featureType": "all",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#cccccc"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels",
-                        "stylers": [
-                            { "visibility": "off" }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#333333"
-                            }
-                        ]
-                    }
-                ]
             }
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -295,9 +264,9 @@
                             {},
                             function (response) {
                                 // Insert your code here
-                                console.log(response.data);
+                                console.log(response.data.url);
                                 setUrl(response.data.url);
-                                
+
 
 
                             }
