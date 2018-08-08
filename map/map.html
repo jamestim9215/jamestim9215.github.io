@@ -20,13 +20,26 @@
             color: #fff;
         }
 
-        #map_canvas {
-            position: relative;
+        #listings,
+        .results-map-wrapper {
             width: 100%;
-            height: 100vh;
+            float: left;
+        }
+
+        #map-canvas {
+            width: 100%;
+            height: 400px;
+        }
+
+        .htmlMarker {
+            background: #f00000;
+            color: #ffffff;
+            height: 20px;
+            width: 20px;
         }
 
         div.arrow_box {
+            position: absolute;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -44,7 +57,7 @@
             height: auto;
         }
 
-        .arrow_box:after {
+        /* .arrow_box:after {
             top: 5px;
             left: 5px;
             border: solid transparent;
@@ -58,7 +71,7 @@
             border-top-color: #fff;
             border-width: 17px;
             margin-left: -17px;
-        }
+        } */
     </style>
 </head>
 
@@ -69,84 +82,137 @@
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
     </div>
-    <div id="map_canvas"></div>
+    <div id="listings" style="display: none">
+        <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+            Marker 01
+        </div>
+        <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350">
+            Marker 02
+        </div>
+        <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350">
+            Marker 03
+        </div>
+    </div>
+
+    <div class="results-map-wrapper">
+        <div id="map-canvas"></div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
+
+        function HTMLMarker(lat, lng, text, img) {
+            this.lat = lat;
+            this.lng = lng;
+            this.pos = new google.maps.LatLng(lat, lng);
+            this.img = img;
+            this.text = text;
+        }
+        HTMLMarker.prototype = new google.maps.OverlayView();
+        HTMLMarker.prototype.onRemove = function () { }
+
+        //init your html element here
+        HTMLMarker.prototype.onAdd = function () {
+            var div = document.createElement('DIV');
+            div.className = "arrow_box";
+            div.innerHTML = "<img src='"+this.img+"' alt=''>";
+            // div.style.position = 'absolute';
+            var panes = this.getPanes();
+            panes.overlayImage.appendChild(div);
+            this.div = div;
+
+
+        }
+
+        HTMLMarker.prototype.draw = function () {
+            var overlayProjection = this.getProjection();
+            var position = overlayProjection.fromLatLngToDivPixel(this.pos);
+            var panes = this.getPanes();
+            this.div.style.left = position.x + 'px';
+            this.div.style.top = position.y - 10 + 'px';
+        }
+
+        // Make Plot Points From Results DOM Elements
+        function makeMapPlotPoints() {
+
+            // Set marker from results list and create empty plot point array
+            var mapPlotPointDOM = $(".listing-item");
+            var mapPlotPointArr = [];
+
+            $(mapPlotPointDOM).each(function () {
+                if ($(this).data("marker-lat") !== '') {
+                    mapPlotPointArr.push([
+                        $(this).data("marker-id"),
+                        $(this).data("marker-lat"),
+                        $(this).data("marker-lng"),
+                        $(this).data("marker-img")
+                    ]);
+                }
+            });
+            setMarkers(mapPlotPointArr);
+        };
+
+        var map;
+        var markers = []; // Create a marker array to hold markers
+
+        //create empty LatLngBounds object
+        var bounds = new google.maps.LatLngBounds();
+        var infowindow = new google.maps.InfoWindow();
+        var center = {
+            lat: 0,
+            lng: 0
+        };
 
         var overlay;
 
-        function initialize() {
-            var myLatLng = new google.maps.LatLng(44.73532729516236, 14.806330871582077);
+        
+
+        function setMarkers(locations) {
+
+            for (var i = 0; i < locations.length; i++) {
+
+                var mapMarkerItem = locations[i];
+                var myLatLng = new google.maps.LatLng(mapMarkerItem[1], mapMarkerItem[2]);
+
+                //to use it
+                var htmlMarker = new HTMLMarker(mapMarkerItem[1], mapMarkerItem[2], mapMarkerItem[0],mapMarkerItem[3]);
+                htmlMarker.setMap(map);
+
+
+                // Set Map Bounds to Auto-center
+                bounds.extend(myLatLng);
+                map.fitBounds(bounds);
+
+                // Push marker to markers array
+                //markers.push(marker);
+                markers.push(htmlMarker);
+            }
+        }
+
+        function initializeMap() {
+
             var mapOptions = {
-                zoom: 3,
-                center: myLatLng,
-                mapTypeId: google.maps.MapTypeId.READMAP,
-                styles: [
-                    {
-                        "featureType": "all",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#cccccc"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels",
-                        "stylers": [
-                            { "visibility": "off" }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#333333"
-                            }
-                        ]
-                    }
-                ]
-            };
-
-            var gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-
-            function HTMLMarker(lat, lng) {
-                this.lat = lat;
-                this.lng = lng;
-                this.pos = new google.maps.LatLng(lat, lng);
+                zoom: 2,
+                maxZoom: 18,
+                minZoom: 2,
+                center: new google.maps.LatLng(0, -30),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
             }
 
-            HTMLMarker.prototype = new google.maps.OverlayView();
-            HTMLMarker.prototype.onRemove = function () { }
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            //init your html element here
-            HTMLMarker.prototype.onAdd = function () {
-                div = document.createElement('DIV');
-                div.className = "arrow_box";
-                div.innerHTML = "<img src='https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt=''>";
-                var panes = this.getPanes();
-                panes.overlayImage.appendChild(div);
-            }
-
-            HTMLMarker.prototype.draw = function () {
-                var overlayProjection = this.getProjection();
-                var position = overlayProjection.fromLatLngToDivPixel(this.pos);
-                var panes = this.getPanes();
-                panes.overlayImage.style.left = position.x + 'px';
-                panes.overlayImage.style.top = position.y - 30 + 'px';
-            }
-
-            //to use it
-            var htmlMarker = new HTMLMarker(44.73532729516236, 14.806330871582077);
-            htmlMarker.setMap(gmap);
+            makeMapPlotPoints();
 
         }
+
+        // google.maps.event.addListener(map, 'click', function (event) {
+        //     setMarkers(event.latLng);
+        // });
+
+        initializeMap();
+
+
+
 
         var userUrl;
 
@@ -200,7 +266,7 @@
                                 // Insert your code here
                                 console.log(response.data.url);
                                 setUrl(response.data.url);
-
+                                
 
 
                             }
@@ -217,8 +283,8 @@
 
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initialize">
-    </script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initialize">
+    </script> -->
 </body>
 
 </html>
