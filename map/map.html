@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>地圖</title>
+    <style type="text/css" media="screen">
+        .html,
+        body {
+            margin: 0 auto;
+        }
+
+        .menu {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            background: black;
+            color: #fff;
+        }
+
+        #map_canvas {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        div.arrow_box {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: -50px -25px;
+            border: solid 5px #fff;
+            color: red;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        div.arrow_box img {
+            min-width: 50px;
+            width: auto;
+            max-height: 50px;
+            height: auto;
+        }
+
+        .arrow_box:after {
+            top: 5px;
+            left: 5px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+
+            border-color: rgba(136, 183, 213, 0);
+            border-top-color: #fff;
+            border-width: 17px;
+            margin-left: -17px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <!-- <button class="login-fb">FB 登入打卡</button> -->
+
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+    </div>
+    <div id="map_canvas"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+
+        var overlay;
+
+        function initialize() {
+            var myLatLng = new google.maps.LatLng(44.73532729516236, 14.806330871582077);
+            var mapOptions = {
+                zoom: 3,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.READMAP,
+                styles: [
+                    {
+                        "featureType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#cccccc"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels",
+                        "stylers": [
+                            { "visibility": "off" }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#333333"
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            var gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+            function HTMLMarker(lat, lng) {
+                this.lat = lat;
+                this.lng = lng;
+                this.pos = new google.maps.LatLng(lat, lng);
+            }
+
+            HTMLMarker.prototype = new google.maps.OverlayView();
+            HTMLMarker.prototype.onRemove = function () { }
+
+            //init your html element here
+            HTMLMarker.prototype.onAdd = function () {
+                div = document.createElement('DIV');
+                div.className = "arrow_box";
+                div.innerHTML = "<img src='https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt=''>";
+                var panes = this.getPanes();
+                panes.overlayImage.appendChild(div);
+            }
+
+            HTMLMarker.prototype.draw = function () {
+                var overlayProjection = this.getProjection();
+                var position = overlayProjection.fromLatLngToDivPixel(this.pos);
+                var panes = this.getPanes();
+                panes.overlayImage.style.left = position.x + 'px';
+                panes.overlayImage.style.top = position.y - 30 + 'px';
+            }
+
+            //to use it
+            var htmlMarker = new HTMLMarker(44.73532729516236, 14.806330871582077);
+            htmlMarker.setMap(gmap);
+
+        }
+
+        var userUrl;
+
+        function setUrl(url) {
+            userUrl = url;
+        }
+
+        function getUrl() {
+            return userUrl;
+        }
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '229915024520608',
+                cookie: true,
+                xfbml: true,
+                version: 'v3.1'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                // console.log('statusChangeCallback');
+                // console.log(response);
+                // The response object is returned with a status field that lets the
+                // app know the current login status of the person.
+                // Full docs on the response object can be found in the documentation
+                // for FB.getLoginStatus().
+                if (response.status === 'connected') {
+                    // Logged into your app and Facebook.
+                    // console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log(response);
+                        // setUserId(response.name);
+                        FB.api(
+                            '/' + response.id + '/picture?redirect=false',
+                            'GET',
+                            {},
+                            function (response) {
+                                // Insert your code here
+                                console.log(response.data.url);
+                                setUrl(response.data.url);
+
+
+
+                            }
+                        );
+                    });
+
+
+                } else {
+                    // The person is not logged into your app or we are unable to tell.
+                    // document.getElementById('status').innerHTML = 'Please log into this app.';
+                }
+            });
+
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initialize">
+    </script>
+</body>
+
+</html>
