@@ -331,11 +331,7 @@
                                     // Insert your code here
                                     console.log(response.data.url);
                                     setUrl(response.data.url);
-                                    $("#listings").last().append('<div class="listing-item" data-marker-id="me" data-marker-lng="'+latitude+'" data-marker-lat="'+longitude+'" data-marker-img="'+response.data.url+'"></div>');
-                                    $("#map-canvas").remove();
-                                    $("#map-canvas").remove();
-                                    $(".results-map-wrapper").last().append('<div id="map-canvas"></div>');
-                                    initializeMap();
+                                    
                                 }
                             );
                         });
@@ -346,7 +342,7 @@
                     }
                 });
 
-                // alert('經緯度：' + latitude + ', ' + longitude);
+                console.log('經緯度：' + latitude + ', ' + longitude);
             }
 
 
