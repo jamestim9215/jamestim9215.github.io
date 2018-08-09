@@ -332,7 +332,9 @@
                                     console.log(response.data.url);
                                     setUrl(response.data.url);
                                     $("#listings").last().append('<div class="listing-item" data-marker-id="me" data-marker-lng="'+latitude+'" data-marker-lat="'+longitude+'" data-marker-img="'+response.data.url+'"></div>');
-                                    $("#map-canvas").children().remove();
+                                    $("#map-canvas").remove();
+                                    $("#map-canvas").remove();
+                                    $(".results-map-wrapper").last().append('<div id="map-canvas"></div>');
                                     initializeMap();
                                 }
                             );
