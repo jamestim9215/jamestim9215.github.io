@@ -61,10 +61,10 @@
 
 <body>
     <div class="menu">
-        <button class="login-fb" onclick="checkLoginState()">FB 登入打卡</button>
+        <!-- <button class="login-fb" onclick="checkLoginState()">FB 登入打卡</button> -->
 
-        <!-- <fb:login-button scope="public_profile,email" onlogin="/*checkLoginState();*/">
-        </fb:login-button> -->
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
     </div>
     <div id="listings" style="display: none">
         <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
