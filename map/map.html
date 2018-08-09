@@ -67,7 +67,7 @@
         </fb:login-button> -->
     </div>
     <div id="listings" style="display: none">
-        <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+        <div class="listing-item" data-marker-id="01" data-marker-lng="121.5431801" data-marker-lat="24.978617999999997" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
         <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
         <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
     </div>
@@ -247,7 +247,7 @@
             markers = [];
             console.log(lat + " / " + lng + " / " + url);
 
-            $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + lng + '" data-marker-lat="' + lat + '" data-marker-img="' + url + '"></div>');
+            $("#listings").last().append('<div class="listing-item" data-marker-id="fb" data-marker-lng="' + lng + '" data-marker-lat="' + lat + '" data-marker-img="' + url + '"></div>');
             makeMapPlotPoints();
         }
         function checkLoginState() {
