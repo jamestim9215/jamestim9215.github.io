@@ -245,76 +245,80 @@
 
 
         function checkLoginState() {
+            
+            markers = [];
+            // $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + latitude + '" data-marker-lat="' + longitude + '" data-marker-img="' + getUrl() + '"></div>');
+            $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="90.5555" data-marker-lat="15" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>');
+            makeMapPlotPoints();
+
+            // FB.login(function (response) {
+            //     if (response.status === 'connected') {
+
+            //         FB.api('/me', function (response) {
+            //             console.log(response);
+            //             // setUserId(response.name);
+            //             FB.api(
+            //                 '/' + response.id + '/picture?redirect=false',
+            //                 'GET',
+            //                 {},
+            //                 function (response) {
+            //                     // Insert your code here
+            //                     console.log(response.data.url);
+            //                     setUrl(response.data.url);
+            //                     // 瀏覽器支援 HTML5 定位方法
+            //                     if (navigator.geolocation) {
+            //                         // HTML5 定位抓取
+            //                         navigator.geolocation.getCurrentPosition(function (position) {
+            //                             mapServiceProvider(position.coords.latitude, position.coords.longitude);
+
+            //                         },
+            //                             function (error) {
+            //                                 switch (error.code) {
+            //                                     case error.TIMEOUT:
+            //                                         alert('連線逾時');
+            //                                         break;
+
+            //                                     case error.POSITION_UNAVAILABLE:
+            //                                         alert('無法取得定位');
+            //                                         break;
+
+            //                                     case error.PERMISSION_DENIED: // 拒絕
+            //                                         alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+            //                                         break;
+
+            //                                     case error.UNKNOWN_ERROR:
+            //                                         alert('不明的錯誤，請稍候再試');
+            //                                         break;
+            //                                 }
+            //                             });
+            //                     } else { // 不支援 HTML5 定位
+            //                         // 若支援 Google Gears
+            //                         if (window.google && google.gears) {
+            //                             try {
+            //                                 // 嘗試以 Gears 取得定位
+            //                                 var geo = google.gears.factory.create('beta.geolocation');
+            //                                 geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
+            //                             } catch (e) {
+            //                                 alert('定位失敗請稍候再試');
+            //                             }
+            //                         } else {
+            //                             alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+            //                         }
+            //                     }
 
 
-            FB.login(function (response) {
-                if (response.status === 'connected') {
-
-                    FB.api('/me', function (response) {
-                        console.log(response);
-                        // setUserId(response.name);
-                        FB.api(
-                            '/' + response.id + '/picture?redirect=false',
-                            'GET',
-                            {},
-                            function (response) {
-                                // Insert your code here
-                                console.log(response.data.url);
-                                setUrl(response.data.url);
-                                // 瀏覽器支援 HTML5 定位方法
-                                if (navigator.geolocation) {
-                                    // HTML5 定位抓取
-                                    navigator.geolocation.getCurrentPosition(function (position) {
-                                        mapServiceProvider(position.coords.latitude, position.coords.longitude);
-
-                                    },
-                                        function (error) {
-                                            switch (error.code) {
-                                                case error.TIMEOUT:
-                                                    alert('連線逾時');
-                                                    break;
-
-                                                case error.POSITION_UNAVAILABLE:
-                                                    alert('無法取得定位');
-                                                    break;
-
-                                                case error.PERMISSION_DENIED: // 拒絕
-                                                    alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                                                    break;
-
-                                                case error.UNKNOWN_ERROR:
-                                                    alert('不明的錯誤，請稍候再試');
-                                                    break;
-                                            }
-                                        });
-                                } else { // 不支援 HTML5 定位
-                                    // 若支援 Google Gears
-                                    if (window.google && google.gears) {
-                                        try {
-                                            // 嘗試以 Gears 取得定位
-                                            var geo = google.gears.factory.create('beta.geolocation');
-                                            geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
-                                        } catch (e) {
-                                            alert('定位失敗請稍候再試');
-                                        }
-                                    } else {
-                                        alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                                    }
-                                }
-
-
-                            }
-                        );
-                    });
+            //                 }
+            //             );
+            //         });
 
 
 
-                    //登入完成
-                    $(".login-fb").remove();
-                } else {
-                    // The person is not logged into this app or we are unable to tell. 
-                }
-            });
+            //         //登入完成
+            //         $(".login-fb").remove();
+            //     } else {
+            //         // The person is not logged into this app or we are unable to tell. 
+            //     }
+            // });
 
             // FB.getLoginStatus(function (response) {
             //     // console.log('statusChangeCallback');
@@ -364,9 +368,6 @@
 
         // 顯示經緯度
         function mapServiceProvider(latitude, longitude) {
-            markers = [];
-            // $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + latitude + '" data-marker-lat="' + longitude + '" data-marker-img="' + getUrl() + '"></div>');
-            makeMapPlotPoints();
             // console.log('經緯度：' + latitude + ', ' + longitude);
         }
     </script>
