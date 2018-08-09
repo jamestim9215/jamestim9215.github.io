@@ -245,6 +245,8 @@
 
 
         function checkLoginState() {
+
+
             FB.login(function (response) {
                 if (response.status === 'connected') {
 
@@ -259,6 +261,7 @@
                                 // Insert your code here
                                 console.log(response.data.url);
                                 setUrl(response.data.url);
+
 
 
                             }
@@ -360,7 +363,9 @@
 
         // 顯示經緯度
         function mapServiceProvider(latitude, longitude) {
-
+            markers = [];
+            $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="'+latitude+'" data-marker-lat="'+longitude+'" data-marker-img="'+getUrl()+'"></div>');
+            makeMapPlotPoints();
 
             console.log('經緯度：' + latitude + ', ' + longitude);
         }
