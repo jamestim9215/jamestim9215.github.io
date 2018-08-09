@@ -120,8 +120,6 @@
 
             $(mapPlotPointDOM).each(function () {
                 if ($(this).data("marker-lat") !== '') {
-                    console.log("!!!!!");
-                    
                     mapPlotPointArr.push([
                         $(this).data("marker-id"),
                         $(this).data("marker-lat"),
@@ -213,7 +211,7 @@
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            // makeMapPlotPoints();
+            makeMapPlotPoints();
 
         }
 
@@ -334,7 +332,8 @@
                                     console.log(response.data.url);
                                     setUrl(response.data.url);
                                     $("#listings").last().append('<div class="listing-item" data-marker-id="me" data-marker-lng="'+latitude+'" data-marker-lat="'+longitude+'" data-marker-img="'+response.data.url+'"></div>');
-                                    makeMapPlotPoints();
+                                    $("#map-canvas").children().remove();
+                                    initializeMap();
                                 }
                             );
                         });
