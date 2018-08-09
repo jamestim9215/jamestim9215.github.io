@@ -247,7 +247,7 @@
             markers = [];
             console.log(lat + " / " + lng + " / " + url);
 
-            $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + lat + '" data-marker-lat="' + lng + '" data-marker-img="' + url + '"></div>');
+            $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + lng + '" data-marker-lat="' + lat + '" data-marker-img="' + url + '"></div>');
             makeMapPlotPoints();
         }
         function checkLoginState() {
@@ -267,7 +267,7 @@
                                 // HTML5 定位抓取
                                 navigator.geolocation.getCurrentPosition(function (position) {
                                     // mapServiceProvider(position.coords.latitude, position.coords.longitude);
-                                    setUserMarker("24.978555", "121.5431868", fburl);
+                                    setUserMarker(position.coords.latitude, position.coords.longitude, fburl);
                                 },
                                     function (error) {
                                         switch (error.code) {
