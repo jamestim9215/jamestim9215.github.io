@@ -28,7 +28,7 @@
 
         #map-canvas {
             width: 100%;
-            height: 400px;
+            height: calc(100vh - 100px);
         }
 
         .htmlMarker {
@@ -46,7 +46,7 @@
             margin: -50px -25px;
             border: solid 5px #fff;
             color: red;
-            cursor: pointer;
+            /* cursor: pointer; */
             overflow: hidden;
         }
 
@@ -56,42 +56,20 @@
             max-height: 50px;
             height: auto;
         }
-
-        /* .arrow_box:after {
-            top: 5px;
-            left: 5px;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-
-            border-color: rgba(136, 183, 213, 0);
-            border-top-color: #fff;
-            border-width: 17px;
-            margin-left: -17px;
-        } */
     </style>
 </head>
 
 <body>
     <div class="menu">
-        <!-- <button class="login-fb">FB 登入打卡</button> -->
+        <button class="login-fb" onclick="checkLoginState()">FB 登入打卡</button>
 
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
+        <!-- <fb:login-button scope="public_profile,email" onlogin="/*checkLoginState();*/">
+        </fb:login-button> -->
     </div>
     <div id="listings" style="display: none">
-        <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-            Marker 01
-        </div>
-        <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350">
-            Marker 02
-        </div>
-        <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350">
-            Marker 03
-        </div>
+        <div class="listing-item" data-marker-id="01" data-marker-lng="0" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+        <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
+        <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
     </div>
 
     <div class="results-map-wrapper">
@@ -116,7 +94,7 @@
         HTMLMarker.prototype.onAdd = function () {
             var div = document.createElement('DIV');
             div.className = "arrow_box";
-            div.innerHTML = "<img src='"+this.img+"' alt=''>";
+            div.innerHTML = "<img src='" + this.img + "' title='" + this.text + "'>";
             // div.style.position = 'absolute';
             var panes = this.getPanes();
             panes.overlayImage.appendChild(div);
@@ -166,7 +144,7 @@
 
         var overlay;
 
-        
+
 
         function setMarkers(locations) {
 
@@ -176,7 +154,7 @@
                 var myLatLng = new google.maps.LatLng(mapMarkerItem[1], mapMarkerItem[2]);
 
                 //to use it
-                var htmlMarker = new HTMLMarker(mapMarkerItem[1], mapMarkerItem[2], mapMarkerItem[0],mapMarkerItem[3]);
+                var htmlMarker = new HTMLMarker(mapMarkerItem[1], mapMarkerItem[2], mapMarkerItem[0], mapMarkerItem[3]);
                 htmlMarker.setMap(map);
 
 
@@ -206,7 +184,7 @@
                                 "visibility": "on"
                             },
                             {
-                                "color": "#cccccc"
+                                "color": "#666666"
                             }
                         ]
                     },
@@ -277,40 +255,97 @@
 
 
         function checkLoginState() {
-            FB.getLoginStatus(function (response) {
-                // console.log('statusChangeCallback');
-                // console.log(response);
-                // The response object is returned with a status field that lets the
-                // app know the current login status of the person.
-                // Full docs on the response object can be found in the documentation
-                // for FB.getLoginStatus().
-                if (response.status === 'connected') {
-                    // Logged into your app and Facebook.
-                    // console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me', function (response) {
-                        console.log(response);
-                        // setUserId(response.name);
-                        FB.api(
-                            '/' + response.id + '/picture?redirect=false',
-                            'GET',
-                            {},
-                            function (response) {
-                                // Insert your code here
-                                console.log(response.data.url);
-                                setUrl(response.data.url);
 
 
+            // 瀏覽器支援 HTML5 定位方法
+            if (navigator.geolocation) {
+                // HTML5 定位抓取
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    mapServiceProvider(position.coords.latitude, position.coords.longitude);
+                },
+                    function (error) {
+                        switch (error.code) {
+                            case error.TIMEOUT:
+                                alert('連線逾時');
+                                break;
 
-                            }
-                        );
+                            case error.POSITION_UNAVAILABLE:
+                                alert('無法取得定位');
+                                break;
+
+                            case error.PERMISSION_DENIED: // 拒絕
+                                alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                                break;
+
+                            case error.UNKNOWN_ERROR:
+                                alert('不明的錯誤，請稍候再試');
+                                break;
+                        }
                     });
-
-
+            } else { // 不支援 HTML5 定位
+                // 若支援 Google Gears
+                if (window.google && google.gears) {
+                    try {
+                        // 嘗試以 Gears 取得定位
+                        var geo = google.gears.factory.create('beta.geolocation');
+                        geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
+                    } catch (e) {
+                        alert('定位失敗請稍候再試');
+                    }
                 } else {
-                    // The person is not logged into your app or we are unable to tell.
-                    // document.getElementById('status').innerHTML = 'Please log into this app.';
+                    alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
                 }
-            });
+            }
+
+            // 取得 Gears 定位發生錯誤
+            function errorCallback(err) {
+                var msg = 'Error retrieving your location: ' + err.message;
+                alert(msg);
+            }
+
+            // 成功取得 Gears 定位
+            function successCallback(p) {
+                mapServiceProvider(p.latitude, p.longitude);
+            }
+
+            // 顯示經緯度
+            function mapServiceProvider(latitude, longitude) {
+                FB.getLoginStatus(function (response) {
+                    // console.log('statusChangeCallback');
+                    // console.log(response);
+                    // The response object is returned with a status field that lets the
+                    // app know the current login status of the person.
+                    // Full docs on the response object can be found in the documentation
+                    // for FB.getLoginStatus().
+                    if (response.status === 'connected') {
+                        // Logged into your app and Facebook.
+                        // console.log('Welcome!  Fetching your information.... ');
+                        FB.api('/me', function (response) {
+                            console.log(response);
+                            // setUserId(response.name);
+                            FB.api(
+                                '/' + response.id + '/picture?redirect=false',
+                                'GET',
+                                {},
+                                function (response) {
+                                    // Insert your code here
+                                    console.log(response.data.url);
+                                    setUrl(response.data.url);
+                                    $("#listings").last().append('<div class="listing-item" data-marker-id="me" data-marker-lng="'+latitude+'" data-marker-lat="'+longitude+'" data-marker-img="'+response.data.url+'"></div>');
+
+                                }
+                            );
+                        });
+
+                    } else {
+                        // The person is not logged into your app or we are unable to tell.
+                        // document.getElementById('status').innerHTML = 'Please log into this app.';
+                    }
+                });
+
+                // alert('經緯度：' + latitude + ', ' + longitude);
+            }
+
 
 
         }
