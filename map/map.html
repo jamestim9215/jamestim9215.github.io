@@ -263,7 +263,46 @@
                         { "fields": "id,name,email,first_name,last_name,gender,locale,picture.type(large)" },
                         function (response) {
                             console.log(response);
-                            setUserMarker(10,10,response.picture.data.url);
+                            var fburl = response.picture.data.url;
+                            if (navigator.geolocation) {
+                                // HTML5 定位抓取
+                                navigator.geolocation.getCurrentPosition(function (position) {
+                                    // mapServiceProvider(position.coords.latitude, position.coords.longitude);
+                                    setUserMarker(position.coords.latitude, position.coords.longitude, fburl);
+                                },
+                                    function (error) {
+                                        switch (error.code) {
+                                            case error.TIMEOUT:
+                                                alert('連線逾時');
+                                                break;
+
+                                            case error.POSITION_UNAVAILABLE:
+                                                alert('無法取得定位');
+                                                break;
+
+                                            case error.PERMISSION_DENIED: // 拒絕
+                                                alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                                                break;
+
+                                            case error.UNKNOWN_ERROR:
+                                                alert('不明的錯誤，請稍候再試');
+                                                break;
+                                        }
+                                    });
+                            } else { // 不支援 HTML5 定位
+                                // 若支援 Google Gears
+                                if (window.google && google.gears) {
+                                    try {
+                                        // 嘗試以 Gears 取得定位
+                                        var geo = google.gears.factory.create('beta.geolocation');
+                                        geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
+                                    } catch (e) {
+                                        alert('定位失敗請稍候再試');
+                                    }
+                                } else {
+                                    alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                                }
+                            }
                         }
                     );
 
@@ -280,45 +319,7 @@
                     //             setUrl(response.data.url);
 
 
-                    //             if (navigator.geolocation) {
-                    //                 // HTML5 定位抓取
-                    //                 navigator.geolocation.getCurrentPosition(function (position) {
-                    //                     // mapServiceProvider(position.coords.latitude, position.coords.longitude);
-                    //                     setUserMarker(position.coords.latitude,position.coords.longitude,getUrl());
-                    //                 },
-                    //                     function (error) {
-                    //                         switch (error.code) {
-                    //                             case error.TIMEOUT:
-                    //                                 alert('連線逾時');
-                    //                                 break;
 
-                    //                             case error.POSITION_UNAVAILABLE:
-                    //                                 alert('無法取得定位');
-                    //                                 break;
-
-                    //                             case error.PERMISSION_DENIED: // 拒絕
-                    //                                 alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                    //                                 break;
-
-                    //                             case error.UNKNOWN_ERROR:
-                    //                                 alert('不明的錯誤，請稍候再試');
-                    //                                 break;
-                    //                         }
-                    //                     });
-                    //             } else { // 不支援 HTML5 定位
-                    //                 // 若支援 Google Gears
-                    //                 if (window.google && google.gears) {
-                    //                     try {
-                    //                         // 嘗試以 Gears 取得定位
-                    //                         var geo = google.gears.factory.create('beta.geolocation');
-                    //                         geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
-                    //                     } catch (e) {
-                    //                         alert('定位失敗請稍候再試');
-                    //                     }
-                    //                 } else {
-                    //                     alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                    //                 }
-                    //             }
 
 
                     //         }
