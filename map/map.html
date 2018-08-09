@@ -248,7 +248,6 @@
             console.log(lat + " / " + lng + " / " + url);
 
             $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="' + lat + '" data-marker-lat="' + lng + '" data-marker-img="' + url + '"></div>');
-            // $("#listings").last().append('<div class="listing-item" data-marker-id="05" data-marker-lng="90.5555" data-marker-lat="15" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>');
             makeMapPlotPoints();
         }
         function checkLoginState() {
@@ -268,7 +267,7 @@
                                 // HTML5 定位抓取
                                 navigator.geolocation.getCurrentPosition(function (position) {
                                     // mapServiceProvider(position.coords.latitude, position.coords.longitude);
-                                    setUserMarker(position.coords.latitude, position.coords.longitude, fburl);
+                                    setUserMarker("24.978555", "121.5431868", fburl);
                                 },
                                     function (error) {
                                         switch (error.code) {
