@@ -79,6 +79,17 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE">
     </script>
     <script>
+        var overlay;
+        var map;
+        var markers = []; // Create a marker array to hold markers
+        //create empty LatLngBounds object
+        var bounds = new google.maps.LatLngBounds();
+        var infowindow = new google.maps.InfoWindow();
+        var center = {
+            lat: 0,
+            lng: 0
+        };
+
 
         function HTMLMarker(lat, lng, text, img) {
             this.lat = lat;
@@ -89,7 +100,6 @@
         }
         HTMLMarker.prototype = new google.maps.OverlayView();
         HTMLMarker.prototype.onRemove = function () { }
-
         //init your html element here
         HTMLMarker.prototype.onAdd = function () {
             var div = document.createElement('DIV');
@@ -102,7 +112,6 @@
 
 
         }
-
         HTMLMarker.prototype.draw = function () {
             var overlayProjection = this.getProjection();
             var position = overlayProjection.fromLatLngToDivPixel(this.pos);
@@ -110,7 +119,6 @@
             this.div.style.left = position.x + 'px';
             this.div.style.top = position.y - 10 + 'px';
         }
-
         // Make Plot Points From Results DOM Elements
         function makeMapPlotPoints() {
 
@@ -131,23 +139,8 @@
             setMarkers(mapPlotPointArr);
         };
 
-        var map;
-        var markers = []; // Create a marker array to hold markers
-
-        //create empty LatLngBounds object
-        var bounds = new google.maps.LatLngBounds();
-        var infowindow = new google.maps.InfoWindow();
-        var center = {
-            lat: 0,
-            lng: 0
-        };
-
-        var overlay;
-
-
 
         function setMarkers(locations) {
-
             for (var i = 0; i < locations.length; i++) {
 
                 var mapMarkerItem = locations[i];
@@ -169,7 +162,6 @@
         }
 
         function initializeMap() {
-
             var mapOptions = {
                 zoom: 2,
                 maxZoom: 18,
@@ -221,9 +213,6 @@
 
         initializeMap();
 
-
-
-
         var userUrl;
 
         function setUrl(url) {
@@ -233,6 +222,7 @@
         function getUrl() {
             return userUrl;
         }
+
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '229915024520608',
@@ -256,101 +246,97 @@
 
         function checkLoginState() {
 
+            FB.getLoginStatus(function (response) {
+                // console.log('statusChangeCallback');
+                // console.log(response);
+                // The response object is returned with a status field that lets the
+                // app know the current login status of the person.
+                // Full docs on the response object can be found in the documentation
+                // for FB.getLoginStatus().
+                if (response.status === 'connected') {
+                    // Logged into your app and Facebook.
+                    // console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log(response);
+                        // setUserId(response.name);
+                        FB.api(
+                            '/' + response.id + '/picture?redirect=false',
+                            'GET',
+                            {},
+                            function (response) {
+                                // Insert your code here
+                                console.log(response.data.url);
+                                setUrl(response.data.url);
+                                // 瀏覽器支援 HTML5 定位方法
+                                if (navigator.geolocation) {
+                                    // HTML5 定位抓取
+                                    navigator.geolocation.getCurrentPosition(function (position) {
+                                        mapServiceProvider(position.coords.latitude, position.coords.longitude);
+                                    },
+                                        function (error) {
+                                            switch (error.code) {
+                                                case error.TIMEOUT:
+                                                    alert('連線逾時');
+                                                    break;
 
-            // 瀏覽器支援 HTML5 定位方法
-            if (navigator.geolocation) {
-                // HTML5 定位抓取
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    mapServiceProvider(position.coords.latitude, position.coords.longitude);
-                },
-                    function (error) {
-                        switch (error.code) {
-                            case error.TIMEOUT:
-                                alert('連線逾時');
-                                break;
+                                                case error.POSITION_UNAVAILABLE:
+                                                    alert('無法取得定位');
+                                                    break;
 
-                            case error.POSITION_UNAVAILABLE:
-                                alert('無法取得定位');
-                                break;
+                                                case error.PERMISSION_DENIED: // 拒絕
+                                                    alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                                                    break;
 
-                            case error.PERMISSION_DENIED: // 拒絕
-                                alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                                break;
-
-                            case error.UNKNOWN_ERROR:
-                                alert('不明的錯誤，請稍候再試');
-                                break;
-                        }
-                    });
-            } else { // 不支援 HTML5 定位
-                // 若支援 Google Gears
-                if (window.google && google.gears) {
-                    try {
-                        // 嘗試以 Gears 取得定位
-                        var geo = google.gears.factory.create('beta.geolocation');
-                        geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
-                    } catch (e) {
-                        alert('定位失敗請稍候再試');
-                    }
-                } else {
-                    alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
-                }
-            }
-
-            // 取得 Gears 定位發生錯誤
-            function errorCallback(err) {
-                var msg = 'Error retrieving your location: ' + err.message;
-                alert(msg);
-            }
-
-            // 成功取得 Gears 定位
-            function successCallback(p) {
-                mapServiceProvider(p.latitude, p.longitude);
-            }
-
-            // 顯示經緯度
-            function mapServiceProvider(latitude, longitude) {
-                FB.getLoginStatus(function (response) {
-                    // console.log('statusChangeCallback');
-                    // console.log(response);
-                    // The response object is returned with a status field that lets the
-                    // app know the current login status of the person.
-                    // Full docs on the response object can be found in the documentation
-                    // for FB.getLoginStatus().
-                    if (response.status === 'connected') {
-                        // Logged into your app and Facebook.
-                        // console.log('Welcome!  Fetching your information.... ');
-                        FB.api('/me', function (response) {
-                            console.log(response);
-                            // setUserId(response.name);
-                            FB.api(
-                                '/' + response.id + '/picture?redirect=false',
-                                'GET',
-                                {},
-                                function (response) {
-                                    // Insert your code here
-                                    console.log(response.data.url);
-                                    setUrl(response.data.url);
-                                    
+                                                case error.UNKNOWN_ERROR:
+                                                    alert('不明的錯誤，請稍候再試');
+                                                    break;
+                                            }
+                                        });
+                                } else { // 不支援 HTML5 定位
+                                    // 若支援 Google Gears
+                                    if (window.google && google.gears) {
+                                        try {
+                                            // 嘗試以 Gears 取得定位
+                                            var geo = google.gears.factory.create('beta.geolocation');
+                                            geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true, gearsRequestAddress: true });
+                                        } catch (e) {
+                                            alert('定位失敗請稍候再試');
+                                        }
+                                    } else {
+                                        alert('想要參加本活動，\n記得允許手機的GPS定位功能喔!');
+                                    }
                                 }
-                            );
-                        });
 
-                    } else {
-                        // The person is not logged into your app or we are unable to tell.
-                        // document.getElementById('status').innerHTML = 'Please log into this app.';
-                    }
-                });
+                            }
+                        );
+                    });
 
-                console.log('經緯度：' + latitude + ', ' + longitude);
-            }
-
+                } else {
+                    // The person is not logged into your app or we are unable to tell.
+                    // document.getElementById('status').innerHTML = 'Please log into this app.';
+                }
+            });
 
 
         }
+
+        // 取得 Gears 定位發生錯誤
+        function errorCallback(err) {
+            var msg = 'Error retrieving your location: ' + err.message;
+            alert(msg);
+        }
+
+        // 成功取得 Gears 定位
+        function successCallback(p) {
+            mapServiceProvider(p.latitude, p.longitude);
+        }
+
+        // 顯示經緯度
+        function mapServiceProvider(latitude, longitude) {
+
+
+            console.log('經緯度：' + latitude + ', ' + longitude);
+        }
     </script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE&callback=initialize">
-    </script> -->
-</body>
 
 </html>
