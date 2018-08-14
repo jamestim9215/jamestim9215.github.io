@@ -6,10 +6,143 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>地圖</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <style type="text/css" media="screen">
         .html,
         body {
             margin: 0 auto;
+            background: #000;
+            color: #fff;
+            font-family: 'Aldrich', sans-serif;
+        }
+
+        .top {
+            position: relative;
+            width: 100%;
+            /* height: calc(100vw * 9 / 16); */
+            height: 650px;
+            background-image: url(./images/bg.jpg);
+            background-size: cover;
+            background-position: center center;
+            /* background: #ffff00; */
+        }
+
+        .logo {
+            position: absolute;
+            z-index: 2;
+            left: 20px;
+            top: 20px;
+            width: 205px;
+            height: 49px;
+            background-image: url(./images/logo.png);
+            background-size: cover;
+            background-position: center center;
+
+        }
+
+        .med {
+            position: relative;
+            width: 100%;
+            height: calc(100vw * 579 / 1180 - 150px);
+            background-image: url(./images/bg.jpg);
+            background-size: cover;
+            background-position: center center;
+            /* background: #ffff00; */
+        }
+
+        .mapbg {
+            position: relative;
+            max-width: 1180px;
+            width: 100%;
+            height: calc(100vw * 579 / 1180);
+            max-height: 579px;
+            margin: 0 auto;
+            margin-top: 280px;
+            background-image: url(./images/map.png);
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .locationbg {
+            position: absolute;
+            z-index: 1;
+            top: 100px;
+            left: calc(40% - 46px);
+            width: 90px;
+            /* height: 151px; */
+            height: calc(90px * 151 / 93);
+            background-image: url(./images/location.png);
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .medtitle {
+            position: absolute;
+            z-index: 1;
+            top: 100px;
+            left: 45%;
+            font-size: 2.2rem;
+        }
+
+        .top-img {
+            position: absolute;
+            width: 725px;
+            height: 269px;
+            background-image: url(./images/title_bg.png);
+            background-size: cover;
+            background-position: center center;
+            /* background: #ff0000; */
+            top: calc(275px - 134px);
+            left: calc(50% - 364px);
+            z-index: 1;
+        }
+
+        .top-img2 {
+            position: absolute;
+            width: 626px;
+            height: 356px;
+            background-image: url(./images/title.png);
+            background-size: cover;
+            background-position: center center;
+            top: calc(275px - 178px);
+            left: calc(50% - 313px);
+            z-index: 2;
+        }
+
+        .top-left-img {
+            position: absolute;
+            z-index: 0;
+            left: 0;
+            top: 0;
+            width: 874px;
+            height: 666px;
+            background-image: url(./images/object_left.png);
+            background-size: cover;
+            background-position: center center;
+            /* background: #ff00ff; */
+        }
+
+        .top-right-img {
+            position: absolute;
+            z-index: 0;
+            right: 0;
+            top: 0;
+            width: 666px;
+            height: 873px;
+            background-image: url(./images/object_right.png);
+            background-size: cover;
+            background-position: center center;
+            /* background: #00ffff; */
+        }
+
+        .top img {
+            position: absolute;
+            z-index: 0;
+            left: calc(50% - 150px);
+            bottom: 30px;
+            cursor: pointer;
         }
 
         .menu {
@@ -24,11 +157,12 @@
         .results-map-wrapper {
             width: 100%;
             float: left;
+            color: #000;
         }
 
         #map-canvas {
             width: 100%;
-            height: calc(100vh - 100px);
+            height: 500px;
         }
 
         .htmlMarker {
@@ -56,28 +190,202 @@
             max-height: 50px;
             height: auto;
         }
+
+        .title {
+            margin-bottom: 80px;
+            color: #ffd374;
+        }
+
+        .title::after {
+            position: absolute;
+            bottom: 70px;
+            left: calc(50% - 25px);
+            content: "";
+            border-bottom: 2px solid #ffd374;
+            width: 50px;
+            height: 2px;
+        }
+
+        .intro-col {
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .intro-col:nth-last-child(1) {
+            border-left: 2px solid #333;
+        }
+
+        .fb-icon {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            width: 21px;
+            height: 21px;
+            background-image: url(./images/icon_fb.png);
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .location-icon {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            width: 21px;
+            height: 21px;
+            background-image: url(./images/icon_location.png);
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .big-icon {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            width: 21px;
+            height: 21px;
+            background-image: url(./images/icon_gift.png);
+            background-size: cover;
+            background-position: center center;
+        }
+
+        /* google map */
+
+        .gm-fullscreen-control,
+        .gm-bundled-control {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .top-img {
+                width: calc(100vw - 30px);
+                height: calc((100vw - 30px) * (269 / 725) );
+                left: 15px;
+                top: 200px;
+            }
+
+            .top-img2 {
+                width: calc(100vw - 30px);
+                height: calc((100vw - 30px) * (356 / 626) );
+                left: 15px;
+                top: 170px;
+            }
+
+            .top-left-img {
+                width: calc(100vw);
+                height: calc(100vw * (666/ 874) );
+            }
+
+            .top-right-img {
+                width: calc(100vw);
+                height: calc(100vw * (873 / 666) );
+            }
+
+            .med {
+                height: auto
+            }
+            .locationbg {
+                left: calc(20% - 46px);
+            }
+            .medtitle {
+                left: 35%;
+            }
+            .intro-col:nth-last-child(1) {
+                border-left: 0px solid #333;
+                border-top: 2px solid #333;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="menu">
+    <!-- <div class="menu">
         <button class="login-fb" onclick="checkLoginState()">FB 登入打卡</button>
+    </div> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 top">
+                <div class="top-right-img"></div>
+                <div class="top-left-img"></div>
+                <div class="top-img"></div>
+                <div class="top-img2"></div>
+                <div class="logo"></div>
+                <img src="./images/fb_login.png" onclick="checkLoginState()" alt="">
+            </div>
+            <div class="col-12" style="padding:0">
+                <div id="listings" style="display: none">
+                    <div class="listing-item" data-marker-id="01" data-marker-lng="121.5431801" data-marker-lat="24.978617999999997" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
+                    <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
+                    <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
+                </div>
+                <div class="results-map-wrapper">
+                    <div id="map-canvas"></div>
+                </div>
+            </div>
+            <div class="col-12 med p-0">
+                <span class="medtitle" style="color:#ffd374">Let us know
+                    <br>where you are,
+                    <br>
+                    <font color="#ff6400">AORUS</font> Fans!</span>
+                <div class="locationbg"></div>
+                <div class="mapbg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="title h2">Intro</div>
+            </div>
+            <div class="col-12 col-md-6 intro-col">
+                AORUS Facebook is now 3 million fans strong, and we are grateful to have your continous support and engagement! To celebrate
+                this milestone, we are organizing a global giveaway.
+                <br>
+                <br> To enter, simply mark your location on the world map for a chance to score some awesome AORUS hardware!
+                <br>
+                <br> Event Duration: From now on to September 7, 2018
+            </div>
+            <div class="col-12 col-md-6 intro-col">
+                <div class="text-center col-title">How to join</div>
+                <br>
+                <br>
+                <i class="fb-icon"></i> Log in to your Facebook account
+                <br>
+                <br>
+                <i class="location-icon"></i> Mark your location on map
+                <br>
+                <br>
+                <i class="big-icon"></i> Chance to win BIG
+            </div>
+        </div>
+    </div>
 
-        <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button> -->
-    </div>
-    <div id="listings" style="display: none">
-        <div class="listing-item" data-marker-id="01" data-marker-lng="121.5431801" data-marker-lat="24.978617999999997" data-marker-img="https://images.pexels.com/photos/942302/pexels-photo-942302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></div>
-        <div class="listing-item" data-marker-id="02" data-marker-lng="50" data-marker-lat="50" data-marker-img="https://images.pexels.com/photos/635609/pexels-photo-635609.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
-        <div class="listing-item" data-marker-id="03" data-marker-lng="100" data-marker-lat="0" data-marker-img="https://images.pexels.com/photos/1123100/pexels-photo-1123100.jpeg?auto=compress&cs=tinysrgb&h=350"></div>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 200px;">
+            <div class="col-12 text-center">
+                <div class="title h2">Prize List</div>
+            </div>
+            <div class="col-12 col-md-4">
+                1
+            </div>
+            <div class="col-12 col-md-4">
+                2
+            </div>
+            <div class="col-12 col-md-4">
+                3
+            </div>
+        </div>
     </div>
 
-    <div class="results-map-wrapper">
-        <div id="map-canvas"></div>
-    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_Za7RqKvUuEg2Nln0EcpUVN3k2fZtDuE">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
     <script>
         var overlay;
         var map;
@@ -384,6 +692,24 @@
         function mapServiceProvider(latitude, longitude) {
             // console.log('經緯度：' + latitude + ', ' + longitude);
         }
+    </script>
+    <script>
+        var pageW = $(window).width() / 2;
+        var pageH = $(window).height() / 2;
+        var img_x = $(".top-img").position().left;
+        var img_y = $(".top-img").position().top;
+        var img_x2 = $(".top-img2").position().left;
+        var img_y2 = $(".top-img2").position().top;
+        $(document).mousemove(function (e) {
+            var sx = e.pageX - pageW;
+            var sy = e.pageY - pageH;
+            var _img1_x = sx / 100 + img_x;
+            var _img1_y = sy / 100 + img_y;
+            var _img2_x = sx / 50 + img_x2;
+            var _img2_y = sy / 50 + img_y2;
+            $(".top-img").css({ "left": _img1_x + "px", "top": _img1_y + "px" });
+            $(".top-img2").css({ "left": _img2_x + "px", "top": _img2_y + "px" });
+        });
     </script>
 
 </html>
