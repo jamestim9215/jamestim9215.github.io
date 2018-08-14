@@ -560,7 +560,7 @@
         }
         function checkLoginState() {
             // setUserMarker("24.9785965","121.5431988","http://graph.facebook.com/2629243367101725/picture?type=normal");
-
+            $('html,body').animate({scrollTop:$('#map-canvas').offset().top},800);
             FB.login(function (response) {
                 if (response.status === 'connected') {
 
