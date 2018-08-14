@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .html,body{
+        margin: 0 auto;
+        background: #ff6400;
+        color: #fff;
+    }
+    .whack-a-mole{
+        position: relative;
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+        margin-top: calc(50vh - 150px);
+        /* padding: 10px; */
+        /* background: #fff; */
+    }
+    .box{
+        position: relative;
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+    .box::after{
+        content: "";
+        position: absolute;
+        z-index: 2;
+        width: 100px;
+        height: 50px;
+        background: #fff;
+        bottom:0;
+        left: 0;
+    }
+    .mouse{
+        position: absolute;
+        z-index: 1;
+        width: 80px;
+        height: 50px;
+        bottom: 0px;
+        left: 10px;
+        background: #ff0000;
+        transition: 0.5s all;
+    }
+    .mouse-show{
+        bottom: 40px;
+    }
+    </style>
+</head>
+<body>
+    <div>Time : <span id="time">10</span></div>
+    <div class="whack-a-mole">
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+        <div class="box">
+            <div class="mouse"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        var time = 10;
+        var timeOut;
+        
+        function startGameTimeOut(){
+            timeOut = setTimeout(whackGameUpdate,1000);
+        }
+
+        function clearGameTimeOut(){
+            clearTimeout(timeOut);
+        }
+
+        function whackGameUpdate(){
+            if(time > 0){
+                time = time-1;
+                clearGameTimeOut();
+                startGameTimeOut();
+            }else{
+                   
+            }
+        }
+
+        function initial(){
+            startGameTimeOut();
+        }
+        
+        initial();
+    </script>
+
+</body>
+</html>
