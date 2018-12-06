@@ -1,0 +1,121 @@
+
+
+/* .member-content-div{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 30px 45px;
+} */
+
+.form-title{
+    position: relative;
+    float: left;
+    width: 150px;
+    height: 45px;
+    line-height: 36px;
+    color: #fff;
+    /* border-bottom: 1px solid #666; */
+    margin-bottom: 10px;
+}
+.form-input{
+    position: relative;
+    float: left;
+    width: calc(100% - 150px);
+    height: 45px;
+    /* border-bottom: 1px solid #666; */
+    margin-bottom: 10px; 
+}
+
+.form-input input{
+    background: rgba(255,255,255,0.1);
+    border-radius: 0;
+    color: #fff;
+    border: 0;
+}
+
+.important_dot{
+    position: absolute;
+    top: 2px;
+    left: -15px;
+    color: #ff0000;
+}
+
+.member-img{
+    position: relative;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow:hidden;
+    border:3px solid #ff6400;
+}
+.member-img img{
+    left: -50%;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    transition: 0.5s all;
+}
+
+.member-img:hover img{
+    transform: scale(1.3);
+}
+
+.member-name{
+    position: relative;
+    padding: 10px;
+    color: #666;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #666;
+}
+
+.member-img-update-div{
+    font-size: 1.5rem;
+    color: #666;
+}
+.member-img-update-div a:nth-child(1){
+    color: #fff;
+}
+.member-img-update-div a:nth-child(2){
+    color: #666;
+}
+.web-img-title{
+    position: relative;
+    min-height: 260px;
+    height: auto;
+    width: 100%;
+    padding-bottom: 15px; 
+    text-shadow: 1px 1px 0px #000;
+}
+
+.web-img-title::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image:url(../../images/bg/010.jpg);
+    background-size: cover;
+    background-position: center center; 
+    opacity: 0.5;
+}
+
+@media (min-width: 1720px) {
+}
+
+@media (max-width: 990px){
+    .member-content-div{
+        padding: 10px 10px;
+    }
+
+    
+    .form-title{
+        width: 100%;
+        margin-bottom: 0px;
+    }
+    .form-input{
+        width: 100%;
+    }
+}

@@ -1,0 +1,212 @@
+
+.page-100{
+    /* background-image: url(../../images/bg/wp2446966.png); */
+    /* background-image: url(../../images/bg2/AORUS-Gaming-Corner-01.jpg);
+
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+.page-100::after{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+    background-image:url(../../images/bg2/AORUS-Gaming-Corner-01.jpg);
+    /* background-image: url(https://www.hdwallpapersspot.com/wp-content/uploads/2018/03/Good-Gaming-Wallpapers.jpg); */
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.5;
+    /* -webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+        -ms-filter: blur(5px);    
+            filter: blur(5px);  
+            filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); */
+}
+
+.content-div{
+    /* width:100%; */
+    /* background-image: url(../../images/loginbg.png);
+    background-size: cover; 
+    background-position: center center; */
+    /* min-height: calc(100vh - 350px ); */
+}
+
+.login-box{
+    position: relative;
+    display: none;
+    margin: 0px auto;
+    width: 100%;
+    max-width: 500px;
+    /* min-height: 500px; */
+    padding: 30px 30px;
+    background: rgba(0,0,0,0.7);
+}
+
+.login-box input,.login-box .input-group-addon{
+    /* background: rgba(255,255,255,0.1); */
+    /* background: rgba(40,40,40,0.75); */
+    color: #fff;
+    border: 0;
+}
+.checkbox,.checkbox input[type=checkbox]{
+    color: #666;
+    border:0;
+}
+
+
+
+.login-box .input-group{
+    /* border-bottom: 1px solid #666; */
+}
+
+.forgot-btn{
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    line-height: 34px;
+    color: #666;
+}
+.sign-div span{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+}
+
+.sign-div span i{
+    position: relative;
+    margin-left: 5px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    border:1px solid #666;
+    transition: 0.3s all;
+    cursor: pointer;
+}
+.sign-div span i:hover{
+    
+    border:0;
+}
+
+.sign-div span:nth-child(2) i:hover{
+    background: #4267b2;
+    border:1px solid #4267b2;
+}
+.sign-div span:nth-child(3) i:hover{
+    background: #41abe1;
+    border:1px solid #41abe1;
+}
+.sign-div span:nth-child(4) i:hover{
+    background: #dd4d42;
+    border:1px solid #dd4d42;
+}
+
+
+.fb-icon{
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-image: url(../../images/fb.png);
+    background-size: cover;
+}
+.google-icon{
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-image: url(../../images/google.png);
+    background-size: cover;
+}
+.twitter-icon{
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-image: url(../../images/twitter.png);
+    background-size: cover;
+}
+
+label{
+    font-weight: normal;
+}
+.wizard-progress{
+    position: relative;
+    width: 100%;
+}
+
+.wizard-progress .step{
+    position: relative;
+    float: left;
+    width: 33.33%;
+    height: 30px;
+}
+
+.node{
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #323232;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    font-size: 2rem;
+    color:#bcbcbc;
+    font-family: 'Aldrich','Microsoft JhengHei', sans-serif;
+}
+
+.complete>.node,.in-progress>.node{
+    background: #ff6400;
+    color:#fff;
+}
+
+.step::after{
+    position: absolute;
+    content: "";
+    z-index: 0;
+    left: 15px;
+    top: 12px;
+    height: 6px;
+    width: calc(100% - 15px);
+    background: #323232;
+}
+
+.step:nth-child(2)::after{
+    left: 0px;
+    width: 100%;
+}
+.step:nth-child(3)::after{
+    right: 15px;
+    left: 0px;
+    width: calc(100% - 15px);
+}
+
+
+.complete::after{
+    background: #ff6400;
+}
+.in-progress::after{
+    /* background: #ff6400; */
+    background-image: linear-gradient( to right , #ff6400 75%, #323232 100%);
+}
+
+
+@media (max-width: 768px){
+    .login-box{
+        padding: 10px 10px;
+    }
+}

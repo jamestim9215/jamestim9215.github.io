@@ -1,0 +1,32 @@
+.page-100::after{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+    background-image:url(../../images/404/404bg.jpg);
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+}
+
+.div-404{
+    position: relative;
+    margin: 150px auto;
+    width: 480px;
+    height: auto;
+    max-width: 100%;
+}
+
+.div-404-title{
+    position: relative;
+    margin-top: -70px;
+    width: 100%;
+    font-size: 50px;
+    line-height: 50px;
+    color:#ff6400;
+    text-shadow: 1px 1px 0px #000, 1px 2px 5px rgba(0,0,0,.7)
+
+}

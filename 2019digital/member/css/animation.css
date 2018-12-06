@@ -1,0 +1,105 @@
+@keyframes robot-left{
+    0%   {
+        transform: rotate(0deg);
+    }
+    25%  {
+        transform: rotate(-15deg);
+    }
+    50%  {
+        transform: rotate(-10deg);
+    }
+    75%  {
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+@keyframes robot-right{
+    0%   {
+        transform: rotateZ(0deg) rotateY(180deg);
+    }
+    25%  {
+        transform: rotateZ(15deg) rotateY(180deg);
+    }
+    50%  {
+        transform: rotateZ(10deg) rotateY(180deg);
+    }
+    75%  {
+        transform: rotateZ(20deg) rotateY(180deg);
+    }
+    100% {
+        transform: rotateZ(0deg) rotateY(180deg);
+    }
+}
+
+@keyframes go-robot-left{
+    0% {
+        transform: rotate(-15deg);
+        opacity: 0.2;
+    }
+    2% {
+        transform: rotate(-15deg);
+        opacity: 0.4;
+    }
+    30% {
+        opacity: 0.05;
+    }
+    100% {
+        transform: scale(2) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+@keyframes go-robot-right{
+    0% {
+        transform: rotate(15deg) rotateY(180deg);
+        opacity: 0.2;
+    }
+    2% {
+        transform: rotate(15deg) rotateY(180deg);
+        opacity: 0.4;
+    }
+    30% {
+        opacity: 0.05;
+    }
+    100% {
+        transform: scale(2) rotate(0deg) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+.robot-left{
+    position: fixed;
+    z-index: 0;
+    top: -150px;
+    left: calc(50% - 750px);
+    width: 1500px;
+    height: 1500px;
+    background-image: url(../../member/images/animation/left.png);
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.4;
+    animation-name: robot-left;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+.robot-right{
+    position: fixed;
+    z-index: 0;
+    top: -150px;
+    left: calc(50% - 750px);
+    width: 1500px;
+    height: 1500px;
+    /* background-image: url(../../images/animation/right.png); */
+    background-image: url(../../member/images/animation/left.png);
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.4;
+    animation-name: robot-right;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}

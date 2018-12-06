@@ -1,0 +1,745 @@
+
+.g_icons {
+    background: url(../images/g_icons.png);
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    /* transition: .2s; */
+}
+.g_icons_eqp {
+    background: url(../images/g_icons_equipment.png);
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    transition: .2s;
+    background-size: 400%;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+.g_icons_eqp_score {
+    background-size: 1622%;
+    transform: translateX(-6%) scale(.7);
+    margin-top: -54px;
+}
+.gi_flag {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.gi_flag_us {
+    background-position: -93px -135px;
+}
+
+.gi_flag_cn {
+    background-position: -124px -135px;
+}
+
+.gi_flag_tw {
+    background-position: -155px -135px;
+}
+
+.gi_flag_de {
+    background-position: -186px -135px;
+}
+
+.gi_flag_es {
+    background-position: -217px -135px;
+}
+
+.gi_flag_fr {
+    background-position: -248px -135px;
+}
+
+.gi_flag_jp {
+    background-position: -93px -166px;
+}
+
+.gi_flag_kr {
+    background-position: -124px -166px;
+}
+
+.gi_flag_pt {
+    background-position: -155px -166px;
+}
+
+.gi_flag_ru {
+    background-position: -186px -166px;
+}
+
+.gi_flag_th {
+    background-position: -217px -166px;
+}
+
+.gi_flag_pl {
+    background-position: -248px -166px;
+}
+
+.gi_flag_vn {
+    background-position: -279px -166px;
+}
+
+.gi_flag_ar {
+    background-position: -465px -135px;
+}
+
+.gi_flag_se {
+    background-position: -465px -166px;
+}
+
+
+/*瑞典*/
+
+.gi_flag_at {
+    background-position: -497px -197px;
+}
+
+
+/*奧地利*/
+
+.gi_flag_ch {
+    background-position: -558px -197px;
+}
+
+
+/*瑞士*/
+
+.gi_flag_hk {
+    background-position: -528px -197px;
+}
+
+
+/*香港*/
+
+.gi_flag_br {
+    background-position: -465px -197px;
+}
+
+
+/*巴西*/
+
+.gi_flag_tr {
+    background-position: -434px -197px;
+}
+
+
+/*土耳其*/
+
+.gi_flag_latam {
+    background-position: -497px -166px;
+}
+
+
+/*拉丁美洲*/
+
+.gi_flag_cis {
+    background-position: -497px -166px;
+}
+
+
+/*獨立國家國協*/
+
+.gi_flag_id {
+    background-position: -528px -135px;
+}
+
+
+/*印尼*/
+
+.gi_flag_au {
+    background-position: -124px -197px;
+}
+
+
+/*澳洲*/
+
+.gi_flag_ca {
+    background-position: -341px -197px;
+}
+
+
+/*加拿大*/
+
+.gi_flag_dk {
+    background-position: -310px -197px;
+}
+
+
+/*丹麥*/
+
+.gi_flag_fi {
+    background-position: -279px -197px;
+}
+
+/*芬蘭*/
+.gi_flag_gb {
+    background-position: -248px -197px;
+}
+
+/*英國*/
+
+.gi_flag_ie {
+    background-position: -217px -197px;
+}
+
+
+/*愛爾蘭*/
+
+.gi_flag_is {
+    background-position: -186px -197px;
+}
+
+
+/*冰島*/
+
+.gi_flag_my {
+    background-position: -155px -197px;
+}
+
+
+/*馬來西亞*/
+
+.gi_flag_nz {
+    background-position: -372px -197px;
+}
+
+
+/*紐西蘭*/
+
+.gi_flag_no {
+    background-position: -558px -166px;
+}
+
+
+/*挪威*/
+
+.gi_flag_ph {
+    background-position: -528px -166px;
+}
+
+
+/*菲律賓*/
+
+.gi_flag_usa {
+    background-position: -561px -135px;
+}
+
+
+/*美國*/
+
+.gi_flag_in {
+    background-position: -403px -197px;
+}
+
+
+/*印度*/
+
+/*烏克蘭*/
+
+.gi_flag_ua {
+    background-position: -278px -135px;
+}
+
+/*捷克*/
+
+.gi_flag_cz {
+    background-position: -124px -228px;
+}
+
+/*義大利*/
+
+.gi_flag_it {
+    background-position: -155px -228px;
+}
+
+/*羅馬尼亞*/
+
+.gi_flag_ro {
+    background-position: -186px -228px;
+}
+
+/*荷蘭*/
+
+.gi_flag_nl {
+    background-position: -217px -228px;
+}
+
+/*比利時*/
+
+.gi_flag_be {
+    background-position: -248px -228px;
+}
+
+/*以色列*/
+
+.gi_flag_il {
+    background-position: -279px -228px;
+}
+
+/*孟加拉*/
+
+.gi_flag_bd {
+    background-position: -310px -228px;
+}
+
+/*斯里蘭卡*/
+
+.gi_flag_lk {
+    background-position: -341px -228px;
+}
+
+/*巴基斯坦*/
+
+.gi_flag_pk {
+    background-position: -372px -228px;
+}
+
+
+/*阿拉伯聯合大公國*/
+
+.gi_flag_arabic {
+    background-position: -403px -228px;
+}
+
+/*北歐*/
+.gi_flag_nordic {
+   background-position: -497px -166px;
+}
+
+/*伊朗*/
+.gi_flag_persian {
+    background-position: -434px -228px;
+}
+
+/*哈薩克*/
+.gi_flag_kz {
+    background-position: -466px -228px;
+}
+
+/*烏茲別克*/
+.gi_flag_uz {
+    background-position: -497px -228px;
+}
+
+/*吉爾吉斯*/
+.gi_flag_kg {
+    background-position: -526px -228px;
+}
+
+/*白俄羅斯*/
+.gi_flag_by {
+    background-position: -557px -228px;
+}
+
+
+
+.gi_aorus,
+.gi_search,
+.gi_member,
+.gi_cart,
+.gi_qa,
+.gi_lang,
+.gi_dot,
+.gi_pd_download,
+.gi_pd_register,
+.gi_pd_faq,
+.gi_pd_buy,
+.gi_pd_warranty,
+.gi_pd_contact {
+    width: 30px;
+    height: 30px;
+}
+
+.gi_aorus {
+    background-position: -497px -135px;
+}
+
+.gi_search {
+    background-position: 0 -135px;
+}
+
+.gi_member {
+    background-position: -31px -135px;
+}
+
+.gi_cart {
+    background-position: -62px -135px;
+}
+
+.gi_qa {
+    background-position: -403px -135px;
+}
+
+.gi_lang {
+    background-position: -93px -135px;
+}
+
+.gi_dot {
+    background-position: -434px -135px;
+}
+
+.gi_pd_download {
+    background-position: 0px -228px;
+}
+
+.gi_pd_register {
+    background-position: -31px -228px;
+}
+
+.gi_pd_faq {
+    background-position: -62px -228px;
+}
+
+.gi_pd_buy {
+    background-position: -93px -228px;
+}
+
+.gi_pd_warranty {
+    background-position: -124px -228px;
+}
+
+.gi_pd_contact {
+    background-position: -155px -228px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_download {
+    background-position: 0px -259px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_register {
+    background-position: -31px -259px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_faq {
+    background-position: -62px -259px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_buy {
+    background-position: -93px -259px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_warranty {
+    background-position: -124px -259px;
+}
+
+#pd_support_nav ul li:hover .gi_pd_contact {
+    background-position: -155px -259px;
+}
+
+.gi_reset {
+    width: 30px;
+    height: 30px;
+    background-position: -166px -197px;
+}
+
+.gi_fix {
+    background-position: 0;
+}
+
+.gi_buy {
+    background-position: -100% 0;
+}
+
+.gi_graphic_card {
+    background-position: 46.7% -1%;
+}
+
+.gi_case {
+    background-position: 46.7% 26.5%;
+}
+
+.gi_monitor {
+    background-position: 46.7% 54.5%;
+}
+
+.gi_mouse {
+    background-position: 46.7% 83.5%;
+}
+
+.gi_keyboard {
+    background-position: 80% -1%;
+}
+
+.gi_controller {
+    background-position: 80% 26.5%;
+}
+
+.gi_headset {
+    background-position: 80% 54.5%;
+}
+
+.gi_XgScore_lv0 {
+    background-position: 90.8% 0%;
+}
+
+.gi_XgScore_lv1 {
+    background-position: 90.8% 6.8%;
+}
+
+.gi_XgScore_lv2 {
+    background-position: 90.8% 13.8%;
+}
+
+.gi_XgScore_lv3 {
+    background-position: 90.8% 20.8%;
+}
+
+.gi_XgScore_lv4 {
+    background-position: 90.8% 27.8%;
+}
+
+.gi_XgScore_lv5 {
+    background-position: 90.8% 34.8%;
+}
+
+.gi_XgScore_lv6 {
+    background-position: 90.8% 41.8%;
+}
+
+.gi_XgScore_lv7 {
+    background-position: 90.8% 48.8%;
+}
+
+.gi_aorus:hover {
+    background-position: -497px -166px;
+}
+
+.gi_search:hover {
+    background-position: 0 -166px;
+}
+
+.gi_member:hover {
+    background-position: -31px -166px;
+}
+
+.gi_cart:hover {
+    background-position: -62px -166px;
+}
+
+.gi_qa:hover {
+    background-position: -403px -166px;
+}
+
+.gi_lang:hover {
+    background-position: -93px -166px;
+}
+
+.gi_dot:hover {
+    background-position: -434px -166px;
+}
+
+.gi_owl_arrow_prev,
+.gi_owl_arrow_next {
+    width: 26px;
+    height: 42px;
+    opacity: .6;
+    transition: .2s;
+}
+
+.gi_owl_arrow_prev:hover,
+.gi_owl_arrow_next:hover {
+    opacity: 1;
+}
+
+.gi_owl_arrow_prev {
+    background-position: -217px -42px;
+}
+
+.gi_owl_arrow_next {
+    background-position: -244px -42px;
+}
+
+.gi_owl_arrow_prev_md,
+.gi_owl_arrow_next_md {
+    width: 40px;
+    height: 90px;
+    opacity: .6;
+    transition: .2s;
+}
+
+.gi_owl_arrow_prev_md:hover,
+.gi_owl_arrow_next_md:hover {
+    opacity: 1;
+}
+
+.gi_owl_arrow_prev_md {
+    background-position: -395px -43px;
+}
+
+.gi_owl_arrow_next_md {
+    background-position: -436px -46px;
+}
+
+.gi_twitter_video {
+    width: 30px;
+    height: 30px;
+    background-position: -186px -42px;
+}
+
+.gi_twitter_photo {
+    width: 30px;
+    height: 30px;
+    background-position: -31px -42px;
+}
+
+.gi_twitter_video:hover {
+    background-position: -186px -73px;
+}
+
+.gi_twitter_photo:hover {
+    background-position: -31px -73px;
+}
+
+.social_bt .gi_retweet,
+.social_bt .gi_love,
+.social_bt .gi_like,
+.social_bt .gi_comment,
+.social_bt .gi_delete,
+.social_bt .gi_reply,
+.social_bt .gi_facebook,
+.social_bt .gi_twitter,
+.social_bt .gi_google,
+.social_bt .gi_pinterest,
+.social_bt .gi_repin,
+.gi_rss {
+    width: 22px;
+    height: 20px;
+}
+
+.social_bt .gi_retweet {
+    background-position: -92px 0;
+}
+
+.social_bt .gi_love {
+    background-position: -115px 0;
+}
+
+.social_bt .gi_like {
+    background-position: -135px 0;
+}
+
+.social_bt .gi_comment {
+    background-position: -161px 0;
+}
+
+.social_bt .gi_delete {
+    background-position: 0 0;
+}
+
+.social_bt .gi_reply {
+    background-position: -46px 0;
+}
+
+.social_bt .gi_facebook {
+    background-position: -184px 0;
+}
+
+.social_bt .gi_twitter {
+    background-position: -207px 0;
+}
+
+.social_bt .gi_google {
+    background-position: -277px 0;
+}
+
+.social_bt .gi_pinterest {
+    background-position: -299px 0;
+}
+
+.social_bt .gi_repin {
+    background-position: -253px 0;
+}
+
+.gi_rss {
+    background-position: -322px 0;
+}
+
+.social_bt .gi_retweet:hover {
+    background-position: -92px -21px;
+}
+
+.social_bt .gi_love:hover {
+    background-position: -115px -21px;
+}
+
+.social_bt .gi_like:hover {
+    background-position: -135px -21px;
+}
+
+.social_bt .gi_comment:hover {
+    background-position: -161px -21px;
+}
+
+.social_bt .gi_delete:hover {
+    background-position: 0 -21px;
+}
+
+.social_bt .gi_reply:hover {
+    background-position: -46px -21px;
+}
+
+.social_bt .gi_facebook:hover {
+    background-position: -184px -21px;
+}
+
+.social_bt .gi_twitter:hover {
+    background-position: -207px -21px;
+}
+
+.social_bt .gi_google:hover {
+    background-position: -277px -21px;
+}
+
+.social_bt .gi_pinterest:hover {
+    background-position: -299px -21px;
+}
+
+.social_bt .gi_repin:hover {
+    background-position: -253px -21px;
+}
+
+.gi_rss:hover {
+    background-position: -322px -21px;
+}
+
+.social_type .gi_facebook,
+.social_type .gi_twitter,
+.social_type .gi_google,
+.social_type .gi_instagram,
+.social_type .gi_pinterest,
+.social_type .gi_youtube,
+.social_type .gi_vk {
+    width: 30px;
+    height: 30px;
+}
+
+.social_type .gi_facebook {
+    background-position: 0 -73px;
+}
+
+.social_type .gi_twitter {
+    background-position: -31px -73px;
+}
+
+.social_type .gi_google {
+    background-position: -62px -73px;
+}
+
+.social_type .gi_instagram {
+    background-position: -93px -73px;
+}
+
+.social_type .gi_pinterest {
+    background-position: -124px -73px;
+}
+
+.social_type .gi_youtube {
+    background-position: -155px -73px;
+}
+
+.social_type .gi_vk {
+    background-position: -364px -73px;
+}

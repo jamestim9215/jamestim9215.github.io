@@ -1,0 +1,364 @@
+
+
+.bg-img{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image:url(../../images/bg2/AORUS-Keyboard-02.jpg);
+    background-size: cover;
+    background-position: center center; 
+    opacity: 0.5;
+}
+
+.login-box{
+    position: relative;
+    margin: 0px auto;
+    width: 100%;
+    max-width:700px;
+    padding: 30px 30px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 3px;
+}
+
+.medal-title-div{
+    position: relative;
+    width: 80%;
+    /* min-height: 50px; */
+    /* background-image: url(../../images/bg_03.jpg); */
+    /* background-position: 0 0; */
+    /* background-size: 100%; */
+    opacity: 0.3;
+    /* background-position: center;  */
+    border-radius: 3px;
+}
+.medal-title-img{
+    position: relative;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    background-image: url(../../images/bg_03.jpg);
+    background-size: 100%;
+    border-radius: 3px;
+    -webkit-clip-path: polygon(0 0, 455px 0, 400px 100%, 0 100%);
+    clip-path: polygon(0 0,455px 0, 400px 100%, 0 100%);
+    color:#ff6400;
+    padding-top: 10px;
+    line-height:2.5rem;
+    font-size: 2.5rem;
+    text-shadow: 0.1em 0.1em #000;
+}
+.medal-title-info{
+    position: relative;
+    width: calc(80% - 30px);
+    z-index: 10;
+    top: 50px;
+}
+
+.medal-title-info::after{
+  content: "";
+  /* background: url(../../images/bg_03.jpg); */
+  background-size: 100%;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; 
+}
+
+
+.form-control{
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    color: #fff;
+    border: 0;
+}
+
+.input-link{
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+.input-link span{
+    position: absolute;
+    z-index: 1; 
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 10px;
+    border-radius:50%;
+    background: rgba(0,0,0,0); 
+    transition: 0.5s all;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+}
+.input-link span:hover{
+    /* background: #ff6400;  */
+    color:#ff6400;
+}
+.input-link span div{
+    position: absolute;
+    z-index: 2;
+    bottom: -32px;
+    left: -40px;
+    background: #131313;
+    height: 30px;
+    width: 120px;
+    border-radius:3px;
+    display: none;  
+    font-size: 16px;
+}
+.input-link span:hover div{
+    display: inline;
+    color:#fff;
+}
+.share-div{
+    position: relative;
+    width: 100%;
+}
+
+.share-div span{
+    position: relative;
+    float: left;
+    width: calc((100% - 140px) / 4);
+    padding:  0px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    background: #000;
+    color:#fff;
+    /* padding: 10px; */
+    font-size: 2rem;
+    text-align: center;
+    transition: 0.5s all;
+}
+
+.share-div a:nth-child(1) span{
+    margin: 0 20px 0 10px;
+}
+.share-div a:nth-child(2) span{
+    margin: 0 20px 0 20px;
+}
+.share-div a:nth-child(3) span{
+    margin: 0 20px 0 20px;
+}
+.share-div a:nth-child(4) span{
+    margin: 0 0px 0 20px;
+}
+
+.share-div span i{
+    transition: 0.5s all;
+}
+.share-div .fb{
+    background: #3B5998; 
+    z-index: 1;
+}
+.share-div .twitter{
+    background: #55ACEE;
+    z-index: 2; 
+}
+.share-div .mail{
+    background: #ff6400; 
+    z-index: 3;
+}
+.share-div .link{
+    background: #999; 
+    z-index: 4;
+}
+
+.share-div .fb:hover,.share-div .twitter:hover,.share-div .mail:hover,.share-div .link:hover{
+    transform: translateY(-5px) translateX(5px);
+}
+.share-div .fb:hover i,.share-div .twitter:hover i,.share-div .mail:hover i,.share-div .link:hover i{
+    /* transform: rotate(-60deg); */
+}
+
+.share-div .fb::before{
+    content: "";
+    position: absolute;
+    width:10px;
+    height: 40px;
+    z-index: 1;
+    left: -10px;
+    top: 0;
+    border-radius: 3px 0 0 3px;
+    background: #3B5998; 
+}
+.share-div .fb::after{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 1;
+    right: -40px;
+    top: 0;
+    border-top: 20px solid #3B5998; 
+    border-left: 20px solid #3B5998; 
+    border-bottom:20px solid rgba(0,0,0,0); 
+    border-right:20px solid rgba(0,0,0,0);
+}
+
+.share-div .twitter::before{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+    left: -40px;
+    top: 0;
+    border-top: 20px solid  rgba(0,0,0,0);
+    border-left: 20px solid rgba(0,0,0,0);
+    border-bottom:20px solid  #55ACEE; 
+    border-right:20px solid #55ACEE;
+}
+
+.share-div .twitter::after{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+    right: -40px;
+    top: 0;
+    border-top: 20px solid #55ACEE; 
+    border-left: 20px solid #55ACEE;  
+    border-bottom:20px solid rgba(0,0,0,0); 
+    border-right:20px solid rgba(0,0,0,0);
+}
+.share-div .mail::before{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+    left: -40px;
+    top: 0;
+    border-top: 20px solid  rgba(0,0,0,0);
+    border-left: 20px solid rgba(0,0,0,0);
+    border-bottom:20px solid  #ff6400;
+    border-right:20px solid #ff6400;
+}
+
+.share-div .mail::after{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+    right: -40px;
+    top: 0;
+    border-top: 20px solid #ff6400; 
+    border-left: 20px solid #ff6400;  
+    border-bottom:20px solid rgba(0,0,0,0);
+    border-right:20px solid rgba(0,0,0,0);
+}
+.share-div .link::after{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    z-index: 3;
+    left: -40px;
+    top: 0;
+    border-top: 20px solid  rgba(0,0,0,0);
+    border-left: 20px solid rgba(0,0,0,0);
+    border-bottom:20px solid  #999;
+    border-right:20px solid #999;
+}
+
+.share-div .link::before{
+    content: "";
+    position: absolute;
+    width:10px;
+    height: 40px;
+    z-index: 3;
+    right: -10px;
+    top: 0;
+    border-radius: 0 3px 3px 0;
+    background: #999; 
+}
+
+#pcode,#link{
+    position: fixed;
+    z-index: -100;
+    opacity: 0;
+}
+
+@media (max-width: 990px){
+    .medal-title-div{
+        width: 100%;
+    }
+    .medal-title-info{
+        width: calc(100% - 30px);
+    }
+    .input-link{
+        width: 100%;
+    }
+    .share-div span{
+        width: 100%;
+        padding:  0 0px;
+        margin: 0;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 3px;
+        cursor: pointer;
+        background: #000;
+        font-size: 2rem;
+        text-align: center;
+        transition: 0.5s all;
+    }
+
+    .share-div a:nth-child(1) span{
+        margin: 0;
+    }
+    .share-div a:nth-child(2) span{
+        margin: 0;
+    }
+    .share-div a:nth-child(3) span{
+        margin: 0;
+    }
+    .share-div a:nth-child(4) span{
+        margin: 0;
+    }
+
+    .share-div .fb::before{
+        display: none;
+    }
+    .share-div .fb::after{
+        display: none;
+    }
+    
+    .share-div .twitter::before{
+        display: none;
+    }
+    
+    .share-div .twitter::after{
+        display: none;
+    }
+    
+    .share-div .mail::after{
+        display: none;
+    }
+    
+    .share-div .mail::before{
+        display: none;
+    }
+
+    
+    .share-div .link::after{
+        display: none;
+    }
+    
+    .share-div .link::before{
+        display: none;
+    }
+
+}

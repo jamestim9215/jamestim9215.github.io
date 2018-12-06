@@ -1,0 +1,42 @@
+.page-100::after{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+    background-image:url(../../images/bg2/AORUS-PC-02.jpg);
+    /* background-image: url(https://www.hdwallpapersspot.com/wp-content/uploads/2018/03/Good-Gaming-Wallpapers.jpg); */
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.8;
+    -webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+        -ms-filter: blur(5px);    
+            filter: blur(5px);  
+            filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+}
+
+.bookmark-cate{
+    display: inline-block;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px 8px;
+    margin-bottom: 4px;
+    background: #ff6400;
+    border-radius: 3px;
+}
+.img-div div{
+    height: 250px;
+}
+.active{
+    background: #ff6400;
+}
+
+
+@media (max-width:990px){
+    .bookmark-cate{
+        display: block;
+    }
+}

@@ -1,0 +1,287 @@
+
+.page-title{
+    font-size: 40px;
+}
+
+
+.web-img-title::before{
+    background: #000;
+    opacity: 1;
+	width: 100%;
+    height: 120%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+}
+
+.web-img-title::after{
+	position: absolute;
+	z-index:-1;
+	left: 0;
+	top: 0;
+	content: "";
+	background-image: url(../../images/level/MembershipLevels-top-img-1.jpg);
+	width: 100%;
+	height: 120%;
+	background-position: top center;
+	background-size: cover;
+	opacity: 1;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+}
+
+.member-content-div{
+    background-position: right bottom;
+    overflow: hidden;
+}
+.medal-title-div{
+    position: relative;
+    width: 100%;
+    min-height: 180px;
+    background-image: url(../../images/bg_03.jpg);
+    background-position: 0 0;
+    background-size: 100%;
+    opacity: 0.3;
+    background-position: center; 
+    border-radius: 3px;
+}
+.medal-title-img{
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    min-height: 150px;
+    background-image: url(../../images/bg_03.jpg);
+    background-size: 100%;
+    border-radius: 3px;
+    -webkit-clip-path: polygon(0 0, 700px 0, 645px 35%, 0 35%);
+    clip-path: polygon(0 0, 700px 0, 645px 35%, 0 35%);
+    color:#ff6400;
+    padding-top: 10px;
+    line-height:2.5rem;
+    font-size: 2.5rem;
+    text-shadow: 0.1em 0.1em #000;
+}
+.medal-title-info{
+    position: absolute;
+    /* width: 100%; */
+    z-index: 10;
+    top: 55px;
+}
+
+.level-table{
+    width: 100%;
+}
+ 
+.level-table td{
+    padding: 10px;
+    height: 55px; 
+    border-bottom: 0px solid #333;
+}
+.level-table thead th:nth-child(1){
+    height: 260px;
+}
+
+.level-table tbody tr:nth-child(2n-1){
+    background: #000;
+}
+.level-table tbody tr:nth-child(2n){
+    background: #131313;
+}
+
+.level-table th{
+    text-align: center;
+    padding: 10px;
+}
+
+.level-table th div{
+    width: 80%;
+    margin-left: 10%;
+    line-height: 5rem;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.5);
+}
+.level-table th div img{
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.5));
+}
+
+.level-table th:nth-child(1) div{
+    background: linear-gradient(#ff6400 , rgba(0,0,0,0));
+    height: 80px;
+    min-width: 100px;
+}
+.level-table th:nth-child(2) div{
+    background: linear-gradient(#bfbfbf , rgba(0,0,0,0));
+    height: 110px;
+    min-width: 100px;
+}
+.level-table th:nth-child(3) div{
+    background: linear-gradient(#FCCA46 , rgba(0,0,0,0));
+    height: 140px;
+    min-width: 100px;
+}
+.level-table th:nth-child(4) div{
+    background: linear-gradient(#f7fcfe , rgba(0,0,0,0));
+    height: 170px;
+    min-width: 100px;
+}
+.level-table th:nth-child(5) div{
+    background: linear-gradient(#a7dcf7 , rgba(0,0,0,0));
+    height: 200px;
+    min-width: 100px;
+}
+
+.level-table thead>tr:nth-child(1) th{
+    vertical-align: bottom;
+    font-size: 18pt;
+    font-weight: 500;
+}
+.level-table tbody>tr td{
+    text-align: center;
+    font-size: 12pt;
+}
+
+
+.level-table thead>tr:nth-child(1) th:nth-child(1),
+.level-table tbody>tr td:nth-child(1)
+{
+    color: #ff6400;
+}
+.level-table thead>tr:nth-child(1) th:nth-child(2),
+.level-table tbody>tr td:nth-child(2)
+{
+    color: #bfbfbf;
+}
+.level-table thead>tr:nth-child(1) th:nth-child(3),
+.level-table tbody>tr td:nth-child(3)
+{
+    color: #FCCA46;
+}
+.level-table thead>tr:nth-child(1) th:nth-child(4),
+.level-table tbody>tr td:nth-child(4)
+{
+    color: #f7fcfe;
+}
+.level-table thead>tr:nth-child(1) th:nth-child(5),
+.level-table tbody>tr td:nth-child(5)
+{
+    color: #a7dcf7 ;
+}
+.level-table-title tbody tr td{
+    text-align: left;
+    color: #ccc !important;
+}
+
+.overflow-table>div:nth-child(1){
+	position: relative;
+	width: 300px;
+	min-height: 200px;
+    float: left;
+    margin-top: 260px;
+}
+.overflow-table>div:nth-child(2){
+	position: relative;
+	width: calc(100% - 300px);
+	min-height: 200px;
+	float: left;
+}
+
+.bg-footer{
+	padding-top: 60px; 
+	padding-bottom: 60px;
+}
+
+.bg-footer::before{
+	position: absolute;
+	z-index:-1;
+	left: 0;
+	top: -12%;
+	content: "";
+	background:#000;
+	width: 100%;
+	height: 120%;
+	-webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+	clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.bg-footer::after{
+	position: absolute;
+	z-index:-1;
+	left: 0;
+	top: -12%;
+	content: "";
+	background-image: url(../../images/whyjoin/bg-04.jpg);
+	width: 100%;
+	height: 120%;
+	background-position: center center;
+	background-size: cover;
+	opacity: 0.4;
+	-webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+	clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 990px){
+    .web-img-title::before{
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+
+    }
+    .web-img-title::after{
+        position: absolute;
+        z-index:-1;
+        left: 0;
+        top: 0;
+        content: "";
+        background-image: url(../../images/level/MembershipLevels-top-img-2.jpg);
+        width: 100%;
+        height: 110%;
+        background-position: top center;
+        background-size: cover;
+        opacity: 0.5;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+    }
+     
+    .level-table td{
+        padding: 10px;
+        height: 70px; 
+    }
+	.overflow-table>div:nth-child(1){
+		width: 150px;
+		-webkit-box-shadow: 10px 0px 25px 0px rgba(0,0,0,0.9);
+		-moz-box-shadow: 10px 0px 25px 0px rgba(0,0,0,0.9);
+		box-shadow: 10px 0px 25px 0px rgba(0,0,0,0.9);
+	}
+	.overflow-table>div:nth-child(2){
+		position: relative;
+		width: calc(100% - 150px);
+    }
+}
+@media (max-width:630px){
+    .medal-title-div{
+        min-height: 220px;
+    }
+
+    .medal-title-img{
+        -webkit-clip-path: polygon(0 0, 700px 0, 645px 50%, 50%);
+        clip-path: polygon(0 0, 700px 0, 645px 50%, 0 50%);
+    }
+
+    .medal-title-info{
+        top: 75px;
+    }
+}
+
+@media (max-width:390px){
+    .medal-title-div{
+        min-height: 280px;
+    }
+
+    .medal-title-img{
+        -webkit-clip-path: polygon(0 0, 700px 0, 645px 70%, 70%);
+        clip-path: polygon(0 0, 700px 0, 645px 70%, 0 70%);
+    }
+
+    .medal-title-info{
+        top: 110px;
+    }
+}

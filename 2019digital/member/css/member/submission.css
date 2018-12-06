@@ -1,0 +1,103 @@
+
+.web-img-title::after{
+    background-image: url(../../images/bg2/AORUS-Gaming-Box.jpg);
+    opacity: 0.3;    
+}
+.tab-div{
+    position: relative;
+    width: 100%;
+    border-bottom:1px solid #666;
+}
+
+.tab-div button{
+    position: relative;
+    display: inline-block;
+    background: #333;
+    color:#666;
+    padding: 10px 30px;
+    cursor: pointer;
+    border: 0;
+    font-size: 22px;
+}
+
+.tab-div button:hover{
+    background: #666;
+    color:#111;
+}
+
+.tab-div .active{
+    background: #666;
+    color:#111;
+}
+
+
+ol {
+    list-style: decimal;
+    padding: 15px;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.terms-btn{
+    cursor: pointer;
+    color:#ff6400;
+}
+.terms-box-cover{
+    position: fixed;
+    display: none;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+}
+.terms-box{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    min-height: 70vh;
+    height: 70vh;
+    margin-top: 15vh;
+    background: #333;
+}
+.terms-box .box{
+    position: relative;
+    width: 100%;
+    height: calc(70vh - 120px);
+    overflow: auto;
+    overflow-x:hidden; 
+}
+
+.title-link{
+    font-weight: 500;
+}
+.title-link:hover{
+    text-decoration: none;
+    color: #ff6400;
+}
+
+@media (max-width:990px){
+    
+    .tab-div button{
+        width: 49%;
+    }
+    
+    .upload-btn{
+        margin-top:10px;
+    }
+}

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://www.aorus.com/favicon.ico" type="image/x-icon">
+    <link rel="Bookmark" href="https://www.aorus.com/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://www.aorus.com/favicon.ico">
+    <title>AORUS - 2019 DIGITAL WORLD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="css/worldmap.css"> -->
+
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="m-div">
+        Only used on PC
+    </div>
+    <div class="loading-div">
+        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+            <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+              s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+              c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+            <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+              C22.32,8.481,24.301,9.057,26.013,10.047z">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                    dur="0.5s" repeatCount="indefinite" />
+            </path>
+        </svg>
+    </div>
+    <div class="loadImgDiv"></div>
+    <div class="webBtnDiv">
+        <div class="webBtnUp">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+        <div class="webBtnDown">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <div class="page-menu-tag-box">
+        <div class="page-tag page-tag1" style="cursor:pointer"><span><i class="fas fa-bullhorn fa-2x"></i></span></div>
+        <div class="page-tag page-tag2" style="cursor:pointer"><span><i class="far fa-lightbulb fa-2x"></i></span></div>
+        <div class="page-tag page-tag3" style="cursor:pointer"><span><i class="fas fa-exchange-alt fa-2x"></i></span></div>
+        <div class="page-tag page-tag4" style="cursor:pointer"><span><i class="fas fa-users fa-2x"></i></span></div>
+        <div class="page-tag page-tag5"><span><i class="fas fa-shopping-cart fa-2x"></i></span></div>
+        <div class="page-tag page-tag6"><span><i class="fas fa-comments fa-2x"></i></span></div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 page page1" data-paroller-factor="0.5" data-paroller-factor-xs="0.2">
+                <div class="row">
+                    <div class="col-12 col-md-12 p-5">
+                        <img src="images/AORUS_logo_HA_white.png" height="120px">
+                        <h1 class="wow bounceInLeft font-aldrich ml-4" style="margin-top:40vh;font-weight:700;font-size:80px;"
+                            data-wow-duration=".5s" data-wow-delay="1.2s">2019 <br>
+                            <span style="color:#ffc000;">DIGITAL WORLD</span></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page2 p-3">
+                <div class="page-tag-left">
+                    <div class=" font-aldrich wow slideInLeft">AGENDA</div>
+                </div>
+                <img src="images/AORUS_logo_white.png" class="underImg" alt="" srcset="">
+                <div class="container">
+                    <div class="row">
+                        <ul>
+                            <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.2s"><span style="margin-right: 1.8rem">1</span>
+                                <span>數位行銷策略</span>
+                            </li>
+                            <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.4s"><span>2</span>
+                                <span>2018 成績單</span></li>
+                            <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.6s"><span>3</span>
+                                <span>2019 使命 & 目標</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page3" data-paroller-factor="0.5" data-paroller-factor-xs="0.2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 font-aldrich mt-5">
+                            <ul>
+                                <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.2s"><span>1</span>
+                                    <span>數位行銷策略</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page4">
+
+                <!-- <div class="page-tag-right">
+                    <div class=" font-aldrich wow slideInRight">2019數位行銷策略</div>
+                </div> -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="page-tag-box wow fadeInLeft">
+                                <div class="page-tag page-tag1">
+                                    <label>大量曝光</label>
+                                    <hr> 社群媒體 SEO 數位廣告 <span><i class="fas fa-bullhorn fa-2x"></i></span>
+                                </div>
+                                <div class="page-tag page-tag2">
+                                    <label>發現 & 考慮</label>
+                                    <hr> 官網　活動網頁　數位內容 <span><i class="far fa-lightbulb fa-2x"></i></span>
+                                </div>
+                                <div class="page-tag page-tag3">
+                                    <label>轉換</label>
+                                    <hr> EDM行銷　產品網頁W2B <span><i class="fas fa-exchange-alt fa-2x"></i></span>
+                                </div>
+                                <div class="page-tag page-tag4">
+                                    <label>會員經營 & CRM</label>
+                                    <hr> 分析　會員回饋　再行銷<span><i class="fas fa-users fa-2x"></i></span>
+                                </div>
+                                <div class="page-tag page-tag5">
+                                    <label>購買</label>
+                                    <hr> 產品購買　電商　延保服務加購 <span><i class="fas fa-shopping-cart fa-2x"></i></span>
+                                </div>
+                                <div class="page-tag page-tag6">
+                                    <label>口碑擴散</label>
+                                    <hr> 個人介紹碼　口碑置入　KOL操作 <span><i class="fas fa-comments fa-2x"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-8 mes text-center">
+                            <h1 class="wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.4s">社群導流．自媒至上</h1>
+                            <h1 class="wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.6s">內容重質量．流量帶回家</h1>
+                            <h1 class="wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.8s">規則遊戲化．會員即代言</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page5 text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- <img src="images/chart.svg" style="height:100vh" class="wow bounceIn" data-wow-duration=".5s"
+                        data-wow-delay="0.4s" alt="" srcset=""> -->
+                            <img src="images/chart/01.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.4s" alt="" srcset="">
+                            <img src="images/chart/02.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.5s" alt="" srcset="">
+                            <img src="images/chart/03.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.6s" alt="" srcset="">
+                            <img src="images/chart/04.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.7s" alt="" srcset="">
+                            <img src="images/chart/05.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.8s" alt="" srcset="">
+                            <img src="images/chart/06.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="0.9s" alt="" srcset="">
+                            <img src="images/chart/07.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.0s" alt="" srcset="">
+                            <img src="images/chart/08.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.1s" alt="" srcset="">
+                            <img src="images/chart/09.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.2s" alt="" srcset="">
+                            <img src="images/chart/10.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.3s" alt="" srcset="">
+                            <img src="images/chart/11.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.4s" alt="" srcset="">
+                            <img src="images/chart/12.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.5s" alt="" srcset="">
+                            <img src="images/chart/13.png" class="img-fluid wow fadeIn" data-wow-duration="1s"
+                                data-wow-delay="1.6s" alt="" srcset="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 font-aldrich mt-5">
+                            <ul>
+                                <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.2s"><span>2</span>
+                                    <span>2018 成績單</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page7" data-paroller-factor="0.5" data-paroller-factor-xs="0.2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="round-orange-sub wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <span>
+                                    <h2>2017</h2>
+                                    <h1>1.15M</h1>
+                                    <h4>臉書粉絲數</h4>
+                                </span>
+                            </div>
+                            <div class="round-orange wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>5.14M</h1>
+                                    <h4>跨平台追隨粉絲數</h4>
+                                </span>
+                            </div>
+                            <div class="round-orange-sub2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.8s">
+                                <span>
+                                    <h2>2017</h2>
+                                    <h1>277M</h1>
+                                    <h4>臉書觸及</h4>
+                                </span>
+                            </div>
+                            <div class="round-orange2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1.2s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>700M</h1>
+                                    <h4>跨平台群眾觸及</h4>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-country-right wow rollIn" data-wow-duration=".5s" data-wow-delay="0.8s">
+                    <!-- <h1 class="text-center text-warning font-weight-bold"> TOP 5 </h1> -->
+                    <ul>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1s"><span><i class="fab fa-facebook-f mr-3"></i>
+                                Facebook</span> <span> 3,064K</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.1s"> <span><i class="fab fa-twitter"></i>
+                                Twitter</span> <span> 608K</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.2s"> <span><i class="fab fa-instagram mr-2"></i>
+                                Instagram</span> <span> 353K</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.3s"> <span><i class="fab fa-youtube"></i>
+                                Youtube</span> <span> 102K</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.4s"><span><i class="fab fa-weibo"></i>
+                                微博</span> <span> 833K</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.5s"><span><i class="fab fa-vk"></i>
+                                VK</span> <span> 167K</span></li>
+                        <!-- <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.5s">
+                            <hr>
+                        </li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.6s"><span> Total</span> <span>
+                                4941K</span></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 page page8" data-paroller-factor="0.5" data-paroller-factor-xs="0.2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="round-outline-orange-sub wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <span>
+                                    <h2>2017</h2>
+                                    <h1>5M</h1>
+                                    <h4>AORUS官網PVs</h4>
+                                </span>
+                            </div>
+
+                            <div class="round-outline-orange wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>8M</h1>
+                                    <h4>AORUS官網PVs</h4>
+                                </span>
+                            </div>
+                            <div class="round-outline-orange-sub2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1s">
+                                <span>
+                                    <h2>2017</h2>
+                                    <h1>2min</h1>
+                                    <h4>停留時間</h4>
+                                </span>
+                            </div>
+                            <div class="round-outline-orange2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1.4s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>1min</h1>
+                                    <h4>停留時間</h4>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-country-left wow rollIn" data-wow-duration=".5s" data-wow-delay="0.8s">
+                    <!-- <h1 class="text-center text-warning font-weight-bold"> TOP 8 </h1> -->
+                    <ul>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1s"><span style="margin-right: 0.6rem">1</span>
+                            <span>會員頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.1s"><span>2</span> <span>NB產品首頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.2s"><span>3</span> <span>桌布下載頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.3s"><span>4</span> <span>導購頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.4s"><span>5</span> <span>顯卡產品首頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.5s"><span>6</span> <span>主板產品首頁</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.6s"><span>7</span> <span>台灣Service頁面</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 page page9">
+                <div class="page9-user1 wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.8s"></div>
+                <div class="page9-user2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1.0s"></div>
+                <div class="page9-user3 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1.2s"></div>
+                <div class="page9-user4 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1.4s"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="round-orange-sub wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <span>
+                                    <h2>2017</h2>
+                                    <h1>168K</h1>
+                                    <h4>總會員數</h4>
+                                </span>
+                            </div>
+                            <div class="round-orange wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>286K</h1>
+                                    <h4>總會員數</h4>
+                                </span>
+                            </div>
+                            <div class="round-orange2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="1s">
+                                <span>
+                                    <h2>2018</h2>
+                                    <h1>55.1K</h1>
+                                    <h4>註冊產品會員數</h4>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-country-right wow rollIn" data-wow-duration=".5s" data-wow-delay="0.8s">
+                    <h1 class="text-center text-warning font-weight-bold wow rollIn" data-wow-duration=".5s"
+                        data-wow-delay="0.9s"> TOP 5 </h1>
+                    <ul>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1s"><span>Taiwan </span> <span>
+                                32%</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.1s"><span>United States</span>
+                            <span> 6.5%</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.2s"><span>Russia</span> <span>
+                                4.5%</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.3s"><span>Spain</span> <span>
+                                4.3%</span></li>
+                        <li class="wow rollIn" data-wow-duration=".5s" data-wow-delay="1.4s"><span>Australia</span>
+                            <span> 4.3%</span></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- <div class="col-12 page page11">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 p-5">
+                            <div class=" wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.2s" id="chartContainer"
+                                style="height: 60vh; width: 100%;"></div>
+                            <div class="round-outline-orange wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.4s">
+                                <span>
+                                    <h1>24189.3</h1>
+                                    <h4>總營業額 (NTD,K,含稅)</h4>
+                                </span>
+                            </div>
+                            <div class="round-outline-orange2 wow zoomIn" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <span>
+                                    <h1>20.5%</h1>
+                                    <h4>毛利率</h4>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-12 page page10 p-0">
+                <!-- <div class="page-tag-right">
+                    <div class=" font-aldrich wow slideInRight">TITLE</div>
+                </div> -->
+                <img src="images/service.png" width="100%" alt="" srcset="">
+            </div>
+            <div class="col-12 page page11 py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="lodo-box wow bounceIn" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <div class="title1">數位行銷</div>
+                                <div class="lodo-left lodo-left1">
+                                    大量曝光
+                                </div>
+                                <div class="lodo-right lodo-right1">
+                                    社群總追隨粉絲數
+                                </div>
+                            </div>
+                            <div class="lodo-box wow bounceIn" data-wow-duration=".5s" data-wow-delay="0.4s">
+                                <div class="title2">自媒體平台</div>
+                                <div class="lodo-left lodo-left2">
+                                    自媒體
+                                </div>
+                                <div class="lodo-right lodo-right2">
+                                    官網頁面總瀏覽次數
+                                </div>
+                            </div>
+                            <div class="lodo-box wow bounceIn" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <div class="title3">會員核心</div>
+                                <div class="lodo-left lodo-left3">
+                                    會員
+                                </div>
+                                <div class="lodo-right lodo-right3">
+                                    總會員人數
+                                </div>
+                            </div>
+                            <div class="lodo-box wow bounceIn" data-wow-duration=".5s" data-wow-delay="0.8s">
+                                <div class="title4">數位服務</div>
+                                <div class="lodo-left lodo-left4">
+                                    服務
+                                </div>
+                                <div class="lodo-right lodo-right4">
+                                    平台及服務上線
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 page page12" data-paroller-factor="0.5" data-paroller-factor-xs="0.2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 font-aldrich mt-5">
+                            <ul>
+                                <li class="wow bounceInLeft" data-wow-duration=".5s" data-wow-delay="0.2s"><span>3</span>
+                                    <span>2019 使命&目標</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page13 py-5">
+                <!-- <div class="page-tag-right">
+                    <div class=" font-aldrich wow slideInRight">TITLE</div>
+                </div> -->
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="type type1 mb-3 py-5 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.0s">
+                                <h2>
+                                    CONTENT
+                                    <br>
+                                    以內容為骨架
+                                </h2>
+                            </div>
+                            <div class="type type1-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.1s">
+                                <h3>
+                                    說產品故事的能力
+                                    <br>
+                                    Digital Product Marketing
+                                </h3>
+                            </div>
+                            <div class="type type1-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <h3>
+                                    多樣化的內容
+                                    <br>
+                                    SNS Marketing
+                                </h3>
+                            </div>
+                            <div class="type type1-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.3s">
+                                <h3>
+                                    使用者原創
+                                    <br>
+                                    UGC
+                                </h3>
+                            </div>
+                            <div class="type type1-2 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.4s">
+                                <h3>
+                                    影片
+                                    <br>
+                                    Video Marketing
+                                </h3>
+                            </div>
+                            <div class="type mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.5s">
+                                <h3>
+                                    UGC#, 80
+                                    <br>
+                                    Premium Content#, 26
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="type type2 mb-3 py-5 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.1s">
+                                <h2>
+                                    MEMBERS
+                                    <br>
+                                    以會員為血脈
+                                </h2>
+                            </div>
+                            <div class="type type2-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <h3>
+                                    會員價值建立
+                                    <br>
+                                    Reward / Referrals
+                                </h3>
+                            </div>
+                            <div class="type type2-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.3s">
+                                <h3>
+                                    代言人KOL
+                                    <br>
+                                    (CM / Co-op)
+                                </h3>
+                            </div>
+                            <div class="type type2-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.4s">
+                                <h3>
+                                    互動
+                                    <br>
+                                    Email Marketing
+                                </h3>
+                            </div>
+                            <div class="type type2-2 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.5s">
+                                <h3>
+                                    轉換率
+                                    <br>
+                                    Conversion
+                                </h3>
+                            </div>
+                            <div class="type mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <h3>
+                                    Member#,500K
+                                    <br>
+                                    Endorser#, 20ppl
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="type type3 mb-3 py-5 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.2s">
+                                <h2>
+                                    ANALYSIS
+                                    <br>
+                                    依數據做優化
+                                </h2>
+                            </div>
+                            <div class="type type3-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.3s">
+                                <h3>
+                                    數位足跡蒐集
+                                    <br>
+                                    AORUS Website 2.0
+                                </h3>
+                            </div>
+                            <div class="type type3-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.4s">
+                                <h3>
+                                    會員分類分析
+                                    <br>
+                                    CRM / RFM
+                                </h3>
+                            </div>
+                            <div class="type type3-1 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.5s">
+                                <h3>
+                                    銷售/庫存/趨勢
+                                    <br>
+                                    Business Intelligence
+                                </h3>
+                            </div>
+                            <div class="type type3-2 mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.6s">
+                                <h3>
+                                    最佳化
+                                    <br>
+                                    Optimization
+                                </h3>
+                            </div>
+                            <div class="type mb-3 wow flipInX" data-wow-duration=".5s" data-wow-delay="0.7s">
+                                <h3>
+                                    Traffic#, 12M
+                                    <br>
+                                    Analysis 1/4
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 page page14 p-0">
+                <iframe src="member_login.php" height="1015" width="100%" frameborder="0" class="wow zoomIn"></iframe>
+            </div>
+            <div class="col-12 page page15 text-center p-5">
+                <a href="http://dsrap/Reports/mobilereport/UATZero/Membership" target="_blank">
+                    <img src="images/huaban.png" width="100%" class="img-fluid  wow flipInX mt-5" data-wow-duration=".5s"
+                        data-wow-delay="0.3s" alt="" srcset="">
+                </a>
+            </div>
+            <div class="col-12 page page16 text-center p-5">
+                <img src="images/last.png" width="100%" class="img-fluid wow flipInX" data-wow-duration=".5s"
+                        data-wow-delay="0.3s" alt="" srcset="">
+            </div>
+            <div class="col-12 page page17 text-center p-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mt-5 p-5 wow zoomIn" style="font-size: 80px;color:#ffc000;text-weight:700">
+                            THANK YOU !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script src="js/loadImg.js"></script>
+
+    <script src="js/wow.js"></script>
+    <script src="js/jquery.paroller.js"></script>
+
+    <!-- <script src="js/mouseMove.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <!-- <script src="js/spark.js"></script> -->
+
+    <!-- <script src="js/worldmap.js"></script> -->
+    <!-- <script src="js/jquery.canvasjs.min.js"></script> -->
+    <!-- <script src="js/chart.js"></script> -->
+    <script>
+
+        $(function () {
+            var wow = new WOW(
+                {
+                    boxClass: 'wow',      // 要套用WOW.js縮需要的動畫class(預設是wow)
+                    animateClass: 'animated', // 要"動起來"的動畫(預設是animated, 因此如果你有其他動畫library要使用也可以在這裡調整)
+                    offset: 100,          // 距離顯示多遠開始顯示動畫 (預設是0, 因此捲動到顯示時才出現動畫)
+                    mobile: true,       // 手機上是否要套用動畫 (預設是true)
+                    live: true,       // 非同步產生的內容是否也要套用 (預設是true, 非常適合搭配SPA)
+                    callback: function (box) {
+                        // 當每個要開始時, 呼叫這裡面的內容, 參數是要開始進行動畫特效的element DOM
+                    },
+                    scrollContainer: null // 可以設定成只套用在某個container中捲動才呈現, 不設定就是整個視窗
+                }
+            );
+            wow.init();
+
+            var pageData = [];
+            var totalpage = 17;
+            var nowpage = 1;
+            for (var i = 1; i <= totalpage; i++) {
+                var pagePos = $(".page" + i).offset().top;
+                pageData[i] = pagePos;
+            }
+
+            $(window).resize(function(){
+                for (var i = 1; i <= totalpage; i++) {
+                    var pagePos = $(".page" + i).offset().top;
+                    pageData[i] = pagePos;
+                }  
+            });
+
+            $(document).on('click', '.page-tag1', function () {
+                nowpage = 7;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            });
+
+            $(document).on('click', '.page-tag3', function () {
+                nowpage = 8;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            });
+
+            $(document).on('click', '.page-tag4', function () {
+                nowpage = 9;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            });
+
+            $(document).on('click', '.page-tag5', function () {
+                nowpage = 10;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            });
+            $(document).on('click', '.page-tag6', function () {
+                nowpage = 11;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            });
+
+            function pageUp() {
+                nowpage = nowpage - 1;
+                if (nowpage > totalpage) nowpage = totalpage;
+                if (nowpage < 1) nowpage = 1;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            }
+            function pageDown() {
+                nowpage = nowpage + 1;
+                if (nowpage > totalpage) nowpage = totalpage;
+                if (nowpage < 1) nowpage = 1;
+                $('html,body').animate({ scrollTop: $('.page' + nowpage).offset().top }, 500);
+            }
+
+            $(".webBtnDown").on('click', function () {
+                pageDown();
+                console.log(nowpage);
+            });
+
+            $(".webBtnUp").on('click', function () {
+                pageUp();
+                console.log(nowpage);
+            });
+
+            $(window).keydown(function (event) {
+                // console.log(event.keyCode);
+                console.log(nowpage);
+
+                switch (event.keyCode) {
+                    case 38: pageUp(); break;
+                    case 40: pageDown(); break;
+                }
+            });
+
+            $(".page1").paroller();
+            $(".page7").paroller();
+            $(".page8").paroller();
+            // $(".page12").paroller();
+
+            $(window).scroll(function () {
+                var scrollVal = $(this).scrollTop();
+                for (var i = totalpage; i > 0; i--) {
+                    var pagge = $(".page" + i).height() / 2;
+                    if ((scrollVal + pagge) >= pageData[i] && (scrollVal + pagge) < pageData[i + 1]) {
+                        nowpage = i;
+                        break;
+                    }
+                }
+
+                if (nowpage > 6 && nowpage < 11) {
+                    var id = nowpage - 7;
+                    $(".page-menu-tag-box .page-tag").addClass("page-tag-gray");
+                    if (nowpage == 7) $(".page-menu-tag-box .page-tag1").removeClass("page-tag-gray");
+                    if (nowpage == 8) $(".page-menu-tag-box .page-tag3").removeClass("page-tag-gray");
+                    if (nowpage == 9) $(".page-menu-tag-box .page-tag4").removeClass("page-tag-gray");
+                    if (nowpage == 10) $(".page-menu-tag-box .page-tag5").removeClass("page-tag-gray");
+                    // if (nowpage == 11) $(".page-menu-tag-box .page-tag6").removeClass("page-tag-gray");
+                    $(".page-menu-tag-box").css({ "left": "-445px", "transition": " 0.5s all" });
+                } else {
+                    $(".page-menu-tag-box").css({ "left": "-100%", "transition": " 0.5s all" });
+                }
+            });
+
+        });
+
+
+        $("body").css("overflow-Y", "hidden");
+        $(window).load(function () {
+
+
+            $(".loading-div").fadeOut(500);
+            $("body").css("overflow-Y", "auto");
+            if ($(window).width() < 1024) {
+                $("body").css("overflow", "hidden");
+            } else {
+                $("body").css("overflow", "auto");
+            }
+            $(window).resize(function () {
+                if ($(window).width() < 1024) {
+                    $("body").css("overflow", "hidden");
+                } else {
+                    $("body").css("overflow", "auto");
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
