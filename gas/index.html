@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>google sheet API Test</title>
+</head>
+<body>
+
+    <input type="text" id="name">
+    <input type="text" id="phone">
+    <input type="text" id="demand">
+
+    <button onClick="send()"> GO </button>
+
+    <br>
+
+    <table id="tableData">
+        <thead>
+            <tr>
+                <th>顧客姓名</th><th>顧客電話</th><th>顧客需求</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var apiUrl = 'https://script.google.com/macros/s/AKfycbxuAPGnXnhmNWpEKWBc8sNGzxVIEDnIxQE6Q-4hXh-B58OXTZA/exec';
+
+        function send() {
+            let name = $('#name').val();
+            let phone = $('#phone').val();
+            let demand = $('#demand').val();
+            $.ajax({
+                url: apiUrl,
+                data: {
+                    "apiType": "setData",
+                    "name": name,
+                    "phone": phone,
+                    "demand": demand
+                },
+                success: function(response) {
+                    
+                    if(response == "成功"){
+                        alert("成功");
+                        getGet();
+                    }
+                },
+            });
+        };
+
+        function getGet() {
+            $.ajax({
+                url: apiUrl,
+                dataType: "JSON",
+                data: {
+                    "apiType": "getData"
+                },
+                success: function(response) {
+                    console.log(response);
+                    $("#tableData tbody").children().remove();
+                    for(var key=0;key<response.length;key++ ){
+                        $("#tableData tbody").last().append(`
+                            <tr>
+                                <td>${response[key][0]}</td>
+                                <td>${response[key][1]}</td>
+                                <td>${response[key][2]}</td>
+                                <td> <button data-id="${key}" class="removeSheetBtn">X</button> </td>
+                            </tr>
+                        `);
+                    }
+                },
+            });
+        };
+
+        $(document).on('click',".removeSheetBtn",function(){
+            var id = $(this).attr("data-id");
+            console.log(id);
+            
+            $.ajax({
+                url: apiUrl,
+                data: {
+                    "apiType": "deleteData",
+                    dataId : parseInt(id+2)
+                },
+                success: function(response) {
+                    
+                    if(response == "成功"){
+                        alert("成功");
+                        getGet();
+                    }
+                },
+            });
+        })
+
+
+        function init(){
+            getGet();
+        }
+
+        init();
+    </script>
+    
+</body>
+</html>
