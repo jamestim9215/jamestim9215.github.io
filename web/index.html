@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信串接測試</title>
+</head>
+
+<body>
+    <button onclick="btn();">Get User Info</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        function btn() {
+            $.ajax({
+                type :"GET",
+                url  : "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx87cc9db4885c21cd&secret=fe6fcfe1d186386bfe6a0d3da98dce57",
+                data : {                            
+                 },
+                dataType: "JSON",
+                success : function(data) {                          
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>
