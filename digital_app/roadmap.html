@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GIGABYTE AORUS Digital 2020</title>
+    <link rel="shortcut icon" href="https://member.aorus.com/images/home/favicon.ico" type="image/x-icon">
+    <link rel="Bookmark" href="https://member.aorus.com/images/home/favicon.ico" type="image/x-icon">
+    <style>
+        body{
+            margin: 0 auto;
+            background: #000;
+            overflow: auto;
+        }
+        .map{
+            position: relative;
+            width: calc(calc(100vh * 736px)/ 414px);
+            height: 100vh;
+        }
+        .map-1{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1;
+        }
+        .map-2{
+            position: absolute;
+            top: -100%;
+            left: 0;
+            z-index: 2;
+            height: 100vh;
+            /* background: #ff0000; */
+            /* display: none; */
+            opacity: 0;
+            transition: .8s all;
+        }
+        .map-3{
+            position: absolute;
+            top: -100%;
+            left: 0;
+            z-index: 3;
+            height: 100vh;
+            /* background: #ff6400; */
+            /* display: none; */
+            opacity: 0;
+            transition: .8s all;
+        }
+    </style>
+</head>
+<body>
+    <div class="map">
+
+    <img src="images/2019digital/roadmap-1.svg" class="map-1" alt="">
+    <img src="images/2019digital/roadmap-2-2.svg" class="map-2" alt="">
+    <img src="images/2019digital/roadmap-3-2.svg" class="map-3" alt="">
+    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+        $(".map-1").click(function(){
+            $(".map-2").css({"top":"0","opacity":"1"});
+        });
+        $(".map-2").click(function(){
+            $(".map-3").css({"top":"0","opacity":"1"});
+        });
+        
+        </script>
+</body>
+</html>
