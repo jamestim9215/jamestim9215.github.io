@@ -61,9 +61,9 @@ var checkDead = setInterval(function(){
     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
 
     
-    if(blockLeft<70 && blockLeft>50 && characterTop<=20){
+    if(blockLeft<96 && blockLeft>50 && characterTop<=20){
         gameOver();
-    }else if(blockLeft<70 && blockLeft>50){
+    }else if(blockLeft<96 && blockLeft>50){
         if(isAddSource == false){
             source = source + 50;
             isAddSource = true;
