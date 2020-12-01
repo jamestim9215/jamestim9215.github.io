@@ -110,22 +110,22 @@ var checkDead = setInterval(function(){
                         speed = speed - 100;
                     }
                     if(level >5 && level <= 10){
-                        speed = speed - 70;
+                        speed = speed - 80;
                     }
                     if(level >10 && level <= 15){
-                        speed = speed - 50;
+                        speed = speed - 60;
                     }
                     if(level >15 && level <= 20){
-                        speed = speed - 30;
+                        speed = speed - 40;
                     }
                     if(level >20 && level <= 25){
-                        speed = speed - getRandom(-100,50);
+                        speed = speed - 30;
                     }
                     if(level >25 && level <= 30){
-                        speed = speed - getRandom(-10, 100);
+                        speed = speed - getRandom(30, 50);
                     }
                     if(level >30){
-                        speed = speed - getRandom(20, 100);
+                        speed = speed - getRandom(30, 100);
                     }
 
                     if(

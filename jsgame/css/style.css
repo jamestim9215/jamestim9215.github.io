@@ -17,7 +17,7 @@ body{
 #game{
     width: 500px;
     height: 150px;
-    border: 1px solid #999;
+    /* border: 1px solid #999; */
     position: relative;
     margin: 0 auto;
     margin-top: 60px;
@@ -28,7 +28,7 @@ body{
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.1);
+    /* background: rgba(0,0,0,0.1); */
     transition: 0.3s all;
 }
 #gameWindow{
@@ -147,6 +147,8 @@ body{
 
 #source{
     position: absolute;
-    left: 10px;
+    width: 100%;
+    right: 0;
     top: 10px;
+    text-align: right;
 }
