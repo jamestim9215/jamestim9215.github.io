@@ -5,6 +5,8 @@ var block = document.getElementById('block');
 var ground = document.getElementById('ground');
 var ground2 = document.getElementById('ground2');
 var cloud = document.getElementById('cloud');
+var hightValue = document.getElementById('hightValue');
+var highestdiv = document.getElementById('Highestdiv');
 
 var sourceValue = document.getElementById('sourceValue');
 var speedValue = document.getElementById('speedValue');
@@ -12,6 +14,11 @@ var source = 0;
 var speed = 2500;
 var level = 1;
 var gameStatus = false;
+
+if(localStorage.getItem("aorus404")){
+    highestdiv.style.display = 'inline';
+    hightValue.innerHTML = localStorage.getItem("aorus404");
+}
 
 function jump(){
     if(character.classList != 'animate'){
@@ -34,6 +41,11 @@ function logKey(e) {
 }
 
 function gameStart(){
+    var hi = localStorage.getItem("aorus404");
+    if(hi){
+        hightValue.innerHTML = hi;
+    }
+
     speed = 2500;
     source = 0;
     level = 1;
@@ -60,6 +72,12 @@ function gameStart(){
 
 
 function gameOver(){
+    if(localStorage.getItem("aorus404") < source){
+        localStorage.setItem("aorus404",source);
+        hightValue.innerHTML = source;
+    }
+    
+
     gameStatus = false;
     character.style.backgroundImage = 'url(images/robotlose.png)';
     character.style.width = '80px';

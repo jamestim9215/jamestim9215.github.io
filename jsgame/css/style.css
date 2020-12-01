@@ -152,3 +152,7 @@ body{
     top: 10px;
     text-align: right;
 }
+
+#Highestdiv{
+    display: none;
+}
