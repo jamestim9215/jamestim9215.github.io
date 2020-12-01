@@ -76,6 +76,10 @@ function gameOver(){
         localStorage.setItem("aorus404",source);
         hightValue.innerHTML = source;
     }
+    if(source != 0){
+        highestdiv.style.display = 'inline';
+    }
+    
     
 
     gameStatus = false;
