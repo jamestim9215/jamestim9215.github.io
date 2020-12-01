@@ -41,13 +41,18 @@ function gameStart(){
     document.body.style.backgroundColor = "#fff";
     block.style.animationDuration = speed+'ms';
     ground.style.animationDuration = speed+'ms';
-    ground2.style.animationDuration = speed+'ms';
+    ground2.style.animationDuration = speed+'ms';    
+    character.style.backgroundImage = 'url(images/robot.gif)';
+    character.style.width = '50px';
+    character.style.height = '43px';
+
     speedValue.innerHTML = level;
     sourceValue.innerHTML = source;
     if(block.classList != 'animate'){
         block.classList.add('animate');
         ground.classList.add('animate');
         ground2.classList.add('animate');
+        cloud.classList.add('animate');
     }
     gameWindowCover.style.opacity = '0';
     gameStatus = true;
@@ -56,13 +61,17 @@ function gameStart(){
 
 function gameOver(){
     gameStatus = false;
+    character.style.backgroundImage = 'url(images/robotlose.png)';
+    character.style.width = '80px';
+    character.style.height = '80px';
     document.body.style.backgroundColor = "#fff";
     character.classList.remove('animate');
     block.classList.remove('animate');
     ground.classList.remove('animate');
     ground2.classList.remove('animate');
+    cloud.classList.remove('animate');
     gameWindowCover.style.opacity = '1';
-    alert('you lose');
+    // alert('you lose');
 }
 
 function getRandom(min,max){
@@ -72,18 +81,17 @@ function getRandom(min,max){
 var isAddSource = false;
 
 var checkDead = setInterval(function(){
-    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
+    var characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
     var cloudLeft = parseInt(window.getComputedStyle(cloud).getPropertyValue("left"));
+    
 
     if(cloudLeft <= -50){
         cloud.style.top = getRandom(20, 80) + 'px'
     }
-    
-    
-    if(blockLeft<96 && blockLeft>50 && characterTop<=20){
+    if(blockLeft<95 && blockLeft>55 && characterBottom<=20 && characterBottom > -1){
         gameOver();
-    }else if(blockLeft<96 && blockLeft>50){
+    }else if(blockLeft<95 && blockLeft>55){
         if(isAddSource == false){
             source = source + 50;
             isAddSource = true;
