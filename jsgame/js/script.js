@@ -7,6 +7,7 @@ var ground2 = document.getElementById('ground2');
 var cloud = document.getElementById('cloud');
 var hightValue = document.getElementById('hightValue');
 var highestdiv = document.getElementById('Highestdiv');
+var textdiv = document.getElementById('text');
 
 var sourceValue = document.getElementById('sourceValue');
 var speedValue = document.getElementById('speedValue');
@@ -14,6 +15,7 @@ var source = 0;
 var speed = 2500;
 var level = 1;
 var gameStatus = false;
+var groundDelay = 0;
 
 if(localStorage.getItem("aorus404")){
     highestdiv.style.display = 'inline';
@@ -21,6 +23,9 @@ if(localStorage.getItem("aorus404")){
 }
 
 function jump(){
+    if(gameStatus==false){
+        gameStart();
+    }
     if(character.classList != 'animate'){
         character.classList.add('animate');
         setTimeout(function(){
@@ -30,12 +35,10 @@ function jump(){
 }
 
 document.addEventListener('keydown', logKey);
-
 function logKey(e) {
-    if(e.code == 'Space'){
-        if(gameStatus==false){
-            gameStart();
-        }
+    console.log(e.code);
+    if(e.code == 'Space' || e.code == 'ArrowUp'){
+        
         jump();
     }
 }
@@ -50,6 +53,8 @@ function gameStart(){
     source = 0;
     level = 1;
     cloud.style.top = getRandom(20, 80) + 'px';
+    textdiv.style.display = 'none';
+
     document.body.style.backgroundColor = "#fff";
     block.style.animationDuration = speed+'ms';
     ground.style.animationDuration = speed+'ms';
@@ -93,6 +98,7 @@ function gameOver(){
     ground2.classList.remove('animate');
     cloud.classList.remove('animate');
     gameWindowCover.style.opacity = '1';
+    textdiv.style.display = 'inline';
     // alert('you lose');
 }
 
@@ -144,22 +150,27 @@ var checkDead = setInterval(function(){
                         speed = speed - 30;
                     }
                     if(level >25 && level <= 30){
-                        speed = speed - getRandom(30, 50);
+                        speed = speed - getRandom(-50, 80);
                     }
                     if(level >30){
-                        speed = speed - getRandom(30, 100);
+                        speed = speed - getRandom(-80, 120);
                     }
 
                     if(
-                        // (level > 5 && level < 10) || 
-                        (level > 15 && level < 20) ||
-                        (level > 25 && level < 30) ||
-                        (level > 35 && level < 40)
+                        (level%10 == 6 || 
+                        level%10 == 7 || 
+                        level%10 == 8 || 
+                        level%10 == 9 || 
+                        level%10 == 0)
+                        &&
+                        level > 10 
                     ){
                         document.body.style.backgroundColor = "#000";
                     }else{
                         document.body.style.backgroundColor = "#fff";
                     }
+                }else{
+
                 }
 
             
@@ -167,8 +178,8 @@ var checkDead = setInterval(function(){
                 block.style.left = '500px';
                 speedValue.innerHTML = level;
                 block.style.animationDuration = speed+'ms';
-                ground.style.animationDuration = speed+'ms';
-                ground2.style.animationDuration = speed+'ms';
+                // ground.style.animationDuration = speed+'ms';
+                // ground2.style.animationDuration = speed+'ms';
                 
             }
         }  

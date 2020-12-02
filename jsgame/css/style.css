@@ -15,10 +15,10 @@ body{
 }
 
 #game{
+    position: relative;
     width: 500px;
     height: 150px;
     /* border: 1px solid #999; */
-    position: relative;
     margin: 0 auto;
     margin-top: 60px;
     overflow: hidden;
@@ -99,7 +99,7 @@ body{
     left: 0;
 }
 #ground.animate{
-    animation: ground1 2000ms infinite linear;
+    animation: ground1 1500ms infinite linear;
 }
 @keyframes ground1{
     0% { left: 0px }
@@ -117,7 +117,7 @@ body{
     
 }
 #ground2.animate{
-    animation: ground2 2000ms infinite linear;
+    animation: ground2 500ms infinite linear;
 }
 
 @keyframes ground2{
@@ -137,7 +137,7 @@ body{
 }
 
 #cloud.animate{
-    animation: cloud 5000ms infinite linear;
+    animation: cloud 6000ms infinite linear;
 }
 
 @keyframes cloud{
@@ -155,4 +155,29 @@ body{
 
 #Highestdiv{
     display: none;
+}
+
+#text{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    z-index: 0;
+    bottom: 10px;
+    left: 500px;
+    font-size: 50px;
+    line-height: 60px;
+    opacity: 0.1;
+    color: #999;
+    animation: text 20000ms infinite linear;
+}
+
+/* #text.animate{
+    animation: text 20000ms infinite linear;
+} */
+
+@keyframes text{
+    0% { left: 100px }
+    50% { left: -300px }
+    50.001% { left: 500px }
+    100% { left: 100px }
 }
