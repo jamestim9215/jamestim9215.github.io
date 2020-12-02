@@ -191,4 +191,4 @@ var checkDead = setInterval(function(){
     
     
 
-},10);
+},5);
