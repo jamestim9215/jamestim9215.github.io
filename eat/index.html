@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body{
+    background: #fff;
+}
+.lottery-sector {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    margin: 120px auto 30px auto;
+    overflow: hidden;
+    top: 0;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    box-shadow: 0px 0px 10px #000;
+}
+.lottery-sector>span {
+    position: absolute;
+    left: calc(50% - 2px);
+    top: -2px;
+    width: 100%;
+    height: 50%;
+    transform-origin: 0% 100%;
+    background-color: #b0e0e6;
+    border: 2px solid #fff;
+}
+
+.lottery-sector>span:nth-child(2n){
+    background-color: #b0e0e6
+}
+
+.lottery-sector>span:nth-child(2n-1){
+    background-color: #e4c6d0
+}
+
+
+.lottery-sector>span:nth-child(1) {
+    transform: rotate(0deg) skew(30deg);
+}
+
+.lottery-sector>span:nth-child(2) {
+    transform: rotate(60deg) skew(30deg);
+}
+
+.lottery-sector>span:nth-child(3) {
+    transform: rotate(120deg) skew(30deg);
+}
+
+.lottery-sector>span:nth-child(4) {
+    transform: rotate(180deg) skew(30deg);
+}
+
+.lottery-sector>span:nth-child(5) {
+    transform: rotate(240deg) skew(30deg);
+}
+
+.lottery-sector>span:nth-child(6) {
+    transform: rotate(300deg) skew(30deg);
+}
+
+.lottery-gift{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+}
+
+.lottery-gift>span {
+    position: absolute;
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: calc(100% - 80px);
+    
+    list-style: none;
+    padding: 40px 0;
+}
+
+.lottery-gift>span div{
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    width: 40px;
+    height: 100%;
+}
+
+.lottery-gift>span:nth-child(1) {
+    transform: rotate(00deg);
+}
+.lottery-gift>span:nth-child(2) {
+    transform: rotate(60deg);
+}
+.lottery-gift>span:nth-child(3) {
+    transform: rotate(120deg);
+}
+.lottery-gift>span:nth-child(4) {
+    transform: rotate(180deg);
+}
+.lottery-gift>span:nth-child(5) {
+    transform: rotate(240deg);
+}
+.lottery-gift>span:nth-child(6) {
+    transform: rotate(300deg);
+}
+
+
+#triangle{
+    position: absolute;
+    left: calc(50% - 50px - 10px);
+    top: calc(50% - 50px - 10px);
+    z-index: 2;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #f19393;
+    border: 10px solid #fff;
+    box-shadow: 0px 0px 10px #000;
+    cursor: pointer;
+    /* animation: zhuanzhuanzhuan 4s forwards ease-in-out; */
+    /* animation: zhuanzhuanzhuan 4s infinite linear; */
+}
+#triangle-up {
+    position: absolute;
+    left: calc(50% - 40px);
+    bottom: 70%;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #f19393;
+}
+
+#output{
+    position: relative;
+    margin: 0 auto;
+    width: 600px;
+    text-align: center;
+    font-size: 30px;
+}
+
+#outputText{
+    font-size: 60px;
+    font-weight: 700;
+}
+
+
+
+</style>
+<body>
+    
+    <div class="lottery-sector" id="lottery-sector">
+        <!-- <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> -->
+        <div class="lottery-gift" id="lottery-gift">
+            <!-- <span>AAA</span>
+            <span>BBB</span>
+            <span>CCC</span>
+            <span>DDD</span>
+            <span>EEE</span>
+            <span>FFF</span> -->
+        </div>
+        <div id="triangle" onclick="go()">
+            <div id="triangle-up">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 結果 -->
+    <div id="output">
+        今天我想來點<br>
+        <div id="outputText"></div>
+    </div>
+
+    <script>
+
+        let data = [
+            { text : '拉麵' },
+            { text : '水餃' },
+            { text : '牛肉麵' },
+            { text : '爭鮮' },
+            { text : '定食8' },
+            { text : '大心' },
+            { text : '牛排' },
+            { text : '蛋包飯' },
+            { text : '炒飯' },
+            { text : '虱目魚' },
+            { text : '義大利麵' },
+            { text : '吉購吉' },
+            { text : '韓國料理' },
+            { text : '秋葵犬' },
+            { text : '早餐店' },
+            { text : '鐵板燒' },
+            { text : '牛肉蓋飯' },
+            { text : '薩利亞' },
+        ]
+        var deg = 0;
+        
+        
+        for(var key in data){
+
+            var span = document.createElement('span');
+
+            if(data.length == 1){
+                span.style.width = "100%";
+                span.style.height = "100%";
+                span.style.left = '-2px'; 
+                span.style.top = '-2px'; 
+                span.style.transformOrigin = '50% 50%';
+                span.style.transform = `rotate(0deg) skew(0deg)`;
+            }else if(data.length == 2){
+                span.style.width = "100%";
+                span.style.height = "50%";
+                span.style.left = '-2px'; 
+                span.style.top = '-4px'; 
+                span.style.transformOrigin = '50% 100%';
+                span.style.transform = `rotate(${key * 360 / data.length - 0}deg) skew(0deg)`;
+            }else{
+                span.style.transform = `rotate(${key * 360 / data.length - ((180 / data.length) - (-90 +  360 / data.length)) }deg) skew(${-90 +  360 / data.length}deg)`;
+            }
+            if(data.length % 2 != 0){
+                if(key == 0)span.style.backgroundColor = '#ccc'
+            }
+
+            document.getElementById('lottery-sector').appendChild(span)
+            
+            var span = document.createElement('span');
+            var spanText = document.createElement('div');
+            span.style.transform = `rotate(${key * 360 / data.length}deg)`;
+            spanText.innerText = data[key].text;
+            span.appendChild(spanText);
+            document.getElementById('lottery-gift').appendChild(span);
+        }
+        
+        
+
+        var gameStatus = false;
+        var oldRotate = 0;
+        var RotateTime = 1800;
+        function go(){
+            if(gameStatus == false){
+                gameStatus = true;
+                var btn = document.getElementById('triangle');
+                if(oldRotate > RotateTime){
+                    oldRotate = oldRotate - RotateTime;
+                }
+                btn.style.transform = 'rotate('+oldRotate+'deg)';
+
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                var random = (Math.floor(Math.random()*360)+ 0);
+                var rotate =  parseInt(random + RotateTime);
+
+                var keyFrames = `
+                    @keyframes zhuanzhuanzhuan{
+                        0%{
+                            transform: rotate(${oldRotate}deg);
+                        } 
+                        100%{
+                            transform: rotate(${rotate}deg); 
+                        }
+                    }
+                `;
+                style.innerHTML = keyFrames;
+                document.getElementsByTagName('head')[0].appendChild(style);
+                btn.style.animation = 'zhuanzhuanzhuan 3.5s forwards ease-in-out';
+                setTimeout(function(){
+                    btn.style.animation = '';
+                    oldRotate = rotate;
+                    btn.style.transform = 'rotate('+rotate+'deg)';
+                    document.getElementsByTagName('head')[0].removeChild(style);
+                    var id = Math.round((random  / (360 / data.length)));
+                    console.log(id);
+                    if(id == data.length){
+                        id = 0;
+                    }
+                    console.log(data[id].text);
+                    document.getElementById('outputText').innerText = data[id].text;
+                    gameStatus = false;
+                },3500);
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
