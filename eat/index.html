@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>到底要吃什麼</title>
+
+    <link rel="apple-touch-icon" href="/custom_icon.png">
+    <link rel="apple-touch-startup-image" href="/launch.png">
+    <meta name="到底要吃什麼" content="AppTitle">
 </head>
 <style>
 body{
@@ -78,10 +82,10 @@ body{
     display: block;
     margin: 0;
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 40px);
     
     list-style: none;
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
 .lottery-gift>span div{
@@ -187,6 +191,11 @@ body{
     <div id="output">
         今天我想來點<br>
         <div id="outputText"></div>
+
+        --------------
+        <br>
+        遊戲規則
+
     </div>
 
     <script>
@@ -194,9 +203,9 @@ body{
         let data = [
             { text : '拉麵' },
             { text : '水餃' },
-            { text : '牛肉麵' },
+            { text : '很辣牛肉麵' },
             { text : '爭鮮' },
-            { text : '定食8' },
+            { text : '定食 8' },
             { text : '大心' },
             { text : '牛排' },
             { text : '蛋包飯' },
@@ -206,10 +215,20 @@ body{
             { text : '吉購吉' },
             { text : '韓國料理' },
             { text : '秋葵犬' },
+            { text : '一條通' },
+            { text : '龍延居' },
             { text : '早餐店' },
             { text : '鐵板燒' },
+            { text : '貓咪店' },
             { text : '牛肉蓋飯' },
             { text : '薩利亞' },
+            { text : '麥當勞' },
+            { text : '漢堡王' },
+            { text : '角鍋' },
+            { text : '潛艇堡' },
+            { text : '越南菜' },
+            { text : '客家菜' },
+            { text : '八方雲集' },
         ]
         var deg = 0;
         
