@@ -51,21 +51,25 @@ body{
 
 .lottery-sector>.lottery-sector-color>span {
     position: absolute;
-    left: calc(50% + 1px);
+    left: 50%;
     top: -2px;
     width: 100%;
     height: 50%;
     transform-origin: 0% 100%;
-    background-color: #b0e0e6;
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
 }
 
 .lottery-sector>.lottery-sector-color>span:nth-child(2n){
-    background-color: #b0e0e6
+    /* background-color: #b0e0e6 */
+    /* background-color: #8d1f1f */
+    background-color: #ec7220
 }
 
 .lottery-sector>.lottery-sector-color>span:nth-child(2n-1){
-    background-color: #e4c6d0
+    /* background-color: #e4c6d0 */
+    /* background-color: #000 */
+    background-color: #f1b937
+
 }
 
 
@@ -83,23 +87,24 @@ body{
     position: absolute;
     display: block;
     width: 100%;
-    height: calc(100% - 10px);
+    height: calc(100% - 6px);
     list-style: none;
-    padding: 5px 0;
+    padding: 3px 0;
     transform-origin: 50% 50%;
-    border: 1px solid rgba(0,0,0,0)
+    text-align: center;
 }
 
 .lottery-gift>span div{
     position: relative;
+    display: inline-block;
     color: #fff;
     font-size: 16px;
     line-height: 1.2;
     font-weight: bold;
     text-align: center;
-    margin: 0 auto;
-    width: 20px;
-    height: 100%;
+    /* margin: 0 auto; */
+    width: 16px;
+    height: auto;
 }
 
 .lottery-gift>span:nth-child(1) {
@@ -131,7 +136,7 @@ body{
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: #f19393;
+    background: #9b2828;
     border: 10px solid #fff;
     box-shadow: 0px 0px 10px #000;
     cursor: pointer;
@@ -146,7 +151,7 @@ body{
     height: 0;
     border-left: 40px solid transparent;
     border-right: 40px solid transparent;
-    border-bottom: 70px solid #f19393;
+    border-bottom: 70px solid #9b2828;
 }
 
 #output{
@@ -228,7 +233,8 @@ body{
                 { text : '秋葵犬' },
                 { text : '一條通' },
                 { text : '龍涎居' },
-                { text : '早餐店' },
+                { text : '咕咕G廚房' },
+                { text : '不會開早餐店' },
                 { text : '大埔鐵板燒' },
                 { text : '一鼎鮮肉羹' },
                 { text : '牛肉蓋飯' },
@@ -254,6 +260,7 @@ body{
                 { text : '不要對我尖叫' },
                 { text : '台茶1號' },
                 { text : '清心福全' },
+                { text : '這咖啡'}
             ],
         ];
 
@@ -262,7 +269,7 @@ body{
         function initData(){
             
             document.getElementById('lottery-gift').innerText = '';
-            document.querySelectorAll('#lottery-sector-color').innerText = '';
+            document.getElementById('lottery-sector-color').innerText = '';
             
             // 隨機順序
             data.sort(function(){return Math.random()>0.5?-1:1;});
@@ -274,15 +281,15 @@ body{
                 if(data.length == 1){
                     span.style.width = "100%";
                     span.style.height = "100%";
-                    span.style.left = '-2px'; 
-                    span.style.top = '-2px'; 
+                    span.style.left = '0px'; 
+                    span.style.top = '0px'; 
                     span.style.transformOrigin = '50% 50%';
                     span.style.transform = `rotate(0deg) skew(0deg)`;
                 }else if(data.length == 2){
                     span.style.width = "100%";
                     span.style.height = "50%";
-                    span.style.left = '-2px'; 
-                    span.style.top = '-4px'; 
+                    span.style.left = '0px'; 
+                    span.style.top = '0px'; 
                     span.style.transformOrigin = '50% 100%';
                     span.style.transform = `rotate(${key * 360 / data.length - 0}deg) skew(0deg)`;
                 }else{
