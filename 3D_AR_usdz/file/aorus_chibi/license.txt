@@ -1,0 +1,11 @@
+Model Information:
+* title:	Aorus Chibi
+* source:	https://sketchfab.com/3d-models/aorus-chibi-fa5ef7935cca48daba9f8cfbf7438246
+* author:	De.Nuj (https://sketchfab.com/De.Nuj)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Aorus Chibi" (https://sketchfab.com/3d-models/aorus-chibi-fa5ef7935cca48daba9f8cfbf7438246) by De.Nuj (https://sketchfab.com/De.Nuj) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
