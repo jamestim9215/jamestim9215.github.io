@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <link rel="stylesheet" href="./hatch.css">
+</head>
+<body>
+
+    <div class="WIDGET-CLASS WIDGET-CLASS-text">
+        <div class="btn-where-buy">Buy Now</div>
+        <span
+          style="visibility: hidden; display: inline-block;"
+          data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d"
+          data-gh-buy-now-button
+          data-gh-mpn-code=""
+          data-gh-ean-code="4719331307608"
+          data-gh-country-code="us"
+          data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+        >
+        </span>
+        <div class="result-gh-60c85bc6ceae2418c69bb04d" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+    </div>
+    
+    <div class="WIDGET-CLASS WIDGET-CLASS-text">
+        <div class="btn-where-buy">Buy Now 2</div>
+        <span
+            style="visibility: hidden; display: inline-block;"
+            data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d"
+            data-gh-buy-now-button
+            data-gh-mpn-code="FV43U"
+            data-gh-ean-code=""
+            data-gh-country-code="us"
+            data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+        >
+        </span>
+        <div class="result-gh-60c85bc6ceae2418c69bb04d" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+    </div>
+
+
+    
+    <script>
+        (function (d, s, id) {
+          if (d.getElementById(id + s)) return;
+          var js, t = d.getElementsByTagName(s)[0];
+          js = d.createElement(s);
+          js.id = id + s;
+          js.onload = function() {HatchRequest.init()};
+          js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
+          t.parentNode.insertBefore(js, t);
+        }(document, 'script', 'hatch-buy-now-request-'));
+      </script>
+</body>
+</html>
