@@ -1,0 +1,122 @@
+body{
+    margin: 0;
+    background-color: #222;
+    color: #999;
+}
+.topImg{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: calc(10vh + 125px);
+    overflow: hidden;
+}
+.topImg img{
+    position: absolute;
+    left: -10%;
+    bottom: -20% ;
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    object-position: bottom center;
+    overflow: hidden;
+}
+.profileImg{
+    margin-top: 10vh;
+    text-align: center;
+    
+}
+.profileImg>div{
+    position: relative;
+    display: inline-block;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #d9ff00;
+    transition: 0.3s all;
+}
+.profileImg>div:hover{
+    width: 204px;
+    height: 204px;
+    border: 10px solid #d9ff00;
+}
+.profileImg img{
+    width: 100%;
+    height: 100%;
+    transition: 0.3s all;
+    object-fit: cover;
+}
+.profileImg>div:hover>img{
+    transform-origin: center center;
+    transform: scale(1.2);
+}
+.profile{
+    margin-top: 3vh;
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+    line-height: 28px;
+    padding: 0;
+    font-weight:normal;
+}
+.sns{
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 2vh;
+    text-align: center;
+    /* border-top: 1px solid #d9ff00; */
+    border-bottom: 1px solid #d9ff00;
+}
+.sns>a{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    cursor: pointer;
+}
+.sns>a>div{
+    position: relative;
+    width: 100%;
+}
+.sns>a>div>span{
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    transition: 0.3s all;
+    line-height: 30px;
+}
+.sns>a>div>div{
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 180px;
+    top: calc(100% + 10px);
+    background: #d9ff00;
+    padding: 5px;
+    border-radius: 5px;
+    color:#000;
+    left: -80px;
+}
+.sns>a>div:hover>div{
+    opacity: 1;
+}
+.sns>a>div>div::after{
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 5px);
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    border-bottom: 5px solid #d9ff00;
+}
+.sns>a>div:hover>span{
+    color: #d9ff00;
+}
