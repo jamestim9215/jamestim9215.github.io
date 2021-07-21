@@ -25,6 +25,8 @@
   body > div[class^="hatch"] > div:nth-of-type(3) > div{
     border-radius: 0 !important;
   }
+
+
   /*WTB O */
   #simple-tabpanel-0 > div > div > ul > li:hover{
     background-color:var(--main-hover-color) !important;
@@ -63,6 +65,78 @@
     fill:var(--main-white) !important;
   }
 
+
+
+
+  
+  @media (max-width:599px){
+    
+    body > div[class^="hatch"] > div:nth-of-type(3) > div{
+      height: calc(100% - 60px) !important;
+      width: 100% !important;
+      background-color: var(--main-bg-color-dark) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > h2 > div > div,
+    body > div[class^="hatch"] > div > div > div > div > div > div > div  p,
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > div span,
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > a div span{
+      color:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > div{
+      background-color: var(--main-bg-color) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > div > div > div  b{
+      color:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > h2 > div > div svg{
+      fill:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div:nth-of-type(3) > div > div > div:nth-child(2) > a > div{
+      background-color: var(--main-bg-color-dark) !important;
+      border: 1px solid var(--main-bg-color-dark) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div > div,
+    #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div{
+      background-color:var(--main-bg-color-dark) !important;
+      color:var(--main-white) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div > div > button > span > svg,
+    #simple-tabpanel-1 > div > div > div > div > div > div > div > div > div span > svg{
+      fill:var(--main-white) !important;
+    }
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div,
+    #simple-tabpanel-1 > div:nth-child(3) > div{
+      background-color: rgba(0,0,0,0) !important;
+    }
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div{
+      padding: 10px !important; 
+    }
+
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div,
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div > div >div{
+      background-color: var(--main-bg-color) !important;
+    }
+    
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div > div >div span{
+      color: var(--main-white) !important;
+    }
+
+    #simple-tabpanel-1 > div > div{
+      background-color: var(--main-bg-color-darker) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div{
+      border-left: 1px solid var(--main-bg-color-darker) !important;
+      background-color: var(--main-bg-color-darker) !important;
+    }
+    #simple-tabpanel-1 > div > div > div > hr{
+      background-color: var(--main-bg-color-darker) !important;
+    }
+    
+    
+  }
 
 
 
@@ -178,4 +252,22 @@
     clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
     background: #73fbfd;
     color: #000;
+  }
+
+
+
+  .productModelName{
+    position:fixed ;
+    width: 200px;
+    height: 40px ;
+    left: calc(50% - 100px) ;
+    top: 0 ;
+    font-size: 24px ;
+    color: #fff ;
+    font-weight: 700 ;
+    text-align: center;
+    z-index: 9999;
+    line-height: 40px ;
+    background-color: #ff6400;
+    clip-path: polygon(0 0,100% 0,100% calc(100% - 10px) ,calc(100% - 10px) 100%, 0 100%);
   }

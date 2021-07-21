@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div class="WIDGET-CLASS WIDGET-CLASS-text">
+    <div class="WIDGET-CLASS WIDGET-CLASS-text" onclick="testBtnClick('4719331307608')">
         <div class="btn-where-buy">4719331307608</div>
         <span
           style="visibility: hidden; display: inline-block;"
@@ -26,7 +26,7 @@
         <div class="result-gh-60c85bc6ceae2418c69bb04d" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
     </div>
     
-    <div class="WIDGET-CLASS WIDGET-CLASS-text">
+    <div class="WIDGET-CLASS WIDGET-CLASS-text" onclick="testBtnClick('0000000000000')">
         <div class="btn-where-buy">0000000000000</div>
         <span
             style="visibility: hidden; display: inline-block;"
@@ -53,6 +53,25 @@
           js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
           t.parentNode.insertBefore(js, t);
         }(document, 'script', 'hatch-buy-now-request-'));
+      </script>
+
+      <script>
+        function testBtnClick(text){
+          if(document.querySelector('div[class^="hatch-render-node"]')){
+            setTimeout(function(){
+
+              var div = document.querySelector('body>div[class^="hatch-widget-"]');
+              console.log(div);
+              var html = document.createElement("div");
+              html.classList.add('productModelName');
+              html.innerText = text;
+              div.prepend(html);
+            }, 50)
+          }else{
+            console.log('no');
+          }
+          
+        }
       </script>
 </body>
 </html>
