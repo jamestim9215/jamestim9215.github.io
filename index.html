@@ -4,28 +4,109 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爽爽的GITHUB 首頁</title>
-    <style>
-        body{
-            margin: 0;
-            background-color: #333;
-        }
-        h1{
-            font-size: 10vw;
-            color: #ccc;
-            text-align: center;
-            height: 100vh;
-            line-height: 50vh;
-            padding: 0;
-            margin: 0;
-        }
+    <title>Document</title>
 
-    </style>
+    
+    <link rel="stylesheet" href="./hatch.css">
 </head>
 <body>
-    <h1>
-    這裡什麼都沒有 <br>
-    沒有什麼好看的
-    </h1>
+
+
+    <!-- 一個按鈕組合 -->
+    <!--
+
+      ** hatch開窗的標題
+        > hatchBtnClick('文字 或 產品名稱 序號...') 
+
+
+
+      ** ean code 
+        > 可參考下面 0000000000000 塞法
+          同EANCODE避免重複 範例:
+            data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d-BTN01-0000000000000"
+            data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d-BTN02-0000000000000"
+
+         
+      ** data-gh-country-code 
+        > 非 V2 en-us 而是 Hatch 的 ex: us,de,gb,au,vn.....
+            目前對照
+              en-us > us
+              en-gb > gb
+              en-au > au
+              de-de > de
+              vi-vn > vn
+
+      ** 有的Ad Blocker會阻擋  
+        > 有的Ad Blocker會阻擋我們的服務，麻煩加以下的code就可以繞過
+          data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate"
+
+    -->
+
+    <div class="WIDGET-CLASS WIDGET-CLASS-text" onclick="hatchBtnClick('4719331308780')">
+        <div class="btn-where-buy">4719331308780</div>
+        <span
+          style="visibility: hidden; display: inline-block;"
+          data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d-4719331308780"
+          data-gh-buy-now-button
+          data-gh-mpn-code=""
+          data-gh-ean-code="4719331308780"
+          data-gh-country-code="us"
+          data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+          data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate"
+        >
+        </span>
+        <div class="result-gh-60c85bc6ceae2418c69bb04d-4719331308780" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+    </div>
+    <!-- 一個按鈕組合 -->
+    
+    <div class="WIDGET-CLASS WIDGET-CLASS-text" onclick="hatchBtnClick('0000000000000')">
+        <div class="btn-where-buy">0000000000000</div>
+        <span
+            style="visibility: hidden; display: inline-block;"
+            data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d-0000000000000"
+            data-gh-buy-now-button
+            data-gh-mpn-code=""
+            data-gh-ean-code="0000000000000"
+            data-gh-country-code="us"
+            data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+            data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+        >
+        </span>
+        <div class="result-gh-60c85bc6ceae2418c69bb04d-0000000000000" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+    </div>
+
+
+    
+    <script>
+        (function (d, s, id) {
+          if (d.getElementById(id + s)) return;
+          var js, t = d.getElementsByTagName(s)[0];
+          js = d.createElement(s);
+          js.id = id + s;
+          js.onload = function() {HatchRequest.init()};
+          js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
+          t.parentNode.insertBefore(js, t);
+        }(document, 'script', 'hatch-buy-now-request-'));
+      </script>
+
+
+      <!-- 開窗上方的標題 -->
+      <script>
+        function hatchBtnClick(text){
+          if(document.querySelector('div[class^="hatch-widget-"]')){
+            setTimeout(function(){
+              var div = document.querySelector('body>div[class^="hatch-widget-"]');
+              console.log(div);
+              var html = document.createElement("div");
+              html.classList.add('productModelName');
+              html.innerText = text;
+              div.prepend(html);
+            }, 50)
+          }else{
+            console.log('no');
+          }
+          
+        }
+      </script>
 </body>
 </html>

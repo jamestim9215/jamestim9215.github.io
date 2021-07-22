@@ -1,0 +1,290 @@
+  /* Colors variables */
+  :root {
+    --main-bg-color: #333;
+    --main-bg-color-dark: #222;
+    --main-bg-color-darker: #222;
+    --main-hover-color: #222;
+    --main-white:#FFF;
+  }
+  body > div[class^="hatch"] > div > div > div > div{
+    background-color:var(--main-bg-color-darker) !important;
+  }
+  body > div[class^="hatch"] > div > div > div > div > div{
+    background-color:transparent !important;
+  }
+  body > div[class^="hatch"] > div > div > div > div > div > div > div > button:nth-child(2) > span > p{
+    color:var(--main-white) !important;
+  }
+  body > div[class^="hatch"] > div > div > a > div{	
+    background-color:var(--main-bg-color-dark) !important;
+    border: 1px solid var(--main-bg-color-dark) !important;
+  }
+  body > div[class^="hatch"] > div:nth-of-type(3) > div > div > div:nth-of-type(2){
+    background-color:var(--main-bg-color) !important;
+  }
+  body > div[class^="hatch"] > div:nth-of-type(3) > div{
+    border-radius: 0 !important;
+  }
+
+
+  /*WTB O */
+  #simple-tabpanel-0 > div > div > ul > li:hover{
+    background-color:var(--main-hover-color) !important;
+  }
+  #simple-tabpanel-0 > div > div > ul > li > a > div > div > div > div:nth-child(2) > p,
+  #simple-tabpanel-0 > div > div > ul > li > a > div > div > p{
+    color:#FFF !important;
+  }
+  /*WTB L */
+  #simple-tabpanel-1 > div > div > div > div,
+  #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div{
+    background-color:var(--main-bg-color-dark) !important;
+    color:var(--main-white) !important;
+  }
+  #combo-box-demo,
+  #simple-tabpanel-1 > div > div > div > ul > li,
+  #simple-tabpanel-1 > div > div > div > ul > li > div > div > div > div > div > div:nth-child(3) > span,
+  #simple-tabpanel-1 > div > div > div > ul > li > div > div > div > div:nth-child(2) > div > div:nth-child(2) > span > span,
+  #simple-tabpanel-1 > div > div > div > ul > li > div > div > div > div:nth-child(3) > div > div:nth-child(2) > span,
+  #simple-tabpanel-1 > div > div > div > ul > li > div > div > div > div > div > div:nth-child(2) > span,
+  #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div > div > div > div > div > p > span,
+  #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div > div > div > div > div > div div > div > div > p
+  {
+    color:var(--main-white) !important;
+  }		
+  #simple-tabpanel-1 > div > div > div > ul > li:hover{
+    background-color:var(--main-bg-color-dark) !important;
+  }		
+  #simple-tabpanel-1 > div > div > div{
+    border-left: 1px solid var(--main-bg-color-darker) !important;
+  }
+  #simple-tabpanel-1 > div > div > div > hr{
+    background-color: var(--main-bg-color-darker) !important;
+  }
+  #simple-tabpanel-1 > div > div > div > div > div:nth-child(1) > button > span > svg{
+    fill:var(--main-white) !important;
+  }
+
+
+
+  .productModelName{
+    position:fixed ;
+    width: 100%;
+    height: auto;
+    min-height: 60px ;
+    padding: 10px;
+    left: 0;
+    top: 0 ;
+    font-size: 24px;
+    color: #fff ;
+    font-weight: 700 ;
+    text-align: center;
+    z-index: 9999;
+    line-height:32px;
+    background-color: #ff6400;
+    clip-path: polygon(0 0,100% 0,100% calc(100% - 20px) ,calc(100% - 20px) 100%, 0 100%);
+  }
+
+
+  
+  @media (max-width:599px){
+    .productModelName{
+      height: auto;
+      min-height: 50px ;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: 500 ;
+      line-height: 24px;
+      background-color: #000;
+    }
+    
+    body > div[class^="hatch"] > div:nth-of-type(4) > div,
+    body > div[class^="hatch"] > div:nth-of-type(3) > div{
+      height: calc(100% - 150px) !important;
+      width: 100% !important;
+      background-color: var(--main-bg-color-dark) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > h2 > div > div,
+    body > div[class^="hatch"] > div > div > div > div > div > div > div  p,
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > div span,
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > a div span{
+      color:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > div > div > ul > li > div{
+      background-color: var(--main-bg-color) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > div > div > div  b{
+      color:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div > div > div > div > h2 > div > div svg{
+      fill:var(--main-white) !important;
+    }
+    body > div[class^="hatch"] > div:nth-of-type(3) > div > div > div:nth-child(2) > a > div{
+      background-color: var(--main-bg-color-dark) !important;
+      border: 1px solid var(--main-bg-color-dark) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div > div,
+    #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div{
+      background-color:var(--main-bg-color-dark) !important;
+      color:var(--main-white) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div > div > button > span > svg,
+    #simple-tabpanel-1 > div > div > div > div > div > div > div > div > div span > svg{
+      fill:var(--main-white) !important;
+    }
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div,
+    #simple-tabpanel-1 > div:nth-child(3) > div{
+      background-color: rgba(0,0,0,0) !important;
+    }
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div{
+      padding: 10px !important; 
+    }
+
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div,
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div > div >div{
+      background-color: var(--main-bg-color) !important;
+    }
+    
+    #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div > div >div span{
+      color: var(--main-white) !important;
+    }
+
+    #simple-tabpanel-1 > div > div{
+      background-color: var(--main-bg-color-darker) !important;
+    }
+
+    #simple-tabpanel-1 > div > div > div{
+      border-left: 1px solid var(--main-bg-color-darker) !important;
+      background-color: var(--main-bg-color-darker) !important;
+    }
+    #simple-tabpanel-1 > div > div > div > hr{
+      background-color: var(--main-bg-color-darker) !important;
+    }
+    
+    
+  }
+
+
+
+
+
+  .WIDGET-CLASS{
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+  .WIDGET-CLASS span{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0) !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0%;
+    padding: 0 !important;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  }
+
+  .WIDGET-CLASS [class^="esult-gh"]:hover{
+    background: rgba(0,0,0,0) !important;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  }
+
+  /* icon版本樣式範例 ↓ */
+  
+   
+  /* <div class="WIDGET-CLASS WIDGET-CLASS-icon">
+  <div class="icon">
+    X
+  </div>
+  <span
+    style="visibility: hidden; display: inline-block;"
+    data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d"
+    data-gh-buy-now-button
+    data-gh-mpn-code="Z590 AORUS ELITE AX"
+    data-gh-ean-code=""
+    data-gh-country-code="us"
+    data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+  >
+  
+  </span>
+  <div class="result-gh-60c85bc6ceae2418c69bb04d" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+</div> */
+
+  .WIDGET-CLASS-icon{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .WIDGET-CLASS .icon{
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    transition: 0.3s all;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+    background: #ff6400;
+    color: #fff;
+  }
+  .WIDGET-CLASS:hover .icon{
+    transition: 0.3s all;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+    background: #73fbfd;
+    color: #000;
+  }
+
+  
+  /* 文字版本樣式範例 ↓ */
+
+  /* <div class="WIDGET-CLASS WIDGET-CLASS-text">
+      <div class="btn-where-buy">Buy Now</div>
+      <span
+        style="visibility: hidden; display: inline-block;"
+        data-target-node-selector=".result-gh-60c85bc6ceae2418c69bb04d"
+        data-gh-buy-now-button
+        data-gh-mpn-code="Z590 AORUS ELITE AX"
+        data-gh-ean-code=""
+        data-gh-country-code="us"
+        data-gh-configuration-id="60c85bc6ceae2418c69bb04d"
+      >
+      </span>
+      <div class="result-gh-60c85bc6ceae2418c69bb04d" data-gh-configuration-id="60c85bc6ceae2418c69bb04d"></div>
+  </div>  */
+
+  .WIDGET-CLASS-text{
+    width: auto;
+    min-width: 140px;
+    height: 40px;
+  }
+  .WIDGET-CLASS .btn-where-buy{
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    transition: 0.3s all;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+    background: #ff6400;
+    color: #fff;
+  }
+  .WIDGET-CLASS:hover .btn-where-buy{
+    transition: 0.3s all;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+    background: #73fbfd;
+    color: #000;
+  }
+
+
+
