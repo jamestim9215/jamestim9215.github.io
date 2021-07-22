@@ -67,12 +67,40 @@
 
 
 
+  .productModelName{
+    position:fixed ;
+    width: 100%;
+    height: auto;
+    min-height: 60px ;
+    padding: 10px;
+    left: 0;
+    top: 0 ;
+    font-size: 24px;
+    color: #fff ;
+    font-weight: 700 ;
+    text-align: center;
+    z-index: 9999;
+    line-height:32px;
+    background-color: #ff6400;
+    clip-path: polygon(0 0,100% 0,100% calc(100% - 20px) ,calc(100% - 20px) 100%, 0 100%);
+  }
+
 
   
   @media (max-width:599px){
+    .productModelName{
+      height: auto;
+      min-height: 50px ;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: 500 ;
+      line-height: 24px;
+      background-color: #000;
+    }
     
+    body > div[class^="hatch"] > div:nth-of-type(4) > div,
     body > div[class^="hatch"] > div:nth-of-type(3) > div{
-      height: calc(100% - 60px) !important;
+      height: calc(100% - 150px) !important;
       width: 100% !important;
       background-color: var(--main-bg-color-dark) !important;
     }
@@ -149,9 +177,13 @@
     height: 40px;
   }
   .WIDGET-CLASS span{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
     background: rgba(0,0,0,0) !important;
     width: 100% !important;
-    height: 40px !important;
+    height: 100% !important;
     margin: 0 !important;
     border-radius: 0%;
     padding: 0 !important;
@@ -256,18 +288,3 @@
 
 
 
-  .productModelName{
-    position:fixed ;
-    width: 200px;
-    height: 40px ;
-    left: calc(50% - 100px) ;
-    top: 0 ;
-    font-size: 24px ;
-    color: #fff ;
-    font-weight: 700 ;
-    text-align: center;
-    z-index: 9999;
-    line-height: 40px ;
-    background-color: #ff6400;
-    clip-path: polygon(0 0,100% 0,100% calc(100% - 10px) ,calc(100% - 10px) 100%, 0 100%);
-  }
