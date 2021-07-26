@@ -46,6 +46,10 @@
         var player;
         var platforms;
         var cursors;
+        var coins;
+
+        var score = 0;
+        var scoreText;
 
         var game = new Phaser.Game(config);
 
@@ -62,6 +66,11 @@
                 'assets/player.png',
                 { frameWidth: 60, frameHeight: 50 }
             );
+            
+            this.load.spritesheet('coin', 
+                'assets/coin.png',
+                { frameWidth: 40, frameHeight: 40 }
+            );
 
         }
 
@@ -75,12 +84,15 @@
             platforms.create(500, 550, 'bottom'); 
             platforms.create(50, 300, 'left');
 
-            platforms.create(500, 130+68, 'ground');
+            platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68, 'ground');
             platforms.create(190, 130+68+68+34, 'ground');
             platforms.create(810, 130+68+68+34, 'ground');
-            platforms.create(500, 130+68+68+68+68, 'ground');
+            platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68+68+68+68, 'ground');
 
-            player = this.physics.add.sprite(500, 300, 'chibi').setScale(1.2);
+            
+            //***角色**********************************************************************************
+            //設定角色
+            player = this.physics.add.sprite(200, 400, 'chibi').setScale(1.2);
             player.setBounce(0.2); //反弹（bounce）值
             player.setCollideWorldBounds(true); //世界边界（bound）的碰撞
 
@@ -103,9 +115,43 @@
                 frameRate: 5,
                 repeat: -1
             });
-            cursors = this.input.keyboard.createCursorKeys(); //添加事件监听器
+            //***角色 End**********************************************************************************
 
-            this.physics.add.collider(player, platforms); // 碰撞器（Collider）
+
+
+            
+            //***設定金幣**********************************************************************************
+            //產生10個金幣
+            coins = this.physics.add.group({
+                key: 'coin',
+                repeat: 9,
+                setXY: { x: 150, y: 0, stepX: 80 },
+            });
+            //設定金幣動畫 0~6 依序旋轉
+            this.anims.create({
+                key: 'coin_run',
+                frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 6 }),
+                frameRate: 5,
+                repeat: -1
+            });
+            //設定金幣彈跳且跑動畫
+            coins.children.iterate(function (child) {
+                child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.8));
+                child.anims.play('coin_run');
+            });
+            //判斷 人物與金幣碰撞事件
+            this.physics.add.overlap(player, coins, collectStar, null, this);
+            //***設定金幣 End**********************************************************************************
+
+            //添加事件监听器
+            cursors = this.input.keyboard.createCursorKeys(); 
+            
+            // 碰撞器（Collider）
+            this.physics.add.collider(player, platforms); 
+            this.physics.add.collider(coins, platforms);
+
+            //分數
+            scoreText = this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#ff0' });
 
         }
 
@@ -132,7 +178,24 @@
 
             if (cursors.up.isDown && player.body.touching.down)
             {
-                player.setVelocityY(-600);
+                player.setVelocityY(-550);
+            }
+
+            // coins.anims.play('coin_anims');
+        }
+
+        function collectStar (player, star)
+        {
+            star.disableBody(true, true);
+
+            score += 1;
+            scoreText.setText('Coin : ' + score);
+
+            if (coins.countActive(true) === 0)
+            {
+                coins.children.iterate(function (child) {
+                    child.enableBody(true, child.x, 0, true, true);
+                });
             }
         }
     </script>
