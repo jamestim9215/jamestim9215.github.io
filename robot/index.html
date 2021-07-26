@@ -7,6 +7,9 @@
     <title>Robot Game By Phaser</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <style type="text/css">
+
+        @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+
         body {
             margin: 0;
             background: #333;
@@ -16,12 +19,20 @@
             position: relative;
             margin: 0 auto;
             display: inherit;
+            width: auto;
+            margin-top: calc(50vh - 300px);
+        }
+
+        @media (max-width: 768px) {
+            canvas{
+                width: 100%;
+                margin-top: auto;
+            }
         }
 
     </style>
 </head>
 <body>
-
     
     <script>
         var config = {
@@ -55,6 +66,7 @@
 
         function preload ()
         {
+            //載入圖片
             this.load.image('bg', 'assets/bg.png');
             this.load.image('top', 'assets/top.png');
             this.load.image('left', 'assets/left.png');
@@ -62,11 +74,13 @@
             this.load.image('right', 'assets/right.png');
             this.load.image('ground', 'assets/ground.png');
 
+            //載入人物 
             this.load.spritesheet('chibi', 
                 'assets/player.png',
                 { frameWidth: 60, frameHeight: 50 }
             );
-            
+
+            //載入硬幣 
             this.load.spritesheet('coin', 
                 'assets/coin.png',
                 { frameWidth: 40, frameHeight: 40 }
@@ -99,7 +113,7 @@
             this.anims.create({
                 key: 'left',
                 frames: this.anims.generateFrameNumbers('chibi', { start: 0, end: 1 }), //使用0, 1帧
-                frameRate: 5, //每秒10帧
+                frameRate: 10, //每秒10帧
                 repeat: -1 //告诉动画要循环播放
             });
 
@@ -144,14 +158,15 @@
             //***設定金幣 End**********************************************************************************
 
             //添加事件监听器
-            cursors = this.input.keyboard.createCursorKeys(); 
+            cursors = this.input.keyboard.createCursorKeys();
+             
             
             // 碰撞器（Collider）
             this.physics.add.collider(player, platforms); 
             this.physics.add.collider(coins, platforms);
 
             //分數
-            scoreText = this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#ff0' });
+            scoreText = this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
 
         }
 
@@ -176,9 +191,42 @@
                 player.anims.play('turn');
             }
 
-            if (cursors.up.isDown && player.body.touching.down)
+            if ((cursors.up.isDown || cursors.space.isDown) && player.body.touching.down)
             {
                 player.setVelocityY(-550);
+            }
+            var pointer = this.input.activePointer;
+            if (pointer.isDown) {
+                var touchX = pointer.x;
+                var touchY = pointer.y;
+                
+                
+                if(player.x > touchX & player.y > touchY  & touchY < 500){
+                    player.setVelocityX(-300);
+                    player.anims.play('left', true);
+                    
+                    if(player.body.touching.down){
+                        player.setVelocityY(-550);
+                    }
+                }
+                if(player.x < touchX & player.y > touchY & touchY < 500){
+                    player.setVelocityX(300);
+                    player.anims.play('right', true);
+                    
+                    if(player.body.touching.down){
+                        player.setVelocityY(-550);
+                    }
+                }
+
+                if(player.x > touchX & player.y < touchY){
+                    player.setVelocityX(-300);
+                    player.anims.play('left', true);
+                }
+                if(player.x < touchX & player.y < touchY){
+                    player.setVelocityX(300);
+                    player.anims.play('right', true);
+                }
+
             }
 
             // coins.anims.play('coin_anims');
