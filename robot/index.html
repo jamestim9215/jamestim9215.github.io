@@ -47,6 +47,7 @@
 
         var coins_count = 10;
         var score = 0;
+        var hight_score = 0;
         var scoreText;
 
         var Preloader = new Phaser.Class({
@@ -245,7 +246,7 @@
 
                 //***角色**********************************************************************************
                 //設定角色
-                player = _this.physics.add.sprite(200, 400, 'chibi').setScale(1.2);
+                player = _this.physics.add.sprite(200, 400, 'chibi').setScale(1);
                 player.setBounce(0.2); //反弹（bounce）值
                 player.setCollideWorldBounds(true); //世界边界（bound）的碰撞
 
@@ -348,17 +349,36 @@
                 _this.physics.add.collider(player, bombs, this.hitBoss, null, _this);
 
                 //分數
-                scoreText = _this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
+                var _text = 'Score : 0';
+                if(hight_score!=0) _text = 'Score : 0 ' + '/ Hight : '+hight_score;
+                scoreText = _this.add.text(110, 110, _text, { fontSize: '18px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
 
             },
             
             hitBoss(i,j){
+                var _this = this;
 
                 if(j.anims.currentAnim.key != 'boss_readybom' && j.anims.currentAnim.key != 'boss_bom' ){
                     console.log('first Touch');
                     j.anims.play('boss_readybom');
                     setTimeout(function(){
                         j.anims.play('boss_bom');
+
+                        console.log("player : " + parseInt(player.x) + " / " + parseInt(player.y));
+                        console.log("bomb : " + parseInt(j.x) + " / " + parseInt(j.y));
+
+                        if(
+                            (parseInt(j.x) > parseInt(player.x)) && (parseInt(j.x)-30 < parseInt(player.x)+25) && 
+                            ((parseInt(j.y)-30 < parseInt(player.y)+25) && (parseInt(j.y)+30 > parseInt(player.y)-25))
+                        ){
+                            console.log("Bom R");
+                            _this.die();
+                        }else if((parseInt(j.x) < parseInt(player.x)) && (parseInt(j.x)+30 > parseInt(player.x)-25) && ((parseInt(j.y)-30 < parseInt(player.y)+25) && (parseInt(j.y)+30 > parseInt(player.y)-25))){
+                            console.log("Bom L");
+                            _this.die();
+                        }
+
+
                         j.setBounce(0);
                         setTimeout(function(){
                             j.destroy();
@@ -367,42 +387,58 @@
                 }else{
                     if(j.anims.currentAnim.key == 'boss_bom'){
                         console.log('bom');
-                        this.physics.pause();
-                        player.setTint(0xff0000);
-                        player.anims.play('turn');
-                        
-                        progressOverBox = this.add.graphics();
-                        progressOverBox.fillStyle(0x222222, 1);
-                        progressOverBox.fillRect(250, 150,500, 300);
+                        this.die();
 
-                        playBtn = this.physics.add.sprite(500, 300, 'playBtn');
-                        playBtn.anims.play('playbtn_up');
-                        playBtn.setInteractive();
-                        game.isOver = true;
-                
-                        this.input.on('pointerdown',this.onObjectClickeddown);
-                        this.input.on('pointerup',() => this.scene.start('game'));
+                        
                         
                     }
                 }
 
 
             },
+            die(){
+                this.physics.pause();
+                player.setTint(0xff0000);
+                player.anims.play('turn');
+                
+                progressOverBox = this.add.graphics();
+                progressOverBox.fillStyle(0x111111, 0.9);
+                progressOverBox.fillRect(250, 150,500, 300);
+
+                playBtn = this.physics.add.sprite(500, 400, 'playBtn');
+                playBtn.anims.play('playbtn_up');
+                playBtn.setInteractive();
+
+                this.add.text(415, 250, "Game Over", { fontSize: '30px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
+                this.add.text(450, 300, "Score : " + score, { fontSize: '18px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
+
+                
+                if(score > hight_score) hight_score = score;
+                game.isOver = true;
+
+                playBtn.on('pointerdown', () => { this.onObjectClickeddown(); });
+                playBtn.on('pointerup', () => { this.onObjectClickedup(); });
+            },
             
-            onObjectClickeddown(pointer,gameObject){
+            onObjectClickeddown(){
                 playBtn.anims.play('playbtn_down');
             },
             
-            onObjectClickedup(pointer,gameObject){
-                playBtn.anims.play('playbtn_up');
+            onObjectClickedup(){
+                score = 0;
 
+                playBtn.anims.play('playbtn_up'); 
+                this.scene.start('game');
             },
             
             collectStar (player, star){
                 star.disableBody(true, true);
 
-                score += 1;
-                scoreText.setText('Coin : ' + score);
+                score += 5;
+                if(score > hight_score && hight_score!=0) hight_score = score;
+                var _text = 'Coin : ' + score;
+                if(hight_score != 0) _text = 'Score : ' + score + " / Hight : "+ hight_score
+                scoreText.setText(_text);
 
                 if (coins.countActive(true) === 0)
                 {   
@@ -412,14 +448,16 @@
                         });
                     },500);
 
-                    for(var k = 0; k<score/10; k++){
+                    for(var k = 0; k<parseInt(score/10/2); k++){
                         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
                         var bomb = bombs.create(x, 16, 'bomb');
-                        bomb.setBounce(0.99);
+                        bomb.setBounce(0.95);
                         bomb.setCollideWorldBounds(true);
-                        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                        bomb.setVelocity(Phaser.Math.Between(-200, 200), 10);
                         bomb.anims.play('boss_walk');
                     }
+
+
                 }
             }
 
@@ -435,7 +473,7 @@
                 default: 'arcade',
                 arcade: {
                     gravity: { y: 1000 },
-                    debug: true
+                    debug: false
                 }
             },
             scene: [Preloader,Game]
