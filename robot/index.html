@@ -52,13 +52,16 @@
                 update: update
             }
         };
-
         
         var player;
+        var bombs;
         var platforms;
         var cursors;
         var coins;
+        var progressOverBox;
+        var playBtn;
 
+        var coins_count = 10;
         var score = 0;
         var scoreText;
 
@@ -66,172 +69,384 @@
 
         function preload ()
         {
+
+            //loading 進度條
+            var progressBar = this.add.graphics();
+            var progressBox = this.add.graphics();
+            progressBox.fillStyle(0x222222, 0.8);
+            progressBox.fillRect(350, 280,300, 50);
+
+            var width = this.cameras.main.width;
+            var height = this.cameras.main.height;
+            var loadingText = this.make.text({
+                x: width / 2,
+                y: height / 2 - 50,
+                text: 'Loading...',
+                style: {
+                    font: '20px Aldrich',
+                    fill: '#ffffff'
+                }
+            });
+            loadingText.setOrigin(0.5, 0.5);
+
+            var percentText = this.make.text({
+                x: width / 2,
+                y: height / 2 + 5,
+                text: '0%',
+                style: {
+                    font: '18px Aldrich',
+                    fill: '#ffffff'
+                }
+            });
+            percentText.setOrigin(0.5, 0.5);
+            var assetText = this.make.text({
+                x: width / 2,
+                y: height / 2 + 50,
+                text: '',
+                style: {
+                    font: '14px Aldrich',
+                    fill: '#ffffff'
+                }
+            });
+            assetText.setOrigin(0.5, 0.5);
+            this.load.on('progress', function (value) {
+                // console.log(value);
+                percentText.setText(parseInt(value * 100) + '%');
+                progressBar.clear();
+                progressBar.fillStyle(0xffffff, 1);
+                progressBar.fillRect(355, 285, 290 * value, 40);
+            });
+                       
+            this.load.on('fileprogress', function (file) {
+                assetText.setText('Loading asset: ' + file.key);
+                // console.log(file.src);
+            });
+            this.load.on('complete', function () {
+                console.log('complete');
+                progressBar.destroy();
+                progressBox.destroy();
+                loadingText.destroy();
+                percentText.destroy();
+                assetText.destroy();
+            });
+            this.load.image('logo', 'assets/images/logo.png');
+
+            //loading End 進度條
+
+
+
             //載入圖片
-            this.load.image('bg', 'assets/bg.png');
-            this.load.image('top', 'assets/top.png');
-            this.load.image('left', 'assets/left.png');
-            this.load.image('bottom', 'assets/bottom.png');
-            this.load.image('right', 'assets/right.png');
-            this.load.image('ground', 'assets/ground.png');
+            this.load.image('bg', 'assets/images/bg.png');
+            this.load.image('top', 'assets/images/top.png');
+            this.load.image('left', 'assets/images/left.png');
+            this.load.image('bottom', 'assets/images/bottom.png');
+            this.load.image('right', 'assets/images/right.png');
+            this.load.image('ground', 'assets/images/ground.png');
 
             //載入人物 
             this.load.spritesheet('chibi', 
-                'assets/player.png',
+                'assets/images/player.png',
                 { frameWidth: 60, frameHeight: 50 }
+            );
+
+            //載入炸彈 
+            this.load.spritesheet('bomb', 
+                'assets/images/bomb.png',
+                { frameWidth: 40, frameHeight: 40 }
+            );
+            
+            //載入炸彈 爆炸
+            this.load.spritesheet('bomb_bom', 
+                'assets/images/bomb-bom.png',
+                { frameWidth: 40, frameHeight: 40 }
             );
 
             //載入硬幣 
             this.load.spritesheet('coin', 
-                'assets/coin.png',
+                'assets/images/coin.png',
                 { frameWidth: 40, frameHeight: 40 }
             );
 
+            //載入按鈕
+            this.load.spritesheet('playBtn', 
+                'assets/images/playBtn.png',
+                { frameWidth: 103, frameHeight: 50 }
+            );
+
+            
+            
         }
+
+        function initialGame(_this){
+            
+
+                    
+                    //***角色**********************************************************************************
+                    //設定角色
+                    player = _this.physics.add.sprite(200, 400, 'chibi').setScale(1.2);
+                    player.setBounce(0.2); //反弹（bounce）值
+                    player.setCollideWorldBounds(true); //世界边界（bound）的碰撞
+
+                    _this.anims.create({
+                        key: 'left',
+                        frames: _this.anims.generateFrameNumbers('chibi', { start: 0, end: 1 }), //使用0, 1帧
+                        frameRate: 10, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+
+                    _this.anims.create({
+                        key: 'turn',
+                        frames: [ { key: 'chibi', frame: 2 } ],
+                        frameRate: 20
+                    });
+
+                    _this.anims.create({
+                        key: 'right',
+                        frames: _this.anims.generateFrameNumbers('chibi', { start: 3, end: 4 }),
+                        frameRate: 5,
+                        repeat: -1
+                    });
+                    //***角色 End**********************************************************************************
+
+
+                    
+                    //***設定金幣**********************************************************************************
+                    //產生10個金幣
+                    coins = _this.physics.add.group({
+                        key: 'coin',
+                        repeat: coins_count-1,
+                        setXY: { x: 150, y: 0, stepX: 80 },
+                    });
+                    //設定金幣動畫 0~6 依序旋轉
+                    _this.anims.create({
+                        key: 'coin_run',
+                        frames: _this.anims.generateFrameNumbers('coin', { start: 0, end: 6 }),
+                        frameRate: 5,
+                        repeat: -1
+                    });
+                    //設定金幣彈跳且跑動畫
+                    coins.children.iterate(function (child) {
+                        child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.8));
+                        child.anims.play('coin_run');
+                    });
+                    //判斷 人物與金幣碰撞事件
+                    _this.physics.add.overlap(player, coins, collectStar, null, _this);
+                    //***設定金幣 End**********************************************************************************
+
+                    //添加事件监听器
+                    cursors = _this.input.keyboard.createCursorKeys();
+                    
+                    
+                    // 碰撞器（Collider）
+                    _this.physics.add.collider(player, platforms); 
+                    _this.physics.add.collider(coins, platforms);
+
+
+
+                    //***bomb**********************************************************************************
+                    //設定boss
+                    bombs = _this.physics.add.group();
+
+                    _this.anims.create({
+                        key: 'boss_walk',
+                        frames: _this.anims.generateFrameNumbers('bomb', { start: 0, end: 3 }), //使用0, 1帧
+                        frameRate: 3, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+
+                    _this.anims.create({
+                        key: 'boss_readybom',
+                        frames: _this.anims.generateFrameNumbers('bomb_bom', { start: 0, end: 1 }), //使用0, 1帧
+                        frameRate: 10, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+
+                    _this.anims.create({
+                        key: 'boss_bom',
+                        frames: _this.anims.generateFrameNumbers('bomb_bom', { start: 2, end: 2 }), //使用0, 1帧
+                        frameRate: 1, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+                    //***bomb End**********************************************************************************
+                    
+                    _this.anims.create({
+                        key: 'playbtn_up',
+                        frames: _this.anims.generateFrameNumbers('playBtn', { start: 0, end: 0 }), //使用0, 1帧
+                        frameRate: 10, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+                    _this.anims.create({
+                        key: 'playbtn_down',
+                        frames: _this.anims.generateFrameNumbers('playBtn', { start: 1, end: 1 }), //使用0, 1帧
+                        frameRate: 10, //每秒10帧
+                        repeat: -1 //告诉动画要循环播放
+                    });
+
+                    _this.physics.add.collider(bombs, platforms); 
+                    _this.physics.add.collider(player, bombs, hitBoss, null, _this);
+
+                    //分數
+                    scoreText = _this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
+
+        }
+
+        function destroyGame(){
+            progressOverBox.destroy();
+            playBtn.destroy();
+            coins.destroy(true);
+            bombs.destroy(true);
+            scoreText.destroy();
+        }
+
 
         function create ()
         {
-            this.add.image(500, 300, 'bg');
 
-            platforms = this.physics.add.staticGroup(); //設定靜態物件 group ex: 牆壁
-            platforms.create(500, 50, 'top');
-            platforms.create(950, 300, 'right');
-            platforms.create(500, 550, 'bottom'); 
-            platforms.create(50, 300, 'left');
+            console.log("create");
+            var logo = this.add.image(500, 300, 'logo');
 
-            platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68, 'ground');
-            platforms.create(190, 130+68+68+34, 'ground');
-            platforms.create(810, 130+68+68+34, 'ground');
-            platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68+68+68+68, 'ground');
+            this.time.addEvent({
+                delay: 1000,
+                callback: ()=>{
+                    this.add.image(500, 300, 'bg');
 
-            
-            //***角色**********************************************************************************
-            //設定角色
-            player = this.physics.add.sprite(200, 400, 'chibi').setScale(1.2);
-            player.setBounce(0.2); //反弹（bounce）值
-            player.setCollideWorldBounds(true); //世界边界（bound）的碰撞
+                    platforms = this.physics.add.staticGroup(); //設定靜態物件 group ex: 牆壁
+                    platforms.create(500, 50, 'top');
+                    platforms.create(950, 300, 'right');
+                    platforms.create(500, 550, 'bottom'); 
+                    platforms.create(50, 300, 'left');
+                    platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68, 'ground');
+                    platforms.create(190, 130+68+68+34, 'ground');
+                    platforms.create(810, 130+68+68+34, 'ground');
+                    platforms.create(500 + Phaser.Math.FloatBetween(-30,30), 130+68+68+68+68, 'ground');
+                    
+                    this.input.on('pointerdown',onObjectClickeddown);
+                    this.input.on('pointerup',onObjectClickedup);
 
-            this.anims.create({
-                key: 'left',
-                frames: this.anims.generateFrameNumbers('chibi', { start: 0, end: 1 }), //使用0, 1帧
-                frameRate: 10, //每秒10帧
-                repeat: -1 //告诉动画要循环播放
-            });
-
-            this.anims.create({
-                key: 'turn',
-                frames: [ { key: 'chibi', frame: 2 } ],
-                frameRate: 20
-            });
-
-            this.anims.create({
-                key: 'right',
-                frames: this.anims.generateFrameNumbers('chibi', { start: 3, end: 4 }),
-                frameRate: 5,
-                repeat: -1
-            });
-            //***角色 End**********************************************************************************
-
-
-
-            
-            //***設定金幣**********************************************************************************
-            //產生10個金幣
-            coins = this.physics.add.group({
-                key: 'coin',
-                repeat: 9,
-                setXY: { x: 150, y: 0, stepX: 80 },
-            });
-            //設定金幣動畫 0~6 依序旋轉
-            this.anims.create({
-                key: 'coin_run',
-                frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 6 }),
-                frameRate: 5,
-                repeat: -1
-            });
-            //設定金幣彈跳且跑動畫
-            coins.children.iterate(function (child) {
-                child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.8));
-                child.anims.play('coin_run');
-            });
-            //判斷 人物與金幣碰撞事件
-            this.physics.add.overlap(player, coins, collectStar, null, this);
-            //***設定金幣 End**********************************************************************************
-
-            //添加事件监听器
-            cursors = this.input.keyboard.createCursorKeys();
-             
-            
-            // 碰撞器（Collider）
-            this.physics.add.collider(player, platforms); 
-            this.physics.add.collider(coins, platforms);
-
-            //分數
-            scoreText = this.add.text(110, 110, 'Coin : 0', { fontSize: '24px', fill: '#e2bc13' ,fontFamily: "'Aldrich', sans-serif" });
+                    initialGame(this);
+                },
+                loop: false
+            })
 
         }
 
         function update ()
         {
-            if (cursors.left.isDown)
-            {
-                player.setVelocityX(-300);
+            
+            if(player){
 
-                player.anims.play('left', true);
-            }
-            else if (cursors.right.isDown)
-            {
-                player.setVelocityX(300);
-
-                player.anims.play('right', true);
-            }
-            else
-            {
-                player.setVelocityX(0);
-
-                player.anims.play('turn');
-            }
-
-            if ((cursors.up.isDown || cursors.space.isDown) && player.body.touching.down)
-            {
-                player.setVelocityY(-550);
-            }
-            var pointer = this.input.activePointer;
-            if (pointer.isDown) {
-                var touchX = pointer.x;
-                var touchY = pointer.y;
-                
-                
-                if(player.x > touchX & player.y > touchY  & touchY < 500){
-                    player.setVelocityX(-300);
-                    player.anims.play('left', true);
-                    
-                    if(player.body.touching.down){
-                        player.setVelocityY(-550);
-                    }
-                }
-                if(player.x < touchX & player.y > touchY & touchY < 500){
-                    player.setVelocityX(300);
-                    player.anims.play('right', true);
-                    
-                    if(player.body.touching.down){
-                        player.setVelocityY(-550);
-                    }
+                if(player.x < 100 || player.x >900 || player.y > 500){
+                    player.setVelocityY(-550);
                 }
 
-                if(player.x > touchX & player.y < touchY){
+                if (cursors.left.isDown)
+                {
                     player.setVelocityX(-300);
+
                     player.anims.play('left', true);
                 }
-                if(player.x < touchX & player.y < touchY){
+                else if (cursors.right.isDown)
+                {
                     player.setVelocityX(300);
+
                     player.anims.play('right', true);
                 }
+                else
+                {
+                    player.setVelocityX(0);
 
+                    player.anims.play('turn');
+                }
+
+                if ((cursors.up.isDown || cursors.space.isDown) && player.body.touching.down)
+                {
+                    player.setVelocityY(-550);
+                }
             }
+            // var pointer = this.input.activePointer;
+            // if (pointer.isDown) {
+            //     var touchX = pointer.x;
+            //     var touchY = pointer.y;
+                
+                
+            //     if(player.x > touchX & player.y > touchY  & touchY < 500){
+            //         player.setVelocityX(-300);
+            //         player.anims.play('left', true);
+                    
+            //         if(player.body.touching.down){
+            //             player.setVelocityY(-550);
+            //         }
+            //     }
+            //     if(player.x < touchX & player.y > touchY & touchY < 500){
+            //         player.setVelocityX(300);
+            //         player.anims.play('right', true);
+                    
+            //         if(player.body.touching.down){
+            //             player.setVelocityY(-550);
+            //         }
+            //     }
 
-            // coins.anims.play('coin_anims');
+            //     if(player.x > touchX & player.y < touchY){
+            //         player.setVelocityX(-300);
+            //         player.anims.play('left', true);
+            //     }
+            //     if(player.x < touchX & player.y < touchY){
+            //         player.setVelocityX(300);
+            //         player.anims.play('right', true);
+            //     }
+
+            // }
+
         }
+        function hitBoss(i,j){
 
+            if(j.anims.currentAnim.key != 'boss_readybom' && j.anims.currentAnim.key != 'boss_bom' ){
+                console.log('first Touch');
+                j.anims.play('boss_readybom');
+                setTimeout(function(){
+                    j.anims.play('boss_bom');
+                    j.setBounce(0);
+                    setTimeout(function(){
+                        j.destroy();
+                    },200);
+                },2000);
+            }else{
+                if(j.anims.currentAnim.key == 'boss_bom'){
+                    console.log('bom');
+                    this.physics.pause();
+                    player.setTint(0xff0000);
+                    player.anims.play('turn');
+                    
+                    // progressOverBox = this.add.graphics();
+                    // progressOverBox.fillStyle(0x222222, 1);
+                    // progressOverBox.fillRect(250, 150,500, 300);
+
+                    // playBtn = this.physics.add.sprite(500, 300, 'playBtn');
+                    // playBtn.anims.play('playbtn_up');
+                    // playBtn.setInteractive();
+                    // game.isOver = true;
+                    
+                }
+            }
+            
+            
+        }
+        
+        function onObjectClickeddown(pointer,gameObject){
+            console.log(pointer);
+            console.log(gameObject);
+
+            playBtn.anims.play('playbtn_down');
+        }
+        
+        function onObjectClickedup(pointer,gameObject){
+            playBtn.anims.play('playbtn_up');
+
+            // destroyGame();
+
+            
+
+        }
         function collectStar (player, star)
         {
             star.disableBody(true, true);
@@ -240,10 +455,21 @@
             scoreText.setText('Coin : ' + score);
 
             if (coins.countActive(true) === 0)
-            {
-                coins.children.iterate(function (child) {
-                    child.enableBody(true, child.x, 0, true, true);
-                });
+            {   
+                setTimeout(function(){
+                    coins.children.iterate(function (child) {
+                        child.enableBody(true, child.x, 0, true, true);
+                    });
+                },500);
+
+                for(var k = 0; k<score/10; k++){
+                    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+                    var bomb = bombs.create(x, 16, 'bomb');
+                    bomb.setBounce(0.99);
+                    bomb.setCollideWorldBounds(true);
+                    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+                    bomb.anims.play('boss_walk');
+                }
             }
         }
     </script>
