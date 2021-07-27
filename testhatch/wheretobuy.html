@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <link rel="stylesheet" href="./hatch.css">
+</head>
+<body>
+
+    <span
+      style="visibility: hidden; display: inline-block;"
+      data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-0000000000000"
+      data-gh-buy-now-button
+      data-gh-mpn-code=""
+      data-gh-ean-code="0000000000000"
+      data-gh-country-code="us"
+      data-gh-configuration-id="60c862c3ceae2418c69bb04f"
+      data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+    >
+    </span>
+    <div class="result-gh-60c862c3ceae2418c69bb04f-0000000000000" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+
+    <script>
+      (function (d, s, id) {
+        if (d.getElementById(id + s)) return;
+        var js, t = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id + s;
+        js.onload = function() {HatchRequest.init()};
+        js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
+        t.parentNode.insertBefore(js, t);
+      }(document, 'script', 'hatch-buy-now-request-'));
+    </script>
+
+</body>
+</html>
