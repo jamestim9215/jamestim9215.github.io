@@ -244,10 +244,6 @@
                         if(mapData[y][x]) platforms.create(54 + 14 + x*31, 67 + 33.4 * y, 'box');
                     }
                 }
-                this.input.addPointer();
-                this.input.addPointer();
-                this.input.addPointer();
-                this.input.addPointer();
 
                 this.initialGame(this);
             },
@@ -286,7 +282,7 @@
                 }
 
                 
-                var pointer = this.input.activePointer;
+                var pointer = this.input.pointer1;
                 if (pointer.isDown) {
                     if(mobileBtnPointerL=="L"){
                         player.setVelocityX(-300);
@@ -310,9 +306,9 @@
                 mobileBtnR.on('pointerdown', () => { mobileBtnR.anims.play('mobileBtnRight_down');  mobileBtnPointerR = "R";});
                 mobileBtnJ.on('pointerdown', () => { mobileBtnJ.anims.play('mobileBtnJump_down');  mobileBtnPointerJ = "J";});
 
-                mobileBtnL.on('pointerout', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointerL = "";});
-                mobileBtnR.on('pointerout', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointerR = ""; });
-                mobileBtnJ.on('pointerout', () => { mobileBtnJ.anims.play('mobileBtnJump_up');mobileBtnPointerJ = "";});
+                // mobileBtnL.on('pointerout', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointerL = "";});
+                // mobileBtnR.on('pointerout', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointerR = ""; });
+                // mobileBtnJ.on('pointerout', () => { mobileBtnJ.anims.play('mobileBtnJump_up');mobileBtnPointerJ = "";});
 
                 mobileBtnR.on('pointerup', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointerR = ""; });
                 mobileBtnL.on('pointerup', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointerL = "";});
@@ -477,6 +473,11 @@
                 mobileBtnL.setInteractive();
                 mobileBtnR.setInteractive();
                 mobileBtnJ.setInteractive();
+
+                
+                this.input.addPointer();
+                // this.input.addPointer();
+                // this.input.addPointer();
 
                 // mobileBtnL.setInteractive();
 
