@@ -26,7 +26,7 @@
         @media (max-width: 768px) {
             canvas{
                 width: 100%;
-                margin-top: auto;
+                margin-top: calc(50vh - 300px);
             }
         }
 
@@ -42,14 +42,22 @@
         var bombs;
         var platforms;
         var cursors;
+        
         var coins;
         var progressOverBox;
         var playBtn;
+        var mobileBtnL;
+        var mobileBtnR;
+        var mobileBtnJ;
+        var mobileBtnPointer = '';
 
         var coins_count = 10;
         var score = 0;
         var hight_score = 0;
         var scoreText;
+        var game_width = 1000;
+        var game_height = 600;
+
 
 
        
@@ -166,6 +174,23 @@
                     'assets/images/playBtn.png',
                     { frameWidth: 103, frameHeight: 50 }
                 );
+
+
+                //載入手機板按鈕 L
+                this.load.spritesheet('mobileBtnLeft', 
+                    'assets/images/BtnLeft.png',
+                    { frameWidth: 200, frameHeight: 160 }
+                );
+                //載入手機板按鈕 R
+                this.load.spritesheet('mobileBtnRight', 
+                    'assets/images/BtnRight.png',
+                    { frameWidth: 200, frameHeight: 160 }
+                );
+                //載入手機板按鈕 Jump
+                this.load.spritesheet('mobileBtnJump', 
+                    'assets/images/jump.png',
+                    { frameWidth: 400, frameHeight: 160 }
+                );
             },
 
             create: function ()
@@ -199,6 +224,7 @@
 
             create: function ()
             {
+                this.cameras.main.setBackgroundColor('#1b1b1e')
                 this.add.image(500, 300, 'bg');
 
                 platforms = this.physics.add.staticGroup(); //設定靜態物件 group ex: 牆壁
@@ -248,7 +274,37 @@
                     {
                         player.setVelocityY(-550);
                     }
+                    
                 }
+
+                
+                var pointer = this.input.activePointer;
+                if (pointer.isDown) {
+                    if(mobileBtnPointer=="L"){
+                        player.setVelocityX(-300);
+                        player.anims.play('left', true);
+                    }
+                    
+                    if(mobileBtnPointer=="R"){
+                        player.setVelocityX(300);
+                        player.anims.play('right', true);
+                    }
+                    
+                    if(mobileBtnPointer=="J" && player.body.touching.down){
+                        player.setVelocityY(-550);
+                    }
+                }
+                
+                    mobileBtnL.on('pointerdown', () => { mobileBtnL.anims.play('mobileBtnLeft_down'); mobileBtnPointer = "L";});
+                    mobileBtnL.on('pointerout', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointer = "";});
+                    mobileBtnR.on('pointerdown', () => { mobileBtnR.anims.play('mobileBtnRight_down');  mobileBtnPointer = "R";});
+                    mobileBtnR.on('pointerout', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointer = ""; });
+                    mobileBtnJ.on('pointerdown', () => { mobileBtnJ.anims.play('mobileBtnJump_down');  mobileBtnPointer = "J";});
+                    mobileBtnJ.on('pointerout', () => { 
+                        
+                        mobileBtnJ.anims.play('mobileBtnJump_up');
+                        mobileBtnPointer = "";
+                     });
             },
             initialGame(_this){
 
@@ -356,6 +412,61 @@
 
                 _this.physics.add.collider(bombs, platforms); 
                 _this.physics.add.collider(player, bombs, this.hitBoss, null, _this);
+
+
+
+
+
+                mobileBtnL = this.add.sprite(120, 800, 'mobileBtnLeft'); 
+                mobileBtnR = this.add.sprite(330, 800, 'mobileBtnRight'); 
+                mobileBtnJ = this.add.sprite(770, 800, 'mobileBtnJump'); 
+
+                _this.anims.create({
+                    key: 'mobileBtnLeft_up',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnLeft', { start: 0, end: 0 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+                _this.anims.create({
+                    key: 'mobileBtnLeft_down',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnLeft', { start: 1, end: 1 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+                _this.anims.create({
+                    key: 'mobileBtnRight_up',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnRight', { start: 0, end: 0 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+                _this.anims.create({
+                    key: 'mobileBtnRight_down',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnRight', { start: 1, end: 1 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+
+                _this.anims.create({
+                    key: 'mobileBtnJump_up',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnJump', { start: 0, end: 0 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+                _this.anims.create({
+                    key: 'mobileBtnJump_down',
+                    frames: _this.anims.generateFrameNumbers('mobileBtnJump', { start: 1, end: 1 }), //使用0, 1帧
+                    frameRate: 10, //每秒10帧
+                    repeat: -1 //告诉动画要循环播放
+                });
+
+                mobileBtnL.anims.play('mobileBtnLeft_up');
+                mobileBtnR.anims.play('mobileBtnRight_up');
+                mobileBtnJ.anims.play('mobileBtnJump_up');
+                mobileBtnL.setInteractive();
+                mobileBtnR.setInteractive();
+                mobileBtnJ.setInteractive();
+
+                // mobileBtnL.setInteractive();
 
                 //分數
                 var _text = 'Score : 0';
@@ -473,11 +584,15 @@
 
         });
 
-        
+        var window_w = window.innerWidth;
+        if(window_w < 768){
+            game_height = 1000;
+        }
+
         var config = {
             type: Phaser.AUTO,
-            width: 1000,
-            height: 600,
+            width: game_width,
+            height: game_height,
             physics: {
                 default: 'arcade',
                 arcade: {
