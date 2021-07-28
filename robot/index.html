@@ -49,7 +49,9 @@
         var mobileBtnL;
         var mobileBtnR;
         var mobileBtnJ;
-        var mobileBtnPointer = '';
+        var mobileBtnPointerL = '';
+        var mobileBtnPointerR = '';
+        var mobileBtnPointerJ = '';
 
         var coins_count = 10;
         var score = 0;
@@ -280,31 +282,30 @@
                 
                 var pointer = this.input.activePointer;
                 if (pointer.isDown) {
-                    if(mobileBtnPointer=="L"){
+                    if(mobileBtnPointerL=="L"){
                         player.setVelocityX(-300);
                         player.anims.play('left', true);
                     }
                     
-                    if(mobileBtnPointer=="R"){
+                    if(mobileBtnPointerR=="R"){
                         player.setVelocityX(300);
                         player.anims.play('right', true);
                     }
                     
-                    if(mobileBtnPointer=="J" && player.body.touching.down){
+                    if(mobileBtnPointerJ=="J" && player.body.touching.down){
                         player.setVelocityY(-550);
                     }
                 }
                 
-                    mobileBtnL.on('pointerdown', () => { mobileBtnL.anims.play('mobileBtnLeft_down'); mobileBtnPointer = "L";});
-                    mobileBtnL.on('pointerout', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointer = "";});
-                    mobileBtnR.on('pointerdown', () => { mobileBtnR.anims.play('mobileBtnRight_down');  mobileBtnPointer = "R";});
-                    mobileBtnR.on('pointerout', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointer = ""; });
-                    mobileBtnJ.on('pointerdown', () => { mobileBtnJ.anims.play('mobileBtnJump_down');  mobileBtnPointer = "J";});
-                    mobileBtnJ.on('pointerout', () => { 
-                        
-                        mobileBtnJ.anims.play('mobileBtnJump_up');
-                        mobileBtnPointer = "";
-                     });
+                mobileBtnL.on('pointerdown', () => { mobileBtnL.anims.play('mobileBtnLeft_down'); mobileBtnPointerL = "L";});
+                mobileBtnL.on('pointerout', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointerL = "";});
+                mobileBtnL.on('pointerup', () => { mobileBtnL.anims.play('mobileBtnLeft_up');  mobileBtnPointerL = "";});
+                mobileBtnR.on('pointerdown', () => { mobileBtnR.anims.play('mobileBtnRight_down');  mobileBtnPointerR = "R";});
+                mobileBtnR.on('pointerout', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointerR = ""; });
+                mobileBtnR.on('pointerup', () => { mobileBtnR.anims.play('mobileBtnRight_up'); mobileBtnPointerR = ""; });
+                mobileBtnJ.on('pointerdown', () => { mobileBtnJ.anims.play('mobileBtnJump_down');  mobileBtnPointerJ = "J";});
+                mobileBtnJ.on('pointerout', () => { mobileBtnJ.anims.play('mobileBtnJump_up');mobileBtnPointerJ = "";});
+                mobileBtnJ.on('pointerup', () => { mobileBtnJ.anims.play('mobileBtnJump_up');mobileBtnPointerJ = "";});
             },
             initialGame(_this){
 
