@@ -227,8 +227,6 @@
 
             create: function ()
             {
-                this.input.addPointer();
-                this.input.addPointer();
 
                 this.cameras.main.setBackgroundColor('#1b1b1e')
                 this.add.image(500, 300, 'bg');
@@ -246,6 +244,10 @@
                         if(mapData[y][x]) platforms.create(54 + 14 + x*31, 67 + 33.4 * y, 'box');
                     }
                 }
+                this.input.addPointer();
+                this.input.addPointer();
+                this.input.addPointer();
+                this.input.addPointer();
 
                 this.initialGame(this);
             },
