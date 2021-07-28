@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map setting</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #app{
+            position: relative;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .box-cantioner{
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            background: url(assets/images/bg.png);
+            background-position: center center;
+            width: 1000px;
+            height: 600px;
+            background-size: cover;
+            
+        }
+        .code-cantioner{
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            width: 500px;
+            height: 600px;
+            text-align: left;
+            overflow-y: auto;
+            padding: 0 15px;
+            background: #333;
+            color: #fff;
+        }
+        .code-cantioner pre{
+            position: relative;
+            margin: 0;
+            padding: 15px;
+            background: #333;
+            color: #fff;
+            white-space: pre-wrap;
+        }
+
+        .map-div{
+            position: relative;
+            margin: auto;
+            top: 49px;
+            width: calc(100% - 108px);
+            height: calc(100% - 100px);
+            border: 1px solid rgba(0,255,0,0.2);
+        }
+        .map-div>div{
+            position: relative;
+            display: inline-block;
+            height: calc(100% / 15);
+            width: 100%;
+        }
+        .box{
+            position: relative;
+            display: inline-block;
+            margin:0;
+            vertical-align: text-top;
+            text-align: center;
+            background: rgba(0,255,0,0.0);
+            width: calc(100%/29 - 2px);
+            height:  calc(100% - 2px);
+            border: 1px solid rgba(0,255,0,0.2);
+        }
+        .box:hover{
+            opacity: 0.5;
+            background-image: url(assets/images/box.png);
+            background-size: cover;
+            background-position: center center;
+        }
+        .box.active{
+            background-image: url(assets/images/box.png);
+            background-size: cover;
+            background-position: center center;
+        }
+        .button-div{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .button-div button{
+            border: 0;
+            background: #666;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .button-div button:hover{
+            background: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="box-cantioner">
+            <div class="map-div" id="map-div">
+                <div v-for="(y,indexY) in mapData" :key="indexY">
+                    <div class="box" v-for="(x,indexX) in y" :key="indexX" @click="selectBox(indexX,indexY)" :class="x==true?'active':''"></div>
+                </div>
+            </div>
+            <div class="button-div">
+                <button @click="resetData()">Reset</button>
+            </div>
+        </div>
+        <div class="code-cantioner">{{mapData}}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+
+    <script>
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                mapData : []
+            },
+            created(){
+                for(var y=0; y< 15; y++){
+                    if(!this.mapData[y]) this.mapData.push([]);
+                    for(var x=0; x< 29; x++){
+                        if(!this.mapData[y][x]) this.mapData[y].push([]);
+                        this.mapData[y][x] = false;
+                    }
+                }
+                console.log(this.mapData);
+               
+            },
+            mounted(){
+            },
+            methods: {
+                resetData(){
+                    for(var y=0; y< 15; y++){
+                        for(var x=0; x< 29; x++){
+                            this.mapData[y][x] = false;
+                        }
+                    }
+                    this.mapData =  JSON.parse(JSON.stringify(this.mapData));
+                    console.log(this.mapData);
+                },
+                selectBox(x,y){
+                    console.log(x+" - " + y);
+                    if(this.mapData[y][x]== true){
+                        this.mapData[y][x] = false;
+                    }else{
+                        this.mapData[y][x] = true;
+                    }
+                    this.mapData =  JSON.parse(JSON.stringify(this.mapData));
+                    console.log(this.mapData);
+                }
+                
+            }
+        })
+
+        Vue.config.devtools = true;
+
+
+        
+    </script>
+</body>
+</html>
