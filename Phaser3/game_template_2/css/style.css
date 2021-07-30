@@ -1,0 +1,12 @@
+html,body{
+    margin: 0 auto;
+    background: #222;
+}
+
+canvas{
+    position: relative;
+    margin: 0 auto;
+    display: inherit;
+    width: 100%;
+    max-width: 1200px;
+}
