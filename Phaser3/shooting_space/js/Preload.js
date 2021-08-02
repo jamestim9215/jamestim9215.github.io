@@ -1,4 +1,4 @@
-class Scene1 extends Phaser.Scene{
+class Preload extends Phaser.Scene{
     constructor(){
         super('bootGame');
     }
@@ -8,7 +8,43 @@ class Scene1 extends Phaser.Scene{
     }
 
     preload(){
+        //loading 進度條
+
+       
+        this.add.text(20, 20, "Loading game");
+        var _this = this;
+
+        var loading1 = false;
+        var loading2 = false;
+        var loading3 = false;
+        this.load.on('progress', function (value) {
+            var load = parseInt(value * 100);
+            console.log(load);
+            
+            if(load < 90 && load > 60 && loading3==false){
+                loading3 = true;
+                _this.add.text(180, 20,".");
+            }else if(load < 60 && load > 30&& loading2==false){
+                loading2 = true;
+                _this.add.text(160, 20,".");
+            }else if(load < 30 && load > 0 && loading1==false){
+                loading1 = true;
+                _this.add.text(140, 20,".");
+            }
+            
+        });
+                
+        this.load.on('complete', function () {
+
+        });
+        //loading End 進度條
+
+
+
         this.load.image('background',"assets/images/bg2.png");
+        this.load.image('star',"assets/images/star.png");
+        this.load.image('heart',"assets/images/heart.png");
+        this.load.image('heart_die',"assets/images/heart_die.png");
 
         this.load.spritesheet('spaceship',"assets/images/spritesheets/spaceship.png",{
             frameWidth: 120,
@@ -94,7 +130,7 @@ class Scene1 extends Phaser.Scene{
 
 
 
-        this.add.text(20, 20, "Loading game");
+        // this.add.text(20, 20, "Loading game");
 
         // setTimeout(()=>{this.add.text(140, 20, ".");},1000);
         // setTimeout(()=>{this.add.text(160, 20, ".");},2000);
@@ -102,7 +138,7 @@ class Scene1 extends Phaser.Scene{
 
         // setTimeout(()=>{this.scene.start("playGame");},5000);
 
-        this.scene.start("playGame");
+        this.scene.start("gameMenu");
     }
 
     update(){
