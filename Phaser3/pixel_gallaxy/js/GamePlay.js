@@ -9,27 +9,30 @@ class GamePlay extends Phaser.Scene {
 
     preload() {
     }
-
     create() {
+        this.life = config.life;
+        this.isAddHeart = false;
+        this.level = 1;
+
         this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height, 'background');
         this.star = this.add.tileSprite(config.width/2, config.height/2 , config.width, config.height, 'star');
 
-        this.ufo1 = this.physics.add.sprite(Phaser.Math.Between(0, config.width), -100, 'ufo').setScale(0.5);
-        this.ufo2 = this.physics.add.sprite(Phaser.Math.Between(0, config.width), -100, 'ufo').setScale(0.5);
-        this.ufo3 = this.physics.add.sprite(Phaser.Math.Between(0, config.width), -100, 'ufo').setScale(0.5);
-
         this.enemies = this.physics.add.group();
-        this.enemies.add(this.ufo1);
-        this.enemies.add(this.ufo2);
-        this.enemies.add(this.ufo3);
+        for(var i=0; i< config.enemyCount; i++){
+            this.createEnemy(0);
+        }
 
-        this.ufo1.anims.play('ufo_anim');
-        this.ufo2.anims.play('ufo_anim');
-        this.ufo3.anims.play('ufo_anim');
+        this.time.addEvent({
+            delay: 30000,
+            callback: ()=>{
+                if(this.player.active){
+                    this.createEnemy(1);
+                }  
+            },
+            callbackScope: this,
+            loop: true
+        });
 
-        this.ufo1.setInteractive();
-        this.ufo2.setInteractive();
-        this.ufo3.setInteractive();
 
         this.input.on('gameobjectdown', this.destoryUfo, this);
 
@@ -110,21 +113,26 @@ class GamePlay extends Phaser.Scene {
 
         this.hearts = this.add.group();
 
-        for(var i=0; i< config.life; i++){
+        for(var i=0; i< this.life; i++){
             this.heart = this.add.image(40 + i*70, 80,"heart");
             this.hearts.add(this.heart);
         }
-        
+
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
     }
 
     update() {
         if(this.firstGame==false){
-            this.moveUfo(this.ufo1, 3);
-            this.moveUfo(this.ufo2, 4);
-            this.moveUfo(this.ufo3, 5);
-
+            for(var i=0; i<this.enemies.getChildren().length; i++){
+                var ufo = this.enemies.getChildren()[i];
+                if(ufo.type == 0){
+                    this.moveUfo(ufo, Phaser.Math.Between(3, 6));
+                }else{
+                    this.moveUfo(ufo, 2);
+                }
+                
+            }
 
         }
         this.background.tilePositionY -= 0.5;
@@ -148,11 +156,40 @@ class GamePlay extends Phaser.Scene {
         }
 
         
-        if(Phaser.Input.Keyboard.JustDown(this.enterKey) && config.life<=0){
-            config.life = 3;
+        if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.life<=0){
+            this.life = 3;
             this.scene.start('playGame');
         }
+
+        if(this.score !=0 && this.score % config.addLife == 0 && this.life != config.life && this.isAddHeart==false){
+            this.isAddHeart = true;
+            this.createHeart();
+        }
+
     }
+
+    createHeart(){
+        this.heart = this.physics.add.sprite(Phaser.Math.Between(0, config.width), 500, 'addHeart');
+        this.heart.play("addheart_anim");
+        this.heart.setVelocity(100,100);
+        this.heart.setCollideWorldBounds(true);
+        this.heart.setBounce(1);
+
+        this.physics.add.overlap(this.player, this.heart,this.addHeartFun, null , this);
+    }
+    addHeartFun(player, heart){
+        heart.destroy();
+
+        if(config.life > this.life){
+            this.life = this.life + 1;
+            this.hearts.getChildren()[this.life-1].setTexture('heart');
+            this.isAddHeart = false;
+        }
+
+
+    }
+    
+
     hurtPlayer(player, enemy){
         
         if(this.player.alpha < 1){
@@ -163,8 +200,8 @@ class GamePlay extends Phaser.Scene {
         
         this.dieSound.play();
         this.player.setCollideWorldBounds(false);
-        config.life = config.life-1;
-        this.hearts.getChildren()[config.life].setTexture('heart_die');
+        this.life = this.life-1;
+        this.hearts.getChildren()[this.life].setTexture('heart_die');
         
         
        
@@ -175,7 +212,7 @@ class GamePlay extends Phaser.Scene {
 
 
         
-        if(config.life > 0){
+        if(this.life > 0){
             this.time.addEvent({
                 delay: 500,
                 callback: this.resetPlayer,
@@ -186,6 +223,118 @@ class GamePlay extends Phaser.Scene {
             this.gameOverInfo();
         }
         
+    }
+    resetPlayer(){
+        var x = config.width / 2;
+        var y = config.height + 300;
+
+        this.player.enableBody(true, x, y, true, true);
+        
+        this.player.alpha = 0.5;
+        var tween = this.tweens.add({
+            targets: this.player,
+            y: config.height - 200,
+            ease: 'Power1',
+            duration: 1500,
+            repeat:0,
+            onComplete: function(){
+                this.player.alpha = 1;
+            },
+            callbackScope: this
+        });
+    }
+
+    movePlayerManager(){
+        if(this.cursorKeys.left.isDown){
+            // this.player.setVelocityX(-gameSetting.playerSpeed);
+            this.player.x -= 10;
+        }else if(this.cursorKeys.right.isDown){
+            // this.player.setVelocityX(gameSetting.playerSpeed);
+            this.player.x += 10;
+        }else{
+            
+        }
+        if(this.cursorKeys.up.isDown){
+            // this.player.setVelocityY(-gameSetting.playerSpeed);
+            this.player.y -= 10;
+        }else if(this.cursorKeys.down.isDown){
+            // this.player.setVelocityY(gameSetting.playerSpeed);
+            this.player.y += 10;
+            
+        }
+    }
+
+    //Enemy
+    createEnemy(type){
+        var ufo = null;
+        if(type==0){
+            ufo = this.physics.add.sprite(Phaser.Math.Between(0, config.width), -100, 'ufo').setScale(0.5);
+            ufo.anims.play('ufo_anim');
+            ufo.life = config.enemyLife;
+            ufo.type = type;
+            ufo.setInteractive();
+        }else{
+            ufo = this.physics.add.sprite(Phaser.Math.Between(100, config.width-100), -100, 'ufo').setScale(1.2);
+            ufo.anims.play('ufo_anim');
+            ufo.life = config.bossLife;
+            ufo.type = type;
+            ufo.setInteractive();
+        }
+        this.enemies.add(ufo);
+    } 
+    hitEnemy(projectile, enemy){
+        projectile.destroy();
+        if(enemy.life>1){
+            enemy.life = enemy.life - 1;
+        }else{
+            var explosion = new Explosion(this, enemy.x, enemy.y);
+            this.resetUfoPos(enemy);
+            this.score += 10;
+            var scoreFormated = this.zeroPad(this.score, 6);
+            this.scoreLabel.text = "SCORE " + scoreFormated;
+        }
+    }
+    moveUfo(ufo, speed) {
+        ufo.y += speed;
+        if (ufo.y - 60 > config.height) {
+            this.resetUfoPos(ufo);
+        }
+    }
+
+    resetUfoPos(ufo) {
+        if(ufo.type == 1){
+            ufo.destroy();
+        }else{
+            ufo.life = config.enemyLife;
+            ufo.y = -60;
+            var randomX = Phaser.Math.Between(0, config.width);
+            ufo.x = randomX;
+        }
+    }
+    destoryUfo(pointer, gameObject) {
+        gameObject.setTexture('ufoDie');
+        gameObject.play('die_anim');
+    }
+    shootBeam(){
+        var beam = new Beam(this);
+        var beamL = new Beamleft(this);
+        var beamR = new Beamright(this);
+
+        this.beamSound.play();
+
+        // this.projectiles.add(beam); 
+        // this.projectiles.add(beamL); 
+        // this.projectiles.add(beamR); 
+        
+        // this.physics.add.collider(this.projectiles,this.enemies);
+    }
+
+    zeroPad(number,size){
+        var stringNumber = String(number);
+        while(stringNumber.length < (size || 2)){
+            stringNumber = "0" + stringNumber;
+        }
+        return stringNumber
     }
     gameOverInfo(){
         var graphics = this.add.graphics();
@@ -260,91 +409,5 @@ class GamePlay extends Phaser.Scene {
         });
         
 
-    }
-    resetPlayer(){
-        var x = config.width / 2;
-        var y = config.height + 300;
-
-        this.player.enableBody(true, x, y, true, true);
-        
-        this.player.alpha = 0.5;
-        var tween = this.tweens.add({
-            targets: this.player,
-            y: config.height - 200,
-            ease: 'Power1',
-            duration: 1500,
-            repeat:0,
-            onComplete: function(){
-                this.player.alpha = 1;
-            },
-            callbackScope: this
-        });
-    }
-    hitEnemy(projectile, enemy){
-        var explosion = new Explosion(this, enemy.x, enemy.y);
-    
-        projectile.destroy();
-        this.resetUfoPos(enemy);
-
-        this.score += 15;
-        var scoreFormated = this.zeroPad(this.score, 6);
-        this.scoreLabel.text = "SCORE " + scoreFormated;
-    }
-
-    moveUfo(ufo, speed) {
-        ufo.y += speed;
-        if (ufo.y - 60 > config.height) {
-            this.resetUfoPos(ufo);
-        }
-    }
-    resetUfoPos(ufo) {
-        ufo.y = -60;
-        var randomX = Phaser.Math.Between(0, config.width);
-        ufo.x = randomX;
-    }
-    destoryUfo(pointer, gameObject) {
-        gameObject.setTexture('ufoDie');
-        gameObject.play('die_anim');
-    }
-    shootBeam(){
-        var beam = new Beam(this);
-        var beamL = new Beamleft(this);
-        var beamR = new Beamright(this);
-
-        this.beamSound.play();
-
-        // this.projectiles.add(beam); 
-        // this.projectiles.add(beamL); 
-        // this.projectiles.add(beamR); 
-        
-        // this.physics.add.collider(this.projectiles,this.enemies);
-    }
-
-    movePlayerManager(){
-        if(this.cursorKeys.left.isDown){
-            // this.player.setVelocityX(-gameSetting.playerSpeed);
-            this.player.x -= 10;
-        }else if(this.cursorKeys.right.isDown){
-            // this.player.setVelocityX(gameSetting.playerSpeed);
-            this.player.x += 10;
-        }else{
-            
-        }
-        if(this.cursorKeys.up.isDown){
-            // this.player.setVelocityY(-gameSetting.playerSpeed);
-            this.player.y -= 10;
-        }else if(this.cursorKeys.down.isDown){
-            // this.player.setVelocityY(gameSetting.playerSpeed);
-            this.player.y += 10;
-            
-        }
-    }
-
-    zeroPad(number,size){
-        var stringNumber = String(number);
-        while(stringNumber.length < (size || 2)){
-            stringNumber = "0" + stringNumber;
-        }
-        return stringNumber
     }
 }

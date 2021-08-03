@@ -19,6 +19,7 @@ class GameMenu extends Phaser.Scene{
 
         this.player = this.physics.add.sprite(config.width/2, config.height + 100, 'spaceship');
         this.player.anims.play('ship_anim');
+        
 
         
         this.mainTitle = this.add.bitmapText( config.width/2 ,config.height/3 - 60, "pixelFont", "Piexl", 60);

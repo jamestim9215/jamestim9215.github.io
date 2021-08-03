@@ -9,7 +9,6 @@ class Preload extends Phaser.Scene{
 
     preload(){
         //loading 進度條
-
        
         this.add.text(20, 20, "Loading game");
         var _this = this;
@@ -66,6 +65,13 @@ class Preload extends Phaser.Scene{
             frameWidth: 8,
             frameHeight: 8
         });
+
+        
+        this.load.spritesheet('addHeart',"assets/images/spritesheets/heart.png",{
+            frameWidth: 60,
+            frameHeight: 60
+        });
+
 
         this.load.bitmapFont("pixelFont","assets/fonts/ka1.png","assets/fonts/ka1.xml");
 
@@ -125,6 +131,13 @@ class Preload extends Phaser.Scene{
             key: "beam_anim",
             frames: this.anims.generateFrameNumbers('beam'),
             frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "addheart_anim",
+            frames: this.anims.generateFrameNumbers('addHeart'),
+            frameRate: 5,
             repeat: -1
         })
 

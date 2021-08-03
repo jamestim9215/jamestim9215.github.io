@@ -10,6 +10,10 @@ var config = {
         }
     },
     life: 3,
+    addLife: 100, 
+    enemyCount: 5,
+    enemyLife: 3,
+    bossLife: 30,
 }
 var  gameSetting =  {
     playerSpeed: 500,
