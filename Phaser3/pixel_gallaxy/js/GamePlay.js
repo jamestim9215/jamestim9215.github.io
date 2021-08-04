@@ -16,7 +16,7 @@ class GamePlay extends Phaser.Scene {
         this.enemyMoveSpeed = [3,6];
         this.bossMoveSpeed = 2;
         this.level = 1;
-        this.powerLevel = 1;
+        this.powerLevel = 3;
         this.levelUpSetting = false;
         this.ufoLife = gameSetting.enemyLife;
 
@@ -270,7 +270,7 @@ class GamePlay extends Phaser.Scene {
             this.hearts.getChildren()[this.life].setTexture('heart_die');
         }
         if(this.powerLevel > 1){
-            this.powerLevel = 1;
+            this.powerLevel = this.powerLevel - 1;
         }
        
 
@@ -406,10 +406,14 @@ class GamePlay extends Phaser.Scene {
         var beam = new Beam(this);
 
         if(this.powerLevel == 2){
-        
             var beamL = new Beamleft(this);
             var beamR = new Beamright(this);
-
+        }
+        if(this.powerLevel == 3){
+            var beamL = new Beamleft(this);
+            var beamR = new Beamright(this);
+            var beamL2 = new Beamleft2(this);
+            var beamR2 = new Beamright2(this);
         }
 
         this.beamSound.play();

@@ -14,7 +14,7 @@ var  gameSetting =  {
     playerSpeed: 500,
 
     life: 3, //玩家生命
-    powerLevel: 2, //武器等級
+    powerLevel: 3, //武器等級
 
     enemyCount: 3, //初始 怪物數量
     enemyLife: 1, //小怪生命
