@@ -10,20 +10,26 @@ class GamePlay extends Phaser.Scene {
     preload() {
     }
     create() {
-        this.life = config.life;
+        this.life = gameSetting.life;
         this.isAddHeart = false;
+        this.isPowerUp = false;
+        this.enemyMoveSpeed = [3,6];
+        this.bossMoveSpeed = 2;
         this.level = 1;
+        this.powerLevel = 1;
+        this.levelUpSetting = false;
+        this.ufoLife = gameSetting.enemyLife;
 
         this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height, 'background');
         this.star = this.add.tileSprite(config.width/2, config.height/2 , config.width, config.height, 'star');
 
         this.enemies = this.physics.add.group();
-        for(var i=0; i< config.enemyCount; i++){
+        for(var i=0; i< gameSetting.enemyCount; i++){
             this.createEnemy(0);
         }
 
         this.time.addEvent({
-            delay: 30000,
+            delay: 20000,
             callback: ()=>{
                 if(this.player.active){
                     this.createEnemy(1);
@@ -85,6 +91,10 @@ class GamePlay extends Phaser.Scene {
         var scoreFormated = this.zeroPad(this.score, 6);
         this.scoreLabel = this.add.bitmapText( 10 , 5, "pixelFont", "SCORE "+scoreFormated, 24);
 
+        
+        this.levelLabel = this.add.bitmapText(  config.width - 5 , 5, "pixelFont", "Level "+this.level, 24);
+        this.levelLabel.setOrigin(1,0);
+
         this.beamSound = this.sound.add("audio_beam");
         this.dieSound = this.sound.add("audio_die");
         // this.music = this.sound.add("music");
@@ -101,7 +111,7 @@ class GamePlay extends Phaser.Scene {
         // this.music.play(musicConfig);
 
         // this.time.addEvent({
-        //     delay: 500,
+        //     delay: 250,
         //     callback: ()=>{
         //         if(this.player.active){
         //             this.shootBeam();
@@ -127,11 +137,10 @@ class GamePlay extends Phaser.Scene {
             for(var i=0; i<this.enemies.getChildren().length; i++){
                 var ufo = this.enemies.getChildren()[i];
                 if(ufo.type == 0){
-                    this.moveUfo(ufo, Phaser.Math.Between(3, 6));
+                    this.moveUfo(ufo, ufo.speed);
                 }else{
-                    this.moveUfo(ufo, 2);
+                    this.moveUfo(ufo, ufo.speed);
                 }
-                
             }
 
         }
@@ -161,15 +170,71 @@ class GamePlay extends Phaser.Scene {
             this.scene.start('playGame');
         }
 
-        if(this.score !=0 && this.score % config.addLife == 0 && this.life != config.life && this.isAddHeart==false){
+        if(this.score !=0 && this.score % gameSetting.addLife== 0 && this.life != gameSetting.life && this.isAddHeart==false){
             this.isAddHeart = true;
             this.createHeart();
         }
 
-    }
+        // if(this.score !=0 && this.score % gameSetting.addPowerUp== 0 && this.powerLevel != gameSetting.powerLevel && this.isPowerUp==false){
+        //     console.log("???????");
+        //     this.isPowerUp = true;
+        //     this.createPowerUp();
+        // }
 
+        if(this.levelUpSetting){
+            this.levelUp();
+        }
+
+    }
+    levelUp(){
+        if(this.level % gameSetting.createEnemy == 0){
+            this.createEnemy(0);
+        }
+        if(this.level % gameSetting.addEnemyLife == 0){
+            this.ufoLife = this.ufoLife + 1;
+        }
+        if(this.level % gameSetting.addEnemyMove == 0){
+            this.enemyMoveSpeed[1] = this.enemyMoveSpeed[1] + 0.2;
+        }
+        if(this.level % gameSetting.addBossMove == 0){
+            this.bossMoveSpeed = this.bossMoveSpeed + 1;
+        }
+        for(var i=0; i<this.enemies.getChildren().length; i++){
+            var ufo = this.enemies.getChildren()[i];
+            if(ufo.type == 0){
+                ufo.life = this.ufoLife;
+                ufo.speed = Phaser.Math.Between(3, this.enemyMoveSpeed[1]);
+            }else{
+                ufo.life = ufo.life + 10;
+                ufo.speed = this.bossMoveSpeed;
+            }
+            console.log(ufo.type + " / " + ufo.life);
+        }
+
+        this.levelUpSetting = false;
+    }
+    createPowerUp(){
+        this.powerup = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), Phaser.Math.Between(50, config.height-50), 'powerup');
+        this.powerup.play("powerup_anim");
+        this.powerup.setVelocity(100,100);
+        this.powerup.setCollideWorldBounds(true);
+        this.powerup.setBounce(1);
+
+        this.physics.add.overlap(this.player, this.powerup,this.addPowerUpFun, null , this);
+
+        console.log("??? IN");
+    }
+    addPowerUpFun(player, powerup){
+        powerup.destroy();
+        
+        console.log(" OUT");
+
+        if(gameSetting.powerLevel > this.powerLevel){
+            this.powerLevel = this.powerLevel + 1;
+        }
+    }
     createHeart(){
-        this.heart = this.physics.add.sprite(Phaser.Math.Between(0, config.width), 500, 'addHeart');
+        this.heart = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), Phaser.Math.Between(50, config.height-50), 'addHeart');
         this.heart.play("addheart_anim");
         this.heart.setVelocity(100,100);
         this.heart.setCollideWorldBounds(true);
@@ -180,10 +245,10 @@ class GamePlay extends Phaser.Scene {
     addHeartFun(player, heart){
         heart.destroy();
 
-        if(config.life > this.life){
+        if(gameSetting.life > this.life){
             this.life = this.life + 1;
             this.hearts.getChildren()[this.life-1].setTexture('heart');
-            this.isAddHeart = false;
+            
         }
 
 
@@ -200,10 +265,13 @@ class GamePlay extends Phaser.Scene {
         
         this.dieSound.play();
         this.player.setCollideWorldBounds(false);
-        this.life = this.life-1;
-        this.hearts.getChildren()[this.life].setTexture('heart_die');
-        
-        
+        if(this.life > 0){
+            this.life = this.life-1;
+            this.hearts.getChildren()[this.life].setTexture('heart_die');
+        }
+        if(this.powerLevel > 1){
+            this.powerLevel = 1;
+        }
        
 
         var explosion = new Explosion(this, player.x, player.y);
@@ -268,28 +336,47 @@ class GamePlay extends Phaser.Scene {
     createEnemy(type){
         var ufo = null;
         if(type==0){
-            ufo = this.physics.add.sprite(Phaser.Math.Between(0, config.width), -100, 'ufo').setScale(0.5);
+            ufo = this.physics.add.sprite(Phaser.Math.Between(0, config.width), Phaser.Math.Between(-100, -300), 'ufo').setScale(0.5);
             ufo.anims.play('ufo_anim');
-            ufo.life = config.enemyLife;
+            ufo.life = this.ufoLife;
             ufo.type = type;
+            ufo.speed = Phaser.Math.Between(3, 5);
             ufo.setInteractive();
         }else{
-            ufo = this.physics.add.sprite(Phaser.Math.Between(100, config.width-100), -100, 'ufo').setScale(1.2);
+            ufo = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), -100, 'ufo').setScale(1.2);
             ufo.anims.play('ufo_anim');
-            ufo.life = config.bossLife;
+            ufo.life = gameSetting.bossLife;
             ufo.type = type;
+            ufo.speed = 2;
             ufo.setInteractive();
         }
         this.enemies.add(ufo);
     } 
     hitEnemy(projectile, enemy){
         projectile.destroy();
+        console.log(enemy.life);
         if(enemy.life>1){
             enemy.life = enemy.life - 1;
         }else{
             var explosion = new Explosion(this, enemy.x, enemy.y);
             this.resetUfoPos(enemy);
-            this.score += 10;
+            if(enemy.type==0){
+                this.score += 10;
+            }else{
+                this.score += 50;
+                this.level = this.level + 1;
+                if(this.score !=0 &&  this.powerLevel != gameSetting.powerLevel && this.isPowerUp==false){
+                    this.isPowerUp = true;
+                    this.createPowerUp();
+                }
+            }
+            if(this.score % gameSetting.levelUp == 0){
+                this.level = this.level + 1;
+                this.levelUpSetting = true;
+                this.levelLabel.text = "Level "+this.level;
+            }
+            this.isAddHeart = false;
+            this.isPowerUp = false;
             var scoreFormated = this.zeroPad(this.score, 6);
             this.scoreLabel.text = "SCORE " + scoreFormated;
         }
@@ -305,7 +392,7 @@ class GamePlay extends Phaser.Scene {
         if(ufo.type == 1){
             ufo.destroy();
         }else{
-            ufo.life = config.enemyLife;
+            ufo.life = this.ufoLife;
             ufo.y = -60;
             var randomX = Phaser.Math.Between(0, config.width);
             ufo.x = randomX;
@@ -317,8 +404,13 @@ class GamePlay extends Phaser.Scene {
     }
     shootBeam(){
         var beam = new Beam(this);
-        var beamL = new Beamleft(this);
-        var beamR = new Beamright(this);
+
+        if(this.powerLevel == 2){
+        
+            var beamL = new Beamleft(this);
+            var beamR = new Beamright(this);
+
+        }
 
         this.beamSound.play();
 
@@ -360,6 +452,8 @@ class GamePlay extends Phaser.Scene {
         this.gameoverScore = this.add.bitmapText( config.width/2 ,config.height/2, "pixelFont", this.score, 60);
         this.gameoverScore.setOrigin(0.5,0.5);
         this.gameoverScore.alpha = 0;
+
+        this.scoreLabel.text = "";
         
         this.enterTryMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter to try angin", 16);
         this.enterTryMessage.setOrigin(0.5,0.5);

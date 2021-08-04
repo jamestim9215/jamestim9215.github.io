@@ -72,6 +72,11 @@ class Preload extends Phaser.Scene{
             frameHeight: 60
         });
 
+        this.load.spritesheet('powerup',"assets/images/spritesheets/powerup.png",{
+            frameWidth: 60,
+            frameHeight: 60
+        });
+
 
         this.load.bitmapFont("pixelFont","assets/fonts/ka1.png","assets/fonts/ka1.xml");
 
@@ -137,6 +142,13 @@ class Preload extends Phaser.Scene{
         this.anims.create({
             key: "addheart_anim",
             frames: this.anims.generateFrameNumbers('addHeart'),
+            frameRate: 5,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "powerup_anim",
+            frames: this.anims.generateFrameNumbers('powerup'),
             frameRate: 5,
             repeat: -1
         })
