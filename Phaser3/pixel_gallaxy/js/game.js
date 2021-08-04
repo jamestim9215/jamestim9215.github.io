@@ -1,4 +1,5 @@
 var config = {
+    type: Phaser.AUTO,
     width: 600,
     height: 1000,
     backgroundColor: 0x000000,
@@ -6,12 +7,9 @@ var config = {
     physics:{
         default: "arcade",
         arcade:{
+            fps: 60,
             debug: false
         },
-        // fps: {
-        //     target: 60,
-        //     forceSetTimeOut: true
-        // },
     },
 }
 var  gameSetting =  {

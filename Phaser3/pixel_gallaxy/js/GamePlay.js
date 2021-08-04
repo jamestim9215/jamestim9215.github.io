@@ -133,7 +133,6 @@ class GamePlay extends Phaser.Scene {
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
     }
-
     update() {
         if(this.firstGame==false){
             for(var i=0; i<this.enemies.getChildren().length; i++){
