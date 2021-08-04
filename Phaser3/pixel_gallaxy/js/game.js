@@ -33,3 +33,4 @@ var  gameSetting =  {
 var game = new Phaser.Game(config);
 
 
+

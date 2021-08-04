@@ -10,6 +10,8 @@ class GamePlay extends Phaser.Scene {
     preload() {
     }
     create() {
+        this.physics.world.setFPS(60);
+        
         this.life = gameSetting.life;
         this.isAddHeart = false;
         this.isPowerUp = false;
