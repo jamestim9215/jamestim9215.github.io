@@ -525,7 +525,7 @@ class GamePlay extends Phaser.Scene {
 
         this.scoreLabel.text = "";
         
-        this.enterTryMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter to try angin", 16);
+        this.enterTryMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter or touch to play angin", 16);
         this.enterTryMessage.setOrigin(0.5,0.5);
         this.enterTryMessage.alpha = 0;
 

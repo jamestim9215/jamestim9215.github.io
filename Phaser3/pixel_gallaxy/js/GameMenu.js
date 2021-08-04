@@ -31,7 +31,7 @@ class GameMenu extends Phaser.Scene{
         this.mainSubTitle.alpha = 0;
 
         
-        this.enterMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter to play", 16);
+        this.enterMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter or touch to play", 16);
         this.enterMessage.setOrigin(0.5,0.5);
         this.enterMessage.alpha = 0;
         this.tweens.add({

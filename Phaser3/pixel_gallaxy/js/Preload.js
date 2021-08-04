@@ -11,15 +11,18 @@ class Preload extends Phaser.Scene{
         //loading 進度條
        
         this.add.text(20, 20, "Loading game", {fontSize: 24});
+        var loadingText = this.add.text(260, 20,"0%", {fontSize: 24});
+
         var _this = this;
 
         var loading1 = false;
         var loading2 = false;
         var loading3 = false;
+
         this.load.on('progress', function (value) {
             var load = parseInt(value * 100);
             console.log(load);
-            
+            loadingText.text = load + "%";
             if(load < 90 && load > 60 && loading3==false){
                 loading3 = true;
                 _this.add.text(240, 20,".", {fontSize: 24});

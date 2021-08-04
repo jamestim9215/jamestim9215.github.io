@@ -1,4 +1,6 @@
 var window_width = window.innerWidth;
+var window_Height = window.innerHeight;
+console.log(window_Height);
 
 var config = {
     type: Phaser.AUTO,
