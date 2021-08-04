@@ -10,7 +10,7 @@ class Preload extends Phaser.Scene{
     preload(){
         //loading 進度條
        
-        this.add.text(20, 20, "Loading game");
+        this.add.text(20, 20, "Loading game", {fontSize: 24});
         var _this = this;
 
         var loading1 = false;
@@ -22,13 +22,13 @@ class Preload extends Phaser.Scene{
             
             if(load < 90 && load > 60 && loading3==false){
                 loading3 = true;
-                _this.add.text(180, 20,".");
+                _this.add.text(240, 20,".", {fontSize: 24});
             }else if(load < 60 && load > 30&& loading2==false){
                 loading2 = true;
-                _this.add.text(160, 20,".");
+                _this.add.text(220, 20,".", {fontSize: 24});
             }else if(load < 30 && load > 0 && loading1==false){
                 loading1 = true;
-                _this.add.text(140, 20,".");
+                _this.add.text(200, 20,".", {fontSize: 24});
             }
             
         });
