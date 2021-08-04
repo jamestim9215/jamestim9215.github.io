@@ -16,7 +16,7 @@ class GamePlay extends Phaser.Scene {
         this.enemyMoveSpeed = [3,6];
         this.bossMoveSpeed = 2;
         this.level = 1;
-        this.powerLevel = 3;
+        this.powerLevel = 1;
         this.levelUpSetting = false;
         this.ufoLife = gameSetting.enemyLife;
 
