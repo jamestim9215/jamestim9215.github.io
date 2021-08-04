@@ -7,7 +7,8 @@ var config = {
         default: "arcade",
         arcade:{
             debug: false
-        }
+        },
+        fps: 60
     },
 }
 var  gameSetting =  {
