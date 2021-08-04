@@ -101,52 +101,59 @@ class GameMenu extends Phaser.Scene{
         this.star.tilePositionY -= 1;
 
         if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.isInit==true){
-            this.tweens.add({
-                targets: this.mainTitle,
-                alpha: 0,
-                ease: 'Power2',
-                duration: 500,
-                repeat:0,
-                onComplete: function(){
-
-                },
-                callbackScope: this
-            });
-            this.tweens.add({
-                targets: this.mainSubTitle,
-                alpha: 0,
-                ease: 'Power2',
-                duration: 1500,
-                repeat:0,
-                onComplete: function(){
-                },
-                callbackScope: this
-            });
-            
-            this.tweens.add({
-                targets: this.enterMessage,
-                alpha: 0,
-                ease: 'Power2',
-                duration: 3000,
-                repeat:0,
-                onComplete: function(){
-
-                },
-                callbackScope: this
-            });
-            this.tweens.add({
-                targets: this.player,
-                y: -100,
-                ease: 'Power1',
-                duration: 1000,
-                repeat:0,
-                onComplete: function(){
-                    console.log("????");
-                    this.scene.start('playGame');
-                },
-                callbackScope: this
-            });
+            this.playGame();
             
         }
+        if(this.isInit==true){
+            this.input.on('pointerup',()=>{
+                this.playGame();
+            });
+        }
+    }
+    playGame(){
+        this.tweens.add({
+            targets: this.mainTitle,
+            alpha: 0,
+            ease: 'Power2',
+            duration: 500,
+            repeat:0,
+            onComplete: function(){
+
+            },
+            callbackScope: this
+        });
+        this.tweens.add({
+            targets: this.mainSubTitle,
+            alpha: 0,
+            ease: 'Power2',
+            duration: 1500,
+            repeat:0,
+            onComplete: function(){
+            },
+            callbackScope: this
+        });
+        
+        this.tweens.add({
+            targets: this.enterMessage,
+            alpha: 0,
+            ease: 'Power2',
+            duration: 3000,
+            repeat:0,
+            onComplete: function(){
+
+            },
+            callbackScope: this
+        });
+        this.tweens.add({
+            targets: this.player,
+            y: -100,
+            ease: 'Power1',
+            duration: 1000,
+            repeat:0,
+            onComplete: function(){
+                this.scene.start('playGame');
+            },
+            callbackScope: this
+        });
     }
 }
