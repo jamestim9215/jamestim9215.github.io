@@ -148,10 +148,10 @@ class GamePlay extends Phaser.Scene {
 
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
+
         
     }
     update() {
-
 
 
         if(this.firstGame==false){
@@ -195,10 +195,6 @@ class GamePlay extends Phaser.Scene {
         }
 
         
-        if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.life<=0){
-            this.life = 3;
-            this.scene.start('playGame');
-        }
 
         // if(this.score !=0 && this.score % gameSetting.addLife== 0 && this.life != gameSetting.life && this.isAddHeart==false){
         //     this.isAddHeart = true;
@@ -207,6 +203,12 @@ class GamePlay extends Phaser.Scene {
 
         if(this.levelUpSetting){
             this.levelUp();
+        }
+
+        
+        if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.life<=0){
+            this.life = 3;
+            this.scene.start('playGame');
         }
 
     }
@@ -541,6 +543,14 @@ class GamePlay extends Phaser.Scene {
                 });
             },
             callbackScope: this
+        });
+
+        this.input.on('pointerdown',()=>{
+            this.input.on('pointerup',()=>{
+                this.life = 3;
+                this.scene.start('playGame');
+                
+            });
         });
         
 

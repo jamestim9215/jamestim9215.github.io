@@ -94,6 +94,12 @@ class GameMenu extends Phaser.Scene{
         
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
+        this.isTouch = false;
+        
+        this.input.on('pointerup',()=>{
+            this.isTouch = true;
+        });
+
     }
 
     update(){
@@ -104,11 +110,11 @@ class GameMenu extends Phaser.Scene{
             this.playGame();
             
         }
-        if(this.isInit==true){
-            this.input.on('pointerup',()=>{
-                this.playGame();
-            });
+        if(this.isInit==true && this.isTouch){
+            
+            this.playGame();
         }
+        
     }
     playGame(){
         this.tweens.add({
