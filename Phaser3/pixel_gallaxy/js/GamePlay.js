@@ -10,6 +10,7 @@ class GamePlay extends Phaser.Scene {
     preload() {
     }
     create() {
+        this.physics.world.setFPS(60);
         
         this.life = gameSetting.life;
         this.isAddHeart = false;
@@ -316,19 +317,19 @@ class GamePlay extends Phaser.Scene {
     movePlayerManager(){
         if(this.cursorKeys.left.isDown){
             // this.player.setVelocityX(-gameSetting.playerSpeed);
-            this.player.x -= 10;
+            this.player.x -= 8;
         }else if(this.cursorKeys.right.isDown){
             // this.player.setVelocityX(gameSetting.playerSpeed);
-            this.player.x += 10;
+            this.player.x += 8;
         }else{
             
         }
         if(this.cursorKeys.up.isDown){
             // this.player.setVelocityY(-gameSetting.playerSpeed);
-            this.player.y -= 10;
+            this.player.y -= 8;
         }else if(this.cursorKeys.down.isDown){
             // this.player.setVelocityY(gameSetting.playerSpeed);
-            this.player.y += 10;
+            this.player.y += 8;
             
         }
     }

@@ -8,7 +8,10 @@ var config = {
         arcade:{
             debug: false
         },
-        fps: 60
+        // fps: {
+        //     target: 60,
+        //     forceSetTimeOut: true
+        // },
     },
 }
 var  gameSetting =  {
