@@ -148,7 +148,18 @@ class GamePlay extends Phaser.Scene {
 
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
-
+        
+        // this.input.on('pointerUp',function(pointer){
+        //     onTouchX = pointer.x;
+        //     onTouchY = pointer.y;
+        // })
+            
+        this.onTouchX = 0;
+        this.onTouchY = 0;
+        this.playerXX = this.player.x;
+        this.playerYY = this.player.y;
+        this.isInput = false;
+        
         
     }
     update() {
@@ -169,15 +180,31 @@ class GamePlay extends Phaser.Scene {
         this.star.tilePositionY -= 1;
 
         this.movePlayerManager();
-        
-        var pointer = this.input.activePointer;
-        if (pointer.isDown) {
-            var touchX = pointer.x;
-            var touchY = pointer.y;
 
-            this.player.x = touchX;
-            this.player.y = touchY;
+        var pointer = this.input.activePointer;
+        this.input.on('pointerdown',()=>{
+            this.onTouchX = pointer.x;
+            this.onTouchY = pointer.y;
+            this.playerXX = this.player.x;
+            this.playerYY = this.player.y;
+            this.isInput = true;
+        });
+        this.input.on('pointerup',()=>{
+            this.isInput = false;
+            this.onTouchX = pointer.x;
+            this.onTouchY = pointer.y;
+            this.playerXX = this.player.x;
+            this.playerYY = this.player.y;
+        });
+
+        if(this.isInput) {
+           var x = pointer.x - this.onTouchX;
+           var y = pointer.y - this.onTouchY;
+           this.player.x = this.playerXX + x;
+           this.player.y = this.playerYY + y;
         }
+        
+        
 
         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
             if(this.player.active){
