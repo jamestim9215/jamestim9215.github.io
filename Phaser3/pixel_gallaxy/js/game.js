@@ -26,11 +26,11 @@ var  gameSetting =  {
     bossLife: 10, //王 生命
     addLife: 30, // 每 N 秒 產生一條命
     addPowerUp: 20,  // 每 N 秒 可獲得武器升級
-    levelUp: 300, // 幾分能升級
+    levelUp: 200, // 幾分能升級
     createEnemy: 5, // 每 N 等級生怪
-    addEnemyLife: 2,  // 每 N 等級 怪血 *1.2+1
-    addEnemyMove: 5,  // 每 N 等級 怪移動 *1.1
-    addBossMove: 10, 
+    addEnemyLife: 2,  // 每 N 等級 怪血 +2
+    addEnemyMove: 4,  // 每 N 等級 怪移動 *1.1
+    addBossMove: 5, 
     autoShoot: true,
 }
 

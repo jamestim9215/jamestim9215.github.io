@@ -244,7 +244,7 @@ class GamePlay extends Phaser.Scene {
             this.createEnemy(0);
         }
         if(this.level % gameSetting.addEnemyLife == 0){
-            this.ufoLife = this.ufoLife + parseInt(this.ufoLife + 1);
+            this.ufoLife = this.ufoLife + 2;
         }
         if(this.level % gameSetting.addEnemyMove == 0){
             this.enemyMoveSpeed[1] = this.enemyMoveSpeed[1] * 1.1;
