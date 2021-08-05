@@ -73,6 +73,11 @@ class Preload extends Phaser.Scene{
             frameHeight: 8
         });
 
+        this.load.spritesheet('beam3',"assets/images/spritesheets/beam3.png",{
+            frameWidth: 10,
+            frameHeight: 10
+        });
+
         
         this.load.spritesheet('addHeart',"assets/images/spritesheets/heart.png",{
             frameWidth: 60,
@@ -149,6 +154,12 @@ class Preload extends Phaser.Scene{
             key: "beam2_anim",
             frames: this.anims.generateFrameNumbers('beam2'),
             frameRate: 10,
+            repeat: -1
+        })
+        this.anims.create({
+            key: "beam3_anim",
+            frames: this.anims.generateFrameNumbers('beam3'),
+            frameRate: 15,
             repeat: -1
         })
 
