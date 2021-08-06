@@ -43,7 +43,10 @@ class Preload extends Phaser.Scene{
 
 
 
-        this.load.image('background',"assets/images/jason/map/map.jpg");
+        this.load.image('background',"assets/images/jason/map/map-2.jpg");
+        this.load.image('mapcloud',"assets/images/jason/map/cloud.png");
+        this.load.image('star',"assets/images/jason/map/star.png");
+
         this.load.image('title',"assets/images/jason/UI/title.png");
         this.load.image('button',"assets/images/jason/UI/button.png");
         this.load.image('button-hover',"assets/images/jason/UI/button-hover.png");
@@ -52,7 +55,7 @@ class Preload extends Phaser.Scene{
         
 
 
-        this.load.image('star',"assets/images/star.png");
+        // this.load.image('star',"assets/images/star.png");
         this.load.image('heart',"assets/images/jason/item/LifeF.png");
         this.load.image('heart_die',"assets/images/jason/item/LifeF-2.png");
 
@@ -60,9 +63,13 @@ class Preload extends Phaser.Scene{
             frameWidth: 100,
             frameHeight: 100
         });
-        this.load.spritesheet('ufo',"assets/images/spritesheets/ufo.png",{
-            frameWidth: 120,
-            frameHeight: 120
+        this.load.spritesheet('ufo',"assets/images/spritesheets/enemy.png",{
+            frameWidth: 137,
+            frameHeight: 160
+        });
+        this.load.spritesheet('ufoboss',"assets/images/spritesheets/Monster-L.png",{
+            frameWidth: 245,
+            frameHeight: 302
         });
         this.load.spritesheet('die',"assets/images/spritesheets/bum.png",{
             frameWidth: 120,
@@ -73,17 +80,17 @@ class Preload extends Phaser.Scene{
         //     frameHeight: 16
         // });
         this.load.spritesheet('beam',"assets/images/spritesheets/beam.png",{
-            frameWidth: 8,
-            frameHeight: 8
+            frameWidth: 60,
+            frameHeight: 140
         });
         this.load.spritesheet('beam2',"assets/images/spritesheets/beam2.png",{
-            frameWidth: 8,
-            frameHeight: 8
+            frameWidth: 30,
+            frameHeight: 130
         });
 
         this.load.spritesheet('beam3',"assets/images/spritesheets/beam3.png",{
-            frameWidth: 10,
-            frameHeight: 10
+            frameWidth: 100,
+            frameHeight: 100
         });
         this.load.spritesheet('missile',"assets/images/spritesheets/missile.png",{
             frameWidth: 50,
@@ -116,6 +123,12 @@ class Preload extends Phaser.Scene{
         this.anims.create({
             key: "ufo_anim",
             frames: this.anims.generateFrameNumbers('ufo'),
+            frameRate: 5,
+            repeat: -1
+        })
+        this.anims.create({
+            key: "ufoboss_anim",
+            frames: this.anims.generateFrameNumbers('ufoboss'),
             frameRate: 5,
             repeat: -1
         })

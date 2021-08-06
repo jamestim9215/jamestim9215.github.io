@@ -3,11 +3,12 @@ class Beamleft2 extends Phaser.GameObjects.Sprite{
         var x = scene.player.x-48;
         var y = scene.player.y-15;
 
-        super(scene,x,y,"beam2");
+        super(scene,x,y,"beam");
 
         scene.add.existing(this);
 
-        this.play('beam2_anim');
+        this.setScale(0.3);
+        this.play('beam_anim');
         scene.physics.world.enableBody(this);
         this.body.velocity.y = - 500;
         this.body.velocity.x = - 50;

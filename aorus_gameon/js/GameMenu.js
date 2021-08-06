@@ -14,9 +14,9 @@ class GameMenu extends Phaser.Scene{
     create(){
         this.isInit = false;
 
-        this.background = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'background');
-        this.background.setScale(0.5);
-        // this.star = this.add.tileSprite(config.width/2, config.height/2 , config.width, config.height, 'star');
+        this.background = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'background').setScale(0.5);   
+        this.mapcloud = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'mapcloud').setScale(0.5);   
+        this.star = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'star').setScale(0.5);   
 
         this.player = this.physics.add.sprite(config.width/2, config.height + 100, 'spaceship').setScale(1);
         this.player.anims.play('ship_anim');
@@ -107,8 +107,9 @@ class GameMenu extends Phaser.Scene{
     }
 
     update(){
-        this.background.tilePositionY -= 3;
-        // this.star.tilePositionY -= 1;
+        this.background.tilePositionY -= 2;
+        this.mapcloud.tilePositionY -= 3;
+        this.star.tilePositionY -= 1;
 
         if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.isInit==true){
             this.buttonPlay.setTexture("button-hover");

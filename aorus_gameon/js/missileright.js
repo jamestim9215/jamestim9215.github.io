@@ -7,8 +7,9 @@ class Missileright extends Phaser.GameObjects.Sprite{
         
         scene.add.existing(this);
 
-        this.play('missile_anim');
+        this.setScale(0.7);
         this.angle = 11;
+        this.play('missile_anim');
         scene.physics.world.enableBody(this);
         this.body.velocity.y = - 500;
         this.body.velocity.x = 100;

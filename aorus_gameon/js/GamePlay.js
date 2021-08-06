@@ -24,8 +24,10 @@ class GamePlay extends Phaser.Scene {
 
         this.oldScore = 0;
 
-        this.background = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'background');
-        this.background.setScale(0.5);
+        this.background = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'background').setScale(0.5);   
+        this.mapcloud = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'mapcloud').setScale(0.5);   
+        this.star = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'star').setScale(0.5);   
+
         // this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height, 'background');
         // this.star = this.add.tileSprite(config.width/2, config.height/2 , config.width, config.height, 'star');
         this.dashboard = this.add.image(config.width/2, config.height - 40, "dashboard");
@@ -36,7 +38,7 @@ class GamePlay extends Phaser.Scene {
         }
 
         this.time.addEvent({
-            delay: 30000,
+            delay: gameSetting.bossCreateCycle * 1000,
             callback: ()=>{
                 if(this.player.active){
                     this.createEnemy(1);
@@ -148,7 +150,7 @@ class GamePlay extends Phaser.Scene {
 
         this.isEnemyBeam = false;
         this.time.addEvent({
-            delay: 3000,
+            delay: 2500,
             callback: ()=>{
                 if(this.isEnemyBeam == false){
                     this.isEnemyBeam = true;
@@ -209,8 +211,10 @@ class GamePlay extends Phaser.Scene {
                 this.isEnemyBeam = false;
 
         }
-        this.background.tilePositionY -= 3;
-        // this.star.tilePositionY -= 1;
+        
+        this.background.tilePositionY -= 2;
+        this.mapcloud.tilePositionY -= 3;
+        this.star.tilePositionY -= 1;
 
         this.movePlayerManager();
 
@@ -291,7 +295,7 @@ class GamePlay extends Phaser.Scene {
                 ufo.life = this.ufoLife;
                 ufo.speedY = Phaser.Math.Between(3, this.enemyMoveSpeed[1]);
             }else{
-                ufo.life = parseInt(ufo.life * 1.2);
+                ufo.life = parseInt(ufo.life + 5);
                 ufo.speedY = this.bossMoveSpeed;
             }
         }
@@ -299,10 +303,10 @@ class GamePlay extends Phaser.Scene {
         this.levelUpSetting = false;
     }
     createPowerUp(){
-        this.powerup = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), Phaser.Math.Between(50, config.height-50), 'powerup');
+        this.powerup = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), -100, 'powerup');
         this.powerup.play("powerup_anim");
         this.powerup.setScale(0.3);
-        this.powerup.setVelocity(100,100);
+        this.powerup.setVelocity(100,Phaser.Math.Between(100,100));
         this.powerup.setCollideWorldBounds(true);
         this.powerup.setBounce(1);
 
@@ -313,13 +317,14 @@ class GamePlay extends Phaser.Scene {
 
         if(gameSetting.powerLevel > this.powerLevel){
             this.powerLevel = this.powerLevel + 1;
+            this.player.setScale(1 + this.powerLevel * 0.1);
         }
     }
     createHeart(){
-        this.heart = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), Phaser.Math.Between(50, config.height-50), 'addHeart');
+        this.heart = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), - 100, 'addHeart');
         this.heart.play("addheart_anim");
         this.heart.setScale(0.3);
-        this.heart.setVelocity(100,100);
+        this.heart.setVelocity(100,Phaser.Math.Between(100,100));
         this.heart.setCollideWorldBounds(true);
         this.heart.setBounce(1);
 
@@ -350,6 +355,7 @@ class GamePlay extends Phaser.Scene {
         }
         if(this.powerLevel > 1){
             this.powerLevel = this.powerLevel - 1;
+            this.player.setScale(1 + this.powerLevel * 0.1);
         }
        
 
@@ -387,6 +393,7 @@ class GamePlay extends Phaser.Scene {
         }
         if(this.powerLevel > 1){
             this.powerLevel = this.powerLevel - 1;
+            this.player.setScale(1 + this.powerLevel * 0.1);
         }
        
 
@@ -480,8 +487,8 @@ class GamePlay extends Phaser.Scene {
             ufo.speedY = Phaser.Math.Between(this.enemyMoveSpeed[0], this.enemyMoveSpeed[1]);
             ufo.setInteractive();
         }else{
-            ufo = this.physics.add.sprite(Phaser.Math.Between(120, config.width-120), -120, 'ufo').setScale(1.2);
-            ufo.anims.play('ufo_anim');
+            ufo = this.physics.add.sprite(Phaser.Math.Between(120, config.width-120), -120, 'ufoboss').setScale(0.8);
+            ufo.anims.play('ufoboss_anim');
             ufo.life = this.bossLife == 10 ? this.bossLife : this.bossLife + 10;
             ufo.type = type;
             ufo.speedX = 0;
@@ -605,11 +612,11 @@ class GamePlay extends Phaser.Scene {
         // this.gameoverTitle2.setOrigin(0.5,0.5);
         // this.gameoverTitle2.alpha = 0;
 
-        this.gameoverframe = this.add.image(config.width/2 ,config.height/2 ,"gameover-frame");
+        this.gameoverframe = this.add.image(config.width/2 ,-100,"gameover-frame");
         this.gameoverframe.setOrigin(0.5,0.5).setScale(0.6);
         this.gameoverframe.alpha = 0;
 
-        this.mainTitle = this.add.image(config.width/2 ,config.height/3 - 100,"title");
+        this.mainTitle = this.add.image(config.width/2 ,-100,"title");
         this.mainTitle.setOrigin(0.5,0.5);
         this.mainTitle.setScale(0.4);
         this.mainTitle.alpha = 0;
@@ -618,7 +625,8 @@ class GamePlay extends Phaser.Scene {
         this.gameoverScore.setOrigin(0.5,0.5);
         this.gameoverScore.alpha = 0;
 
-        this.scoreLabel.text = "";
+        this.scoreTitleLabel.alpha = 0;
+        this.scoreLabel.alpha = 0;
         
         // this.enterTryMessage = this.add.bitmapText( config.width/2 ,config.height - 20, "pixelFont", "Enter or touch to play angin", 16);
         // this.enterTryMessage.setOrigin(0.5,0.5);
@@ -637,6 +645,7 @@ class GamePlay extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.gameoverframe,
                     alpha: 1,
+                    y: config.height/2,
                     ease: 'Power1',
                     duration: 1000,
                     repeat:0,
@@ -645,8 +654,9 @@ class GamePlay extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.mainTitle,
                     alpha: 1,
+                    y: config.height/3 - 100,
                     ease: 'Power1',
-                    duration: 1500,
+                    duration: 1000,
                     repeat:0,
                     callbackScope: this
                 });
