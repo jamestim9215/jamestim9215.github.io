@@ -18,7 +18,7 @@ class GameMenu extends Phaser.Scene{
         this.mapcloud = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'mapcloud').setScale(0.5);   
         this.star = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'star').setScale(0.5);   
 
-        this.player = this.physics.add.sprite(config.width/2, config.height + 100, 'spaceship').setScale(1);
+        this.player = this.physics.add.sprite(config.width/2, config.height + 100, 'spaceship').setScale(2);
         this.player.anims.play('ship_anim');
         
 
