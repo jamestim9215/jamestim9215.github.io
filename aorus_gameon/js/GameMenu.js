@@ -152,7 +152,7 @@ class GameMenu extends Phaser.Scene{
             duration: 2000,
             repeat:0,
             onComplete: function(){
-                this.scene.start('playGame');
+                // this.scene.start('playGame');
 
             },
             callbackScope: this
@@ -164,7 +164,7 @@ class GameMenu extends Phaser.Scene{
             duration: 1000,
             repeat:0,
             onComplete: function(){
-                // this.scene.start('playGame');
+                this.scene.start('playGame');
             },
             callbackScope: this
         });
