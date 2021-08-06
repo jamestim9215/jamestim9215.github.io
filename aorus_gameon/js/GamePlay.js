@@ -245,7 +245,8 @@ class GamePlay extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
             if(this.player.active){
-                this.shootBeam();
+                // this.shootBeam();
+                // this.shootMissile();
             }
         }
 
@@ -582,9 +583,9 @@ class GamePlay extends Phaser.Scene {
         if(this.powerLevel >= 5){
             var missileL = new Missileleft(this);
             var missileR = new Missileright(this);
-        }
+            this.beamSound.play();
 
-        this.beamSound.play();
+        }
 
     }
 
