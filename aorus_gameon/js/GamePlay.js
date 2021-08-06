@@ -608,6 +608,11 @@ class GamePlay extends Phaser.Scene {
         this.gameoverframe = this.add.image(config.width/2 ,config.height/2 ,"gameover-frame");
         this.gameoverframe.setOrigin(0.5,0.5).setScale(0.6);
         this.gameoverframe.alpha = 0;
+
+        this.mainTitle = this.add.image(config.width/2 ,config.height/3 - 100,"title");
+        this.mainTitle.setOrigin(0.5,0.5);
+        this.mainTitle.setScale(0.4);
+        this.mainTitle.alpha = 0;
         
         this.gameoverScore = this.add.bitmapText( config.width/2 ,config.height/2, "pixelFont", this.score, 60);
         this.gameoverScore.setOrigin(0.5,0.5);
@@ -637,14 +642,14 @@ class GamePlay extends Phaser.Scene {
                     repeat:0,
                     callbackScope: this
                 });
-                // this.tweens.add({
-                //     targets: this.gameoverTitle2,
-                //     alpha: 1,
-                //     ease: 'Power1',
-                //     duration: 1500,
-                //     repeat:0,
-                //     callbackScope: this
-                // });
+                this.tweens.add({
+                    targets: this.mainTitle,
+                    alpha: 1,
+                    ease: 'Power1',
+                    duration: 1500,
+                    repeat:0,
+                    callbackScope: this
+                });
                 this.tweens.add({
                     targets: this.gameoverScore,
                     alpha: 1,

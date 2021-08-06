@@ -9,7 +9,12 @@ class BeamEnemy extends Phaser.GameObjects.Sprite{
 
         this.play('beam3_anim');
         scene.physics.world.enableBody(this);
-        this.body.velocity.y = 500;
+        if(enemy.type==0){
+            this.body.velocity.y = 500;
+        }else{
+            this.body.velocity.y = 700;
+        }
+        
 
         scene.enemyProjectiles.add(this);
     }
