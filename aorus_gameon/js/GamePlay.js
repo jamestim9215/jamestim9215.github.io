@@ -249,9 +249,11 @@ class GamePlay extends Phaser.Scene {
             }
         }
 
+
         for(var i=0; i<this.projectiles.getChildren().length; i++){
             var beam = this.projectiles.getChildren()[i];
-            beam.update();
+            beam.update(this);
+
         }
 
         if(this.player.y < config.height - 60){
@@ -274,6 +276,7 @@ class GamePlay extends Phaser.Scene {
             this.life = 3;
             this.scene.start('playGame');
         }
+
 
     }
     levelUp(){

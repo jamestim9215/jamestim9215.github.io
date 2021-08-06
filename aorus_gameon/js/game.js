@@ -27,7 +27,7 @@ var  gameSetting =  {
     enemyLife: 2, //小怪生命
     
     bossLife: 20, //王 生命
-    bossCreateCycle: 30, //每幾秒產生王
+    bossCreateCycle: 10, //每幾秒產生王
 
     addLife: 30, // 每 N 秒 產生一條命
     addPowerUp: 20,  // 每 N 秒 可獲得武器升級
