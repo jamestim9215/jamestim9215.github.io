@@ -612,7 +612,7 @@ class GamePlay extends Phaser.Scene {
         // this.gameoverTitle2.setOrigin(0.5,0.5);
         // this.gameoverTitle2.alpha = 0;
 
-        this.gameoverframe = this.add.image(config.width/2 ,-100,"gameover-frame");
+        this.gameoverframe = this.add.image(config.width/2 ,config.height/2,"gameover-frame");
         this.gameoverframe.setOrigin(0.5,0.5).setScale(0.6);
         this.gameoverframe.alpha = 0;
 
@@ -645,7 +645,6 @@ class GamePlay extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.gameoverframe,
                     alpha: 1,
-                    y: config.height/2,
                     ease: 'Power1',
                     duration: 1000,
                     repeat:0,
