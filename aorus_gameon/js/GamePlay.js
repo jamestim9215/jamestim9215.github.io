@@ -36,7 +36,7 @@ class GamePlay extends Phaser.Scene {
         }
 
         this.time.addEvent({
-            delay: 10000,
+            delay: 30000,
             callback: ()=>{
                 if(this.player.active){
                     this.createEnemy(1);
