@@ -26,7 +26,7 @@ var  gameSetting =  {
     enemyCount: 3, //初始 怪物數量
     enemyLife: 2, //小怪生命
     
-    bossLife: 10, //王 生命
+    bossLife: 20, //王 生命
     bossCreateCycle: 30, //每幾秒產生王
 
     addLife: 30, // 每 N 秒 產生一條命
