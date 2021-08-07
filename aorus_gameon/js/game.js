@@ -49,9 +49,9 @@ var  gameSetting =  {
     addEnemyMove: 2,  // 每 N 等級 怪移動 
     addEnemyMMove: 4, 
     addBossMove: 8, 
-    autoShoot: false, //自動發射
+    autoShoot: true, //自動發射
     stepGameMenu : false, //跳過開頭
-    mute : true, //靜音
+    mute : false, //靜音
 
 }
 
