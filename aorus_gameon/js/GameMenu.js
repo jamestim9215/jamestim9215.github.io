@@ -155,7 +155,7 @@ class GameMenu extends Phaser.Scene{
             targets: this.buttonPlay,
             alpha: 0,
             ease: 'Power1',
-            duration: 2000,
+            duration: 1000,
             repeat:0,
             onComplete: function(){
                 // this.scene.start('playGame');
@@ -165,7 +165,7 @@ class GameMenu extends Phaser.Scene{
         });
         this.tweens.add({
             targets: this.player,
-            y: -100,
+            y: -200,
             ease: 'Power1',
             duration: 1000,
             repeat:0,
