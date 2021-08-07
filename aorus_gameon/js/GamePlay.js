@@ -264,7 +264,7 @@ class GamePlay extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
             if(this.player.active){
-                // this.shootBeam();
+                this.shootBeam();
                 // this.shootMissile();
             }
         }
@@ -554,7 +554,17 @@ class GamePlay extends Phaser.Scene {
     hitEnemy(projectile, enemy){
         projectile.destroy();
         if(enemy.life>1){
+            enemy.setTint(0xff0000);
             enemy.life = enemy.life - 1;
+            this.time.addEvent({
+                delay: 50,
+                callback: ()=>{
+                    enemy.clearTint();
+                },
+                callbackScope: this,
+                loop: false
+            });
+            
         }else{
             var explosion = new Explosion(this, enemy.x, enemy.y);
             this.resetUfoPos(enemy);

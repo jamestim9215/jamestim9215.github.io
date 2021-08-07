@@ -1,6 +1,6 @@
-var window_width = window.innerWidth;
+var window_Width = window.innerWidth;
 var window_Height = window.innerHeight;
-console.log(window_Height);
+
 
 var config = {
     type: Phaser.AUTO,
@@ -59,5 +59,18 @@ var  gameSetting =  {
 
 var game = new Phaser.Game(config);
 
+setTimeout(()=>{
+    if(window_Width > window_Height){
+        document.querySelector("canvas").style.height = window_Height + "px";
+        document.querySelector("canvas").style.width  = (window_Height * 6) / 10 + "px";
+    }else{
+        if((window_Width / window_Height) > 0.6){
+            document.querySelector("canvas").style.height = window_Height + "px";
+            document.querySelector("canvas").style.width  = (window_Height * 6) / 10 + "px";
+        }else{
+            document.querySelector("canvas").style.width  = "100%";
+        }
+    }
+},50)
 
 
