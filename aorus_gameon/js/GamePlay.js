@@ -14,9 +14,9 @@ class GamePlay extends Phaser.Scene {
         this.life = gameSetting.life;
         this.isAddHeart = false;
         this.isPowerUp = false;
-        this.enemyMoveSpeed = [2,2];
+        this.enemyMoveSpeed = 2;
         this.enemyMMoveSpeed = 1.5;
-        this.bossMoveSpeed = 2;
+        this.bossMoveSpeed = 1;
         this.level = 1;
         this.powerLevel = 1;
         this.levelUpSetting = false;
@@ -60,6 +60,18 @@ class GamePlay extends Phaser.Scene {
             loop: true
         });
 
+        
+        this.time.addEvent({
+            delay: gameSetting.timeLevelUp * 1000,
+            callback: ()=>{
+                this.level = this.level + 1;
+                this.levelUpSetting = true;
+            },
+            callbackScope: this,
+            loop: true
+        });
+
+
 
         this.input.on('gameobjectdown', this.destoryUfo, this);
 
@@ -102,16 +114,7 @@ class GamePlay extends Phaser.Scene {
 
 
 
-        // var graphics = this.add.graphics();
-        // graphics.fillStyle(0x000000, 1);
-        // graphics.beginPath();
-        // graphics.moveTo(0,0);
-        // graphics.lineTo(config.width,0);
-        // graphics.lineTo(config.width, 40);
-        // graphics.lineTo(0,40);
-        // graphics.lineTo(0,0);
-        // graphics.closePath();
-        // graphics.fillPath();
+
         //自動射擊
         if(gameSetting.autoShoot){
             this.time.addEvent({
@@ -167,14 +170,14 @@ class GamePlay extends Phaser.Scene {
             callback: ()=>{
                 if(this.isEnemyBeam == false){
                     
-                    this.time.addEvent({
-                        delay: Phaser.Math.Between(0, 20)*100,
-                        callback: ()=>{
+                    // this.time.addEvent({
+                    //     delay: Phaser.Math.Between(0, 2) *1000,
+                    //     callback: ()=>{
                             this.isEnemyBeam = true;
-                        },
-                        callbackScope: this,
-                        loop: false
-                    });
+                //         },
+                //         callbackScope: this,
+                //         loop: false
+                //     });
                 }
             },
             callbackScope: this,
@@ -297,26 +300,28 @@ class GamePlay extends Phaser.Scene {
 
     }
     levelUp(){
-        if(this.level % gameSetting.createEnemy == 0){
-            this.createEnemy(0);
-        }
-        if(this.level % gameSetting.addEnemyLife == 0){
-            this.ufoLife = this.ufoLife + 2;
-        }
-        if(this.level % gameSetting.addEnemyMove == 0){
-            this.enemyMoveSpeed[1] = this.enemyMoveSpeed[1] * 1.1;
-        }
-        if(this.level % gameSetting.addEnemyMMove == 0){
-            this.enemyMMoveSpeed = this.enemyMMoveSpeed + 1;
-        }
-        if(this.level % gameSetting.addBossMove == 0){
-            this.bossMoveSpeed = this.bossMoveSpeed + 1;
+        if(this.level!=0){
+            if(this.level % gameSetting.createEnemy == 0){
+                this.createEnemy(0);
+            }
+            if(this.level % gameSetting.addEnemyLife == 0){
+                this.ufoLife = this.ufoLife + 1;
+            }
+            if(this.level % gameSetting.addEnemyMove == 0){
+                this.enemyMoveSpeed = this.enemyMoveSpeed + 0.1;
+            }
+            if(this.level % gameSetting.addEnemyMMove == 0){
+                this.enemyMMoveSpeed = this.enemyMMoveSpeed + 0.1;
+            }
+            if(this.level % gameSetting.addBossMove == 0){
+                this.bossMoveSpeed = this.bossMoveSpeed + 0.1;
+            }
         }
         for(var i=0; i<this.enemies.getChildren().length; i++){
             var ufo = this.enemies.getChildren()[i];
             if(ufo.type == 0){
                 ufo.life = this.ufoLife;
-                ufo.speedY = Phaser.Math.Between(3, this.enemyMoveSpeed[1]);
+                ufo.speedY = this.enemyMoveSpeed;
             }
             if(ufo.type == 1){
                 ufo.life = parseInt(ufo.life + 2);
@@ -516,18 +521,19 @@ class GamePlay extends Phaser.Scene {
             ufo.life = this.ufoLife;
             ufo.type = type;
             ufo.body.setCircle(137/2);
-            ufo.speedX = Phaser.Math.Between(-1, 1) * 0.1;
-            ufo.speedY = Phaser.Math.Between(this.enemyMoveSpeed[0], this.enemyMoveSpeed[1]);
+            ufo.speedX = Phaser.Math.Between(-3, 3) * 0.1;
+            console.log(ufo.speedX);
+            ufo.speedY = this.enemyMoveSpeed;
             ufo.setInteractive();
         }
         if(type==1){
-            ufo = this.physics.add.sprite(Phaser.Math.Between(120, config.width-120), -120, 'ufoM').setScale(0.5);
+            ufo = this.physics.add.sprite(Phaser.Math.Between(120, config.width-120), -120, 'ufoM').setScale(0.7);
             ufo.anims.play('ufoM_anim');
             ufo.life = this.enemyMLife;
             ufo.type = type;
             ufo.body.setCircle(188/2);
             ufo.speedX = 0;
-            ufo.speedY = this.bossMoveSpeed;
+            ufo.speedY = this.enemyMMoveSpeed;
             ufo.setInteractive();
         }
         if(type==2){
@@ -571,12 +577,25 @@ class GamePlay extends Phaser.Scene {
         ufo.y += speedY;
         ufo.x += speedX;
         if(isEnemyBeam){
+            this.time.addEvent({
+                delay: Phaser.Math.Between(0, 1500),
+                callback: ()=>{
+                    if(ufo.type==0){
+                        var beam3 = new BeamEnemy(this,ufo,"");
+                    }
                     if(ufo.type==1){
                         var beam3 = new BeamEnemy(this,ufo,"L");
                         var beam3 = new BeamEnemy(this,ufo,"R");
-                    }else{
+                    }  
+                    if(ufo.type==2){
                         var beam3 = new BeamEnemy(this,ufo,"");
-                    }
+                        var beam3 = new BeamEnemy(this,ufo,"L");
+                        var beam3 = new BeamEnemy(this,ufo,"R");
+                    }     
+                },
+                callbackScope: this,
+                loop: false
+            });
         }
         if (ufo.y - 60 > config.height) {
             this.resetUfoPos(ufo);
@@ -588,6 +607,7 @@ class GamePlay extends Phaser.Scene {
             ufo.destroy();
         }else{
             ufo.life = this.ufoLife;
+            ufo.speedX = Phaser.Math.Between(-3, 3) * 0.1;
             ufo.y = Phaser.Math.Between(-100, -300);
             var randomX = Phaser.Math.Between(60, config.width - 60);
             ufo.x = randomX;

@@ -41,7 +41,6 @@ class Missileright extends Phaser.GameObjects.Sprite{
                 this.angle += diff + 1.5;
                 const vx = Math.cos(targetAngle) * 250;
                 const vy = Math.sin(targetAngle) * 800;
-                console.log(vx);
                 this.body.velocity.y = vy ;
                 this.body.velocity.x = vx ;
             }
