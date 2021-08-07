@@ -25,7 +25,7 @@ class Missileright extends Phaser.GameObjects.Sprite{
         var _enemy = null;
         for(var j=0; j<scene.enemies.getChildren().length; j++){
             var enemy = scene.enemies.getChildren()[j];
-            if(enemy.type==1){
+            if(enemy.type==2){
                 _enemy = enemy;
                 break;
             }
@@ -39,8 +39,8 @@ class Missileright extends Phaser.GameObjects.Sprite{
                 )
                 let diff = Phaser.Math.Angle.Wrap(targetAngle - this.rotation)
                 this.angle += diff + 1.5;
-                const vx = Math.cos(targetAngle) * 100;
-                const vy = Math.sin(targetAngle) * 500;
+                const vx = Math.cos(targetAngle) * 250;
+                const vy = Math.sin(targetAngle) * 800;
                 console.log(vx);
                 this.body.velocity.y = vy ;
                 this.body.velocity.x = vx ;

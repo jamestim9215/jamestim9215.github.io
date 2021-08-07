@@ -89,7 +89,10 @@ class GameMenu extends Phaser.Scene{
             loop: true,
             delay: 0
         }
-        this.music.play(musicConfig);
+        if(!gameSetting.mute){
+            this.music.play(musicConfig);
+        }
+        
 
         
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);

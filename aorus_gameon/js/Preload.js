@@ -60,12 +60,16 @@ class Preload extends Phaser.Scene{
         this.load.image('heart_die',"assets/images/jason/item/LifeF-2.png");
 
         this.load.spritesheet('spaceship',"assets/images/spritesheets/spaceship.png",{
-            frameWidth: 100,
-            frameHeight: 100
+            frameWidth: 65,
+            frameHeight: 78
         });
         this.load.spritesheet('ufo',"assets/images/spritesheets/enemy.png",{
             frameWidth: 137,
             frameHeight: 160
+        });
+        this.load.spritesheet('ufoM',"assets/images/spritesheets/Monster-Ｍ.png",{
+            frameWidth: 188,
+            frameHeight: 200
         });
         this.load.spritesheet('ufoboss',"assets/images/spritesheets/Monster-L.png",{
             frameWidth: 245,
@@ -127,6 +131,12 @@ class Preload extends Phaser.Scene{
             repeat: -1
         })
         this.anims.create({
+            key: "ufoM_anim",
+            frames: this.anims.generateFrameNumbers('ufoM'),
+            frameRate: 5,
+            repeat: -1
+        })
+        this.anims.create({
             key: "ufoboss_anim",
             frames: this.anims.generateFrameNumbers('ufoboss'),
             frameRate: 5,
@@ -142,30 +152,8 @@ class Preload extends Phaser.Scene{
 
         this.anims.create({
             key: "ship_anim",
-            frames: this.anims.generateFrameNumbers('spaceship',{
-                start: 0,
-                end: 1
-            }),
+            frames: this.anims.generateFrameNumbers('spaceship'),
             frameRate: 5,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: "red",
-            frames: this.anims.generateFrameNumbers('powerUp', {
-                start: 0,
-                end: 1
-            }),
-            frameRate: 10,
-            repeat: -1
-        })
-        this.anims.create({
-            key: "gray",
-            frames: this.anims.generateFrameNumbers('powerUp', {
-                start: 2,
-                end: 3
-            }),
-            frameRate: 10,
             repeat: -1
         })
 
