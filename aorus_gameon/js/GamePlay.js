@@ -168,7 +168,7 @@ class GamePlay extends Phaser.Scene {
                 if(this.isEnemyBeam == false){
                     
                     this.time.addEvent({
-                        delay: Phaser.Math.Between(10, 30)*100,
+                        delay: Phaser.Math.Between(0, 20)*100,
                         callback: ()=>{
                             this.isEnemyBeam = true;
                         },
