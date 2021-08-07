@@ -1,5 +1,8 @@
-var window_Width = window.innerWidth;
+var window_Width = window.innerWidth ;
 var window_Height = window.innerHeight;
+
+console.log(window_Height);
+console.log(window_Width);
 
 
 var config = {
