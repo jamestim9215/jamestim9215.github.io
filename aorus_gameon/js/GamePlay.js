@@ -102,7 +102,7 @@ class GamePlay extends Phaser.Scene {
         //自動射擊
         if(gameSetting.autoShoot){
             this.time.addEvent({
-                delay: 250,
+                delay: gameSetting.autoShootSpeed * 1000,
                 callback: ()=>{
                     if(this.player.active){
                         this.shootBeam();
@@ -114,7 +114,7 @@ class GamePlay extends Phaser.Scene {
         }
         if(gameSetting.autoShoot){
             this.time.addEvent({
-                delay: 750,
+                delay: gameSetting.autoMissileSpeed * 1000,
                 callback: ()=>{
                     if(this.player.active){
                         this.shootMissile();
@@ -580,7 +580,7 @@ class GamePlay extends Phaser.Scene {
 
     }
     shootMissile(){
-        if(this.powerLevel >= 5){
+        if(this.powerLevel >= gameSetting.missileLevel){
             var missileL = new Missileleft(this);
             var missileR = new Missileright(this);
             this.beamSound.play();

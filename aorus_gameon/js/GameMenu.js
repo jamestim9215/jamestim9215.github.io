@@ -103,7 +103,10 @@ class GameMenu extends Phaser.Scene{
             this.buttonPlay.setTexture("button");
             this.isTouch = true;
         });
-        this.scene.start('playGame');
+
+        if(gameSetting.stepGameMenu){
+            this.scene.start('playGame');
+        }
     }
 
     update(){
