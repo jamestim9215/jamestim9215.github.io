@@ -273,7 +273,10 @@ class GamePlay extends Phaser.Scene {
         for(var i=0; i<this.projectiles.getChildren().length; i++){
             var beam = this.projectiles.getChildren()[i];
             beam.update(this);
-
+        }
+        for(var i=0;i <this.enemyProjectiles.getChildren().length; i++){
+            var beamEnemy = this.enemyProjectiles.getChildren()[i];
+            beamEnemy.update(this);
         }
 
         if(this.player.y < config.height - 60){

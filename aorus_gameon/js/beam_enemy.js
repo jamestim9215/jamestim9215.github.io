@@ -47,7 +47,7 @@ class BeamEnemy extends Phaser.GameObjects.Sprite{
     
     }
     update(){
-        if(this.y > 1000){
+        if(this.y > config.height){
             this.destroy();
         }
     }
