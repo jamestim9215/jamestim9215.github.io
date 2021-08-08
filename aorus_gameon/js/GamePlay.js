@@ -237,27 +237,31 @@ class GamePlay extends Phaser.Scene {
 
         this.movePlayerManager();
 
-        var pointer = this.input.activePointer;
-        this.input.on('pointerdown',()=>{
-            this.isInput = true;
-            this.onTouchX = pointer.x;
-            this.onTouchY = pointer.y;
-            this.playerXX = this.player.x;
-            this.playerYY = this.player.y;
-        });
-        this.input.on('pointerup',()=>{
-            this.isInput = false;
-            this.onTouchX = pointer.x;
-            this.onTouchY = pointer.y;
-            this.playerXX = this.player.x;
-            this.playerYY = this.player.y;
-        });
+        if(this.player.alpha == 1){
+            var pointer = this.input.activePointer;
+            this.input.on('pointerdown',()=>{
+                this.isInput = true;
+                this.onTouchX = pointer.x;
+                this.onTouchY = pointer.y;
+                this.playerXX = this.player.x;
+                this.playerYY = this.player.y;
+            });
+            this.input.on('pointerup',()=>{
+                this.isInput = false;
+                this.onTouchX = pointer.x;
+                this.onTouchY = pointer.y;
+                this.playerXX = this.player.x;
+                this.playerYY = this.player.y;
+            });
 
-        if(this.isInput) {
-           var x = pointer.x - this.onTouchX;
-           var y = pointer.y - this.onTouchY;
-           this.player.x = this.playerXX + x;
-           this.player.y = this.playerYY + y;
+            if(this.isInput) {
+            var x = pointer.x - this.onTouchX;
+            var y = pointer.y - this.onTouchY;
+            this.player.x = this.playerXX + x;
+            this.player.y = this.playerYY + y;
+            }
+        }else{
+            this.isInput = false;
         }
         
         
