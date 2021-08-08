@@ -237,7 +237,7 @@ class GamePlay extends Phaser.Scene {
 
         this.movePlayerManager();
 
-        if(this.player.alpha == 1){
+        if(this.player.active){
             var pointer = this.input.activePointer;
             this.input.on('pointerdown',()=>{
                 this.isInput = true;
