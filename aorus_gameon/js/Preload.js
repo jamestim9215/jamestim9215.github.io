@@ -39,10 +39,17 @@ class Preload extends Phaser.Scene{
 
         });
         //loading End 進度條
+
+        this.load.audio("audio_beam", "assets/sounds/Sci-Fi Bullet Flyby 2.mp3");
+        this.load.audio("player_die", "assets/sounds/Little Character Kill Hit.wav");
+        this.load.audio("eneny_die", "assets/sounds/8-Bit Style Damage.wav");
+        this.load.audio("music","assets/sounds/Retro_Synthwave_Game_Background_Loop.wav");
+        this.load.audio("power_up","assets/sounds/Retro Level Up 1.mp3");
+        this.load.audio("heart_up","assets/sounds/Great Game 8-Bit Space Boost.wav");
+        this.load.audio("game_button","assets/sounds/Mountain Audio - Sci-Fi Game Button.mp3");
+        
         this.load.image('aoruslogo',"assets/images/logo.png");
         this.load.image('aorusslogan',"assets/images/slogan.png");
-
-
 
         this.load.image('background',"assets/images/jason/map/map-2.jpg");
         this.load.image('mapcloud',"assets/images/jason/map/cloud.png");
@@ -120,14 +127,6 @@ class Preload extends Phaser.Scene{
 
 
         this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
-
-        this.load.audio("audio_beam", "assets/sounds/Sci-Fi Bullet Flyby 2.mp3");
-        this.load.audio("player_die", "assets/sounds/Little Character Kill Hit.wav");
-        this.load.audio("eneny_die", "assets/sounds/8-Bit Style Damage.wav");
-        this.load.audio("music","assets/sounds/Retro_Synthwave_Game_Background_Loop.wav");
-        this.load.audio("power_up","assets/sounds/Retro Level Up 1.mp3");
-        this.load.audio("heart_up","assets/sounds/Great Game 8-Bit Space Boost.wav");
-        this.load.audio("game_button","assets/sounds/Mountain Audio - Sci-Fi Game Button.mp3");
     }
 
     create(){
