@@ -6,11 +6,11 @@ var config = {
     width: 600,
     height: 1000,
     backgroundColor: 0x000000,
-    scene: [Preload, GameMenu, GamePlay],
+    scene: [Preload, GameLogo , GameMenu, GamePlay],
     physics:{
         default: "arcade",
         arcade:{
-            debug: true
+            debug: false
         },
     },
     fps: {

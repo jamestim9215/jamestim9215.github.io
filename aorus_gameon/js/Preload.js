@@ -39,6 +39,8 @@ class Preload extends Phaser.Scene{
 
         });
         //loading End 進度條
+        this.load.image('aoruslogo',"assets/images/logo.png");
+        this.load.image('aorusslogan',"assets/images/slogan.png");
 
 
 
@@ -222,7 +224,7 @@ class Preload extends Phaser.Scene{
 
         // setTimeout(()=>{this.scene.start("playGame");},5000);
 
-        this.scene.start("gameMenu");
+        this.scene.start("gameLogo");
     }
 
     update(){
