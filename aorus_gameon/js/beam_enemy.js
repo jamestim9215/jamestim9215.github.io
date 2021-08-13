@@ -34,10 +34,10 @@ class BeamEnemy extends Phaser.GameObjects.Sprite{
             this.body.setCircle(50);
         }
         if(shootType=='L'){
-            this.body.velocity.x = - 250
+            this.body.velocity.x = - 150
         }
         if(shootType=='R'){
-            this.body.velocity.x = + 250
+            this.body.velocity.x = + 150
         }
 
         scene.add.existing(this);

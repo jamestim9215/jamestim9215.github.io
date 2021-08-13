@@ -8,12 +8,14 @@ class Missileright extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
 
         this.type = 1;
+        this.target = null;
         this.setScale(0.7);
         // this.angle = 11;
         this.play('missile_anim');
         scene.physics.world.enableBody(this);
         this.body.velocity.y = - 500;
         // this.body.velocity.x = 100;
+        this.body.setCircle(25,25,25);
 
         scene.projectiles.add(this);
     }
@@ -23,12 +25,24 @@ class Missileright extends Phaser.GameObjects.Sprite{
             return;
         }
         var _enemy = null;
-        for(var j=0; j<scene.enemies.getChildren().length; j++){
-            var enemy = scene.enemies.getChildren()[j];
-            if(enemy.type==2){
-                _enemy = enemy;
-                break;
-            }
+        if(this.target==null){
+            _enemy = null;
+            var enemyCount = scene.enemies.getChildren().length - 1;
+            var randemId = Phaser.Math.Between(0,enemyCount);
+            var enemy = scene.enemies.getChildren()[randemId];
+            _enemy = enemy;
+            // for(var j=0; j<scene.enemies.getChildren().length; j++){
+                
+            //     var enemy = scene.enemies.getChildren()[j];
+            //     if(enemy.type==0){
+                    
+                    // _enemy = enemy;
+            //         break;
+            //     }
+            // }
+            this.target = _enemy;
+        }else{
+            _enemy = this.target;
         }
         if(_enemy){
             var target = _enemy;

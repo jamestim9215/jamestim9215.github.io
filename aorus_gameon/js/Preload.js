@@ -21,7 +21,6 @@ class Preload extends Phaser.Scene{
 
         this.load.on('progress', function (value) {
             var load = parseInt(value * 100);
-            console.log(load);
             loadingText.text = load + "%";
             if(load < 90 && load > 60 && loading3==false){
                 loading3 = true;
@@ -96,12 +95,17 @@ class Preload extends Phaser.Scene{
             frameWidth: 100,
             frameHeight: 100
         });
-        this.load.spritesheet('missile',"assets/images/spritesheets/missile.png",{
-            frameWidth: 50,
+        this.load.spritesheet('missile',"assets/images/spritesheets/egb.png",{
+            frameWidth: 100,
             frameHeight: 100
         });
 
         
+        this.load.spritesheet('addMissile',"assets/images/jason/item/life.png",{
+            frameWidth: 207,
+            frameHeight: 201
+        });
+
         this.load.spritesheet('addHeart',"assets/images/jason/item/life.png",{
             frameWidth: 205,
             frameHeight: 199
@@ -115,10 +119,13 @@ class Preload extends Phaser.Scene{
 
         this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
 
-        this.load.audio("audio_beam", ["assets/sounds/beam.ogg","assets/sounds/beam.mp3"]);
-        this.load.audio("audio_die", ["assets/sounds/explosion.ogg","assets/sounds/explosion.mp3"]);
-        this.load.audio("music","assets/sounds/sci-fi_platformer12.mp3");
-        // this.load.audio("music","assets/audio/gamebgm.mp3");
+        this.load.audio("audio_beam", "assets/sounds/Sci-Fi Bullet Flyby 2.mp3");
+        this.load.audio("player_die", "assets/sounds/Little Character Kill Hit.wav");
+        this.load.audio("eneny_die", "assets/sounds/8-Bit Style Damage.wav");
+        this.load.audio("music","assets/sounds/Retro_Synthwave_Game_Background_Loop.wav");
+        this.load.audio("power_up","assets/sounds/Retro Level Up 1.mp3");
+        this.load.audio("heart_up","assets/sounds/Great Game 8-Bit Space Boost.wav");
+        this.load.audio("game_button","assets/sounds/Mountain Audio - Sci-Fi Game Button.mp3");
     }
 
     create(){
@@ -195,6 +202,15 @@ class Preload extends Phaser.Scene{
             frameRate: 5,
             repeat: -1
         })
+
+        
+        this.anims.create({
+            key: "addMissile_anim",
+            frames: this.anims.generateFrameNumbers('addMissile'),
+            frameRate: 5,
+            repeat: -1
+        })
+
 
 
 

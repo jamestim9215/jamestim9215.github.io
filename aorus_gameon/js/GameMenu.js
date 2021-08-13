@@ -94,6 +94,7 @@ class GameMenu extends Phaser.Scene{
         }
         
 
+        this.gameButtonMusic = this.sound.add("game_button");
         
         this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
@@ -103,6 +104,10 @@ class GameMenu extends Phaser.Scene{
         });
         
         this.input.on('pointerup',()=>{
+            if(!gameSetting.mute){
+                this.gameButtonMusic.play();
+            }
+
             this.buttonPlay.setTexture("button");
             this.isTouch = true;
         });
@@ -117,13 +122,13 @@ class GameMenu extends Phaser.Scene{
         this.mapcloud.tilePositionY -= 3;
         this.star.tilePositionY -= 1;
 
+
         if(Phaser.Input.Keyboard.JustDown(this.enterKey) && this.isInit==true){
             this.buttonPlay.setTexture("button-hover");
             this.playGame();
             
         }
         if(this.isInit==true && this.isTouch){
-            
             this.playGame();
         }
         
