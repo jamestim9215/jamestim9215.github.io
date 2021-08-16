@@ -138,7 +138,7 @@ class GamePlay extends Phaser.Scene {
         this.time.addEvent({
             delay: gameSetting.addPowerUp * 1000,
             callback: ()=>{
-                if(this.score !=0 && this.life != 0 && this.powerLevel != gameSetting.powerLevel && this.isPowerUp==false){
+                if(this.score !=0 && this.life > 0 && this.powerLevel != gameSetting.powerLevel && this.isPowerUp==false){
                     this.createPowerUp();
                 }
             },
