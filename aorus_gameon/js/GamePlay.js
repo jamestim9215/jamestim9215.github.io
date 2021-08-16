@@ -211,9 +211,12 @@ class GamePlay extends Phaser.Scene {
         this.time.addEvent({
             delay: gameSetting.timeLevelUp * 1000,
             callback: ()=>{
-                this.level = this.level + 1;
-                this.levelUpSetting = true;
-                this.levelLabel.text = "Level "+this.level;
+                
+                if(this.life>0){
+                    this.level = this.level + 1;
+                    this.levelUpSetting = true;
+                    this.levelLabel.text = "Level "+this.level;
+                }
             },
             callbackScope: this,
             loop: true
