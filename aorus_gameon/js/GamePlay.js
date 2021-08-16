@@ -330,7 +330,7 @@ class GamePlay extends Phaser.Scene {
         this.levelUpSetting = false;
     }
     createPowerUp(){
-        if(this.powerLevel == 5){
+        if(this.powerLevel == 4){
             this.powerup = this.physics.add.sprite(Phaser.Math.Between(50, config.width-50), -100, 'addMissile');
             this.powerup.play("addMissile_anim");
         }else{
@@ -347,7 +347,9 @@ class GamePlay extends Phaser.Scene {
     addPowerUpFun(player, powerup){
         
         this.powerUpMusic = this.sound.add("power_up");
-        this.powerUpMusic.play();
+        if(!gameSetting.mute){
+            this.powerUpMusic.play();
+        }
         powerup.destroy();
 
         if(gameSetting.powerLevel > this.powerLevel){
@@ -367,7 +369,9 @@ class GamePlay extends Phaser.Scene {
     }
     addHeartFun(player, heart){
         this.heartUpMusic = this.sound.add("heart_up");
-        this.heartUpMusic.play();
+        if(!gameSetting.mute){
+            this.heartUpMusic.play();
+        }
         heart.destroy();
 
         if(gameSetting.life > this.life){
@@ -393,7 +397,7 @@ class GamePlay extends Phaser.Scene {
             this.hearts.getChildren()[this.life].setTexture('heart_die');
         }
         if(this.powerLevel > 1){
-            this.powerLevel = this.powerLevel - 1;
+            // this.powerLevel = this.powerLevel - 1;
             this.player.setScale(1 + this.powerLevel * 0.1);
         }
        
@@ -433,7 +437,7 @@ class GamePlay extends Phaser.Scene {
             this.hearts.getChildren()[this.life].setTexture('heart_die');
         }
         if(this.powerLevel > 1){
-            this.powerLevel = this.powerLevel - 1;
+            // this.powerLevel = this.powerLevel - 1;
             this.player.setScale(1 + this.powerLevel * 0.1);
         }
        
@@ -573,8 +577,9 @@ class GamePlay extends Phaser.Scene {
             });
             
         }else{
-            this.dieSound.play();
-            
+            if(!gameSetting.mute){
+                this.dieSound.play();
+            }
             var explosion = new Explosion(this, enemy.x, enemy.y);
             this.resetUfoPos(enemy);
             if(enemy.type==0){
@@ -786,7 +791,9 @@ class GamePlay extends Phaser.Scene {
         this.input.on('pointerdown',()=>{
             this.buttonPlay.setTexture("button-hover");
             this.input.on('pointerup',()=>{
-                this.gameButtonMusic.play();
+                if(!gameSetting.mute){
+                    this.gameButtonMusic.play();
+                }
                 this.buttonPlay.setTexture("button");
                 this.life = 3;
                 this.scene.start('playGame');

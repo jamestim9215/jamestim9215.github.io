@@ -110,7 +110,7 @@ class Preload extends Phaser.Scene{
         });
 
         
-        this.load.spritesheet('addMissile',"assets/images/jason/item/life.png",{
+        this.load.spritesheet('addMissile',"assets/images/spritesheets/egb-up.png",{
             frameWidth: 207,
             frameHeight: 201
         });
