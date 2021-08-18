@@ -8,33 +8,124 @@
 
     
     <link rel="stylesheet" href="./hatch.css">
+
+    <style>
+      .whereBuyTagDiv{
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 30px;
+      }
+      .whereBuyTagDiv .tag{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        min-width: 150px;
+        height: auto;
+        padding:  10px 12px;
+        background: #222;
+        color: #ccc;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .whereBuyTagDiv .tag:hover,
+      .whereBuyTagDiv .tag.active{
+        background: #ff6400;
+        color: #fff;
+      }
+      .whereBuyDiv{
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+        background: #333;
+        padding:  0 0 20px 0;
+        margin-bottom: 30px;
+      }
+
+      [data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"] div>div{
+        justify-content: center !important;
+        box-shadow: none !important;
+      }
+      
+      [data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"] div>div>div,
+      [data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"] div>div>div>a{
+        background-color: #222 !important;
+      }
+
+      div[data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"]{
+        z-index: 9999;
+      }
+
+      div[data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"]>div:nth-child(1)>a{
+        background: #000 !important;
+        opacity: 0.9 !important;
+        border-bottom: 2px solid #333 !important;
+      }
+
+      
+      div[data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"]>div:nth-child(1)>a:hover{
+        opacity: 1 !important;
+      }
+
+      div[data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"]>div:nth-child(1)>div{
+        background: #222 !important;
+      }
+
+      div[data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"]>div:nth-child(2)>div{
+        background: #222 !important;
+      }
+
+      #_60dc2dd96fb7be7afcd30c3e,
+      #_60dc2dd96fb7be7afcd30c3e>div{
+        background-color: #333 !important;
+      }
+    </style>
 </head>
 <body>
 
+  where to buy offline map (in-page) ean-code = 0000000000000 / country-code = de
+  <div class="whereBuyDiv" >
     <span
       style="visibility: hidden; display: inline-block;"
       data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-0000000000000"
       data-gh-buy-now-button
-      data-gh-mpn-code=""
       data-gh-ean-code="0000000000000"
-      data-gh-country-code="us"
+      data-gh-country-code="de"
       data-gh-configuration-id="60c862c3ceae2418c69bb04f"
       data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
     >
     </span>
-    <div class="result-gh-60c862c3ceae2418c69bb04f-0000000000000" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="result-gh-60c862c3ceae2418c69bb04f-0000000000000" style="width: 100%; height: 800px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+  </div>
 
-    <script>
-      (function (d, s, id) {
-        if (d.getElementById(id + s)) return;
-        var js, t = d.getElementsByTagName(s)[0];
-        js = d.createElement(s);
-        js.id = id + s;
-        js.onload = function() {HatchRequest.init()};
-        js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
-        t.parentNode.insertBefore(js, t);
-      }(document, 'script', 'hatch-buy-now-request-'));
-    </script>
+  
+  where to buy online (inline) mpn-code = homepage01 / country-code = us
+  <div class="whereBuyDiv" >
+    <span
+      style="visibility: hidden; display: inline-block;"
+      data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01"
+      data-gh-buy-now-button
+      data-gh-mpn-code="homepage01"
+      data-gh-ean-code=""
+      data-gh-country-code="us"
+      data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
+      data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+    >
+    </span>
+    <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
+  </div>
+  <script>
+    (function (d, s, id) {
+      if (d.getElementById(id + s)) return;
+      var js, t = d.getElementsByTagName(s)[0];
+      js = d.createElement(s);
+      js.id = id + s;
+      js.onload = function() {HatchRequest.init()};
+      js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
+      t.parentNode.insertBefore(js, t);
+    }(document, 'script', 'hatch-buy-now-request-'));
+  </script>
 
 </body>
 </html>

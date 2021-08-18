@@ -2,9 +2,15 @@
   :root {
     --main-bg-color: #333;
     --main-bg-color-dark: #222;
-    --main-bg-color-darker: #222;
+    --main-bg-color-darker: #333;
     --main-hover-color: #222;
     --main-white:#FFF;
+  }
+  body > div[class^="hatch"]{
+    font-family: "TitilliumWeb", sans-serif !important;
+  }
+  body > div[class^="hatch"] > div > div > div > div:nth-child(1){
+    background-color:var(--main-bg-color-dark) !important;
   }
   body > div[class^="hatch"] > div > div > div > div{
     background-color:var(--main-bg-color-darker) !important;
@@ -69,6 +75,7 @@
 
   .productModelName{
     position:fixed ;
+    
     width: 100%;
     height: auto;
     min-height: 60px ;
@@ -76,15 +83,15 @@
     left: 0;
     top: 0 ;
     font-size: 24px;
-    color: #fff ;
-    font-weight: 700 ;
+    color: #ff6400 ;
+    font-family: 'Aldrich',sans-serif;
+    font-weight: 500 ;
     text-align: center;
     z-index: 9999;
     line-height:32px;
-    background-color: #ff6400;
+    background-color: #000;
     clip-path: polygon(0 0,100% 0,100% calc(100% - 20px) ,calc(100% - 20px) 100%, 0 100%);
   }
-
 
   
   @media (max-width:599px){
@@ -95,7 +102,6 @@
       font-size: 18px;
       font-weight: 500 ;
       line-height: 24px;
-      background-color: #000;
     }
     
     body > div[class^="hatch"] > div:nth-of-type(4) > div,
@@ -126,7 +132,7 @@
 
     #simple-tabpanel-1 > div > div > div > div,
     #simple-tabpanel-1 > div > div > div > div > div > div:nth-child(1) > div > div{
-      background-color:var(--main-bg-color-dark) !important;
+      background-color:var(--main-bg-color) !important;
       color:var(--main-white) !important;
     }
 
@@ -140,6 +146,15 @@
     }
     #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div{
       padding: 10px !important; 
+    }
+
+    #simple-tabpanel-0 > div > div{
+      background-color: var(--main-bg-color) !important;
+      border: 1px solid  var(--main-bg-color) !important;
+    }
+    #simple-tabpanel-1+a[class^="hatch"]>div{
+      background-color: var(--main-bg-color-dark) !important;
+      border: 1px solid  var(--main-bg-color-dark) !important;
     }
 
     #simple-tabpanel-1 > div:nth-child(3) > div:nth-child(2) > div > div > div > div > div,
