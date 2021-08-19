@@ -89,193 +89,189 @@
       }
     </style>
 </head>
-<body>
-  <h2>online (inline)</h2>
-  <div class="box">
-    where to buy online (inline) mpn-code = homepage01 / country-code = us
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-us"
-        data-gh-buy-now-button
-        data-gh-mpn-code="homepage01"
-        data-gh-ean-code=""
-        data-gh-country-code="us"
-        data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-us" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
-    </div>
-  </div>
+<div>
 
-  <div class="box">
-    where to buy online (inline) mpn-code = homepage01 / country-code = de
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-de"
-        data-gh-buy-now-button
-        data-gh-mpn-code="homepage01"
-        data-gh-ean-code=""
-        data-gh-country-code="de"
-        data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-de" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
-    </div>
-  </div>
+  <!-- <button onClick="change(1);">Online</button>
+  <button onClick="change(2);">OffLine</button> -->
 
-  <div class="box">
-    where to buy online (inline) mpn-code = homepage01 / country-code = vn
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-vn"
-        data-gh-buy-now-button
-        data-gh-mpn-code="homepage01"
-        data-gh-ean-code=""
-        data-gh-country-code="vn"
-        data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-vn" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
+  <div style="position: relative;float: left; width: 100%;" id="onlineDiv">
+    <h2>online (inline)</h2>
+    <div class="box">
+      <input type="checkbox" name="on"  value="us" onClick="ClickChange(this)">
+      where to buy online (inline) mpn-code = homepage01 / country-code = us
+      <div class="whereBuyDiv" id="us_online" style="display: none;">
+        <!-- <span
+            style="visibility: hidden; display: inline-block;"
+            data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-${i.value}"
+            data-gh-buy-now-button
+            data-gh-mpn-code="homepage01"
+            data-gh-ean-code=""
+            data-gh-country-code="${i.value}"
+            data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
+            data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+          >
+          </span>
+          <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-${i.value}" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div> -->
+      </div>
     </div>
-  </div>
 
-  <div class="box">
-    where to buy online (inline) mpn-code = homepage01 / country-code = au
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-au"
-        data-gh-buy-now-button
-        data-gh-mpn-code="homepage01"
-        data-gh-ean-code=""
-        data-gh-country-code="au"
-        data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-au" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
+    <div class="box">
+      <input type="checkbox" name="on"  value="de" onClick="ClickChange(this)">
+      where to buy online (inline) mpn-code = homepage01 / country-code = de
+      <div class="whereBuyDiv" id="de_online" style="display: none;">
+      </div>
     </div>
-  </div>
 
-  <div class="box">
-    where to buy online (inline) mpn-code = homepage01 / country-code = gb
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-gb"
-        data-gh-buy-now-button
-        data-gh-mpn-code="homepage01"
-        data-gh-ean-code=""
-        data-gh-country-code="gb"
-        data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-gb" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
+    <div class="box">
+      <input type="checkbox" name="on"  value="vn" onClick="ClickChange(this)">
+      where to buy online (inline) mpn-code = homepage01 / country-code = vn
+      <div class="whereBuyDiv" id="vn_online" style="display: none;">
+      </div>
+    </div>
+
+    <div class="box">
+      <input type="checkbox" name="on" value="au" onClick="ClickChange(this)">
+      where to buy online (inline) mpn-code = homepage01 / country-code = au
+      <div class="whereBuyDiv"  id="au_online" style="display: none;">
+      </div>
+    </div>
+
+    <div class="box">
+      <input type="checkbox" name="on" value="gb" onClick="ClickChange(this)">
+      where to buy online (inline) mpn-code = homepage01 / country-code = gb
+      <div class="whereBuyDiv"  id="gb_online" style="display: none;">
+      </div>
     </div>
   </div>
-  <div style="position: relative;float: left; width: 100%;">
-    <hr>
+  
+
+  <div style="position: relative;float: left; width: 100%;" id="offlineDiv">
     <h2>offline map (in-page)</h2>
-  </div>
-  <div class="box">
-    where to buy offline map (in-page) ean-code = 4719331000001 / country-code = us
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-us"
-        data-gh-buy-now-button
-        data-gh-ean-code="4719331000001"
-        data-gh-country-code="us"
-        data-gh-configuration-id="60c862c3ceae2418c69bb04f"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-us" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="box">
+      <input type="checkbox" name="off"  value="us" onClick="ClickChange(this)">
+      where to buy offline map (in-page) ean-code = 4719331000001 / country-code = us
+      <div class="whereBuyDiv" id="us_offline" style="display: none;">
+        <!-- <span
+          style="visibility: hidden; display: inline-block;"
+          data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-off-us"
+          data-gh-buy-now-button
+          data-gh-ean-code="4719331000001"
+          data-gh-country-code="us"
+          data-gh-configuration-id="60c862c3ceae2418c69bb04f"
+          data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+        >
+        </span>
+        <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-off-us" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div> -->
+      </div>
     </div>
-  </div>
-  <div class="box">
-    where to buy offline map (in-page) ean-code = 4719331000001 / country-code = de
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-de"
-        data-gh-buy-now-button
-        data-gh-ean-code="4719331000001"
-        data-gh-country-code="de"
-        data-gh-configuration-id="60c862c3ceae2418c69bb04f"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-de" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="box">
+      <input type="checkbox" name="off"  value="de" onClick="ClickChange(this)">
+      where to buy offline map (in-page) ean-code = 4719331000001 / country-code = de
+      <div class="whereBuyDiv" id="de_offline" style="display: none;">
+      </div>
     </div>
-  </div>
-  <div class="box">
-    where to buy offline map (in-page) ean-code = 4719331000001 / country-code = vn
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-vn"
-        data-gh-buy-now-button
-        data-gh-ean-code="4719331000001"
-        data-gh-country-code="vn"
-        data-gh-configuration-id="60c862c3ceae2418c69bb04f"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-vn" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="box">
+      <input type="checkbox" name="off"  value="vn" onClick="ClickChange(this)">
+      where to buy offline map (in-page) ean-code = 4719331000001 / country-code = vn
+      <div class="whereBuyDiv" id="vn_offline" style="display: none;">
+      </div>
     </div>
-  </div>
-  <div class="box">
-    where to buy offline map (in-page) ean-code = 4719331000001 / country-code = au
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-au"
-        data-gh-buy-now-button
-        data-gh-ean-code="4719331000001"
-        data-gh-country-code="au"
-        data-gh-configuration-id="60c862c3ceae2418c69bb04f"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-au" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="box">
+      <input type="checkbox" name="off"  value="au" onClick="ClickChange(this)">
+      where to buy offline map (in-page) ean-code = 4719331000001 / country-code = au
+      <div class="whereBuyDiv" id="au_offline" style="display: none;">
+      </div>
     </div>
-  </div>
-  <div class="box">
-    where to buy offline map (in-page) ean-code = 4719331000001 / country-code = gb
-    <div class="whereBuyDiv" >
-      <span
-        style="visibility: hidden; display: inline-block;"
-        data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-gb"
-        data-gh-buy-now-button
-        data-gh-ean-code="4719331000001"
-        data-gh-country-code="gb"
-        data-gh-configuration-id="60c862c3ceae2418c69bb04f"
-        data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
-      >
-      </span>
-      <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-gb" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+    <div class="box">
+      <input type="checkbox" name="off"  value="gb" onClick="ClickChange(this)">
+      where to buy offline map (in-page) ean-code = 4719331000001 / country-code = gb
+      <div class="whereBuyDiv" id="gb_offline" style="display: none;">
+        
+      </div>
     </div>
   </div>
     
     
   <script>
-    (function (d, s, id) {
-      if (d.getElementById(id + s)) return;
-      var js, t = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.id = id + s;
-      js.onload = function() {HatchRequest.init()};
-      js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
-      t.parentNode.insertBefore(js, t);
-    }(document, 'script', 'hatch-buy-now-request-'));
+    var _type = 1;
+    function change(type){
+      _type = type;
+
+      // if(_type == 1){
+      //   document.getElementById("onlineDiv").style.display = 'inline';
+      //   document.getElementById("offlineDiv").style.display = 'none';
+      // }else{
+      //   document.getElementById("offlineDiv").style.display = 'inline';
+      //   document.getElementById("onlineDiv").style.display = 'none';
+      // }
+
+      if(document.getElementById('hatch-buy-now-request-script')){
+        document.getElementById('hatch-buy-now-request-script').remove();
+      }
+      setTimeout(function(){
+        console.log("load Hatch!!");
+        (function (d, s, id) {
+          if (d.getElementById(id + s)) return;
+          var js, t = d.getElementsByTagName(s)[0];
+          js = d.createElement(s);
+          js.id = id + s;
+          js.onload = function() {HatchRequest.init()};
+          js.src = 'https://cdn.gethatch.com/hatch-buy-now-request-1.0.stable.js';
+          t.parentNode.insertBefore(js, t);
+        }(document, 'script', 'hatch-buy-now-request-'));
+        console.log("Finish Hatch!!");
+      },500);
+    }
+    change(1);
+
+
+    function ClickChange(i){
+      if(i.name == "on"){
+        if(i.checked){
+          var html = `
+            <span
+              style="visibility: hidden; display: inline-block;"
+              data-target-node-selector=".result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-${i.value}"
+              data-gh-buy-now-button
+              data-gh-mpn-code="homepage01"
+              data-gh-ean-code=""
+              data-gh-country-code="${i.value}"
+              data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"
+              data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+            >
+            </span>
+            <div class="result-gh-60dc2dd96fb7be7afcd30c3e-homepage01-${i.value}" data-gh-configuration-id="60dc2dd96fb7be7afcd30c3e"></div>
+          `;
+          document.getElementById(i.value+"_online").innerHTML = html;
+          document.getElementById(i.value+"_online").style.display = "inherit";
+        }else{
+          document.getElementById(i.value+"_online").innerHTML = '';
+          document.getElementById(i.value+"_online").style.display = "none";
+        }
+      }else{
+        if(i.checked){
+          var html = `
+            <span
+              style="visibility: hidden; display: inline-block;"
+              data-target-node-selector=".result-gh-60c862c3ceae2418c69bb04f-4719331000001-off-${i.value}"
+              data-gh-buy-now-button
+              data-gh-ean-code="4719331000001"
+              data-gh-country-code="${i.value}"
+              data-gh-configuration-id="60c862c3ceae2418c69bb04f"
+              data-gh-endpoint-wtbo="gethatch.com/wtbonline/affiliate" 
+            >
+            </span>
+            <div class="result-gh-60c862c3ceae2418c69bb04f-4719331000001-off-${i.value}" style="width: 100%; height: 600px;" data-gh-configuration-id="60c862c3ceae2418c69bb04f"></div>
+          `;
+          document.getElementById(i.value+"_offline").innerHTML = html;
+          document.getElementById(i.value+"_offline").style.display = "inherit";
+        }else{
+          document.getElementById(i.value+"_offline").innerHTML = '';
+          document.getElementById(i.value+"_offline").style.display = "none";
+        }
+      }
+      change(_type);
+    }
   </script>
 
 </body>
