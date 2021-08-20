@@ -208,8 +208,8 @@
                     }
                 }
             }
-            console.log(allData);
-            console.log(pagMap);
+            // console.log(allData);
+            // console.log(pagMap);
             let j = 3
             for (const country in allData) {
                 for (const page in pagMap) {
@@ -223,7 +223,10 @@
                         ) {
                             break
                         } else {
-                            allData[country][page][getCellValue(sheet, range, 2, i)] = getCellValue(sheet, range, j, i).replace(/"/, "\"")
+                            // console.log(j,i)
+                            // console.log(getCellValue(sheet, range, 2, i))
+                            // console.log(getCellValue(sheet, range, j, i))
+                            allData[country][page][getCellValue(sheet, range, 2, i)] = getCellValue(sheet, range, j, i)+"".replace(/"/, "\"")
                         }
                     }
                 }
