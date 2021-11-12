@@ -109,7 +109,7 @@ export default {
       carType: [
         { type: 1, name: "普通小型車" },
         { type: 2, name: "大型重型機車" },
-        { type: 3, name: "普通重型機車" },
+        { type: 3, name: "機車" },
       ],
       mapStyle: [ 
         { name: "暗色模式", value: "mapbox://styles/jamestim9215/ckvkdj5cd1q4115nzwxa9rny3"},  //客製化

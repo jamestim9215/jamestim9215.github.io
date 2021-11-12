@@ -233,12 +233,12 @@ export default {
       });
 
       // use google sheet data
-      this.getGoogleData();
+      // this.getGoogleData();
 
       // use local json file
-      // this.parkingInfo = parkingInfo;
-      // this.setMakerInit();
-      // this.setUserArea();
+      this.parkingInfo = parkingInfo;
+      this.setMakerInit();
+      this.setUserArea();
 
       this.map.addControl(
         new mapboxgl.GeolocateControl({
