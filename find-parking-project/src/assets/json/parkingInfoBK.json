@@ -1,0 +1,126 @@
+{
+    "type": "",
+    "features": [
+        {
+            "imgUrl": "https://www.okweb.asia/webseekfun0006/UserFiles/product_m/1fc969398a56bb09842d91d6d2309887.jpg",
+            "properties": {
+                "title": "市民大道停車場-公中段 公園-中山",
+                "info": "",
+                "times": "24hr",
+                "address": "號, No. 209市民大道一段大同區台北市103",
+                "iconSize": [
+                    50,
+                    50
+                ],
+                "carInfo": {
+                    "car": {
+                        "halfAnHour": "15",
+                        "anHour": "30",
+                        "dayMax": "-",
+                        "other": "日間30元/時，夜間10元/時。(18-8)"
+                    },
+                    "superBike": {
+                        "halfAnHour": "15",
+                        "anHour": "30",
+                        "dayMax": "-",
+                        "other": "日間30元/時，夜間10元/時。(18-8)"
+                    },
+                    "carType": [
+                        1,
+                        2
+                    ]
+                }
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    121.51912475877782,
+                    25.048269552244463
+                ]
+            }
+        },
+        {
+            "imgUrl": "https://pic.pimg.tw/infinite520visa/1378306529-3066909322_m.jpg",
+            "properties": {
+                "title": "京站 停車場",
+                "info": "",
+                "times": "24hr",
+                "address": "103台北市大同區承德路一段3號B4樓",
+                "iconSize": [
+                    50,
+                    50
+                ],
+                "carInfo": {
+                    "car": {
+                        "halfAnHour": "-",
+                        "anHour": "80",
+                        "dayMax": "-",
+                        "other": "-"
+                    },
+                    "superBike": {
+                        "halfAnHour": "-",
+                        "anHour": "80",
+                        "dayMax": "-",
+                        "other": "-"
+                    },
+                    "scooter": {
+                        "halfAnHour": "5",
+                        "anHour": "10",
+                        "dayMax": "50",
+                        "other": "-"
+                    }
+                },
+                "carType": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    121.51812680383239,
+                    25.04872371452838
+                ]
+            }
+        },
+        {
+            "imgUrl": "https://attach.mobile01.com/attach/201703/mobile01-52ee0082d0addbec59539d422e399df8.jpg.webp",
+            "properties": {
+                "title": "中山堂地下停車場",
+                "info": "",
+                "times": "24hr",
+                "address": "100台北市中正區延平南路98號B1F-B2F",
+                "iconSize": [
+                    50,
+                    50
+                ],
+                "carInfo": {
+                    "car": {
+                        "halfAnHour": "-",
+                        "anHour": "40",
+                        "dayMax": "-",
+                        "other": "日間40元/時，夜間10元/時。"
+                    },
+                    "superBike": {
+                        "halfAnHour": "-",
+                        "anHour": "40",
+                        "dayMax": "-",
+                        "other": "日間40元/時，夜間10元/時。"
+                    }
+                },
+                "carType": [
+                    1,
+                    2
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    121.51064626576185,
+                    25.044095028438132
+                ]
+            }
+        }
+    ]
+}
