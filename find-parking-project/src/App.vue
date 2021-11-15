@@ -58,8 +58,9 @@
         </option>
       </select>
 
-      <h5 style="margin-top:10px;">錯誤回報</h5>
-      <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px">點此前往回報</button></a>
+      <h5 style="margin-top:10px;">回報</h5>
+      <a href="https://forms.gle/siWoYMo9PtxAk38w9" target="_blank"><button class="btn" style="font-size: 10px;margin-right: 5px;">提供停車場資訊</button></a>
+      <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px">錯誤資訊回報</button></a>
       
 
 
