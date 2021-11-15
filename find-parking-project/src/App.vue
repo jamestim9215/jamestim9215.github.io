@@ -58,6 +58,10 @@
         </option>
       </select>
 
+      <h5 style="margin-top:10px;">錯誤回報</h5>
+      <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px">點此前往回報</button></a>
+      
+
 
     </div>
 
@@ -166,12 +170,38 @@ export default {
       this.windowOpen = false;
     },
     onSetUserCityArea(data){
+      var city  = data.features[4].text;
+      switch(city){
+        case "Taipei City": city = '台北市'; break;
+        case "New Taipei City": city = '新北市'; break;
+        case "Keelung": city = '基隆市'; break;
+        case "Taoyuan City": city = '桃園市'; break;
+        case "Hsinchu": city = '新竹縣'; break;
+        case "Hsinchu City": city = '新竹市'; break;
+        case "Miaoli": city = '苗栗縣'; break;
+        case "Taichung": city = '臺中市'; break;
+        case "Nantou": city = '南投縣'; break;
+        case "Changhua": city = '彰化縣'; break;
+        case "Yunlin": city = '雲林縣'; break;
+        case "Chiayi": city = '嘉義縣'; break;
+        case "Chiayi City": city = '嘉義市'; break;
+        case "Tainan": city = '臺南市'; break;
+        case "Kaohsiung City": city = '高雄市'; break;
+        case "Pingtung": city = '屏東縣'; break;
+        case "Yilan": city = '宜蘭縣'; break;
+        case "Hualien": city = '花蓮縣'; break;
+        case "Taitung": city = '臺東縣'; break;
+        case "Penghu": city = '澎湖縣'; break;
+        case "Kinmen": city = '金門縣'; break;
+        case "Matsu Islands": city = '連江縣'; break;
+      }
+      var cityArea  = data.features[3].text;
       for(var key in this.areaData){
         for(var keys in this.areaData[key]){
-          if(this.areaData[key][keys]==data){
+          if(key == city && this.areaData[key][keys]==cityArea){
             this.mapOptions.citySelected = key;
             setTimeout(()=>{
-              this.mapOptions.cityAreaSelected = data;
+              this.mapOptions.cityAreaSelected = cityArea;
             },50)
             break;
           }

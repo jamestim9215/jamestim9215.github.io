@@ -190,8 +190,8 @@ export default {
       
       axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+lngLat+'.json?access_token='+_this.accessToken)
       .then(function (response) {
-        console.log(response.data.features[3].text);
-        _this.$emit("userCityArea", response.data.features[3].text);
+        console.log(response.data);
+        _this.$emit("userCityArea", response.data);
       })
       .catch(function (error) {
         console.log(error);
