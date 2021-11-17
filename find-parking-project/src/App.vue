@@ -16,6 +16,35 @@
       </div>
     </div>
 
+    <div class="window-box-cover" v-if="windowMessageOpen">
+      <div class="window-box">
+        <h3 style="margin-bottom: 15px;text-align: left">
+          嗨!歡迎使用 <b style="color:#2ee7d6">我到底能停哪?</b> <br><br>
+
+          目前資料處於 "<b style="color:#2ee7d6">測試階段</b>" ，
+          除了有圖片的地點，
+          其餘地點皆為"<b style="color:#2ee7d6">僅供參考</b>"，
+          歡迎車友們可以使用<b><a href="https://forms.gle/iJCyfqVtpL35WtZM7" style="color:#2ee7d6" target="_blank">錯誤資訊回報</a></b>或是<b ><a href="https://forms.gle/siWoYMo9PtxAk38w9" style="color:#2ee7d6" target="_blank">提供停車場資訊</a></b>表單，
+          有了大家的幫忙!
+          以後就能方便車友們查詢到正確的地點停車~<br><br>
+          
+          p.s.<br> 
+          目前規劃 此系統免費提供給大家使用!!<br>
+          如果覺得不錯，可以請我喝杯<a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" style="color:#2ee7d6" target="_blank">咖啡</a>‧<br><br>
+
+          謝謝各位!
+        </h3>
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-fb+5w+4e-db+86"
+          data-ad-client="ca-pub-6596839701234097"
+          data-ad-slot="5429225032"></ins>
+        
+        <button class="btn" @click="windowMessageOpen=false">確定</button>
+      </div>
+    </div>
+
     <div class="appTitle">
       <h1>
         我到底能停哪?
@@ -58,12 +87,18 @@
         </option>
       </select>
 
-      <h5 style="margin-top:10px;">回報</h5>
-      <a href="https://forms.gle/siWoYMo9PtxAk38w9" target="_blank"><button class="btn" style="font-size: 10px;margin-right: 5px;">提供停車場資訊</button></a>
-      <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px">錯誤資訊回報</button></a>
+      <h5 style="margin-top:10px;margin-bottom:10px;">回報</h5>
+      <a href="https://forms.gle/siWoYMo9PtxAk38w9" target="_blank"><button class="btn" style="font-size: 10px;margin: 0 5px 5px 0;">提供停車場資訊</button></a>
+      <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px;margin: 0 5px 5px 0;">錯誤資訊回報</button></a>
       
+      <a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" target="_blank"><button class="btn" style="font-size: 10px">請我喝杯咖啡</button></a>
 
-
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-format="fluid"
+        data-ad-layout-key="-fb+5w+4e-db+86"
+        data-ad-client="ca-pub-6596839701234097"
+        data-ad-slot="5429225032"></ins>
     </div>
 
     <!-- 停車場資訊 -->
@@ -78,7 +113,13 @@
       <div>營業時間: <div id="parkingLotBusinessHours"></div></div>
       <div> <div id="parkingLotSomeInfo"></div></div>
       <div id="parkingLotInfo"></div>
-
+      <br>
+      <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-6596839701234097"
+        data-ad-slot="6570916319"></ins>
     </div>
     
     <pre id="coordinates" class="coordinates"></pre>
@@ -107,6 +148,7 @@ export default {
   data() {
     return {
       windowOpen: false,
+      windowMessageOpen: true,
       menuActive: false,
       infoActive: false,
 
@@ -151,12 +193,11 @@ export default {
 
   },
   mounted() {
-    // setTimeout(()=>{
-    //   document.getElementById('loading-cover').classList.add('active');
-    //   setTimeout(()=>{
-    //     document.getElementById('loading-cover').remove();
-    //   },1000);
-    // },1500)
+    const inlineScript = document.createElement('script');
+    inlineScript.type = 'text/javascript';
+    inlineScript.text = '(adsbygoogle = window.adsbygoogle || []).push({});'
+    document.getElementsByTagName('body')[0].appendChild(inlineScript);
+
   },
   methods: {
     carTypeChange(i) {
