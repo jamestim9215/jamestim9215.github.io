@@ -254,17 +254,43 @@ export default {
       this.parkingInfo = parkingInfo;
       mapboxgl.accessToken = this.accessToken;
 
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.userCoordinates[0] = position.coords.longitude;
-          this.userCoordinates[1] = position.coords.latitude;
-          this.center[0] = this.userCoordinates[0];
-          this.center[1] = this.userCoordinates[1];
+        // console.log("codeName = " + navigator.appCodeName);
+        // console.log("MinorVersion= " + navigator.appMinorVersion);
+        // console.log("Name = " + navigator.appName);
+        // console.log("Version = " + navigator.appVersion);
+        // console.log("UserAgent = " + navigator.userAgent);
+        // console.log("vendor = " + navigator.vendor);
+        // console.log("platform = " + navigator.platform);
+        // console.log("language = " + navigator.language);
+        // console.log("javaEnabled = " + navigator.javaEnabled());
 
-          var _this = this;
-          _this.setMap();
-        });
+        console.log(navigator.geolocation);
+
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(this.successCallback,this.errorCallback);
+      }else{
+        console.log("NONE");
       }
+    },
+    successCallback(position){
+      this.userCoordinates[0] = position.coords.longitude;
+      this.userCoordinates[1] = position.coords.latitude;
+      this.center[0] = this.userCoordinates[0];
+      this.center[1] = this.userCoordinates[1];
+
+      this.setMap();
+    },
+    errorCallback(error) {
+      var errorTypes={
+            0:"不明原因錯誤",
+            1:"請提供您的定位資訊", //使用者拒絕提供位置資訊
+            2:"無法取得位置資訊",
+            3:"位置查詢逾時"
+      };
+      console.log(errorTypes[error.code]);
+      // alert(errorTypes[error.code]);
+      this.setMap();
+      //alert(error.message);  //測試時用
     },
     setMaker() {
       if (this.currentMarkers !== null) {
