@@ -1,0 +1,2901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .jsonCode {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="jsonCode" class="jsonCode"></div>
+    <a id="downloadAnchorElem" style="display:none"></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        var url = "https://script.google.com/macros/s/AKfycbyF5N0MMaikCNTLiQFS5s73my7lGBhPPadY8B0YfVyrp6hhR-ZZEmzvjq87xwDpzEnOwg/exec";
+        var dataList = [];
+
+        
+        getGoogleSheetData();
+
+        function getGoogleSheetData(){
+            axios.get(url)
+            .then(function (response) {
+                // handle success
+                // console.log(response.data);
+                var data = response.data;
+                for(var i=1; i<data.length;i++){
+                    var carType = [];
+                    if(data[i][9].match(/汽車/)) carType.push(1);
+                    if(data[i][9].match(/大型重機/)) carType.push(2);
+                    if(data[i][9].match(/普通重機/)) carType.push(3);
+                    var coordinates = data[i][8].split(",");
+                    for(var key in coordinates){
+                        coordinates[key] = parseFloat(coordinates[key]);
+                    }
+
+                    var _data = {
+                        "imgUrl": data[i][5],
+                        "properties": {
+                            "title": data[i][3],
+                            "info": data[i][4]?data[i][4]:'-',
+                            "times": data[i][6]?data[i][6]:'-',
+                            "address": data[i][7],
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": data[i][10]?data[i][10].toString():'-',
+                                    "anHour": data[i][11]?data[i][11].toString():'-',
+                                    "dayMax": data[i][12]?data[i][12].toString():'-',
+                                    "oneTime": data[i][13]?data[i][13].toString():'-',
+                                    "other": data[i][14]?data[i][14].toString():'-',
+                                    "total": 0
+                                },
+                                "superBike": {
+                                    "halfAnHour": data[i][15]?data[i][15].toString():'-',
+                                    "anHour": data[i][16]?data[i][16].toString():'-',
+                                    "dayMax": data[i][17]?data[i][17].toString():'-',
+                                    "oneTime": data[i][18]?data[i][18].toString():'-',
+                                    "other": data[i][19]?data[i][19].toString():'-',
+                                    "total": 0
+                                },
+                                "scooter": {
+                                    "halfAnHour": data[i][20]?data[i][20].toString():'-',
+                                    "anHour": data[i][21]?data[i][21].toString():'-',
+                                    "dayMax": data[i][22]?data[i][22].toString():'-',
+                                    "oneTime": data[i][23]?data[i][23].toString():'-',
+                                    "other": data[i][24]?data[i][24].toString():'-',
+                                    "total": 0
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i][1]==1) dataList.push(_data);
+                }
+                console.log(dataList);
+                // document.getElementById('jsonCode').innerHTML = JSON.stringify(dataList);
+                getLocalTaipei();
+                // downLoad();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+        }
+
+
+        function replaceParkingStr(str){
+            // return str.replace(/:|：|元|\//g, '');
+            return str.replace(/[^0-9]/ig,'');
+        }
+
+        function getLocalTaipei(){
+            axios.get('./taipei.json')
+            .then(function (response){
+                var data = response.data.data.park;
+                for(var i=0; i<data.length;i++){
+                    if(data[i].id == '021') console.log(data[i]);
+                    var carType = [];
+                    
+                    if(data[i].totalcar > 0 || data[i].summary.match(/小型車|汽車/)){
+                        carType.push(1);
+                    } 
+                    if(data[i].payex.match(/重型機車|重機/) || data[i].summary.match(/重型機車|重機/) ){
+                        carType.push(2);
+                    }
+                    if(data[i].totalmotor>0) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].EntranceCoord.EntrancecoordInfo){
+                        coordinates[0] = data[i].EntranceCoord.EntrancecoordInfo[0].Ycod;
+                        coordinates[1] = data[i].EntranceCoord.EntrancecoordInfo[0].Xcod;
+                    }
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    for(var j in data[i].FareInfo.Holiday){
+                        if(parseInt(carInfo.anHour) < parseInt(data[i].FareInfo.Holiday[j].Fare)){
+                            carInfo.anHour = data[i].FareInfo.Holiday[j].Fare;
+                        }
+                    }
+
+                    if(data[i].payex.match(/汽車：/)){
+                        var str = data[i].payex.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payex.match(/計時：/)){
+                        var str = data[i].payex.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payex.match(/小型車計時/)){
+                        var str = data[i].payex.split("小型車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    
+                    if(data[i].payex.match(/元\/時/)){
+                        var str = data[i].payex.split("元/時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    } 
+                    if(data[i].payex.match(/假日/) && !data[i].payex.match(/不含假日/)){
+                        var str = data[i].payex.split("假日");
+                        var price = replaceParkingStr(str[1].substr(0,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payex.match(/當日最高上限/)){
+                        var str = data[i].payex.split("當日最高上限");
+                        var price = replaceParkingStr(str[1].substr(0,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+                    if(data[i].payex.match(/計次：小型車/)){
+                        var str = data[i].payex.split("計次：小型車");
+                        carInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].payex.match(/機車/) && !data[i].payex.match(/機車計次|機車：/)){
+                        var str = data[i].payex.split("機車");
+                        scooterInfo.anHour = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車計時/)){
+                        var str = data[i].payex.split("機車計時");
+                        scooterInfo.anHour = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/當日當次收費上限/)){
+                        var str = data[i].payex.split("當日當次收費上限");
+                        scooterInfo.dayMax = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/當日當次最高收費上限/)){
+                        var str = data[i].payex.split("當日當次最高收費上限");
+                        scooterInfo.dayMax = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車計次/)){
+                        var str = data[i].payex.split("機車計次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/計次:機車/)){
+                        var str = data[i].payex.split("計次:機車");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/計次：機車/)){
+                        var str = data[i].payex.split("計次：機車");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/計次：機車最高/)){
+                        var str = data[i].payex.split("計次：機車最高");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車:計次/)){
+                        var str = data[i].payex.split("機車:計次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車：計次/)){
+                        var str = data[i].payex.split("機車：計次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車每次/)){
+                        var str = data[i].payex.split("機車每次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payex.match(/機車：每天每次/)){
+                        var str = data[i].payex.split("機車：每天每次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].name,
+                            "info": data[i].payex + "<br>" + data[i].summary,
+                            "times": data[i].serviceTime,
+                            "address": '台北市'+data[i].area+data[i].address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalcar,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalcar,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalmotor,
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    
+                    if(!data[i].name.match(/共享/) && data[i].EntranceCoord.EntrancecoordInfo ) dataList.push(_data);
+                }
+                
+                getLocalTuyin();
+
+                
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
+        }
+        function getLocalTuyin(){
+            axios.get('./tuyin.json')
+            .then(function (response){
+                var data = response.data.parkingLots;
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(data[i].totalSpace>0 || data[i].payGuide.match(/小型車|汽車/)) carType.push(1);
+                    if(data[i].payGuide.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].payGuide.match(/機車/)) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].wgsX){
+                        coordinates[0] = data[i].wgsX;
+                        coordinates[1] = data[i].wgsY;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+
+                    if(data[i].payGuide.match(/停車費率:/)){
+                        var str = data[i].payGuide.split("停車費率:");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/收費費率：/)){
+                        var str = data[i].payGuide.split("收費費率：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/小型車：臨停/)){
+                        var str = data[i].payGuide.split("小型車：臨停");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/汽車第一小時/)){
+                        var str = data[i].payGuide.split("汽車第一小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/每小時新台幣/)){
+                        var str = data[i].payGuide.split("每小時新台幣");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/元\/2小時/)){
+                        var str = data[i].payGuide.split("元/2小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)/2) carInfo.anHour = price/2;
+                    } 
+                    if(data[i].payGuide.match(/汽車/)){
+                        var str = data[i].payGuide.split("汽車");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/臨停車每小時/)){
+                        var str = data[i].payGuide.split("臨停車每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/小型車-臨停:/)){
+                        var str = data[i].payGuide.split("小型車-臨停:");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/小型車計時：/)){
+                        var str = data[i].payGuide.split("小型車計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].payGuide.match(/小型車每次新臺幣/)){
+                        var str = data[i].payGuide.split("小型車每次新臺幣");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        carInfo.oneTime = price;
+                    }
+                    if(data[i].payGuide.match(/汽車採每小時停車收費/)){
+                        var str = data[i].payGuide.split("汽車採每小時停車收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        carInfo.oneTime = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].payGuide.match(/機車：臨停/)){
+                        var str = data[i].payGuide.split("機車：臨停");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車：/) && !data[i].payGuide.match(/機車：臨停/)){
+                        var str = data[i].payGuide.split("機車：");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車/) && !data[i].payGuide.match(/機車：臨停/)){
+                        var str = data[i].payGuide.split("機車");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車每次/)){
+                        var str = data[i].payGuide.split("機車每次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車臨停/)){
+                        var str = data[i].payGuide.split("機車臨停");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車-臨停:/)){
+                        var str = data[i].payGuide.split("機車-臨停:");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+                    if(data[i].payGuide.match(/機車臨停每次/)){
+                        var str = data[i].payGuide.split("機車臨停每次");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+
+                    if(data[i].payGuide.match(/機車採每次停車/)){
+                        var str = data[i].payGuide.split("機車採每次停車");
+                        scooterInfo.oneTime = replaceParkingStr(str[1].substr(0 ,3));
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].parkName,
+                            "info": data[i].payGuide,
+                            "times": "-",
+                            "address": data[i].address.match(/桃園市/)?data[i].address:'桃園市'+ data[i].address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    // if(data[i].parkId == 'P-JL-003'){
+                    //     console.log(data[i].payGuide);
+                    //     console.log(_data.properties.carType);
+                    //     console.log(_data.properties.carInfo);
+                    // }
+                    
+                    if(!data[i].parkName.match(/共享/) && data[i].wgsX ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalNewTaipei();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
+        }
+        function getLocalNewTaipei(){
+            axios.get('./newTaipeiCity.json')
+            .then(function (response){
+                var data = response.data.data.row;
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(parseInt(data[i].totalCar)>0) carType.push(1);
+                    if(data[i].payEx.match(/重型機車|重機/)) carType.push(2);
+                    if(parseInt(data[i].totalMotor) >0) carType.push(3);
+                    var coordinates = [0,0];
+                    var transLngLat = twd97_to_latlng(data[i].twd97X,data[i].twd97Y);
+                    // if(data[i].wgsX){
+                        coordinates[0] = transLngLat.lng;
+                        coordinates[1] = transLngLat.lat;
+                    // }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].payEx.match(/小型車計時/)){
+                        var str = data[i].payEx.split("小型車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].payEx.match(/機車計時/)){
+                        var str = data[i].payEx.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].payEx.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].payEx.match(/機車計次/)){
+                        var str = data[i].payEx.split("機車計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].name,
+                            "info": data[i].payEx,
+                            "times": data[i].serviceTime,
+                            "address": data[i].address.match(/新北市/)?data[i].address:'新北市'+ data[i].address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    // if(data[i].id == '020112'){
+                    //     console.log(data[i].payEx);
+                    //     console.log(_data.properties.carType);
+                    //     console.log(_data.properties.carInfo);
+                    // }
+                    
+                    if(!data[i].name.match(/共享/) && data[i].twd97X ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalKeelung();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
+        }
+        
+        function getLocalKeelung(){
+            axios.get('./keelung.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    // if(data[i].Description.match(/小型車/)) 
+                    carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/)) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/機車計次/)){
+                        var str = data[i].FareDescription.split("機車計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/基隆市/)?data[i].Address:'基隆市'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'KEE12306'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalHsinchu();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+        }
+        
+        function getLocalHsinchu(){
+            axios.get('./Hsinchu.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/半小時/)){
+                        var str = data[i].FareDescription.split("元/半小時");
+                        var price = replaceParkingStr(str[1].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/新竹市/)?data[i].Address:'新竹市'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'AB'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalMiaoli();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+        
+        function getLocalMiaoli(){
+            axios.get('./Miaoli.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/苗栗縣/)?data[i].Address:'苗栗縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalNantou();
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+        
+        // getLocalTaichung();
+        function getLocalTaichung(){
+            axios.get('./Taichung.json')
+            .then(function (response){
+                var dataAll = response.data;
+                console.log(dataAll);
+                for(var key in dataAll){
+                    var data = dataAll[key].ParkingLots;
+                    for(var i=0; i<data.length;i++){
+
+                        if(data[i].Position==null) break;
+
+                        var carType = [];
+                        carType.push(1);
+                        if(data[i].Notes.match(/重型機車|重機/)) carType.push(2);
+                        if(data[i].Notes.match(/機車/)) carType.push(3);
+                        var coordinates = [0,0];
+                        if(data[i].X){
+                            coordinates[0] = data[i].X;
+                            coordinates[1] = data[i].Y;
+                        }
+                        
+                        var carInfo = {
+                            dataMax: 0,
+                            anHour: 0,
+                            oneTime: '-',
+                        }
+                        if(data[i].Notes.match(/元\/每小時/)){
+                            var str = data[i].Notes.split("元/每小時");
+                            var price = replaceParkingStr(str[0].substr(-3 ,3));
+                            if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                        }
+                        if(data[i].Notes.match(/元\/時/)){
+                            var str = data[i].Notes.split("元/時");
+                            var price = replaceParkingStr(str[0].substr(-3 ,3));
+                            if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                        }
+                        if(data[i].Notes.match(/元\/半小時/)){
+                            var str = data[i].Notes.split("元/半小時");
+                            var price = replaceParkingStr(str[0].substr(-3 ,3))*2;
+                            if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                        }
+                        if(data[i].Notes.match(/元\/30分/)){
+                            var str = data[i].Notes.split("元/30分");
+                            var price = replaceParkingStr(str[0].substr(-3 ,3))*2;
+                            if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                        }
+
+
+                        var scooterInfo = {
+                            anHour: '-',
+                            dayMax: '-',
+                            oneTime: '-',
+                        }
+                        if(data[i].Notes.match(/機車計時/)){
+                            var str = data[i].Notes.split("機車計時");
+                            var price = replaceParkingStr(str[1].substr(0 ,3));
+                            scooterInfo.anHour = price;
+                        }
+                        if(data[i].Notes.match(/機車每日/)){
+                            var str = data[i].Notes.split("機車每日");
+                            var price = replaceParkingStr(str[1].substr(0 ,3));
+                            scooterInfo.oneTime = price;
+                        }
+                        if(data[i].Notes.match(/機車:每日每次/)){
+                            var str = data[i].Notes.split("機車:每日每次");
+                            var price = replaceParkingStr(str[1].substr(0 ,3));
+                            scooterInfo.oneTime = price;
+                        }
+                        if(data[i].Notes.match(/機車每日每次/)){
+                            var str = data[i].Notes.split("機車每日每次");
+                            var price = replaceParkingStr(str[1].substr(0 ,3));
+                            scooterInfo.oneTime = price;
+                        }
+
+                        var NameList = data[i].Position.split("-");
+                        var _data = {
+                            "imgUrl": '',
+                            "properties": {
+                                "title": NameList[NameList.length-2] + " - " + NameList[NameList.length-1],
+                                "info": data[i].Notes,
+                                "times": '-',
+                                "address": '台中市'+ data[i].Position.split("-")[0],
+                                "iconSize": [
+                                    50,
+                                    50
+                                ],
+                                "carInfo": {
+                                    "car": {
+                                        "halfAnHour": '-',
+                                        "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                        "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                        "oneTime": carInfo.oneTime,
+                                        "other": '-',
+                                        "total": data[i].TotalCar,
+                                    },
+                                    "superBike": {
+                                        "halfAnHour": '-',
+                                        "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                        "dayMax": '-',
+                                        "oneTime": carInfo.oneTime,
+                                        "other": '-',
+                                        "total": data[i].TotalCar,
+                                    },
+                                    "scooter": {
+                                        "halfAnHour": '-',
+                                        "anHour": scooterInfo.anHour,
+                                        "dayMax": scooterInfo.dayMax,
+                                        "oneTime": scooterInfo.oneTime,
+                                        "other": '-',
+                                        "total": '-',
+                                    }
+                                },
+                                "carType" : carType
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": coordinates
+                                
+                            }
+                        }
+                        if(data[i].ID == 'lyparking12'){
+                            console.log(data[i].Notes);
+                            console.log(_data.properties.carType);
+                            console.log(_data.properties.carInfo);
+                        }
+                        
+                        if(!data[i].Notes.match(/共享/) && data[i].X ) dataList.push(_data);
+                    }
+                }
+                console.log(dataList);
+                
+                // downLoad();
+                // getLocalNantou();
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+
+        function getLocalNantou(){
+            axios.get('./Nantou.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/南投縣/)?data[i].Address:'南投縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": '-',
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalChiayi()
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+        
+        function getLocalChiayi(){
+            axios.get('./Chiayi.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/嘉義縣/)?data[i].Address:'嘉義縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalChiayiCity();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+
+        function getLocalChiayiCity(){
+            axios.get('./ChiayiCity.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/嘉義市/)?data[i].Address:'嘉義市'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                getLocalPingtung()
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+
+        function getLocalPingtung(){
+            axios.get('./Pingtung.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/屏東縣/)?data[i].Address:'屏東縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalHualien()
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+        function getLocalHualien(){
+            axios.get('./Hualien.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if(data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/臨停:/)){
+                        var str = data[i].FareDescription.split("臨停:");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+                    if(data[i].FareDescription.match(/假日上限\$/)){
+                        var str = data[i].FareDescription.split("假日上限$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車/)){
+                        var str = data[i].FareDescription.split("機車");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/次/)){
+                        var str = data[i].FareDescription.split("元/次");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/花蓮縣/)?data[i].Address:'花蓮縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'MIA014'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                // downLoad();
+                getLocalTaitung();
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+
+        function getLocalTaitung(){
+            axios.get('./Taitung.json')
+            .then(function (response){
+                var data = response.data.CarParks;
+                console.log(data);
+                for(var i=0; i<data.length;i++){
+                    
+                    var carType = [];
+                    if(!data[i].CarParkName.Zh_tw.match(/機車/)) carType.push(1);
+                    if(data[i].Description.match(/重型機車|重機/) || data[i].CarParkName.Zh_tw.match(/重型機車|重機/) || data[i].FareDescription.match(/重型機車|重機/)) carType.push(2);
+                    if((data[i].Description.match(/機車/) || data[i].CarParkName.Zh_tw.match(/機車/) || data[i].FareDescription.match(/機車/)) && !data[i].FareDescription.match(/重型機車|重機/) ) carType.push(3);
+                    var coordinates = [0,0];
+                    if(data[i].CarParkPosition.PositionLat){
+                        coordinates[0] = data[i].CarParkPosition.PositionLon;
+                        coordinates[1] = data[i].CarParkPosition.PositionLat;
+                    }
+                    
+                    var carInfo = {
+                        dataMax: 0,
+                        anHour: 0,
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/汽車：/)){
+                        var str = data[i].FareDescription.split("汽車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時/)){
+                        var str = data[i].FareDescription.split("計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時: /)){
+                        var str = data[i].FareDescription.split("計時: ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時：/)){
+                        var str = data[i].FareDescription.split("計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日計時：/)){
+                        var str = data[i].FareDescription.split("假日計時：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每小時/)){
+                        var str = data[i].FareDescription.split("每小時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/計時H\//)){
+                        var str = data[i].FareDescription.split("計時H/");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/平日：/)){
+                        var str = data[i].FareDescription.split("平日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/假日：/)){
+                        var str = data[i].FareDescription.split("假日：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/小型車：/)){
+                        var str = data[i].FareDescription.split("小型車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/\/元\(/)){
+                        var str = data[i].FareDescription.split("/元(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/\/H\(/)){
+                        var str = data[i].FareDescription.split("/H(");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3));
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/30分/)){
+                        var str = data[i].FareDescription.split("元/30分");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/元\/每半小時/)){
+                        var str = data[i].FareDescription.split("元/每半小時");
+                        var price = replaceParkingStr(str[0].substr(-3 ,3)) * 2;
+                        if(parseInt(carInfo.anHour) < parseInt(price)) carInfo.anHour = price;
+                    }
+
+                    if(data[i].FareDescription.match(/上限/)){
+                        var str = data[i].FareDescription.split("上限");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日最高/)){
+                        var str = data[i].FareDescription.split("當日最高");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每日最高收費/)){
+                        var str = data[i].FareDescription.split("每日最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/每天最高收費/)){
+                        var str = data[i].FareDescription.split("每天最高收費");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    if(data[i].FareDescription.match(/當日收費最高上限為/)){
+                        var str = data[i].FareDescription.split("當日收費最高上限為");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        if(parseInt(carInfo.dataMax) < parseInt(price)) carInfo.dataMax = price;
+                    }
+
+                    var scooterInfo = {
+                        anHour: '-',
+                        dayMax: '-',
+                        oneTime: '-',
+                    }
+                    if(data[i].FareDescription.match(/機車計時/)){
+                        var str = data[i].FareDescription.split("機車計時");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.anHour = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        scooterInfo.oneTime = '0';
+                    }
+                    if(data[i].FareDescription.match(/計次/)){
+                        var str = data[i].FareDescription.split("計次");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/計次\$/)){
+                        var str = data[i].FareDescription.split("計次$");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車 /)){
+                        var str = data[i].FareDescription.split("機車 ");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：/)){
+                        var str = data[i].FareDescription.split("機車：");
+                        var price = replaceParkingStr(str[1].substr(0 ,3));
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車：未收費/)){
+                        var str = data[i].FareDescription.split("機車：未收費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+                    if(data[i].FareDescription.match(/機車免費/)){
+                        var str = data[i].FareDescription.split("機車免費");
+                        var price = 0;
+                        scooterInfo.oneTime = price;
+                    }
+
+
+                    var _data = {
+                        "imgUrl": '',
+                        "properties": {
+                            "title": data[i].CarParkName.Zh_tw,
+                            "info": data[i].FareDescription + "<br>" + data[i].Description,
+                            "times": data[i].FareDescription.match(/24小時/)?'24hr':'-',
+                            "address": data[i].Address.match(/臺東縣/)?data[i].Address:'臺東縣'+ data[i].Address,
+                            "iconSize": [
+                                50,
+                                50
+                            ],
+                            "carInfo": {
+                                "car": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "superBike": {
+                                    "halfAnHour": '-',
+                                    "anHour": carInfo.anHour==0?'-':carInfo.anHour.toString(),
+                                    "dayMax": carInfo.dataMax==0?'-':carInfo.dataMax.toString(),
+                                    "oneTime": carInfo.oneTime,
+                                    "other": '-',
+                                    "total": data[i].totalSpace,
+                                },
+                                "scooter": {
+                                    "halfAnHour": '-',
+                                    "anHour": scooterInfo.anHour,
+                                    "dayMax": scooterInfo.dayMax,
+                                    "oneTime": scooterInfo.oneTime,
+                                    "other": '-',
+                                    "total": '-',
+                                }
+                            },
+                            "carType" : carType
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coordinates
+                            
+                        }
+                    }
+                    if(data[i].CarParkID == 'TTT003'){
+                        console.log(data[i].FareDescription);
+                        console.log(_data.properties.carType);
+                        console.log(_data.properties.carInfo);
+                    }
+                    
+                    if(!data[i].CarParkName.Zh_tw.match(/共享/) && data[i].CarParkPosition ) dataList.push(_data);
+                }
+                console.log(dataList);
+                downLoad();
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            }); 
+        }
+
+        function twd97_to_latlng($x, $y) {
+            var pow = Math.pow, M_PI = Math.PI;
+            var sin = Math.sin, cos = Math.cos, tan = Math.tan;
+            var $a = 6378137.0, $b = 6356752.314245;
+            var $lng0 = 121 * M_PI / 180, $k0 = 0.9999, $dx = 250000, $dy = 0;
+            var $e = pow((1 - pow($b, 2) / pow($a, 2)), 0.5);
+
+            $x -= $dx;
+            $y -= $dy;
+
+            var $M = $y / $k0;
+
+            var $mu = $M / ($a * (1.0 - pow($e, 2) / 4.0 - 3 * pow($e, 4) / 64.0 - 5 * pow($e, 6) / 256.0));
+            var $e1 = (1.0 - pow((1.0 - pow($e, 2)), 0.5)) / (1.0 + pow((1.0 - pow($e, 2)), 0.5));
+
+            var $J1 = (3 * $e1 / 2 - 27 * pow($e1, 3) / 32.0);
+            var $J2 = (21 * pow($e1, 2) / 16 - 55 * pow($e1, 4) / 32.0);
+            var $J3 = (151 * pow($e1, 3) / 96.0);
+            var $J4 = (1097 * pow($e1, 4) / 512.0);
+
+            var $fp = $mu + $J1 * sin(2 * $mu) + $J2 * sin(4 * $mu) + $J3 * sin(6 * $mu) + $J4 * sin(8 * $mu);
+
+            var $e2 = pow(($e * $a / $b), 2);
+            var $C1 = pow($e2 * cos($fp), 2);
+            var $T1 = pow(tan($fp), 2);
+            var $R1 = $a * (1 - pow($e, 2)) / pow((1 - pow($e, 2) * pow(sin($fp), 2)), (3.0 / 2.0));
+            var $N1 = $a / pow((1 - pow($e, 2) * pow(sin($fp), 2)), 0.5);
+
+            var $D = $x / ($N1 * $k0);
+
+            var $Q1 = $N1 * tan($fp) / $R1;
+            var $Q2 = (pow($D, 2) / 2.0);
+            var $Q3 = (5 + 3 * $T1 + 10 * $C1 - 4 * pow($C1, 2) - 9 * $e2) * pow($D, 4) / 24.0;
+            var $Q4 = (61 + 90 * $T1 + 298 * $C1 + 45 * pow($T1, 2) - 3 * pow($C1, 2) - 252 * $e2) * pow($D, 6) / 720.0;
+            var $lat = $fp - $Q1 * ($Q2 - $Q3 + $Q4);
+
+            var $Q5 = $D;
+            var $Q6 = (1 + 2 * $T1 + $C1) * pow($D, 3) / 6;
+            var $Q7 = (5 - 2 * $C1 + 28 * $T1 - 3 * pow($C1, 2) + 8 * $e2 + 24 * pow($T1, 2)) * pow($D, 5) / 120.0;
+            var $lng = $lng0 + ($Q5 - $Q6 + $Q7) / cos($fp);
+
+            $lat = ($lat * 180) / M_PI;
+            $lng = ($lng * 180) / M_PI;
+
+            return {
+                lat: $lat,
+                lng: $lng
+            }
+        }
+
+        function downLoad(){
+            var downloadData = {
+                "type": "",
+                "features": dataList
+            }
+
+            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(downloadData));
+            var dlAnchorElem = document.getElementById('downloadAnchorElem');
+            dlAnchorElem.setAttribute("href",     dataStr     );
+            dlAnchorElem.setAttribute("download", "parkingInfo.json");
+            dlAnchorElem.click();
+        }
+        
+        
+        
+    </script>
+</body>
+
+</html>

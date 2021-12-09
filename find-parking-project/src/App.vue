@@ -30,7 +30,7 @@
           
           p.s.<br> 
           目前規劃 此系統免費提供給大家使用!!<br>
-          如果覺得不錯，可以請我喝杯<a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" style="color:#2ee7d6" target="_blank">咖啡</a>‧<br><br>
+          <!-- 如果覺得不錯，可以請我喝杯<a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" style="color:#2ee7d6" target="_blank">咖啡</a>‧<br><br> -->
 
           謝謝各位!
         </h3>
@@ -91,7 +91,7 @@
       <a href="https://forms.gle/siWoYMo9PtxAk38w9" target="_blank"><button class="btn" style="font-size: 10px;margin: 0 5px 5px 0;">提供停車場資訊</button></a>
       <a href="https://forms.gle/iJCyfqVtpL35WtZM7" target="_blank"><button class="btn" style="font-size: 10px;margin: 0 5px 5px 0;">錯誤資訊回報</button></a>
       
-      <a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" target="_blank"><button class="btn" style="font-size: 10px">請我喝杯咖啡</button></a>
+      <!-- <a href="https://paypal.me/jamestim9215?country.x=TW&locale.x=zh_TW" target="_blank"><button class="btn" style="font-size: 10px">請我喝杯咖啡</button></a> -->
 
       <ins class="adsbygoogle"
         style="display:block"

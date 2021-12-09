@@ -93,6 +93,7 @@ h2,h3,h4,h5,h6,p{
     bottom: 0;
     right: 0;
     background-color: rgba(19, 75, 68, 0.7);
+    overflow: auto;
 }
 
 .window-box{
@@ -119,9 +120,12 @@ h2,h3,h4,h5,h6,p{
     top: 60px;
     width: calc(320px - 20px);
     height: auto;
-    max-height: calc(100vh - 70px);
+    max-height: calc(100vh - 120px);
     background: #141d1f;
     transition: 0.7s all;
+
+    /* overflow: hidden;
+    overflow-y: auto; */
 }
 
 .mainInfoBox2{
@@ -133,6 +137,8 @@ h2,h3,h4,h5,h6,p{
     color: #ccc;
     /* max-height: calc(100vh - 240px); */
     max-height: calc(100vh - 120px);
+    overflow: hidden;
+    overflow-y: auto;
 }
 .mainInfoBox.active{
     left: 10px;

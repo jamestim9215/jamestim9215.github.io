@@ -1,0 +1,1621 @@
+{
+    "UpdateTime": "2021-09-02T15:45:32+08:00",
+    "UpdateInterval": 14400,
+    "AuthorityCode": "CYQ",
+    "VersionID": 0,
+    "CarParks": [
+      {
+        "CarParkID": "P5",
+        "CarParkName": {
+          "Zh_tw": "五都停車場嘉義站"
+        },
+        "OperatorID": "CYQ25147332",
+        "Description": "小型車187格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          1
+        ],
+        "ParkingSiteTypes": [
+          1
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(04)23383145",
+        "CarParkPosition": {
+          "PositionLat": 23.46263,
+          "PositionLon": 120.32339
+        },
+        "Email": "li0815@yahoo.com.tw",
+        "Address": "嘉義縣太保市保鐵一路三段、高鐵西路交叉口",
+        "FareDescription": "20元/時",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "MS0002",
+        "CarParkName": {
+          "Zh_tw": "雲梯接駁停車場"
+        },
+        "OperatorID": "CYQ66007601",
+        "Description": "平面式",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          1
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2622121",
+        "EmergencyPhone": "052622121",
+        "CarParkPosition": {
+          "PositionLat": 23.5756,
+          "PositionLon": 120.56009
+        },
+        "Email": "cyhgcf00@mail.cyhg.gov.tw",
+        "Address": "嘉義縣梅山鄉中學路",
+        "FareDescription": "無",
+        "IsFreeParkingOutOfHours": 0,
+        "VehicleRestriction": "無",
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "MS0001",
+        "CarParkName": {
+          "Zh_tw": "梅山公園停車場"
+        },
+        "OperatorID": "CYQ66007601",
+        "Description": "平面式",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2622121",
+        "EmergencyPhone": "052622121",
+        "CarParkPosition": {
+          "PositionLat": 23.57559,
+          "PositionLon": 120.55507
+        },
+        "Email": "cyhgcf00@mail.cyhg.gov.tw",
+        "Address": "嘉義縣梅山鄉公園路",
+        "FareURL": "https://meishan.cyhg.gov.tw/",
+        "FareDescription": "無",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P01",
+        "CarParkName": {
+          "Zh_tw": "強展嘉大民雄校區停車場"
+        },
+        "OperatorID": "CYQ28053301",
+        "Description": "平面小型車69格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2,
+          254
+        ],
+        "ParkingSiteTypes": [
+          20,
+          11
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2380328",
+        "CarParkPosition": {
+          "PositionLat": 23.54213,
+          "PositionLon": 120.4231
+        },
+        "Email": "r10032361@mail.cyhg.gov.tw",
+        "Address": "嘉義縣民雄鄉文化路",
+        "FareDescription": "20元/時(24H)、1,500元/月",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "MS01",
+        "CarParkName": {
+          "Zh_tw": "民雄鄉公有臨時停車場"
+        },
+        "OperatorID": "CYQ66643216",
+        "Description": "平面式停車場有180個停車格及300個機車格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          1
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2262101",
+        "EmergencyPhone": "0911656269",
+        "CarParkPosition": {
+          "PositionLat": 23.55368,
+          "PositionLon": 120.43033
+        },
+        "Email": "mmigihii@gmail.com",
+        "Address": "嘉義縣民雄鄉中村文化路50號",
+        "FareDescription": "無",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P6",
+        "CarParkName": {
+          "Zh_tw": "布袋港旅客服務中心停車場"
+        },
+        "OperatorID": "CYQ20193390",
+        "Description": "平面小型車644格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          1,
+          4
+        ],
+        "ParkingSiteTypes": [
+          3,
+          254,
+          8
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)3479830",
+        "CarParkPosition": {
+          "PositionLat": 23.37789,
+          "PositionLon": 120.13988
+        },
+        "Email": "twport.budai@gmail.com",
+        "Address": "嘉義縣布袋鎮新生段116-3、116-9、119地號",
+        "FareDescription": "20/時(24H)",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "SupervisionType": 254,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Puzi01",
+        "CarParkName": {
+          "Zh_tw": "廣停二停車場"
+        },
+        "OperatorID": "CYQ67501806",
+        "Description": "平面式小型車35停車格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3795102",
+        "CarParkPosition": {
+          "PositionLat": 23.45873,
+          "PositionLon": 120.24544
+        },
+        "Email": "cyhgc205@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市鎮安段1819、1820地號",
+        "FareDescription": "免費停車場",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 1,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "STO002",
+        "CarParkName": {
+          "Zh_tw": "停一停車場"
+        },
+        "OperatorID": "CYQ66013300",
+        "Description": "一般停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          1,
+          254
+        ],
+        "ParkingSiteTypes": [
+          22
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2683195",
+        "EmergencyPhone": "0921786868",
+        "CarParkPosition": {
+          "PositionLat": 23.42787,
+          "PositionLon": 120.39875
+        },
+        "Email": "chadmin@mail.cyhg.gov.tw",
+        "Address": "嘉義縣水上鄉市政街與中正路交叉口",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "VehicleRestriction": "小型車停車場",
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "LandMark": "水上市場",
+        "BuildingName": "無",
+        "LocationMapURL": "",
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "STO004",
+        "CarParkName": {
+          "Zh_tw": "水上鄉停（三）停車場"
+        },
+        "CarParkShortName": {
+          "Zh_tw": "停三停車場"
+        },
+        "CarParkRegNo": "",
+        "OperatorID": "CYQ66013300",
+        "Description": "免費",
+        "CarParkType": 1,
+        "ParkingGuideType": 254,
+        "ParkingTypes": [
+          2,
+          254,
+          1
+        ],
+        "ParkingSiteTypes": [
+          19
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2683195",
+        "EmergencyPhone": "0921786868",
+        "CarParkPosition": {
+          "PositionLat": 23.43382,
+          "PositionLon": 120.39585
+        },
+        "Email": "chadmin@mail.cyhg.gov.tw",
+        "Address": "朴子路水上地政旁",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "BuildingName": "無",
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Cyhg06",
+        "CarParkName": {
+          "Zh_tw": "公有免費停車場（朴子五路、祥和二路）"
+        },
+        "OperatorID": "CYQ66015102",
+        "Description": "公有免費停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20,
+          23
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "05-3622712#6614",
+        "CarParkPosition": {
+          "PositionLat": 23.4584,
+          "PositionLon": 120.28747
+        },
+        "Email": "r10032361@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市嘉朴段191地號(朴子五路、祥和二路公園)",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P03",
+        "CarParkName": {
+          "Zh_tw": "嘉義二停車場"
+        },
+        "OperatorID": "CYQ97317757",
+        "Description": "小型車121格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          1,
+          4
+        ],
+        "ParkingSiteTypes": [
+          1
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)3711026",
+        "CarParkPosition": {
+          "PositionLat": 23.46196,
+          "PositionLon": 120.32368
+        },
+        "Email": "hanpin@parkinsys.com.tw",
+        "Address": "保鐵一路三段與保鐵西路交叉口",
+        "FareDescription": "20元/時",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "SupervisionType": 1,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Puzi03",
+        "CarParkName": {
+          "Zh_tw": "廣停三停車場"
+        },
+        "OperatorID": "CYQ67501806",
+        "Description": "平面式小型車11格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3795102",
+        "CarParkPosition": {
+          "PositionLat": 23.46308,
+          "PositionLon": 120.23347
+        },
+        "Email": "cyhgc205@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市德安段1284、1285、1287",
+        "FareDescription": "公有免費停車場",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "CYHG02",
+        "CarParkName": {
+          "Zh_tw": "創新地下停車場"
+        },
+        "OperatorID": "CYQ80738683",
+        "Description": "地下停車場",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20,
+          19
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "05-3622712#6614",
+        "CarParkPosition": {
+          "PositionLat": 23.45664,
+          "PositionLon": 120.29465
+        },
+        "Email": "r10032361@mail.cyhg.gov.tw",
+        "Address": "嘉義縣太保市祥和二路東段8號",
+        "FareDescription": "10/時(8-17)",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 0,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "LJ03",
+        "CarParkName": {
+          "Zh_tw": "六腳鄉公所公有停車場"
+        },
+        "CarParkShortName": {
+          "Zh_tw": "廣停三"
+        },
+        "OperatorID": "CYQ67500102",
+        "Description": "提供民眾洽公使用之開放停車場，故無收取相關費用。",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          19
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "05-3801121",
+        "EmergencyPhone": "05-3801121",
+        "CarParkPosition": {
+          "PositionLat": 23.4937,
+          "PositionLon": 120.2909
+        },
+        "Email": "cyhgc804@mail.cyhg.gov.tw",
+        "Address": "嘉義縣六腳鄉蒜頭村73號",
+        "ImageURLs": [
+          "https://reurl.cc/5qQk5n"
+        ],
+        "WebURL": "",
+        "FareDescription": "無收費(24小時)",
+        "SpecialOfferDescription": "無收費",
+        "IsFreeParkingOutOfHours": 1,
+        "VehicleRestriction": "只允許小型車",
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "DL02",
+        "CarParkName": {
+          "Zh_tw": "大林後火車站公有免費停車場(停二)"
+        },
+        "CarParkShortName": {
+          "Zh_tw": "公有免費停車場(停二)"
+        },
+        "OperatorID": "CYQ66000109",
+        "Description": "汽機車混合停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          1,
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2653211",
+        "CarParkPosition": {
+          "PositionLat": 23.60025,
+          "PositionLon": 120.45657
+        },
+        "Email": "joyman_77102@yahoo.com.tw",
+        "Address": "大林後火車站前",
+        "FareDescription": "0",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "00",
+        "CarParkName": {
+          "Zh_tw": "朴子醫院停車場"
+        },
+        "OperatorID": "CYQ66599197",
+        "Description": "民眾停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          19
+        ],
+        "ChargeTypes": [
+          2
+        ],
+        "Telephone": "(05)3790600",
+        "EmergencyPhone": "0919-860-129",
+        "CarParkPosition": {
+          "PositionLat": 23.46385,
+          "PositionLon": 120.23499
+        },
+        "Email": "worker@puzih.mohw.gov.tw",
+        "Address": "永和里42-50號",
+        "FareDescription": "20元/次",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Puzi05",
+        "CarParkName": {
+          "Zh_tw": "廣停八停車場"
+        },
+        "OperatorID": "CYQ67501806",
+        "Description": "平面式大型車約10格小型車約20格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3795102",
+        "CarParkPosition": {
+          "PositionLat": 23.47003,
+          "PositionLon": 120.24726
+        },
+        "Email": "cyhgc205@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市安福段23地號旁",
+        "FareDescription": "公有免費停車場",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Puzi06",
+        "CarParkName": {
+          "Zh_tw": "廣停四停車場"
+        },
+        "OperatorID": "CYQ67501806",
+        "Description": "平面式小型車21格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3795102",
+        "CarParkPosition": {
+          "PositionLat": 23.46616,
+          "PositionLon": 120.25139
+        },
+        "Email": "cyhgc205@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市文明段453、454、455、461地號",
+        "FareDescription": "公有平面停車場",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P7",
+        "CarParkName": {
+          "Zh_tw": "布袋港第二停車場"
+        },
+        "OperatorID": "CYQ20193390",
+        "Description": "小型車242格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254,
+          2,
+          4,
+          1
+        ],
+        "ParkingSiteTypes": [
+          3,
+          254,
+          10
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)3479830",
+        "CarParkPosition": {
+          "PositionLat": 23.38103,
+          "PositionLon": 120.13913
+        },
+        "Email": "twport.budai@gmail.com",
+        "Address": "布袋鎮新生段116-6地號",
+        "FareDescription": "20/時(24H)",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "SupervisionType": 254,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Cyhg01",
+        "CarParkName": {
+          "Zh_tw": "公有免費停車場（仁和二路、小槺榔三路）"
+        },
+        "OperatorID": "CYQ66015102",
+        "Description": "公有免費停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "05-3622712#6614",
+        "CarParkPosition": {
+          "PositionLat": 23.4678,
+          "PositionLon": 120.28085
+        },
+        "Email": "r10032361@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市嘉朴段263地號(仁和二路小槺榔三路交叉口)",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "DS01",
+        "CarParkName": {
+          "Zh_tw": "東石鄉港口宮停車場"
+        },
+        "OperatorID": "CYQ67502903",
+        "Description": "小型車238格、大型車68格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          5,
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          15,
+          8
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3732201",
+        "CarParkPosition": {
+          "PositionLat": 23.49355,
+          "PositionLon": 120.18629
+        },
+        "Email": "woin@mail.cyhg.gov.tw",
+        "Address": "嘉義縣東石鄉下揖子寮段 74-9地號（嘉7與嘉9交叉口）",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "STO001",
+        "CarParkName": {
+          "Zh_tw": "機一停車場"
+        },
+        "OperatorID": "CYQ66013300",
+        "Description": "一般停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254,
+          1,
+          2
+        ],
+        "ParkingSiteTypes": [
+          22,
+          4
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2683195",
+        "EmergencyPhone": "0921786868",
+        "CarParkPosition": {
+          "PositionLat": 23.42917,
+          "PositionLon": 120.41491
+        },
+        "Email": "chadmin@mail.cyhg.gov.tw",
+        "Address": "水上上正義路水上國小對面",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "VehicleRestriction": "小型車停車",
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "LandMark": "水上國水",
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "DL03",
+        "CarParkName": {
+          "Zh_tw": "大林體育運動公園前公有免費停車場(停三)"
+        },
+        "CarParkShortName": {
+          "Zh_tw": "公有免費停車場(停三)"
+        },
+        "OperatorID": "CYQ66000109",
+        "Description": "平面停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2653211",
+        "CarParkPosition": {
+          "PositionLat": 23.59908,
+          "PositionLon": 120.45829
+        },
+        "Email": "joyman_77102@yahoo.com.tw",
+        "Address": "大林鎮新興街旁運動公園",
+        "FareDescription": "0",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P4",
+        "CarParkName": {
+          "Zh_tw": "五都停車場高鐵嘉義二站"
+        },
+        "OperatorID": "CYQ25147332",
+        "Description": "小型車762格、機車37格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          1
+        ],
+        "ParkingSiteTypes": [
+          20,
+          1
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(04)23383145",
+        "CarParkPosition": {
+          "PositionLat": 23.46249,
+          "PositionLon": 120.32248
+        },
+        "Email": "li0815@yahoo.com.tw",
+        "Address": "保鐵十二路",
+        "FareDescription": "小型車20元/時、機車30/次(平日)、機車40/次(假日)",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Cyhg07",
+        "CarParkName": {
+          "Zh_tw": "朴子配天宮公有停車場"
+        },
+        "OperatorID": "CYQ66015102",
+        "Description": "公有免費停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4,
+          5
+        ],
+        "ParkingSiteTypes": [
+          4,
+          15,
+          20
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "05-3620123#8899",
+        "CarParkPosition": {
+          "PositionLat": 23.4681,
+          "PositionLon": 120.24632
+        },
+        "Email": "taichen@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市安福段274地號等22筆(開元路北通路交叉口東南側空地)",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "P02",
+        "CarParkName": {
+          "Zh_tw": "強展金世界停車場"
+        },
+        "OperatorID": "CYQ28053301",
+        "Description": "小型車95格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4
+        ],
+        "ParkingSiteTypes": [
+          254,
+          20
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2371937",
+        "CarParkPosition": {
+          "PositionLat": 23.51448,
+          "PositionLon": 120.44141
+        },
+        "Email": "r10032361@mail.cyhg.gov.tw",
+        "Address": "嘉義縣民雄鄉惠安街",
+        "FareDescription": "20元/時。1500元/月",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 1,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "STO003",
+        "CarParkName": {
+          "Zh_tw": "停二停車場"
+        },
+        "OperatorID": "CYQ66013300",
+        "Description": "一般停車場",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          1,
+          3,
+          2
+        ],
+        "ParkingSiteTypes": [
+          4
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)2683195",
+        "EmergencyPhone": "0921786868",
+        "CarParkPosition": {
+          "PositionLat": 23.43079,
+          "PositionLon": 120.40043
+        },
+        "Email": "chadmin@mail.cyhg.gov.tw",
+        "Address": "嘉義縣水上鄉正義路與中興路交叉口",
+        "FareDescription": "免費",
+        "IsFreeParkingOutOfHours": 1,
+        "VehicleRestriction": "小型車停車場",
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "LandMark": "水上郵局",
+        "BuildingName": "無",
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "ZPFA01",
+        "CarParkName": {
+          "Zh_tw": "中埔鄉農會停車場"
+        },
+        "OperatorID": "CYQ99571620",
+        "Description": "平面式小型車30格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          1,
+          5,
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          11,
+          10,
+          5,
+          4,
+          8
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2532201",
+        "CarParkPosition": {
+          "PositionLat": 23.44657,
+          "PositionLon": 120.49377
+        },
+        "Email": "a222222172@yahoo.com.tw",
+        "Address": "嘉義縣中埔鄉金蘭村頂山門29號旁",
+        "FareDescription": "20元/時(24H)",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "Puzi07",
+        "CarParkName": {
+          "Zh_tw": "嘉義縣朴子市第一公有零售市場地下室停車場"
+        },
+        "CarParkRegNo": "嘉縣停車場登字第10504113號",
+        "OperatorID": "CYQ67501806",
+        "Description": "第一小時免收費",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          22
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)3791929",
+        "EmergencyPhone": "0980266067",
+        "CarParkPosition": {
+          "PositionLat": 23.46614,
+          "PositionLon": 120.24351
+        },
+        "Email": "dorcus27@mail.cyhg.gov.tw",
+        "Address": "嘉義縣朴子市開元路223號",
+        "FareDescription": "第1小時免收費，每日最高上限100元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 1,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      },
+      {
+        "CarParkID": "BD02",
+        "CarParkName": {
+          "Zh_tw": "公有免費停車場（布袋文創對面停車場）"
+        },
+        "OperatorID": "CYQ67500709",
+        "Description": "小型車格39格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          254
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          4
+        ],
+        "Telephone": "(05)3475979",
+        "CarParkPosition": {
+          "PositionLat": 23.38198,
+          "PositionLon": 120.1554
+        },
+        "Email": "goso86601@gmail.com",
+        "Address": "布袋文創對面停車場",
+        "FareDescription": "0",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 2,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 0,
+        "OvernightPermitted": 0,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 0,
+        "Lighting": 0,
+        "SecureParking": 0,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 0,
+        "Supervision": 0,
+        "City": "ChiayiCounty",
+        "CityCode": "CYQ"
+      }
+    ]
+  }

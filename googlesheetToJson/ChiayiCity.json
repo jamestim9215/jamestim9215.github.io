@@ -1,0 +1,1592 @@
+{
+    "UpdateTime": "2021-09-17T20:59:00+08:00",
+    "UpdateInterval": 14400,
+    "AuthorityCode": "CYI",
+    "VersionID": 0,
+    "CarParks": [
+      {
+        "CarParkID": "10902east",
+        "CarParkName": {
+          "Zh_tw": "檜村里(機6)停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場134格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1,
+          2
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.48916,
+          "PositionLon": 120.45467
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市東區忠孝路346巷1號",
+        "FareDescription": "  小客車：20元/1hr、大客車：60元/次",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10909B",
+        "CarParkName": {
+          "Zh_tw": "舊市公所停車場"
+        },
+        "OperatorID": "CYI70369154",
+        "Geometry": "23.474317,120.446509",
+        "Description": "平面式小型停車場120格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2273195",
+        "CarParkPosition": {
+          "PositionLat": 23.47553,
+          "PositionLon": 120.44707
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市西區民生北路與康樂街口\t",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10909A",
+        "CarParkName": {
+          "Zh_tw": "市府前廣場停車場"
+        },
+        "OperatorID": "CYI70369154",
+        "Geometry": "23.482108, 120.453960",
+        "Description": "平面式小型停車場261格(含婦幼停車位6格、身心障礙車位7格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          19
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2273207",
+        "CarParkPosition": {
+          "PositionLat": 23.48212,
+          "PositionLon": 120.45416
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市東區忠孝路188號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10904Aeast",
+        "CarParkName": {
+          "Zh_tw": "新生路停車場民族站"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場139格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47669,
+          "PositionLon": 120.46062
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市東區民國路與民族路口",
+        "FareDescription": "平日：10元/0.5hr、假日：20元/4hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "11006",
+        "CarParkName": {
+          "Zh_tw": "西市場大樓停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.474041,120.449605",
+        "Description": "平面式小型停車場201格(含婦幼停車位6格、身心障礙車位3格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          4
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.47889,
+          "PositionLon": 120.44852
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區國華街245號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10802",
+        "CarParkName": {
+          "Zh_tw": "嘉義中興停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場65格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4
+        ],
+        "ParkingSiteTypes": [
+          22
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.48141,
+          "PositionLon": 120.43315
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市中興路271巷4弄2號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10808",
+        "CarParkName": {
+          "Zh_tw": "火車站前停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.480513,120.442706",
+        "Description": "平面式小型停車場98格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          4
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.47967,
+          "PositionLon": 120.44166
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市林森西路502巷路口",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10721",
+        "CarParkName": {
+          "Zh_tw": "中正公園地下停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.481993,120.447393",
+        "Description": "平面式小型停車場129格(含婦幼停車位3格、身心障礙車位3格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          4
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.48208,
+          "PositionLon": 120.4474
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區民權路415號B1",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10504",
+        "CarParkName": {
+          "Zh_tw": "文化公園(停6)停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.474041,120.449605",
+        "Description": "平面式小型停車場151格(含婦幼停車位3格、身心障礙車位3格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20,
+          21
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "05-2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.47985,
+          "PositionLon": 120.42472
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區嘉義市國華街60號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "11017",
+        "CarParkName": {
+          "Zh_tw": "金財神停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場104格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47602,
+          "PositionLon": 120.44589
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市民族路610號B2",
+        "FareDescription": "平日1小時40元、假日1小時50元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 0,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10915",
+        "CarParkName": {
+          "Zh_tw": "轉運中心地下停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.479936,120.439501",
+        "Description": "平面式小型停車場68格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          1
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.48081,
+          "PositionLon": 120.44072
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區中興路1號B1",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 1,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "DuDuhouse",
+        "CarParkName": {
+          "Zh_tw": "吳鳳民族站"
+        },
+        "OperatorID": "CYI28371994",
+        "Description": "平面式小型停車場68格(含婦幼停車位3格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(02)26550818",
+        "CarParkPosition": {
+          "PositionLat": 23.47576,
+          "PositionLon": 120.45351
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市吳鳳北路77號",
+        "FareDescription": "平日:20元/0.5hr、假日:25元/0.5hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 0,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "11006A",
+        "CarParkName": {
+          "Zh_tw": "西市場忠義街停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場74格",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47927,
+          "PositionLon": 120.44731
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市忠義街118號B1",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "11010",
+        "CarParkName": {
+          "Zh_tw": "嘉義蘭井街停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.47663,120.44117",
+        "Description": "平面式小型停車場55格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          12,
+          4
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47985,
+          "PositionLon": 120.42472
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "蘭井街372號",
+        "FareDescription": "平日1小時40元、假日1小時50元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10918",
+        "CarParkName": {
+          "Zh_tw": "新民二站停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場39格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.4676,
+          "PositionLon": 120.44027
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市西區新民路682號",
+        "FareDescription": "平日1小時30元、假日半小時25元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 0,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10906",
+        "CarParkName": {
+          "Zh_tw": "垂楊國小地下停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.470847,120.439012",
+        "Description": "平面式小型停車場201格(含婦幼停車位4格、身心障礙車位4格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          11,
+          20
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.47066,
+          "PositionLon": 120.43914
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區上海路354號B1\t",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10810",
+        "CarParkName": {
+          "Zh_tw": "北港路(停9)停車場"
+        },
+        "OperatorID": "CYI28371994",
+        "Geometry": "23.4780544,120.4316639",
+        "Description": "平面式小型停車場39格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(02)26550818",
+        "CarParkPosition": {
+          "PositionLat": 23.47802,
+          "PositionLon": 120.43416
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市西區北港路230號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10909",
+        "CarParkName": {
+          "Zh_tw": "市府大樓地下停車場"
+        },
+        "OperatorID": "CYI70369154",
+        "Geometry": "23.480853, 120.453936",
+        "Description": "平面式小型停車場261格(含婦幼停車位6格、身心障礙車位7格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          19,
+          20
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(05)2278657",
+        "CarParkPosition": {
+          "PositionLat": 23.48068,
+          "PositionLon": 120.45396
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市東區民樂街141號",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10814",
+        "CarParkName": {
+          "Zh_tw": "大同國小(西榮街)停車場"
+        },
+        "OperatorID": "CYI28371994",
+        "Geometry": "23.473162,120.445866",
+        "Description": "平面式小型停車場18格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(02)26550818",
+        "CarParkPosition": {
+          "PositionLat": 23.47412,
+          "PositionLon": 120.45838
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市垂楊路與西榮街口",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10816",
+        "CarParkName": {
+          "Zh_tw": "停14(蘭停八)停車場"
+        },
+        "OperatorID": "CYI28371994",
+        "Geometry": "23.475937,120.473100",
+        "Description": "平面式小型停車場45格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(02)26550818",
+        "CarParkPosition": {
+          "PositionLat": 23.47629,
+          "PositionLon": 120.4728
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市大雅路二段43巷與雅竹路口",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10819",
+        "CarParkName": {
+          "Zh_tw": "中央廣場地下停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.482300,120.449878",
+        "Description": "平面式小型停車場130格(含婦幼停車位3格、身心障礙車位4格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          21,
+          4
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.50612,
+          "PositionLon": 120.43932
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市文化路及民權路口地下B1",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10801east",
+        "CarParkName": {
+          "Zh_tw": "博物館地下停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場75格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          255
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.48701,
+          "PositionLon": 120.45144
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市東區忠孝路275之1號B1",
+        "FareDescription": "平日1小時20元、假日1小時30元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10820",
+        "CarParkName": {
+          "Zh_tw": "民族國小地下停車場"
+        },
+        "OperatorID": "CYI70369154",
+        "Geometry": "23.474698, 120.454876",
+        "Description": "平面式小型停車場199格(含婦幼停車位3格、身心障礙車位4格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2273195",
+        "CarParkPosition": {
+          "PositionLat": 23.47412,
+          "PositionLon": 120.45838
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市垂楊路與共和路口\t",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10904",
+        "CarParkName": {
+          "Zh_tw": "德安停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Geometry": "23.484597,120.433325",
+        "Description": "平面式小型停車場67格(含婦幼停車位2格、身心障礙車位2格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20,
+          4
+        ],
+        "ChargeTypes": [
+          1,
+          3
+        ],
+        "Telephone": "(05)2276608",
+        "CarParkPosition": {
+          "PositionLat": 23.48422,
+          "PositionLon": 120.43341
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市西區德安路2號\t",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 1,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 0,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "Cityparking1",
+        "CarParkName": {
+          "Zh_tw": "嘉義成仁站停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場68格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47441,
+          "PositionLon": 120.45337
+        },
+        "Email": "sales@pss-group.com",
+        "Address": "嘉義市東區垂楊路256號",
+        "FareDescription": "平日：10元/0.5hr、假日：15元/0.5hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10912east",
+        "CarParkName": {
+          "Zh_tw": "嘉義東市停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場48格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 5,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          2,
+          4
+        ],
+        "ParkingSiteTypes": [
+          255
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47872,
+          "PositionLon": 120.45343
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市吳鳳北路184號3F",
+        "FareDescription": "平日半小時10元、假日半小時15元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10701east",
+        "CarParkName": {
+          "Zh_tw": "嘉義中山停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場29格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.48043,
+          "PositionLon": 120.45051
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市中山路248號",
+        "FareDescription": "  平日：20元/0.5hr、假日：30元/0.5hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 0,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10904east",
+        "CarParkName": {
+          "Zh_tw": "新生路停車場民國站"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場411格",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47669,
+          "PositionLon": 120.46062
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市民國路與啟明路口",
+        "FareDescription": "平日：10元/0.5hr、假日：20元/4hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 0,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10817",
+        "CarParkName": {
+          "Zh_tw": "停10(蘭停七)停車場"
+        },
+        "OperatorID": "CYI28371994",
+        "Geometry": "23.477346,120.471212",
+        "Description": "平面式小型停車場36格(含婦幼停車位1格、身心障礙車位1格)",
+        "CarParkType": 1,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4
+        ],
+        "ParkingSiteTypes": [
+          20
+        ],
+        "ChargeTypes": [
+          3,
+          1
+        ],
+        "Telephone": "(02)26550818",
+        "CarParkPosition": {
+          "PositionLat": 23.47717,
+          "PositionLon": 120.46618
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市大雅路二段與495巷路口",
+        "FareDescription": "20元/1hr",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 1,
+        "OperationType": 1,
+        "LiveOccuppancyAvailable": 1,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 1,
+        "SecureParking": 1,
+        "TicketOffice": 1,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      },
+      {
+        "CarParkID": "10818",
+        "CarParkName": {
+          "Zh_tw": "嘉義延平停車場"
+        },
+        "OperatorID": "CYI12745271",
+        "Description": "平面式小型停車場120格(含婦幼停車位3格、身心障礙車位3格)",
+        "CarParkType": 3,
+        "ParkingGuideType": 1,
+        "ParkingTypes": [
+          4,
+          2
+        ],
+        "ParkingSiteTypes": [
+          254
+        ],
+        "ChargeTypes": [
+          1
+        ],
+        "Telephone": "(05)2331185",
+        "CarParkPosition": {
+          "PositionLat": 23.47608,
+          "PositionLon": 120.44163
+        },
+        "Email": "cycg505@ems.chiayi.gov.tw",
+        "Address": "嘉義市西區書院里延平街450號",
+        "FareDescription": "第一小時60元，爾後每增加半小時加收30元",
+        "IsFreeParkingOutOfHours": 0,
+        "IsPublic": 0,
+        "OperationType": 3,
+        "LiveOccuppancyAvailable": 0,
+        "EVRechargingAvailable": 0,
+        "MonthlyTicketAvailable": 0,
+        "SeasonTicketAvailable": 0,
+        "ReservationAvailable": 0,
+        "WheelchairAccessible": 1,
+        "OvernightPermitted": 1,
+        "TicketMachine": 1,
+        "Toilet": 0,
+        "Restaurant": 0,
+        "GasStation": 0,
+        "Shop": 0,
+        "Gated": 1,
+        "Lighting": 0,
+        "SecureParking": 1,
+        "TicketOffice": 0,
+        "ProhibitedForAnyHazardousMaterialLoads": 0,
+        "SecurityGuard": 1,
+        "Supervision": 1,
+        "City": "Chiayi",
+        "CityCode": "CYI"
+      }
+    ]
+  }
