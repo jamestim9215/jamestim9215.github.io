@@ -36,8 +36,6 @@ loader.load(
 
         model = gltf.scene;
 
-        console.log("???");
-
         scene.add(model);
         document.getElementById('loading').style.display = 'none'
 
@@ -53,7 +51,7 @@ loader.load(
 
     },
     function (xhr) {
-        console.log(xhr);
+        console.log(loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%');
         document.getElementById('loadingBox').style.width = ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
         document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
     },
