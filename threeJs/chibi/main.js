@@ -24,6 +24,10 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement)
 
 // Instantiate a loader
 const loader = new THREE.GLTFLoader();
+
+// set object size
+var totalSize = 37134;
+
 var model;
 // Load a glTF resource
 loader.load(
@@ -52,10 +56,10 @@ loader.load(
     },
     function (xhr) {
         console.log(xhr);
-        console.log(xhr.loaded,xhr.total);
-        console.log(loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%');
-        document.getElementById('loadingBox').style.width = ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
-        document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
+        // console.log(xhr.loaded,xhr.total);
+        console.log(loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%');
+        document.getElementById('loadingBox').style.width = ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
+        document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
     },
     function (error) {
         console.log('An error happened');
