@@ -262,6 +262,15 @@ button.btnGetLngLat{
     padding: 6px 8px;
 }
 
+button.btnFAQ{
+    position: absolute;
+    z-index: 999;
+    top: 50px;
+    right: 40px;
+    font-size: 12px;
+    padding: 6px 8px;
+}
+
 .coordinates {
     background: #141d1f;
     color: #fff;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three js Preview - cdn</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div id="three-box">
+        <div id="loading">
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <br>
+                <br>
+                <span id="loadingText" data-beforeData="50%"></span>
+                <span id="loadingBox"></span>
+            </div>
+        </div>
+        <canvas id="bg"></canvas>
+    </div>
+
+
+
+    <!-- three.min.js r87 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/92/three.min.js"></script>
+    <!-- GLTFLoader.js -->
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/controls/OrbitControls.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
