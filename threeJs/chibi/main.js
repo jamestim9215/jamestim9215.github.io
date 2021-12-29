@@ -23,12 +23,49 @@ renderer.render(scene, camera);
 const controls = new THREE.OrbitControls(camera, renderer.domElement)
 
 // Instantiate a loader
-const loader = new THREE.GLTFLoader();
+const manager = new THREE.LoadingManager();
+
+// const blobs = {'./chibi/scene.gltf': blob1};
+
+// Initialize loading manager with URL callback.
+const objectURLs = [];
+
+manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+    var text = 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.';
+    document.getElementById('loadingText').innerText = text;
+	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+
+manager.onLoad = function ( ) {
+    var text = 'Loading complete!';
+    document.getElementById('loadingText').innerText = text;
+	console.log( 'Loading complete!');
+};
+
+manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+    var text = 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.';
+    document.getElementById('loadingText').innerText = text;
+	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+
+manager.onError = function ( url ) {
+    var text = 'There was an error loading ' + url;
+    document.getElementById('loadingText').innerText = text;
+	console.log( 'There was an error loading ' + url );
+};
+
+// manager.setURLModifier( ( url ) => {
+// 	url = URL.createObjectURL( blobs[ url ] );
+// 	objectURLs.push( url );
+// 	return url;
+// } );
 
 // set object size
 var totalSize = 37134;
 
 var model;
+
+const loader = new THREE.GLTFLoader(manager);
 // Load a glTF resource
 loader.load(
     // resource URL
@@ -41,6 +78,8 @@ loader.load(
         model = gltf.scene;
 
         scene.add(model);
+        objectURLs.forEach( ( url ) => URL.revokeObjectURL( url ) );
+
         document.getElementById('loading').style.display = 'none'
 
         //chibi
@@ -55,11 +94,11 @@ loader.load(
 
     },
     function (xhr) {
-        console.log(xhr);
+        // console.log(xhr);
         // console.log(xhr.loaded,xhr.total);
-        console.log(loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%');
-        document.getElementById('loadingBox').style.width = ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
-        document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
+        // console.log(loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%');
+        // document.getElementById('loadingBox').style.width = ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
+        // document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / totalSize * 100).toFixed(2)) + '%';
     },
     function (error) {
         console.log('An error happened');
