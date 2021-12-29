@@ -51,6 +51,7 @@ loader.load(
 
     },
     function (xhr) {
+        console.log(xhr.loaded,xhr.total);
         console.log(loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%');
         document.getElementById('loadingBox').style.width = ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
         document.getElementById('loadingText').innerText = loadingText + ((xhr.loaded / xhr.total * 100).toFixed(2)) + '%';
