@@ -1,0 +1,19 @@
+html,body{
+    margin: 0 auto;
+    background: #000;
+}
+
+canvas{
+    position: relative;
+    margin: 0 auto;
+    display: inherit;
+    /* width: 100%; */
+    /* max-width: 600px; */
+}
+
+@media (max-width: 1920px) {
+    
+    canvas{
+        /* max-width: 500px; */
+    }
+}
