@@ -42,8 +42,10 @@ body {
   display: inline-block;
   vertical-align: top;
   width: calc(100% - 300px);
-  min-height: 100vh;
+  height: 100vh;
   background: #131313;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .container{
