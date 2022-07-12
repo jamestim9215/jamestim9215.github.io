@@ -4,7 +4,7 @@
       <img src="@/assets/images/user.jpg" alt="" />
     </div>
     <div>
-      爽爽 | Ray.lin
+      爽爽 | Ray
     </div>
     <MenuButton />
   </div>

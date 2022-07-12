@@ -34,6 +34,12 @@ export default createStore({
         en_name: "Project",
         zhTW_name: "專案",
         link: "/project"
+      },
+      {
+        id: "menu_04",
+        en_name: "Game",
+        zhTW_name: "遊戲",
+        link: "/game"
       }
     ],
     projectList: projectListData

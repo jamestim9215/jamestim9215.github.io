@@ -16,7 +16,7 @@
               <span>Front End Developer</span>
             </div>
             <div class="content">
-              <p>五年以上網頁前端開發經驗，三年以上VUE實戰經驗。</p>
+              <p>五年以上網頁前端開發經驗，三年以上VUE大型網站實戰經驗。<br>後台系統畫面規劃與設計。</p>
               
               
             </div>

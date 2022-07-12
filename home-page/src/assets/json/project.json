@@ -94,5 +94,41 @@
     "teamRole": "Front end developer",
     "detail": "技嘉科技內部系統之一，提供業務與各大主管們查看銷售與報表，附帶內部系統表單簽核功能。 負責的工作內容: 第一版APP，從前期UI/UX規劃到使用NativeScript搭配Vue進行開發 安卓與IOS版本 ，後期第二版則外包給廠商製作IOS版，我負責UI/UX調整的部分，與後續維護與包版作業",
     "technology": ["VUE", "NativeScript", "Swift","iOS包版"]
+  },
+  {
+    "tag": ["Side Project","3D Print"],
+    "name": "CB650R 3D列印模型",
+    "img": "3D_print_CB650R.jpg",
+    "link": "",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "市面上沒有我的愛車模型，自己來3D建模，並印出來組裝上色。",
+    "technology": ["Creality CR6 SE", "Shapr3d"]
+  },
+  {
+    "tag": ["Side Project","UI Design"],
+    "name": "CB/CBR650R版貼",
+    "img": "650r_club.jpg",
+    "link": "",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "",
+    "technology": ["Creality CR6 SE", "Shapr3d"]
+  },
+  {
+    "tag": ["Side Project","3D Print"],
+    "name": "CB650R 油箱止滑貼",
+    "img": "oil.jpg",
+    "link": "",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "因市面上的油箱貼造型沒有很喜歡，於是自己從設計、3D建模、列印材質挑選、列印出成品，最後黏上專用雙面膠後，貼上車完美符合油箱造型，止滑效果也OK。成就感UP",
+    "technology": ["Creality CR6 SE", "Shapr3d"]
   }
 ]

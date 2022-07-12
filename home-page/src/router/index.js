@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Resume from '../views/Resume.vue'
 import Project from '../views/Project.vue'
+import Page404 from '../views/Page404.vue'
 
 const routes = [
   {
@@ -24,6 +25,17 @@ const routes = [
     path: '/project',
     name: 'Project',
     component: Project
+  },
+  {
+    path: '/404',
+    name: 'Page404',
+    component: Page404,
+    hidden: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/404',
+    hidden: true
   }
 ]
 

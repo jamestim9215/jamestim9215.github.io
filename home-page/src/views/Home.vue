@@ -1,4 +1,5 @@
 <template>
+  <BoxAnimation/>
   <div class="home">
     <Banner />
     <div class="content">
@@ -43,6 +44,7 @@
       <MenuButton/>
     </div>
     <CardRandom :random="true" :randomCount="3"/>
+    
   </div>
 </template>
 
@@ -55,13 +57,15 @@ import {
 import Banner from "@/components/home/banner.vue";
 import MenuButton from "@/components/common/menuButton.vue";
 import CardRandom from "@/components/common/card.vue";
+import BoxAnimation from "@/components/common/boxArea.vue"
 
 export default {
   name: "Home",
   components: {
     Banner,
     MenuButton,
-    CardRandom
+    CardRandom,
+    BoxAnimation
   },
   mounted() {
     loadingOver();
