@@ -7,7 +7,7 @@
           <span class="tag">
             <span v-for="tagItem in key.tag" :key="tagItem">{{tagItem}}</span>
           </span>
-          <span class="localize" v-if="key.localize">
+          <span class="localize" v-if="key.localize" :title="key.localizeCount + '個地區語言'">
             <i class="fa-solid fa-globe"></i>
             {{key.localizeCount}}
           </span>

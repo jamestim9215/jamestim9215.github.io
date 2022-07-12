@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Resume from '../views/Resume.vue'
-import SideProject from '../views/SideProject.vue'
+import Project from '../views/Project.vue'
 
 const routes = [
   {
@@ -21,15 +21,14 @@ const routes = [
     component: Resume
   },
   {
-    path: '/side-project',
-    name: 'Side Project',
-    component: SideProject
+    path: '/project',
+    name: 'Project',
+    component: Project
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  
   routes
 })
 

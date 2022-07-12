@@ -46,6 +46,36 @@ body {
   background: #131313;
 }
 
+.container{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+.row{
+  position: relative;
+  // display: block;
+  display: flex;
+}
+
+.box-3-1{
+  position: relative;
+  display: inline-block;
+  width: calc(33.33% - 30px);
+  height: auto;
+  vertical-align: top;
+  padding: 0 10px;
+}
+
+.box-3-2{
+  position: relative;
+  display: inline-block;
+  width: calc(66.66% - 30px);
+  height: auto;
+  vertical-align: top;
+  padding: 0 10px;
+}
+
 @media (max-width: 768px) {
   .page-content{
     width: 100%;

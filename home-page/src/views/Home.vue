@@ -40,7 +40,7 @@
         無聊時做了一些小遊戲、小工具...<br />
         都進來了就加減看看吧!<br />
       </div>
-      <Tag/>
+      <MenuButton/>
     </div>
     <CardRandom :random="true" :randomCount="3"/>
   </div>
@@ -53,14 +53,14 @@ import {
 } from "@/module/common";
 
 import Banner from "@/components/home/banner.vue";
-import Tag from "@/components/home/tag.vue";
+import MenuButton from "@/components/common/menuButton.vue";
 import CardRandom from "@/components/common/card.vue";
 
 export default {
   name: "Home",
   components: {
     Banner,
-    Tag,
+    MenuButton,
     CardRandom
   },
   mounted() {
@@ -136,7 +136,8 @@ export default {
   padding: 5px 10px;
   border-radius: 5px;
   color: #000;
-  left: -80px;
+  // left: -50%;
+  transform: translateX(calc(-50% + 15px));
   white-space:nowrap;
 }
 .sns > a > div:hover > div {

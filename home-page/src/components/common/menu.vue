@@ -3,17 +3,20 @@
     <div class="profileImg">
       <img src="@/assets/images/user.jpg" alt="" />
     </div>
-    <Tag />
+    <div>
+      爽爽 | Ray.lin
+    </div>
+    <MenuButton />
   </div>
 </template>
 
 <script>
-import Tag from "@/components/home/tag.vue";
+import MenuButton from "@/components/common/menuButton.vue";
 
 export default {
   props: {},
   components: {
-    Tag,
+    MenuButton,
   },
   computed: {},
 };

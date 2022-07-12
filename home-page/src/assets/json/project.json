@@ -1,0 +1,98 @@
+[
+  {
+    "tag": ["Work", "Web", "RWD", "SEO"],
+    "name": "AORUS Official website",
+    "img": "aorus_home.png",
+    "link": "https://www.aorus.com/",
+    "localize": true,
+    "localizeCount": 100,
+    "teamMember": 3,
+    "teamRole": "Front end developer",
+    "detail": "技嘉科技電競品牌AORUS官網，擁有100個國家或地區語系，世界各地AOURS粉絲可以在這裡，找到各種產品與活動的資訊。",
+    "technology": ["Vue", "Bootstrap", "Dotnet core"]
+  },
+  {
+    "tag": ["Work", "Game"],
+    "name": "AORUS Gameon",
+    "img": "aorus_gameon.png",
+    "link": "https://jamestim9215.github.io/Phaser3/aorus_gameon/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "AORUS舉辦的活動，一個雷電小遊戲，挑戰最高分吧!",
+    "technology": ["JavaScript", "Phaser3"]
+  },
+  {
+    "tag": ["Side Project", "Tool", "RWD"],
+    "name": "我到底能停哪?",
+    "img": "findparking.png",
+    "link": "https://findparkinglot.github.io/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "我有重機找車位的問題，直接做了一個可以裝在手機上，並隨時隨地使用個人裝置定位，查詢附近的車位。使用政府停車格開放資料與親自停過的停車場資料，並提供google表單，供車友填寫建議與停車資訊。",
+    "technology": ["Vue", "Mapbox", "PWA"]
+  },
+  {
+    "tag": ["Work", "Web", "RWD"],
+    "name": "AORUS Member system",
+    "img": "aorus_member_whyjoin.png",
+    "link": "https://member.aorus.com/",
+    "localize": true,
+    "localizeCount": 40,
+    "teamMember": 3,
+    "teamRole": "Front end developer",
+    "detail": "技嘉科技電競品牌AORUS會員系統，提供超過60萬位以上的會員，註冊產品、領取點數、兌換獎品、參加活動、蒐集徽章等等。",
+    "technology": ["jQuery", "Bootstrap", "Laravel"]
+  },
+  {
+    "tag": ["Work", "Web"],
+    "name": "Portal 內部系統",
+    "img": "portal.png",
+    "link": "",
+    "localize": true,
+    "localizeCount": 2,
+    "teamMember": 3,
+    "teamRole": "Front end developer",
+    "detail": "",
+    "technology": ["Vue", "Bootstrap", "Dotnet core"]
+  },
+  {
+    "tag": ["Work", "Web"],
+    "name": "GlobalBiz 全球接單系統",
+    "img": "globalbiz.png",
+    "link": "",
+    "localize": true,
+    "localizeCount": 2,
+    "teamMember": 5,
+    "teamRole": "Front end developer",
+    "detail": "",
+    "technology": ["Vue", "Bootstrap", "Dotnet core"]
+  },
+  {
+    "tag": ["Work", "Web"],
+    "name": "AORUS 300萬粉絲活動",
+    "img": "3m_celebration.png",
+    "link": "https://global.aorus.com/3m-celebration/",
+    "localize": true,
+    "localizeCount": 16,
+    "teamMember": 3,
+    "teamRole": "Front end developer",
+    "detail": "技嘉科技電競品牌AORUS舉辦300萬粉絲FB打卡活動，紀錄全球使用者打卡位置，在google地圖上顯示AORUS粉絲專屬地圖。",
+    "technology": ["FB login", "User location", "Google map"]
+  },
+  {
+    "tag": ["Work", "Web","RWD","iOS"],
+    "name": "Sales App",
+    "img": "salesapp.png",
+    "link": "https://digital-service-app-web.azurewebsites.net",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 3,
+    "teamRole": "Front end developer",
+    "detail": "技嘉科技內部系統之一，提供業務與各大主管們查看銷售與報表，附帶內部系統表單簽核功能。 負責的工作內容: 第一版APP，從前期UI/UX規劃到使用NativeScript搭配Vue進行開發 安卓與IOS版本 ，後期第二版則外包給廠商製作IOS版，我負責UI/UX調整的部分，與後續維護與包版作業",
+    "technology": ["VUE", "NativeScript", "Swift","iOS包版"]
+  }
+]
