@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="Zh-Hant">
+
+<head>
+    <meta charset="utf-8">
+    <title>轉檔案工具</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js'></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    button,
+    input {
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    .app {
+        display: flex;
+        height: 100vh;
+        background-color: #A0ECD0;
+    }
+
+    .app>div {
+        flex: 1;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .app>div:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app>div:first-child button {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .app>div:last-child {
+        background-color: #94DDBC;
+    }
+
+    .app>div:last-child .preBox {
+        padding: 10px;
+        background-color: #A0ECD0;
+        height: calc(100vh - 60px);
+        max-width: 900px;
+        overflow-y: scroll;
+        overflow-y: scroll;
+    }
+
+    .rule {
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .rule a {
+        color: #000;
+    }
+</style>
+<!-- extend_warranty_tw.json -->
+
+<body>
+    <div id="app" class="app">
+        <div>
+            <div>
+                <div class="rule">EXCEL保固轉檔工具<br> </div>
+                <input type="file" id="input">
+                <button id="export">導出json檔</button>
+            </div>
+        </div>
+        <div>
+            <div class="preBox">
+                <pre id='output' class="output">暫無資訊</pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        const EXPORTDOM = document.querySelector('#export');
+        const OUTPUTDOM = document.querySelector('#output')
+        const INPUTDOM = document.querySelector('#input')
+        const COUNTRYDOM = document.querySelector('#country')
+
+        let jsonData = {};
+        // 事件綁定
+        EXPORTDOM.addEventListener('click', exportHandler)
+        INPUTDOM.addEventListener('change', onLoadExcel)
+        //　讀excel
+        function onLoadExcel() {
+            let frd = new FileReader();
+            jsonData = {}
+            OUTPUTDOM.textContent = "";
+            frd.onload = function (evt) {
+                let data = new Uint8Array(this.result);
+                let wb;
+                try {
+                    wb = XLSX.read(data, { type: 'array' });
+                } catch (err) {
+                    alert('無法讀取這個格式的檔案' + err);
+                    return;
+                }
+                jsonData = parseToJson(wb);
+            }
+            frd.readAsArrayBuffer(this.files[0]);
+        }
+
+        //　excel轉json
+        function parseToJson(wb) {
+            let result
+            let jsonData = {};
+            for (let i = 0; i < wb.SheetNames.length; i++) {
+                let sheetName = wb.SheetNames[i]
+                let sheet = wb.Sheets[sheetName]
+                let range = XLSX.utils.decode_range(sheet['!ref']);
+                let { c: startC, r: startR } = range.s
+                let { c: endC, r: endR } = range.e
+                let lengthC = endC - startC
+                let lengthR = endR - startR
+                jsonData[i] = getMultiValueArray(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR);
+            }
+            result = Object.values(jsonData)
+            result = result.reduce((old, cur) => {
+                return { ...old, ...cur }
+            }, {})
+            OUTPUTDOM.textContent = JSON.stringify(result, null, 4);
+            return result
+        }
+
+        // 核心邏輯　判斷要讀取的資料
+        function getMultiValueArray(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR) {
+            // console.log(startC);
+            // console.log(endC);
+            // console.log(startR);
+            // console.log(endR);
+            // console.log(lengthC);
+            // console.log(lengthR);
+            // console.log(sheet[XLSX.utils.encode_cell({ c: 0, r: 3 })]);
+            // console.log(sheet[XLSX.utils.encode_cell({ c: 3, r: 3 })]);
+            // console.log(range);
+            let result = {}
+            result[sheetName] = []
+            let excelData = []
+
+            for (let i = 3; i < endR; i++) {
+                if (getCellValue(sheet, range, 0, i) === "") break
+                let obj = {}
+                obj.Chipfactory = getCellValue(sheet, range, 0, i)
+                obj.Chip = getCellValue(sheet, range, 1, i)
+                obj.Name = getCellValue(sheet, range, 2, i)
+                obj.Year = getCellValue(sheet, range, 3, i)
+                excelData.push(obj)
+            }
+
+            excelData = excelData.sort((a, b) => {
+                return a.Chipfactory > b.Chipfactory ? -1 : 1;
+            })
+            //-------------------------------------------
+            let yearsMap = {}
+            for (let i = 3; i <= endR; i++) {
+                if (getCellValue(sheet, range, 3, i) == "") break;
+                yearsMap[getCellValue(sheet, range, 3, i)] = getCellValue(sheet, range, endC, i)
+
+            }
+            yearsMap = Object.keys(yearsMap)
+            yearsMap = yearsMap.sort((a, b) => b - a)
+            yearsMap.forEach(year => {
+                let arr1 = excelData.filter(data => {
+                    return data.Year == year
+                })
+                result[sheetName].push({ Year: year, Data: [] })
+            })
+            //-------------------------------------------
+            result[sheetName].forEach(data => {
+                let excelData2 = excelData.filter(dataE => dataE.Year == data.Year)
+                let obj = {}
+                excelData2.forEach(data2 => {
+                    obj[data2.Chipfactory] = data2.Chipfactory
+                })
+                for (const Chipfactory in obj) {
+                    data.Data.push({ Chipfactory: Chipfactory, Data: [] });
+                }
+                data.Data.forEach(data2 => {
+                    let excelData3 = excelData2.filter(dataC => dataC.Chipfactory == data2.Chipfactory)
+                    let objc = {}
+                    excelData3.forEach(data2 => {
+                        objc[data2.Chip] = data2.Chip
+                    })
+                    for (const Chip in objc) {
+                        data2.Data.push({ Chip: Chip, List: [] });
+                    }
+                    data2.Data.forEach(data3 => {
+                        let excelData4 = excelData3.filter(dataC => {
+                            return dataC.Chip == data3.Chip
+                        })
+                        excelData4.forEach(data4 => {
+                            data3.List.push({ Name: data4.Name })
+                        })
+                    })
+
+                })
+            })
+
+            return result;
+        }
+        // 獲取單元格資料
+        function getCellValue(sheet, range, x, y) {
+            return sheet[XLSX.utils.encode_cell({ c: range.s.c + x, r: range.s.r + y })] ? sheet[XLSX.utils.encode_cell({ c: range.s.c + x, r: range.s.r + y })].v : "";
+        }
+
+        // row合成
+        function format(jsonData) {
+            let obj = {}
+            for (key in jsonData) {
+                obj[key] = jsonData[key].reduce((pre, now) => {
+                    NewObj = { ...pre, ...now }
+                    return NewObj
+                }, {})
+            }
+            for (const [key, value] of Object.entries(obj)) {
+                let blob = new Blob([JSON.stringify(value)], { type: "" });
+                saveAs(blob, `${key}.json`);
+            }
+            return obj
+        }
+
+        // 導出json功能
+        function exportHandler(e) {
+            e.stopPropagation()
+            let obj = {}
+            var blob = new Blob([JSON.stringify(jsonData)], { type: "" });
+            saveAs(blob, `extend_warranty.json`);
+        }
+    </script>
+</body>
+
+</html>

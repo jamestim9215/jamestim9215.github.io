@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="Zh-Hant">
+
+<head>
+    <meta charset="utf-8">
+    <title>轉檔案工具</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js'
+        integrity='sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ=='
+        crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'
+        integrity='sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=='
+        crossorigin='anonymous'></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    button,
+    input {
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    .app {
+        display: flex;
+        height: 100vh;
+        background-color: #A0ECD0;
+    }
+
+    .app>div {
+        flex: 1;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .app>div:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app>div:first-child button {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .app>div:last-child {
+        background-color: #94DDBC;
+    }
+
+    .app>div:last-child .preBox {
+        padding: 10px;
+        background-color: #A0ECD0;
+        height: calc(100vh - 60px);
+        max-width: 900px;
+        overflow-y: scroll;
+        overflow-y: scroll;
+    }
+
+    .rule {
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .rule a {
+        color: #000;
+    }
+
+    .country {
+        display: none;
+    }
+
+    .country.active {
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <div id="app" class="app">
+        <div>
+            <div>
+                <label for="">選擇要導出的語系</label> :
+                <select name="country" id="country" class="country">
+                </select>
+                <div class="rule">EXCEL語言轉檔工具<br> </div>
+                <input type="file" id="input">
+                <button id="export">導出json檔</button>
+            </div>
+        </div>
+        <div>
+            <div class="preBox">
+                <pre id='output' class="output">暫無資訊</pre>
+            </div>
+        </div>
+        <a href="" target="blank"></a>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let a = document.createElement('a')
+        a.target = "_blank"
+        for (let i = 160; i <= 170; i++) {
+            a.href = `https://www.gigabyte.com/Json/ProductFilter?ck=${i}`
+            a.click()
+        }
+        110
+        130
+    </script>
+</body>
+
+</html>

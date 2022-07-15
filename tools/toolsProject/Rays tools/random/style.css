@@ -1,0 +1,96 @@
+ /* 重置預設樣式 */
+ * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+  }
+
+  .wrapper {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    padding: 20px;
+    margin: 30px auto;
+    background-color: #ff6400;
+    box-shadow: #000000 0px 0px 10px;
+    border-radius: 50%;
+  }
+  .panel {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  .pointer {
+    position: absolute;
+    left: calc(50% - 35px);
+    top: calc(50% - 35px);
+    z-index: 10;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    line-height: 50px;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+    background-color: #ff6400;
+    border-radius: 50%;
+    border: 1px solid #ff6400;
+  }
+
+  .pointer::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 6px);
+    top: -24px;
+    border-width: 12px 6px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #ff6400;
+}
+
+
+.sector {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    margin: 0;
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* transform: rotate(-18deg); */
+    transform-origin: center center;
+}
+.sector-inner {
+    position: absolute;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    transform-origin: right center;
+    transform-origin: left bottom;
+    left: 50%;
+    top: 0;
+    background: #ffe675;
+    /* transform: rotate(-45deg) skewX(0deg); */
+}
+
+.sector>.sector-inner:nth-child(2n-1){
+    background: #fff1b4;
+}
+
+.sector-inner span {
+    position: absolute;
+    width: 20px;
+    height: 120px;
+    font-size: 12px;
+    text-align: center;
+    transform-origin: center bottom;
+    left: -10px;
+    bottom: 0;
+    transform: rotate(45deg);
+    color: #000;
+    background: #f00;
+}

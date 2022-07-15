@@ -96,6 +96,102 @@
     "technology": ["VUE", "NativeScript", "Swift","iOS包版"]
   },
   {
+    "tag": ["Side Project","Web"],
+    "name": "文字編輯器",
+    "img": "TC.png",
+    "link": "https://jamestim9215.github.io/tools/memberTC/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "為了節省AORUS保固資訊的維護時間，從原本需要每個國家語系的檔案去做修改，變成製作成JSON格式去讓程式讀取，並透過定義好規範的文字編輯器來做修改輸出JSON格式。",
+    "technology": ["VUE","Tiptap","JSON"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Windows to mac 路徑轉換小工具",
+    "img": "windowsToMac.png",
+    "link": "https://jamestim9215.github.io/tools/windowsToMac/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "公司行銷設計同仁有分享檔案連結的需求，但因為不同的作業系統，導致每次要傳出去都要手動轉換路徑。因此製作的一個小工具供同仁使用。",
+    "technology": ["javascript"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "404 Page not found game",
+    "img": "aorus_404.png",
+    "link": "https://jamestim9215.github.io/jsgame/404page/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "想讓404頁面變得更有趣，做了一個模仿google的恐龍遊戲。",
+    "technology": ["javascript"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Chibi Three.js 3D model",
+    "img": "chibi.png",
+    "link": "https://jamestim9215.github.io/threeJs/chibi/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "自我學習ThreeJS，顯示3D模型，並調整光源與各項參數，實際應用到工作的專案內。",
+    "technology": ["Three JS","3D"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "食物轉盤",
+    "img": "eat.png",
+    "link": "https://jamestim9215.github.io/eat/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "每天中午都不到要吃什麼，決定做了一個轉盤，讓隨機來決定午餐。事實證明，就算轉到了也不會想吃那個。",
+    "technology": ["VUE"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Solar System",
+    "img": "SolarSystem.png",
+    "link": "https://jamestim9215.github.io/threeJs/space/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "初次學習ThreeJS時做的網站，結合網頁卷軸控制3D背景網頁。隨著滑鼠捲動，背景星球會跟著遠離。打造跳脫以往平面式網頁的特殊體驗。",
+    "technology": ["Three JS","Vite"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "小遊戲 刮刮樂 拉霸機 比大小...",
+    "img": "game.png",
+    "link": "https://jamestim9215.github.io/game",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "無時製作純JavaScript的廢物小遊戲，可以玩 但沒有什麼特效。",
+    "technology": ["JavaScript"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Roulette 歐式輪盤",
+    "img": "roulette.png",
+    "link": "https://jamestim9215.github.io/roulette/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "簡單製作了可以玩的歐式輪盤遊戲，可以選擇項目下注，點擊輪盤即開始遊戲。",
+    "technology": ["VUE"]
+  },
+  {
     "tag": ["Side Project","3D Print"],
     "name": "CB650R 3D列印模型",
     "img": "3D_print_CB650R.jpg",
@@ -117,7 +213,7 @@
     "teamMember": 1,
     "teamRole": "Front end developer",
     "detail": "",
-    "technology": ["Creality CR6 SE", "Shapr3d"]
+    "technology": ["Photoshop"]
   },
   {
     "tag": ["Side Project","3D Print"],
@@ -142,65 +238,5 @@
     "teamRole": "Front end developer",
     "detail": "安全帽用的Gopro支架,可依安全帽的角度做調整黏貼固定。",
     "technology": ["Creality CR6 SE", "Shapr3d"]
-  },
-  {
-    "tag": ["Side Project","Web"],
-    "name": "食物轉盤",
-    "img": "eat.png",
-    "link": "https://jamestim9215.github.io/eat/",
-    "localize": false,
-    "localizeCount": 0,
-    "teamMember": 1,
-    "teamRole": "Front end developer",
-    "detail": "每天中午都不到要吃什麼，決定做了一個轉盤，讓隨機來決定午餐。事實證明，就算轉到了也不會想吃那個。",
-    "technology": ["VUE"]
-  },
-  {
-    "tag": ["Side Project","Web"],
-    "name": "Roulette 歐式輪盤",
-    "img": "roulette.png",
-    "link": "https://jamestim9215.github.io/roulette/",
-    "localize": false,
-    "localizeCount": 0,
-    "teamMember": 1,
-    "teamRole": "Front end developer",
-    "detail": "簡單製作了可以玩的歐式輪盤遊戲，可以選擇項目下注，點擊輪盤即開始遊戲。",
-    "technology": ["VUE"]
-  },
-  {
-    "tag": ["Side Project","Web"],
-    "name": "Chibi Three.js 3D model",
-    "img": "chibi.png",
-    "link": "https://jamestim9215.github.io/threeJs/chibi/",
-    "localize": false,
-    "localizeCount": 0,
-    "teamMember": 1,
-    "teamRole": "Front end developer",
-    "detail": "自我學習ThreeJS，顯示3D模型，並調整光源與各項參數，實際應用到工作的專案內。",
-    "technology": ["Three JS","3D"]
-  },
-  {
-    "tag": ["Side Project","Web"],
-    "name": "Solar System",
-    "img": "SolarSystem.png",
-    "link": "https://jamestim9215.github.io/threeJs/space/",
-    "localize": false,
-    "localizeCount": 0,
-    "teamMember": 1,
-    "teamRole": "Front end developer",
-    "detail": "初次學習ThreeJS時做的網站，結合網頁卷軸控制3D背景網頁。隨著滑鼠捲動，背景星球會跟著遠離。打造跳脫以往平面式網頁的特殊體驗。",
-    "technology": ["Three JS","Vite"]
-  },
-  {
-    "tag": ["Side Project","Web"],
-    "name": "404 Page not found game",
-    "img": "aorus_404.png",
-    "link": "https://jamestim9215.github.io/jsgame/404page/",
-    "localize": false,
-    "localizeCount": 0,
-    "teamMember": 1,
-    "teamRole": "Front end developer",
-    "detail": "想讓404頁面變得更有趣，做了一個模仿google的恐龍遊戲。",
-    "technology": ["javascript"]
   }
 ]

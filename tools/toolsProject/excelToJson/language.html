@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="Zh-Hant">
+
+<head>
+    <meta charset="utf-8">
+    <title>轉檔案工具</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.js'
+        integrity='sha512-djAJLNukP3WdWmwP/Y05w99aCX6u1jInpshdwiUKbXcQ9y/8BpMtsPsVrVyUbmtEx7wbqFpBq4sGOnIFVScFQQ=='
+        crossorigin='anonymous'></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    button,
+    input {
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    .app {
+        display: flex;
+        height: 100vh;
+        background-color: #A0ECD0;
+    }
+
+    .app>div {
+        flex: 1;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .app>div:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app>div:first-child button {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .app>div:last-child {
+        background-color: #94DDBC;
+    }
+
+    .app>div:last-child .preBox {
+        padding: 10px;
+        background-color: #A0ECD0;
+        height: calc(100vh - 60px);
+        max-width: 900px;
+        overflow-y: scroll;
+        overflow-y: scroll;
+    }
+
+    .rule {
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .rule a {
+        color: #000;
+    }
+
+    .country {
+        display: none;
+    }
+
+    .country.active {
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <div id="app" class="app">
+        <div>
+            <div>
+                <label for="">選擇要導出的語系</label> :
+                <select name="country" id="country" class="country">
+                </select>
+                <div class="rule">EXCEL語言轉檔工具<br> </div>
+                <input type="file" id="input">
+                <button id="export">導出json檔</button>
+                <button id="exportAll">導出全部</button>
+            </div>
+        </div>
+        <div>
+            <div class="preBox">
+                <pre id='output' class="output">暫無資訊</pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        const EXPORTDOM = document.querySelector('#export');
+        const EXPORTAllDOM = document.querySelector('#exportAll')
+        const OUTPUTDOM = document.querySelector('#output')
+        const INPUTDOM = document.querySelector('#input')
+        const COUNTRYDOM = document.querySelector('#country')
+        let jsonData = {};
+        let frd = null
+        let zip = new JSZip();
+        let allData = {}
+        // 事件綁定
+        COUNTRYDOM.addEventListener('change', initInput)
+        EXPORTDOM.addEventListener('click', exportHandler)
+        INPUTDOM.addEventListener('change', onLoadExcel)
+        EXPORTAllDOM.addEventListener('click', exportAllHandler)
+
+        function exportAllHandler(e) {
+            e.stopPropagation(e)
+            console.log(allData);
+            for (key in allData) {
+                var blob = new Blob([JSON.stringify(allData[key])], { type: "" });
+                zip.file(`${key}.json`, blob)
+            }
+            zip.generateAsync({ type: "blob" })
+                .then(function (content) {
+                    saveAs(content, `all.zip`);
+                });
+        }
+
+        //　讀excel
+        function onLoadExcel() {
+            frd = new FileReader();
+            jsonData = {}
+            COUNTRYDOM.classList.add('active')
+            OUTPUTDOM.textContent = "";
+            if (COUNTRYDOM.value) COUNTRYDOM.innerHTML = " "
+            frd.onload = function (evt) {
+                let data = new Uint8Array(this.result);
+                let wb;
+                try {
+                    wb = XLSX.read(data, { type: 'array' });
+                } catch (err) {
+                    alert('無法讀取這個格式的檔案' + err);
+                    return;
+                }
+                console.log(jsonData);
+                jsonData = parseToJson(wb);
+                OUTPUTDOM.textContent = JSON.stringify(jsonData, null, 4);
+            }
+            frd.readAsArrayBuffer(this.files[0]);
+        }
+
+        //　excel轉json
+        function parseToJson(wb) {
+            let obj = {}
+            jsonData = {};
+            let sheetName = wb.SheetNames[0]
+            let sheet = wb.Sheets[sheetName]
+            let range = XLSX.utils.decode_range(sheet['!ref']);
+            let { c: startC, r: startR } = range.s
+            let { c: endC, r: endR } = range.e
+            let lengthC = endC - startC
+            let lengthR = endR - startR
+            if (!COUNTRYDOM.value) {
+                jsonDataDom = getDom(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR);
+                let str = ""
+                jsonDataDom.forEach(element => {
+                    str += `<option  value='${element}'>${element}</option >`
+                });
+                COUNTRYDOM.innerHTML = str
+            }
+            console.log(jsonDataDom);
+            jsonData = getMultiValueArray(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR);
+            return jsonData
+        }
+
+        function getDom(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR) {
+            let countryMap = []
+            for (let i = 3; i <= endC; i++) {
+                countryMap.push(getCellValue(sheet, range, startC + i, 2))
+            }
+            return countryMap
+        }
+        // 核心邏輯　判斷要讀取的資料
+        function getMultiValueArray(sheetName, sheet, range, startC, startR, endC, endR, lengthC, lengthR) {
+            // console.log(startC);
+            // console.log(endC);
+            // console.log(startR);
+            // console.log(endR);
+            // console.log(lengthC);
+            // console.log(lengthR);
+            // console.log(sheet[XLSX.utils.encode_cell({ c: 0, r: 4 })]);
+            let obj = {}
+            let countryMap = {}
+            let pagMap = {}
+            for (let i = 3; i <= endC; i++) {
+                countryMap[getCellValue(sheet, range, startC + i, 2)] = i
+            }
+            for (const country in countryMap) {
+                allData[country] = {}
+            }
+
+            for (const country in allData) {
+                for (let i = 1; i <= endR; i++) {
+                    if (getCellValue(sheet, range, 0, startC + i + 3) != "") {
+                        allData[country][getCellValue(sheet, range, 0, startC + i + 3)] = {}
+                        pagMap[getCellValue(sheet, range, 0, startC + i + 3)] = i + 3
+                    }
+                }
+            }
+            // console.log(allData);
+            // console.log(pagMap);
+            let j = 3
+            for (const country in allData) {
+                for (const page in pagMap) {
+                    for (let i = pagMap[page]; i <= endR; i++) {
+                        if (getCellValue(sheet, range, 1, i) != "") {
+                            allData[country][page]["//" + getCellValue(sheet, range, 1, i)] = ''
+                        } else if (
+                            getCellValue(sheet, range, 0, i) === "" &&
+                            getCellValue(sheet, range, 1, i) === "" &&
+                            getCellValue(sheet, range, 2, i) === ""
+                        ) {
+                            break
+                        } else {
+                            // console.log(j,i)
+                            // console.log(getCellValue(sheet, range, 2, i))
+                            // console.log(getCellValue(sheet, range, j, i))
+                            allData[country][page][getCellValue(sheet, range, 2, i)] = getCellValue(sheet, range, j, i)+"".replace(/"/, "\"")
+                        }
+                    }
+                }
+                j++
+            }
+
+
+
+
+
+
+
+
+            obj[COUNTRYDOM.value] = {}
+            for (let i = 1; i <= endR; i++) {
+                if (getCellValue(sheet, range, 0, startC + i + 3) != "") {
+                    obj[COUNTRYDOM.value][getCellValue(sheet, range, 0, startC + i + 3)] = {}
+                    pagMap[getCellValue(sheet, range, 0, startC + i + 3)] = i + 3
+                }
+            }
+            for (const page in pagMap) {
+                for (let i = pagMap[page]; i <= endR; i++) {
+                    if (getCellValue(sheet, range, 1, i) != "") {
+                        obj[COUNTRYDOM.value][page]["//" + getCellValue(sheet, range, 1, i)] = ''
+                    } else if (
+                        getCellValue(sheet, range, 0, i) === "" &&
+                        getCellValue(sheet, range, 1, i) === "" &&
+                        getCellValue(sheet, range, 2, i) === ""
+                    ) {
+                        break
+                    } else {
+                        obj[COUNTRYDOM.value][page][getCellValue(sheet, range, 2, i)] = getCellValue(sheet, range, countryMap[COUNTRYDOM.value], i)+"".replace(/"/, "\"")
+                    }
+                }
+            }
+            console.log(obj);
+
+            return obj;
+        }
+        // 獲取單元格資料
+        function getCellValue(sheet, range, x, y) {
+            return sheet[XLSX.utils.encode_cell({ c: range.s.c + x, r: range.s.r + y })] ? sheet[XLSX.utils.encode_cell({ c: range.s.c + x, r: range.s.r + y })].v : "";
+        }
+        // 導出json功能
+        function exportHandler(e) {
+            e.stopPropagation()
+            let obj = {}
+            for (const [key, value] of Object.entries(jsonData)) {
+                let keyArr = key.split('/')
+                console.log(keyArr);
+                keyArr.forEach(keyC => {
+                    var blob = new Blob([JSON.stringify(value)], { type: "" });
+                    saveAs(blob, `${keyC}.json`);
+                });
+            }
+        }
+        function exportHandlerAll(e) {
+            e.stopPropagation()
+        }
+        // 資料還原
+        function initInput() {
+            let data = new Uint8Array(frd.result);
+            let wb;
+            try {
+                wb = XLSX.read(data, { type: 'array' });
+                // console.log(wb);
+            } catch (err) {
+                alert('無法讀取這個格式的檔案' + err);
+                return;
+            }
+            jsonData = parseToJson(wb);
+            console.log(jsonData);
+            OUTPUTDOM.textContent = JSON.stringify(jsonData, null, 4);
+        }
+    </script>
+</body>
+
+</html>

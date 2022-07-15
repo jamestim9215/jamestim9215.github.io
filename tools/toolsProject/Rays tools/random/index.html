@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨機轉盤</title>
+</head>
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+    <div id="app">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="pointer">開始抽獎</div>
+            </div>
+            <div class="sector">
+                <!-- <div class="sector-inner"
+                 style="
+                    transform: rotate(-45deg) skewX(0deg);
+                 "
+                >
+                    <span>選項一</span>
+                </div>
+                <div class="sector-inner"
+                style="
+                   transform: rotate(45deg) skewX(0deg);
+                ">
+                    <span>選項二</span>
+                </div>
+                <div class="sector-inner"
+                style="
+                   transform: rotate(135deg) skewX(0deg);
+                ">
+                    <span>選項三</span>
+                </div>
+                <div class="sector-inner"
+                style="
+                   transform: rotate(225deg) skewX(0deg);
+                ">
+                    <span>選項四</span>
+                </div> -->
+
+                <div class="sector-inner" v-for="(key,index) in randomData" :key="index"
+                    :style="'transform: rotate('+((360/randomData.length)*(index)-(360/randomData.length)/2)+'deg) skewX('+(360/randomData.length-90)+'deg)'"
+                >
+                    <!-- <span :style="'transform:rotate('+360/randomData.length/2+'deg)'">{{key.name}}</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <script src="script.js"></script>
+</body>
+
+</html>
