@@ -130,5 +130,77 @@
     "teamRole": "Front end developer",
     "detail": "因市面上的油箱貼造型沒有很喜歡，於是自己從設計、3D建模、列印材質挑選、列印出成品，最後黏上專用雙面膠後，貼上車完美符合油箱造型，止滑效果也OK。成就感UP",
     "technology": ["Creality CR6 SE", "Shapr3d"]
+  },
+  {
+    "tag": ["Side Project","3D Print"],
+    "name": "安全帽 Gopro支架",
+    "img": "helmet_gopro_stand.jpg",
+    "link": "",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "安全帽用的Gopro支架,可依安全帽的角度做調整黏貼固定。",
+    "technology": ["Creality CR6 SE", "Shapr3d"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "食物轉盤",
+    "img": "eat.png",
+    "link": "https://jamestim9215.github.io/eat/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "每天中午都不到要吃什麼，決定做了一個轉盤，讓隨機來決定午餐。事實證明，就算轉到了也不會想吃那個。",
+    "technology": ["VUE"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Roulette 歐式輪盤",
+    "img": "roulette.png",
+    "link": "https://jamestim9215.github.io/roulette/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "簡單製作了可以玩的歐式輪盤遊戲，可以選擇項目下注，點擊輪盤即開始遊戲。",
+    "technology": ["VUE"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Chibi Three.js 3D model",
+    "img": "chibi.png",
+    "link": "https://jamestim9215.github.io/threeJs/chibi/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "自我學習ThreeJS，顯示3D模型，並調整光源與各項參數，實際應用到工作的專案內。",
+    "technology": ["Three JS","3D"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "Solar System",
+    "img": "SolarSystem.png",
+    "link": "https://jamestim9215.github.io/threeJs/space/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "初次學習ThreeJS時做的網站，結合網頁卷軸控制3D背景網頁。隨著滑鼠捲動，背景星球會跟著遠離。打造跳脫以往平面式網頁的特殊體驗。",
+    "technology": ["Three JS","Vite"]
+  },
+  {
+    "tag": ["Side Project","Web"],
+    "name": "404 Page not found game",
+    "img": "aorus_404.png",
+    "link": "https://jamestim9215.github.io/jsgame/404page/",
+    "localize": false,
+    "localizeCount": 0,
+    "teamMember": 1,
+    "teamRole": "Front end developer",
+    "detail": "想讓404頁面變得更有趣，做了一個模仿google的恐龍遊戲。",
+    "technology": ["javascript"]
   }
 ]

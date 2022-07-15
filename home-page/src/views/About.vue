@@ -38,14 +38,14 @@
               <h3>有什麼興趣</h3>
                 <p>
                   看電影，玩遊戲，看漫畫。<br>
-                  騎車到處旅行紓壓，騎檔車樂趣多，為了路權而考取重機駕照。<br>
                   閒不下來，想盡辦法找事情來做，嘗試新事物。<br>
-                  畫自己車子的3D模型，並3D列印出來，自己的玩具自己印。
+                  畫自己車子的3D模型，並3D列印出來，自己的玩具自己印。<br>
+                  騎車到處旅行紓壓，騎檔車樂趣多，為了路權而考取重機駕照，參加安駕課程。
                 </p>
 
               <h3>持續學習</h3>
                 <p>
-                  自學前端Javascript Vue框架，導入工作使用。<br>
+                  自學前端相關技術，導入工作使用。<br>
                   自學3D建模，3D列印技術。<br>
                   報名Swift課程，學習iOS開發語言，方便日後工作維護。<br>
                 </p>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="box-3-1">
-            <img class="aboutMeImg" src="@/assets/images/cat02.jpg" alt="" />
+            <img class="aboutMeImg" src="@/assets/images/ridesave.jpg" alt="" />
           </div>
         </div>
       </div>
