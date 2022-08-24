@@ -140,7 +140,7 @@
             // console.log(startC);
             // console.log(endC);
             // console.log(startR);
-            // console.log(endR);
+            console.log(endR);
             // console.log(lengthC);
             // console.log(lengthR);
             // console.log(sheet[XLSX.utils.encode_cell({ c: 0, r: 3 })]);
@@ -150,7 +150,7 @@
             result[sheetName] = []
             let excelData = []
 
-            for (let i = 3; i < endR; i++) {
+            for (let i = 3; i <= endR; i++) {
                 if (getCellValue(sheet, range, 0, i) === "") break
                 let obj = {}
                 obj.Chipfactory = getCellValue(sheet, range, 0, i)
