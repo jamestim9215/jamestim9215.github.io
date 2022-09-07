@@ -118,7 +118,7 @@
             e.stopPropagation(e)
             console.log(allData);
             for (key in allData) {
-                var blob = new Blob([JSON.stringify(allData[key])], { type: "" });
+                var blob = new Blob([JSON.stringify(allData[key],null, 2)], { type: "" });
                 zip.file(`${key}.json`, blob)
             }
             zip.generateAsync({ type: "blob" })
@@ -143,7 +143,7 @@
                     alert('無法讀取這個格式的檔案' + err);
                     return;
                 }
-                console.log(jsonData);
+                console.log("jsonData",jsonData);
                 jsonData = parseToJson(wb);
                 OUTPUTDOM.textContent = JSON.stringify(jsonData, null, 4);
             }
@@ -262,7 +262,7 @@
                     }
                 }
             }
-            console.log(obj);
+            console.log("obj",obj);
 
             return obj;
         }
