@@ -1,0 +1,20 @@
+{
+  "name": "ua5a-vu3-flow",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@braks/vue-flow": "^0.4.38",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "sass": "^1.54.8",
+    "vite": "^3.0.7"
+  }
+}
