@@ -1,0 +1,311 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.game-box{
+    position: relative;
+    margin: 0 auto;
+    margin-top: calc(50vh - 100px);
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.game-box .box{
+    z-index: 0;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 0px;
+    left: 0px;
+    background: #dc2e2e;
+}
+
+.game-box .box-case{
+    z-index: 1;
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    top: -10px;
+    left: -10px;
+    background: #ca2929;
+    box-shadow: 0px 1px 2px#333 ;
+}
+
+.game-box .box-case>div{
+    position: absolute;
+    background: rgb(255, 187, 0);
+    width: 100px;
+    height: 50px;
+    border-radius: 50%;
+    top: -115%;
+    left: 15px;
+    transform: rotate(30deg);
+}
+
+.game-box .box-case>div:nth-child(2){
+    left: auto;
+    right: 15px;
+    transform: rotate(-30deg);
+}
+
+
+.game-box .box-case>div>div{
+    position: absolute;
+    background: rgb(228, 167, 0);
+    width: 80%;
+    height: 70%;
+    top: 20%;
+    right: 0;
+    border-radius: 50%;
+}
+.game-box .box-case>div:nth-child(2)>div{
+    right: auto;
+    left: 0;
+}
+
+
+.game-box .box-case span{
+    position: absolute;
+    background: rgb(255, 187, 0);
+    width: 50px;
+    height: 100%;
+    left: calc(50% - 25px);
+}
+
+.game-box .box span{
+    position: absolute;
+    background: rgb(228, 167, 0);
+    width: 50px;
+    height: 100%;
+    left: calc(50% - 25px);
+}
+
+.game-box .card{
+    position: absolute;
+    z-index: 10;
+    height: auto;
+    min-height: 300px;
+    width: 150px;
+    left: calc(50% - 75px);
+    top: -100%;
+    background: #ca2929;
+    box-shadow: 0px 0px 50px #333;
+    transform: scale(0);
+}
+.game-box .card>div{
+    position: absolute;
+    left: 13px;
+    top: 13px;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    border: 2px solid #fff;
+    text-align: center;
+    line-height: 12vh;
+    font-size: 10vh;
+}
+
+.game-box .card.active{
+    transform: scale(1);
+}
+
+.game-box .somepaper{
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    top: 0;
+}
+
+.game-box .somepaper>div{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -20px;
+    transform: scale(0.5) rotate(0);
+}
+
+.game-box .somepaper.active>div{
+    transition: 1s ease-out;
+}
+.game-box .somepaper.active>div:nth-child(1){
+    background: #ff6400;
+    transform:  translate3d(180px,-180px,0) scale(1) rotate(270deg);
+} 
+
+.game-box .somepaper.active>div:nth-child(2){
+    background: #ffd000;
+    transform:  translate3d(80px,-180px,0) scale(0.8) rotate(-210deg);
+} 
+
+.game-box .somepaper.active>div:nth-child(3){
+    background: #d10f0f;
+    transform:  translate3d(40px,-270px,0) scale(1.2) rotate(-320deg);
+} 
+
+.game-box .somepaper.active>div:nth-child(4){
+    background: #c300ff;
+    transform:  translate3d(200px,-60px,0) scale(1) rotate(200deg);
+} 
+
+.game-box .somepaper.active>div:nth-child(5){
+    background: #00ff1e;
+    transform:  translate3d(-100px,-100px,0) scale(0.5) rotate(70deg);
+} 
+
+
+
+
+.game-box .cover{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    transform: scale(0) rotate(0);
+    left: calc(50% - 50px);
+    top: calc(-50% + 50px);
+    opacity: 1;
+    /* background: #c00; */
+}
+
+.cover.show{
+	animation: covershow 0.6s ease-out;
+    opacity: 1;
+}
+
+.cover.active{
+    transform: scale(1);
+    opacity: 1;
+	animation: coverrotate 10s linear infinite;
+}
+
+.game-box .cover>div:nth-child(2n){
+    position: absolute;
+    z-index: 3;
+    width: 600px;
+    height: 300px;
+    right: 50px;
+    bottom: 50px;
+    transform-origin: 100% 100%;
+    transform: rotate(0deg) skew(60deg);
+    background-image: linear-gradient(-26.5deg, rgba(246, 211, 101,.5) 0%, rgba(246, 211, 101,0) 50%);
+}
+.game-box .cover>div:nth-child(2n-1){
+    position: absolute;
+    z-index: 2;
+    width: 600px;
+    height: 300px;
+    right: 50px;
+    bottom: 50px;
+    transform-origin: 100% 100%;
+    transform: rotate(0deg) skew(60deg);
+    background-image: linear-gradient(-26.5deg, rgba(246, 101, 101, 0.5) 0%, rgba(246, 211, 101,0) 50%);
+}
+
+
+.shake{
+	animation: shakebox .4s linear infinite;
+}
+
+.openbox{
+    animation: caseopen 0.6s ease-out;
+}
+
+.opencard{
+    animation: opencard 0.6s ease-out;
+}
+
+.game-box .box-case.active{
+    transform: translate3d(-100px,-150px,0) rotate(-60deg);
+}
+
+#restart-btn{
+    position: fixed;
+    z-index: 99;
+    width: 180px;
+    height: 40px;
+    top: 80vh;
+    left: calc(50% - 90px);
+    background: #ff6400;
+    color: #000;
+    text-align: center;
+    line-height: 40px;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#restart-btn.active{
+    opacity: 1;
+}
+
+@keyframes shakebox{
+	0% {
+	    transform: translateZ(0);
+	}
+	5% {
+	    transform: translate3d(5px,5px,0);
+	}
+	15% {
+	    transform: translate3d(-5px,-5px,0);
+	}
+	25% {
+	    transform: translate3d(5px,5px,0);
+	}
+	45% {
+	    transform: translate3d(-5px,-5px,0);
+	}
+	55% {
+	    transform: translate3d(5px,-5px,0);
+	}
+	65% {
+	    transform: translate3d(-5px,-5px,0);
+	}
+	80% {
+	    transform: translate3d(5px,5px,0);
+	}
+	100% {
+	    transform: translate3d(-5px,-5px,0);
+	}
+}
+
+@keyframes caseopen{
+	0% {
+	    transform: translate3d(0);
+	}
+	100% {
+	    transform: translate3d(-100px,-150px,0) rotate(-60deg);
+	}
+}
+
+
+@keyframes opencard{
+	0% {
+	    transform: scale(0);
+	}
+	100% {
+	    transform: scale(1)
+	}
+}
+
+@keyframes covershow {
+    0%{
+        transform: scale(0) rotate(0deg);
+    }
+    100%{
+        transform: scale(2) rotate(60deg);
+    }
+}
+
+@keyframes coverrotate {
+    0%{
+        transform: scale(2) rotate(60deg);
+    }
+    100%{
+        transform: scale(2) rotate(360deg);
+    }
+}
