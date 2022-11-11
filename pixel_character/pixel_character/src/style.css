@@ -1,0 +1,229 @@
+html,body{
+  padding: 0;
+  margin: 0;
+  background: #ddd;
+  color: #333;
+  font-family: '',sans-serif;
+}
+ 
+#showBox img{
+  position: absolute;
+}
+
+.headImg{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  transform: scale(0.6);
+}
+.bodyImg{
+  position: absolute;
+  top: 150px;
+  left: 30px;
+  transform: scale(0.6);
+}
+.handLImg{
+  position: absolute;
+  top: 160px;
+  left: -10px;
+  transform: scale(0.6);
+}
+.handRImg{
+  position: absolute;
+  top: 160px;
+  left: 70px;
+  transform: scale(0.6);
+}
+.footLImg{
+  position: absolute;
+  top: 270px;
+  transform: scale(0.6);
+  left: 15px;
+}
+.footRImg{
+  position: absolute;
+  top: 270px;
+  transform: scale(0.6);
+  left: 55px;
+}
+
+
+.prview-div{
+  width: 100%;
+}
+.prview-div>div{
+  position: relative;
+  width: calc(200px * 12);
+  height: 380px;
+  text-align: left;    
+  transform-origin: top left;
+  transform: scale(0.65);
+  /* text-align: center; */
+  /* margin: 30px 0; */
+}
+.prview-div>div>div{
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  width: 200px;
+  height: 380px;
+  background: #ffffff;
+}
+
+.prview-div .headImg,
+.prview-div .bodyImg,
+.prview-div .handLImg,
+.prview-div .handRImg,
+.prview-div .footLImg,
+.prview-div .footRImg{
+  position: absolute;
+  transform-origin: top center;
+  /* transform: scale(0.6); */
+}
+
+.prview-div .headImg{
+  top: 10px;
+  left: -10px;
+}
+.prview-div .bodyImg{
+  top: 130px;
+  left: -10px;
+}
+.prview-div .handLImg{
+  transform-origin: top center;
+  top: 140px;
+  left: -40px;
+}
+.prview-div .handRImg{
+  transform-origin: top center;
+  top: 140px;
+  left: 30px;
+}
+.prview-div .footLImg{
+  transform-origin: top center;
+  top: 250px;
+  left: -25px;
+}
+.prview-div .footRImg{
+  transform-origin: top center;
+  top: 250px;
+  left: 15px;
+}
+
+
+#output2 .handLImg,
+#output6 .handLImg{
+  transform: scale(0.6) rotate(-5deg);
+}
+#output2 .handRImg,
+#output6 .handRImg{
+  transform: scale(0.6) rotate(5deg);
+}
+#output2 .footLImg,
+#output6 .footLImg{
+  transform: scale(0.6) rotate(5deg);
+}
+#output2 .footRImg,
+#output6 .footRImg{
+  transform: scale(0.6) rotate(-5deg);
+}
+#output3 .handLImg,
+#output5 .handLImg{
+  transform: scale(0.6) rotate(-10deg);
+}
+#output3 .handRImg,
+#output5 .handRImg{
+  transform: scale(0.6) rotate(10deg);
+}
+#output3 .footLImg,
+#output5 .footLImg{
+  transform: scale(0.6) rotate(10deg);
+}
+#output3 .footRImg,
+#output5 .footRImg{
+  transform: scale(0.6) rotate(-10deg);
+}
+
+#output4 .handLImg{
+  transform: scale(0.6) rotate(-15deg);
+}
+#output4 .handRImg{
+  transform: scale(0.6) rotate(15deg);
+}
+#output4 .footLImg{
+  transform: scale(0.6) rotate(15deg);
+}
+#output4 .footRImg{
+  transform: scale(0.6) rotate(-15deg);
+}
+
+#output8 .handLImg,
+#output12 .handLImg{
+  transform: scale(0.6) rotate(5deg);
+}
+#output8 .handRImg,
+#output12 .handRImg{
+  transform: scale(0.6) rotate(-5deg);
+}
+#output8 .footLImg,
+#output12 .footLImg{
+  transform: scale(0.6) rotate(-5deg);
+}
+#output8 .footRImg,
+#output12 .footRImg{
+  transform: scale(0.6) rotate(5deg);
+}
+
+#output9 .handLImg,
+#output11 .handLImg{
+  transform: scale(0.6) rotate(10deg);
+}
+#output9 .handRImg,
+#output11 .handRImg{
+  transform: scale(0.6) rotate(-10deg);
+}
+#output9 .footLImg,
+#output11 .footLImg{
+  transform: scale(0.6) rotate(-10deg);
+}
+#output9 .footRImg,
+#output11 .footRImg{
+  transform: scale(0.6) rotate(10deg);
+}
+
+#output10 .handLImg{
+  transform: scale(0.6) rotate(15deg);
+}
+#output10 .handRImg{
+  transform: scale(0.6) rotate(-15deg);
+}
+#output10 .footLImg{
+  transform: scale(0.6) rotate(-15deg);
+}
+#output10 .footRImg{
+  transform: scale(0.6) rotate(15deg);
+}
+
+#runBox{
+  position: absolute;
+  top: 32px;
+  left: 290px;
+  width: calc(200px);
+  height: calc(400px);
+  background: #ffffff;
+}
+
+#runBox img{
+  position: absolute;
+}
+
+#runBtn{
+  position: absolute;
+  top: 0px;
+  left: 290px;
+}
+#rotateCharacterBtn{
+  position: absolute;
+  top: 0px;
+  left: 390px;
+}
