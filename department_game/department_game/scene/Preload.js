@@ -1,14 +1,6 @@
-import { config } from '../config'
+import { config , characterList } from '../config'
 
-
-var characterList = [
-    {
-        name: 'Man', url: '../assets/images/character/Man.png'
-    },
-    {
-        name: 'Woman', url: '../assets/images/character/Woman.png'
-    },
-]
+var characterData = characterList();
 
 export default class Preload extends Phaser.Scene{
     constructor(){
@@ -48,8 +40,8 @@ export default class Preload extends Phaser.Scene{
             
         });
 
-        for(var item in characterList){
-            this.load.spritesheet(characterList[item].name,characterList[item].url,{
+        for(var item in characterData){
+            this.load.spritesheet(characterData[item].name,characterData[item].url,{
                 frameWidth: 1560 / 12,
                 frameHeight: 247
             });
@@ -71,11 +63,23 @@ export default class Preload extends Phaser.Scene{
     create(){
         
 
-        for(var item in characterList){
+        for(var item in characterData){
             this.anims.create({
-                key: characterList[item].name+"_anims",
-                frames: this.anims.generateFrameNumbers(characterList[item].name),
+                key: characterData[item].name+"_stand",
+                frames: this.anims.generateFrameNumbers(characterData[item].name, { start: 0, end: 0 }),
+                frameRate: 20,
+                repeat: -1
+            })
+            this.anims.create({
+                key: characterData[item].name+"_walk",
+                frames: this.anims.generateFrameNumbers(characterData[item].name),
                 frameRate: 7,
+                repeat: -1
+            })
+            this.anims.create({
+                key: characterData[item].name+"_run",
+                frames: this.anims.generateFrameNumbers(characterData[item].name),
+                frameRate: 21,
                 repeat: -1
             })
         }
