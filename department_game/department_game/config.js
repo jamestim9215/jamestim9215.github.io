@@ -5,22 +5,28 @@ const window_Height = window.innerHeight;
 
 var characterListData = [
   {
-      name: 'Man', url: '../assets/images/character/Man.png'
+      name: 'Man', url: '../assets/images/character/Man.png',
+      type: 'user'
   },
   {
-      name: 'Woman', url: '../assets/images/character/Woman.png'
+      name: 'Woman', url: '../assets/images/character/Woman.png',
+      type: 'user'
   },
   {
-      name: 'Boxing', url: '../assets/images/character/Boxing.png'
+      name: 'Boxing', url: '../assets/images/character/Boxing.png',
+      type: 'npc'
   },
   {
-      name: 'InfoMan', url: '../assets/images/character/InfoMan.png'
+      name: 'InfoMan', url: '../assets/images/character/InfoMan.png',
+      type: 'npc'
   },
   {
-      name: 'Chase', url: '../assets/images/character/Chase.png'
+      name: 'Chase', url: '../assets/images/character/Chase.png',
+      type: 'npc'
   },
   {
-      name: 'Dizni', url: '../assets/images/character/Dizni.png'
+      name: 'Dizni', url: '../assets/images/character/Dizni.png',
+      type: 'npc'
   },
 ]
 

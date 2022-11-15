@@ -2,47 +2,54 @@
 import { ref } from "vue";
 import { color } from "./assets/color";
 
-import html2canvas from 'html2canvas';
+import html2canvas from "html2canvas";
 
-import Man from './assets/Man.json';
-import Woman from './assets/Woman.json';
-import Boxing from './assets/Boxing.json';
+import Man from "./assets/Man.json";
+import Woman from "./assets/Woman.json";
+import Boxing from "./assets/Boxing.json";
+import Chase from "./assets/Chase.json";
+import Dizni from "./assets/Dizni.json";
+import InfoMan from "./assets/InfoMan.json";
 
-const characterName = ref('Character');
-const characterTemplateList = ref([Man,Woman,Boxing])
+const characterName = ref("Character");
+const characterTemplateList = ref([Man, Woman, Boxing, Chase, Dizni, InfoMan]);
 
-const colorKey = ref('#000000');
+const colorKey = ref("#000000");
 const colorList = ref([...color]);
-const colorHistory = ref(["#000000","#FFFFFF"])
-
+const colorHistory = ref(["#000000", "#FFFFFF"]);
 
 const designCount = ref(1);
-
 
 const designHeadData = ref([]);
 const designBodyData = ref([]);
 const designHandData = ref([]);
 const designFootData = ref([]);
 
-const generateBtnDisabled = ref(false)
-const outputBtnDisabled = ref(true)
-const runBtnDisabled = ref(true)
+const generateBtnDisabled = ref(false);
+const outputBtnDisabled = ref(true);
+const runBtnDisabled = ref(true);
 
 let timeOut;
 
-const chooseColor  = (color) => {
-  colorKey.value =  color;
+const chooseColor = (color) => {
+  colorKey.value = color;
 
-  if(colorHistory.value.indexOf(color)==-1  && colorHistory.value.length<8){
+  if (
+    colorHistory.value.indexOf(color) == -1 &&
+    colorHistory.value.length < 8
+  ) {
     colorHistory.value.unshift(color);
-  }else if(colorHistory.value.indexOf(color)==-1  && colorHistory.value.length==8){
-    colorHistory.value.splice(-1,1);
+  } else if (
+    colorHistory.value.indexOf(color) == -1 &&
+    colorHistory.value.length == 8
+  ) {
+    colorHistory.value.splice(-1, 1);
     colorHistory.value.unshift(color);
-  }else if(colorHistory.value.indexOf(color)!=-1){
+  } else if (colorHistory.value.indexOf(color) != -1) {
     colorHistory.value.splice(colorHistory.value.indexOf(color), 1);
     colorHistory.value.unshift(color);
   }
-}
+};
 
 const removeImageBg = (img) => {
   //背景颜色 白色
@@ -53,11 +60,10 @@ const removeImageBg = (img) => {
   var imgData = null;
   const [r0, g0, b0, a0] = rgba;
   var r, g, b, a;
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
   const w = img.width;
   const h = img.height;
-
 
   canvas.width = w;
   canvas.height = h;
@@ -65,78 +71,108 @@ const removeImageBg = (img) => {
   imgData = context.getImageData(0, 0, w, h);
 
   for (let i = 0; i < imgData.data.length; i += 4) {
-  r = imgData.data[i];
-  g = imgData.data[i + 1];
-  b = imgData.data[i + 2];
-  a = imgData.data[i + 3];
-  const t = Math.sqrt((r - r0) ** 2 + (g - g0) ** 2 + (b - b0) ** 2 + (a - a0) ** 2);
-  if (t <= tolerance) {
-  imgData.data[i] = 0;
-  imgData.data[i + 1] = 0;
-  imgData.data[i + 2] = 0;
-  imgData.data[i + 3] = 0;
-  }
+    r = imgData.data[i];
+    g = imgData.data[i + 1];
+    b = imgData.data[i + 2];
+    a = imgData.data[i + 3];
+    const t = Math.sqrt(
+      (r - r0) ** 2 + (g - g0) ** 2 + (b - b0) ** 2 + (a - a0) ** 2
+    );
+    if (t <= tolerance) {
+      imgData.data[i] = 0;
+      imgData.data[i + 1] = 0;
+      imgData.data[i + 2] = 0;
+      imgData.data[i + 3] = 0;
+    }
   }
   context.putImageData(imgData, 0, 0);
-  const newBase64 = canvas.toDataURL('image/png');
+  const newBase64 = canvas.toDataURL("image/png");
   img.src = newBase64;
-}
+};
 
 const transImg = () => {
-  if(timeOut) clearTimeout(timeOut);
+  if (timeOut) clearTimeout(timeOut);
   outputBtnDisabled.value = true;
   runBtnDisabled.value = true;
 
-  document.getElementById('headImg')?document.getElementById('headImg').remove():'';
-  document.getElementById('bodyImg')?document.getElementById('bodyImg').remove():'';
-  document.getElementById('handLImg')?document.getElementById('handLImg').remove():'';
-  document.getElementById('handRImg')?document.getElementById('handRImg').remove():'';
-  document.getElementById('footLImg')?document.getElementById('footLImg').remove():'';
-  document.getElementById('footRImg')?document.getElementById('footRImg').remove():'';
+  document.getElementById("headImg")
+    ? document.getElementById("headImg").remove()
+    : "";
+  document.getElementById("bodyImg")
+    ? document.getElementById("bodyImg").remove()
+    : "";
+  document.getElementById("handLImg")
+    ? document.getElementById("handLImg").remove()
+    : "";
+  document.getElementById("handRImg")
+    ? document.getElementById("handRImg").remove()
+    : "";
+  document.getElementById("footLImg")
+    ? document.getElementById("footLImg").remove()
+    : "";
+  document.getElementById("footRImg")
+    ? document.getElementById("footRImg").remove()
+    : "";
 
-  HtmltoCanvas('footR');
-  HtmltoCanvas('footL');
-  HtmltoCanvas('handR');
-  HtmltoCanvas('body');
-  HtmltoCanvas('handL');
-  HtmltoCanvas('head');
+  HtmltoCanvas("footR");
+  HtmltoCanvas("footL");
+  HtmltoCanvas("handR");
+  HtmltoCanvas("body");
+  HtmltoCanvas("handL");
+  HtmltoCanvas("head");
 
-  setTimeout(()=>{
+  setTimeout(() => {
     outputBtnDisabled.value = false;
-  },500)
-}
+  }, 500);
+};
 
 const HtmltoCanvas = (type) => {
-  let target , imgName;
-  switch(type){
-    case 'head' : target = document.getElementById('head'); imgName = 'headImg'; break;
-    case 'body' : target = document.getElementById('body'); imgName = 'bodyImg'; break;
-    case 'handL' : target = document.getElementById('hand'); imgName = 'handLImg'; break;
-    case 'handR' : target = document.getElementById('hand'); imgName = 'handRImg'; break;
-    case 'footL' : target = document.getElementById('foot'); imgName = 'footLImg'; break;
-    case 'footR' : target = document.getElementById('foot'); imgName = 'footRImg'; break;
+  let target, imgName;
+  switch (type) {
+    case "head":
+      target = document.getElementById("head");
+      imgName = "headImg";
+      break;
+    case "body":
+      target = document.getElementById("body");
+      imgName = "bodyImg";
+      break;
+    case "handL":
+      target = document.getElementById("hand");
+      imgName = "handLImg";
+      break;
+    case "handR":
+      target = document.getElementById("hand");
+      imgName = "handRImg";
+      break;
+    case "footL":
+      target = document.getElementById("foot");
+      imgName = "footLImg";
+      break;
+    case "footR":
+      target = document.getElementById("foot");
+      imgName = "footRImg";
+      break;
   }
-  let output = document.getElementById('showBox');
-  html2canvas(target,{
-    backgroundColor : null,
-    imageTimeout: 0
-  }).then(function(canvas) {
+  let output = document.getElementById("showBox");
+  html2canvas(target, {
+    backgroundColor: null,
+    imageTimeout: 0,
+  }).then(function (canvas) {
     var img = new Image();
-    img.id = imgName
+    img.id = imgName;
     img.classList.add(imgName);
     img.src = canvas.toDataURL("image/png");
     output.appendChild(img);
-    setTimeout(()=>{
-      removeImageBg(document.getElementById(imgName))
+    setTimeout(() => {
+      removeImageBg(document.getElementById(imgName));
       img.width = 200;
-    },50)
+    }, 50);
   });
-}
+};
 
 const initDraw = () => {
-
-  if(designHeadData.value.length==0){
-
+  if (designHeadData.value.length == 0) {
     let _index = 1;
     for (var _x = 1; _x <= designCount.value; _x++) {
       for (var _y = 1; _y <= designCount.value; _y++) {
@@ -153,75 +189,85 @@ const initDraw = () => {
         _index++;
       }
     }
-    
   }
 
-  designHeadData.value = JSON.parse(JSON.stringify(designHeadData.value))
-  designBodyData.value = JSON.parse(JSON.stringify(designBodyData.value))
-  designHandData.value = JSON.parse(JSON.stringify(designHandData.value))
-  designFootData.value = JSON.parse(JSON.stringify(designFootData.value))
-  
+  designHeadData.value = JSON.parse(JSON.stringify(designHeadData.value));
+  designBodyData.value = JSON.parse(JSON.stringify(designBodyData.value));
+  designHandData.value = JSON.parse(JSON.stringify(designHandData.value));
+  designFootData.value = JSON.parse(JSON.stringify(designFootData.value));
+
   // setTimeout(()=>{
   //   transImg();
   // },500);
 };
+const isOnDraw = ref(false);
 
 const draw = (x, y, target) => {
   if (target === "head") {
-    if (
-      designHeadData.value[(x - 1) * designCount.value + y - 1].color === colorKey.value
-    ) {
-      designHeadData.value[(x - 1) * designCount.value + y - 1].color = "";
-    } else {
-      designHeadData.value[(x - 1) * designCount.value + y - 1].color =
-        colorKey.value;
-    }
+    // if (
+    //   designHeadData.value[(x - 1) * designCount.value + y - 1].color === colorKey.value
+    // ) {
+    //   designHeadData.value[(x - 1) * designCount.value + y - 1].color = "";
+    // } else {
+    designHeadData.value[(x - 1) * designCount.value + y - 1].color =
+      colorKey.value;
+    // }
   }
   if (target === "body") {
-    if (
-      designBodyData.value[(x - 1) * designCount.value + y - 1].color ===
-      colorKey.value
-    ) {
-      designBodyData.value[(x - 1) * designCount.value + y - 1].color = "";
-    } else {
-      designBodyData.value[(x - 1) * designCount.value + y - 1].color =
-        colorKey.value;
-    }
+    // if (
+    //   designBodyData.value[(x - 1) * designCount.value + y - 1].color ===
+    //   colorKey.value
+    // ) {
+    //   designBodyData.value[(x - 1) * designCount.value + y - 1].color = "";
+    // } else {
+    designBodyData.value[(x - 1) * designCount.value + y - 1].color =
+      colorKey.value;
+    // }
   }
   if (target === "hand") {
-    if (
-      designHandData.value[(x - 1) * designCount.value + y - 1].color ===
-      colorKey.value
-    ) {
-      designHandData.value[(x - 1) * designCount.value + y - 1].color = "";
-    } else {
-      designHandData.value[(x - 1) * designCount.value + y - 1].color =
-        colorKey.value;
-    }
+    // if (
+    //   designHandData.value[(x - 1) * designCount.value + y - 1].color ===
+    //   colorKey.value
+    // ) {
+    //   designHandData.value[(x - 1) * designCount.value + y - 1].color = "";
+    // } else {
+    designHandData.value[(x - 1) * designCount.value + y - 1].color =
+      colorKey.value;
+    // }
   }
   if (target === "foot") {
-    if (
-      designFootData.value[(x - 1) * designCount.value + y - 1].color ===
-      colorKey.value
-    ) {
-      designFootData.value[(x - 1) * designCount.value + y - 1].color = "";
-    } else {
-      designFootData.value[(x - 1) * designCount.value + y - 1].color =
-        colorKey.value;
-    }
+    // if (
+    //   designFootData.value[(x - 1) * designCount.value + y - 1].color ===
+    //   colorKey.value
+    // ) {
+    //   designFootData.value[(x - 1) * designCount.value + y - 1].color = "";
+    // } else {
+    designFootData.value[(x - 1) * designCount.value + y - 1].color =
+      colorKey.value;
+    // }
   }
-
-
 };
 
+const mousedown = (x, y, target) => {
+  isOnDraw.value = true;
+  draw(x, y, target);
+};
+const mouseover = (x, y, target) => {
+  if (isOnDraw.value == true) {
+    draw(x, y, target);
+  }
+};
+const mouseup = () => {
+  isOnDraw.value = false;
+};
 
-const changeDesignCount = () =>{
+const changeDesignCount = () => {
   designHeadData.value = [];
   designBodyData.value = [];
   designHandData.value = [];
   designFootData.value = [];
   initDraw();
-}
+};
 
 const initCharacter = (index) => {
   designHeadData.value = [];
@@ -236,161 +282,165 @@ const initCharacter = (index) => {
   designHandData.value = characterTemplateList.value[index].hand;
   designFootData.value = characterTemplateList.value[index].foot;
   initDraw();
-}
+};
 
 initCharacter(0);
 
 const output = () => {
-  let headImg = document.getElementById('headImg');
-  if(!headImg) return;
-  for(var i=1; i<=12; i++){
+  let headImg = document.getElementById("headImg");
+  if (!headImg) return;
+  for (var i = 1; i <= 12; i++) {
     let obj = document.getElementById("showBox");
     let copyObj = obj.cloneNode(true);
-    document.getElementById('output'+i).innerHTML='';
-    document.getElementById('output'+i).appendChild(copyObj);
+    document.getElementById("output" + i).innerHTML = "";
+    document.getElementById("output" + i).appendChild(copyObj);
   }
 
-  
   runBtnDisabled.value = false;
-
-
-}
+};
 
 const HtmlToCanvasRun = (index) => {
-    let target = document.getElementById('output'+index);
-    let output = document.getElementById('runBox');
+  let target = document.getElementById("output" + index);
+  let output = document.getElementById("runBox");
 
-    html2canvas(target,{
-      backgroundColor : null,
-      imageTimeout: 0
-    }).then(function(canvas) {
-      var img = new Image();
-      img.id = 'runImg'+index;
-      img.classList.add('runImg'+index);
-      img.src = canvas.toDataURL("image/png");
-      output.appendChild(img);
-      setTimeout(()=>{
-        removeImageBg(document.getElementById('runImg'+index))
-        img.style.opacity = 0;
-        if(index == 4) img.style.opacity = 1;
-      },50)
-    });
-}
+  html2canvas(target, {
+    backgroundColor: null,
+    imageTimeout: 0,
+  }).then(function (canvas) {
+    var img = new Image();
+    img.id = "runImg" + index;
+    img.classList.add("runImg" + index);
+    img.src = canvas.toDataURL("image/png");
+    output.appendChild(img);
+    setTimeout(() => {
+      removeImageBg(document.getElementById("runImg" + index));
+      img.style.opacity = 0;
+      if (index == 4) img.style.opacity = 1;
+    }, 50);
+  });
+};
 
 const runAnimate = () => {
-  if(timeOut) clearTimeout(timeOut);
+  if (timeOut) clearTimeout(timeOut);
   let num = 3;
   let isAdd = 1;
 
   timeOut = setInterval(() => {
     num = num + isAdd;
 
-    document.getElementById('runImg1').style.opacity = 0;
-    document.getElementById('runImg2').style.opacity = 0;
-    document.getElementById('runImg3').style.opacity = 0;
-    document.getElementById('runImg4').style.opacity = 0;
-    document.getElementById('runImg5').style.opacity = 0;
-    document.getElementById('runImg6').style.opacity = 0;
-    document.getElementById('runImg7').style.opacity = 0;
+    document.getElementById("runImg1").style.opacity = 0;
+    document.getElementById("runImg2").style.opacity = 0;
+    document.getElementById("runImg3").style.opacity = 0;
+    document.getElementById("runImg4").style.opacity = 0;
+    document.getElementById("runImg5").style.opacity = 0;
+    document.getElementById("runImg6").style.opacity = 0;
+    document.getElementById("runImg7").style.opacity = 0;
 
-    document.getElementById('runImg'+num).style.opacity = 1;
-    if(num>=7){
+    document.getElementById("runImg" + num).style.opacity = 1;
+    if (num >= 7) {
       isAdd = -1;
     }
-    if(num<=1){
+    if (num <= 1) {
       isAdd = 1;
     }
-  }, 150)
-}
+  }, 150);
+};
 const runFun = () => {
-  let output = document.getElementById('runBox');
-  output.innerHTML = '';
+  let output = document.getElementById("runBox");
+  output.innerHTML = "";
 
-  HtmlToCanvasRun(1) 
-  setTimeout(() => { HtmlToCanvasRun(2) }, 50);
-  setTimeout(() => { HtmlToCanvasRun(3) }, 100);
-  setTimeout(() => { HtmlToCanvasRun(4) }, 150);
-  setTimeout(() => { HtmlToCanvasRun(5) }, 200);
-  setTimeout(() => { HtmlToCanvasRun(6) }, 250);
-  setTimeout(() => { HtmlToCanvasRun(7) }, 300);
-
+  HtmlToCanvasRun(1);
+  setTimeout(() => {
+    HtmlToCanvasRun(2);
+  }, 50);
+  setTimeout(() => {
+    HtmlToCanvasRun(3);
+  }, 100);
+  setTimeout(() => {
+    HtmlToCanvasRun(4);
+  }, 150);
+  setTimeout(() => {
+    HtmlToCanvasRun(5);
+  }, 200);
+  setTimeout(() => {
+    HtmlToCanvasRun(6);
+  }, 250);
+  setTimeout(() => {
+    HtmlToCanvasRun(7);
+  }, 300);
 
   setTimeout(() => {
     runAnimate();
   }, 1000);
-}
+};
 
 const rotateCharacter = () => {
-  let character = document.getElementById('runBox');
-  if(character.style.transform == ""){
+  let character = document.getElementById("runBox");
+  if (character.style.transform == "") {
     character.style.transform = "rotateY(180deg)";
-  }else{
+  } else {
     character.style.transform = "";
   }
-}
+};
 
 const outputAssets = () => {
-  let target = document.getElementById('assetImg');
+  let target = document.getElementById("assetImg");
 
-    html2canvas(target,{
-      backgroundColor : null,
-      imageTimeout: 0
-    }).then(function(canvas) {
-
-      
-      var img = new Image();
-      img.id = 'download';
-      img.classList.add('download');
-      img.src = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;
-      document.getElementById('downloadImg').appendChild(img);
-      setTimeout(()=>{
-        removeImageBg(document.getElementById('download'))
-        var a = document.createElement('a');
-        a.href = img.src;
-        a.download = characterName.value + '.png';
-        a.click();
-        document.getElementById('downloadImg').innerHTML = '';
-      },50)
-    });
-}
+  html2canvas(target, {
+    backgroundColor: null,
+    imageTimeout: 0,
+  }).then(function (canvas) {
+    var img = new Image();
+    img.id = "download";
+    img.classList.add("download");
+    img.src = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    document.getElementById("downloadImg").appendChild(img);
+    setTimeout(() => {
+      removeImageBg(document.getElementById("download"));
+      var a = document.createElement("a");
+      a.href = img.src;
+      a.download = characterName.value + ".png";
+      a.click();
+      document.getElementById("downloadImg").innerHTML = "";
+    }, 50);
+  });
+};
 
 const getCharacterJson = () => {
   let content = {
-    "name": characterName.value,
-    "head": designHeadData.value,
-    "body": designBodyData.value,
-    "hand": designHandData.value,
-    "foot": designFootData.value,
-  }
-
+    name: characterName.value,
+    head: designHeadData.value,
+    body: designBodyData.value,
+    hand: designHandData.value,
+    foot: designFootData.value,
+  };
 
   // 建立隱藏的可下載連結
-    var eleLink = document.createElement('a');
-    eleLink.download = characterName.value + '.json';
-    eleLink.style.display = 'none';
-    // 字元內容轉變成blob地址
-    var blob = new Blob([JSON.stringify(content)]);
-    eleLink.href = URL.createObjectURL(blob);
-    // 觸發點選
-    document.body.appendChild(eleLink);
-    eleLink.click();
-    // 然後移除
-    document.body.removeChild(eleLink);
-}
+  var eleLink = document.createElement("a");
+  eleLink.download = characterName.value + ".json";
+  eleLink.style.display = "none";
+  // 字元內容轉變成blob地址
+  var blob = new Blob([JSON.stringify(content)]);
+  eleLink.href = URL.createObjectURL(blob);
+  // 觸發點選
+  document.body.appendChild(eleLink);
+  eleLink.click();
+  // 然後移除
+  document.body.removeChild(eleLink);
+};
 
 const getCharacterJsonText = () => {
   let content = {
-    "name": characterName.value,
-    "head": designHeadData.value,
-    "body": designBodyData.value,
-    "hand": designHandData.value,
-    "foot": designFootData.value,
-  }
-  return JSON.stringify(content)
-}
-
-
-
+    name: characterName.value,
+    head: designHeadData.value,
+    body: designBodyData.value,
+    hand: designHandData.value,
+    foot: designFootData.value,
+  };
+  return JSON.stringify(content);
+};
 </script>
 
 <template>
@@ -401,12 +451,16 @@ const getCharacterJsonText = () => {
       <div>
         <div id="color">
           <div>
-            <div v-for="(key,index) in colorHistory" :key="index"
-            :style="'background: ' + key"
-            :class="colorKey == key ? 'active' : ''"
-            @click="chooseColor(key)"
+            <div
+              v-for="(key, index) in colorHistory"
+              :key="index"
+              :style="'background: ' + key"
+              :class="colorKey == key ? 'active' : ''"
+              @click="chooseColor(key)"
               :title="key"
-            >{{key}}</div>
+            >
+              {{ key }}
+            </div>
           </div>
           <div>
             <div
@@ -435,7 +489,12 @@ const getCharacterJsonText = () => {
       <br />
       <br />
       <div>
-        <button v-for="(key,index) in characterTemplateList" @click="initCharacter(index)">{{key.name}}</button>
+        <button
+          v-for="(key, index) in characterTemplateList"
+          @click="initCharacter(index)"
+        >
+          {{ key.name }}
+        </button>
       </div>
       <br />
       <b>Setting</b>
@@ -443,10 +502,17 @@ const getCharacterJsonText = () => {
       <br />
       <div>
         Character Name<br />
-        <input type="text" style="width: 90%" v-model="characterName">
-      </div><br />
+        <input type="text" style="width: 90%" v-model="characterName" />
+      </div>
+      <br />
       <div>
-        <textarea name="" id="" style="width: 90%" rows="1" :value="getCharacterJsonText()"></textarea>
+        <textarea
+          name=""
+          id=""
+          style="width: 90%"
+          rows="1"
+          :value="getCharacterJsonText()"
+        ></textarea>
         <button @click="getCharacterJson()">Download Character Data</button>
       </div>
       <br />
@@ -456,8 +522,11 @@ const getCharacterJsonText = () => {
       <div>
         Pixel
         <select type="number" v-model="designCount" @change="changeDesignCount">
-          <option :value="key" v-for="key in 16" v-show="key>4">{{key}}</option>
-        </select> x {{designCount}}
+          <option :value="key" v-for="key in 16" v-show="key > 4">
+            {{ key }}
+          </option>
+        </select>
+        x {{ designCount }}
       </div>
       <br />
       <div>
@@ -468,9 +537,11 @@ const getCharacterJsonText = () => {
       <div>
         <div>
           Head
-          <div id="head"
-              v-if="designHeadData.length > 0"
-            >
+          <div
+            id="head"
+            v-if="designHeadData.length > 0"
+            @mouseleave="isOnDraw = false"
+          >
             <div
               class="row"
               :style="'height: ' + 100 / designCount + '%;'"
@@ -480,9 +551,13 @@ const getCharacterJsonText = () => {
               <span
                 v-for="index_y in designCount"
                 :key="'head_' + index_y"
-                @click="draw(index_x, index_y, 'head')"
+                @mousedown="mousedown(index_x, index_y, 'head')"
+                @mouseover="mouseover(index_x, index_y, 'head')"
+                @mouseup="mouseup()"
                 :style="
-                  'background:' + designHeadData[(index_x - 1) * designCount + index_y - 1].color
+                  'background:' +
+                  designHeadData[(index_x - 1) * designCount + index_y - 1]
+                    .color
                 "
               >
               </span>
@@ -491,7 +566,7 @@ const getCharacterJsonText = () => {
         </div>
         <div>
           Body
-          <div id="body">
+          <div id="body" @mouseleave="isOnDraw = false">
             <div
               class="row"
               :style="'height: ' + 100 / designCount + '%;'"
@@ -499,18 +574,25 @@ const getCharacterJsonText = () => {
               :key="'body_' + index_x"
               v-if="designBodyData.length > 0"
             >
-              <span v-for="index_y in designCount" :key="'body_' + index_y" 
-                @click="draw(index_x, index_y, 'body')"
+              <span
+                v-for="index_y in designCount"
+                :key="'body_' + index_y"
+                @mousedown="mousedown(index_x, index_y, 'body')"
+                @mouseover="mouseover(index_x, index_y, 'body')"
+                @mouseup="mouseup()"
                 :style="
-                  'background:' + designBodyData[(index_x - 1) * designCount + index_y - 1].color
-                ">
+                  'background:' +
+                  designBodyData[(index_x - 1) * designCount + index_y - 1]
+                    .color
+                "
+              >
               </span>
             </div>
           </div>
         </div>
         <div>
           Hand
-          <div id="hand">
+          <div id="hand" @mouseleave="isOnDraw = false">
             <div
               class="row"
               :style="'height: ' + 100 / designCount + '%;'"
@@ -521,9 +603,12 @@ const getCharacterJsonText = () => {
               <span
                 v-for="index_y in designCount"
                 :key="'hand_' + index_y"
-                @click="draw(index_x, index_y, 'hand')"
+                @mousedown="mousedown(index_x, index_y, 'hand')"
+                @mouseover="mouseover(index_x, index_y, 'hand')"
+                @mouseup="mouseup()"
                 :style="
-                  'background:' +designHandData[(index_x - 1) * designCount + index_y - 1]
+                  'background:' +
+                  designHandData[(index_x - 1) * designCount + index_y - 1]
                     .color
                 "
               ></span>
@@ -532,7 +617,7 @@ const getCharacterJsonText = () => {
         </div>
         <div>
           Foot
-          <div id="foot">
+          <div id="foot" @mouseleave="isOnDraw = false">
             <div
               class="row"
               :style="'height: ' + 100 / designCount + '%;'"
@@ -543,9 +628,12 @@ const getCharacterJsonText = () => {
               <span
                 v-for="index_y in designCount"
                 :key="'foot_' + index_y"
-                @click="draw(index_x, index_y, 'foot')"
+                @mousedown="mousedown(index_x, index_y, 'foot')"
+                @mouseover="mouseover(index_x, index_y, 'foot')"
+                @mouseup="mouseup()"
                 :style="
-                  'background:' +designFootData[(index_x - 1) * designCount + index_y - 1]
+                  'background:' +
+                  designFootData[(index_x - 1) * designCount + index_y - 1]
                     .color
                 "
               ></span>
@@ -557,27 +645,36 @@ const getCharacterJsonText = () => {
     <div class="review-div">
       <div>
         <div id="show">
-          <button id="generateBtn" @click="transImg" :disabled="generateBtnDisabled">1. 角色預覽</button>
+          <button
+            id="generateBtn"
+            @click="transImg"
+            :disabled="generateBtnDisabled"
+          >
+            1. 角色預覽
+          </button>
           <div id="showBox"></div>
         </div>
       </div>
       <div>
-        
-        <div id="runBox">
+        <!-- <div id="runBox">
           
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
           <button id="runBtn" @click="runFun" :disabled="runBtnDisabled">3. 預覽動畫</button>
           <button id="rotateCharacterBtn" @click="rotateCharacter" :disabled="runBtnDisabled">左右翻轉</button>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="prview-div">
-      Prview <br>
-      <button id="outputBtn" @click="output" :disabled="outputBtnDisabled">2. 產生動作群組</button>
-      <button @click="outputAssets" :disabled="runBtnDisabled">匯出 動作群組</button>
+      Prview <br />
+      <button id="outputBtn" @click="output" :disabled="outputBtnDisabled">
+        2. 產生動作群組
+      </button>
+      <button @click="outputAssets" :disabled="runBtnDisabled">
+        匯出 動作群組
+      </button>
       <div id="assetImg" v-show="!runBtnDisabled">
-        <div :id="'output'+num" v-for="num in 12"></div>
+        <div :id="'output' + num" v-for="num in 12"></div>
       </div>
     </div>
     <div id="downloadImg"></div>
@@ -619,17 +716,17 @@ const getCharacterJsonText = () => {
             margin: 10px auto;
             width: 300px;
             height: 300px;
-            border: 3px solid #eee;
-            background: #eee;
+            border: 3px solid #eeeeee;
+            background: #eeeeee;
             > .row {
               position: relative;
               display: flex;
               width: 100%;
               > span {
                 width: 100%;
-                height: calc(100% - 2px);
+                height: calc(100% - 1px);
                 background: #ffffff;
-                margin: 1px;
+                margin: 0.5px;
               }
             }
           }
@@ -652,9 +749,9 @@ const getCharacterJsonText = () => {
         width: calc(100% - 30px);
         height: calc(100% - 30px);
         border: 3px solid #ccc;
-        background: #ffffff;
+        // background: #ffffff;
+        background: #dedede;
         overflow: hidden;
-        
       }
     }
   }
@@ -705,6 +802,5 @@ const getCharacterJsonText = () => {
       }
     }
   }
-
 }
 </style>

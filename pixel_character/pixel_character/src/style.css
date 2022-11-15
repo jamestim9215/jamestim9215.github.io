@@ -12,7 +12,7 @@ html,body{
 
 .headImg{
   position: absolute;
-  top: 30px;
+  top: 33px;
   left: 30px;
   transform: scale(0.6);
 }
@@ -36,13 +36,13 @@ html,body{
 }
 .footLImg{
   position: absolute;
-  top: 270px;
+  top: 265px;
   transform: scale(0.6);
   left: 15px;
 }
 .footRImg{
   position: absolute;
-  top: 270px;
+  top: 265px;
   transform: scale(0.6);
   left: 55px;
 }
@@ -82,7 +82,7 @@ html,body{
 }
 
 .prview-div .headImg{
-  top: 10px;
+  top: 12px;
   left: -10px;
 }
 .prview-div .bodyImg{
@@ -101,12 +101,12 @@ html,body{
 }
 .prview-div .footLImg{
   transform-origin: top center;
-  top: 250px;
+  top: 245px;
   left: -25px;
 }
 .prview-div .footRImg{
   transform-origin: top center;
-  top: 250px;
+  top: 245px;
   left: 15px;
 }
 
