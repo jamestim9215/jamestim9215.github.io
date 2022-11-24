@@ -12,22 +12,22 @@ var characterListData = [
       name: 'Woman', url: '../assets/images/character/Woman.png',
       type: 'user'
   },
-  {
-      name: 'Boxing', url: '../assets/images/character/Boxing.png',
-      type: 'npc'
-  },
+  // {
+  //     name: 'Boxing', url: '../assets/images/character/Boxing.png',
+  //     type: 'npc'
+  // },
   {
       name: 'InfoMan', url: '../assets/images/character/InfoMan.png',
       type: 'npc'
   },
-  {
-      name: 'Chase', url: '../assets/images/character/Chase.png',
-      type: 'npc'
-  },
-  {
-      name: 'Dizni', url: '../assets/images/character/Dizni.png',
-      type: 'npc'
-  },
+  // {
+  //     name: 'Chase', url: '../assets/images/character/Chase.png',
+  //     type: 'npc'
+  // },
+  // {
+  //     name: 'Dizni', url: '../assets/images/character/Dizni.png',
+  //     type: 'npc'
+  // },
 ]
 
 function config(){
@@ -38,7 +38,7 @@ function config(){
     physics:{
         default: "arcade",
         arcade:{
-          debug: false
+          debug: true
         },
     },
     fps: {
