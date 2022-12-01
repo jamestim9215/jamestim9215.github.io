@@ -73,9 +73,15 @@ function getRandom(min,max){
     return Math.floor(Math.random()*max)+min;
 };
 
+var isClick = false;
+
 var gamePlay = () => {
+
+    if(isClick){
+        return
+    }
+    isClick = true;
     var times = getRandom(2,4);
-    
     
     chanceData = [];
     chanceMatchData = [];
@@ -125,7 +131,8 @@ var gamePlay = () => {
                     ${lottery[cardIndex].point} Points <br>
                     ${lottery[cardIndex].chibi} <br>
                     ${lottery[cardIndex].content}
-                `
+                `;
+                isClick = false;
             }
         }
         index++;
