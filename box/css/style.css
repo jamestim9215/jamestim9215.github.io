@@ -85,31 +85,33 @@ body
     left: calc(50% - 25px);
 }
 
-.game-box .card{
+.card{
     position: absolute;
     z-index: 10;
     height: auto;
     min-height: 300px;
     width: 150px;
     left: calc(50% - 75px);
-    top: -100%;
+    top:  calc(50% - 300px);
     background: #ca2929;
     box-shadow: 0px 0px 50px #333;
     transform: scale(0);
 }
-.game-box .card>div{
+.card>div{
     position: absolute;
     left: 13px;
     top: 13px;
     width: calc(100% - 30px);
     height: calc(100% - 30px);
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     text-align: center;
-    line-height: 12vh;
-    font-size: 10vh;
+    color: #fff;
+    /* line-height: 12vh; */
+    /* font-size: 10vh; */
+    font-size: 20px;
 }
 
-.game-box .card.active{
+.card.active{
     transform: scale(1);
 }
 
@@ -161,14 +163,14 @@ body
 
 
 
-.game-box .cover{
+.cover{
     position: absolute;
     width: 100px;
     height: 100px;
     z-index: 2;
     transform: scale(0) rotate(0);
     left: calc(50% - 50px);
-    top: calc(-50% + 50px);
+    top: calc(50% - 150px);
     opacity: 1;
     /* background: #c00; */
 }
@@ -184,7 +186,7 @@ body
 	animation: coverrotate 10s linear infinite;
 }
 
-.game-box .cover>div:nth-child(2n){
+.cover>div:nth-child(2n){
     position: absolute;
     z-index: 3;
     width: 600px;
@@ -195,7 +197,7 @@ body
     transform: rotate(0deg) skew(60deg);
     background-image: linear-gradient(-26.5deg, rgba(246, 211, 101,.5) 0%, rgba(246, 211, 101,0) 50%);
 }
-.game-box .cover>div:nth-child(2n-1){
+.cover>div:nth-child(2n-1){
     position: absolute;
     z-index: 2;
     width: 600px;
