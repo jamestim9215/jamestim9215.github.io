@@ -74,7 +74,7 @@ function getRandom(min,max){
 };
 
 var gamePlay = () => {
-    var times = getRandom(1,3);
+    var times = getRandom(2,4);
     
     
     chanceData = [];
@@ -95,7 +95,7 @@ var gamePlay = () => {
             break;
         }
     }
-    console.log('cardIndex',cardIndex)
+    // console.log('cardIndex',cardIndex)
 
     let s = 0;
     let num = 0;
