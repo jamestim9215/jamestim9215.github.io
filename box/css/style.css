@@ -105,10 +105,11 @@ body
     height: calc(100% - 30px);
     /* border: 2px solid #fff; */
     text-align: center;
-    color: #fff;
+    color: #ca2929;
     /* line-height: 12vh; */
     /* font-size: 10vh; */
     font-size: 20px;
+    font-weight: 700;
 }
 
 .card.active{

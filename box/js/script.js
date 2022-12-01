@@ -9,35 +9,40 @@ const lottery = [
         chibi: "銀色 Chibi",
         content: "You will soon witness a miracle.",
         point: 100,
-        chance: 0.1
+        chance: 0.1,
+        color: "#999"
     },
     { 
         name : "吉",
         chibi: "粉色Chibi",
         content: "The best is yet to come.",
         point: 70,
-        chance: 0.2
+        chance: 0.2,
+        color: "#ffa9a9"
     },
     { 
         name : "小吉",
         chibi: "藍色Chibi",
         content: "Nothing beats a great smile.",
         point: 50,
-        chance: 0.2
+        chance: 0.2,
+        color: "#2e78dc"
     },
     { 
         name : "凶",
         chibi: "黑色Chibi",
         content: "Watch your back.",
         point: 5,
-        chance: 0.2
+        chance: 0.2,
+        color: "#232323"
     },
     { 
         name : "平",
         chibi: "白色 Chibi",
         content: "Good Luck.",
         point: 30,
-        chance: 0.3
+        chance: 0.3,
+        color: "#fff"
     }
 ];
 
@@ -80,18 +85,18 @@ let runGame = () => {
     
     for(var i=0; i<chanceMatchData.length; i++){
         if((chanceMatchData[i-1]?chanceMatchData[i-1]+1:0) <= random && random <= chanceMatchData[i]){
-            console.log((chanceMatchData[i-1]?chanceMatchData[i-1]+1:0)+" <= "+random+" <= "+chanceMatchData[i]);
+            // console.log((chanceMatchData[i-1]?chanceMatchData[i-1]+1:0)+" <= "+random+" <= "+chanceMatchData[i]);
             index = i;
             break;
         }
     }
     
-
+    document.querySelectorAll('.card')[0].style.backgroundColor = lottery[index].color;
     document.querySelectorAll('.card div')[0].innerHTML = `
-        <div>${lottery[i].name}</div>
-        <div>${lottery[i].chibi}</div>
-        <div>${lottery[i].point} Points</div>
-        <div>${lottery[i].content}</div>
+        <div>${lottery[index].name}</div>
+        <div>${lottery[index].chibi}</div>
+        <div>${lottery[index].point} Points</div>
+        <div>${lottery[index].content}</div>
     `
     
 
