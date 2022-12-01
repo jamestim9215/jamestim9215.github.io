@@ -1,0 +1,110 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.game-box{
+    position: relative;
+    margin: 0 auto;
+    margin-top: calc(50vh - 110px - 10px);
+    width: 220px;
+    height: 220px;
+    background: #6a211b;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 20px solid #c52b21;
+}
+
+.game-box>.box{
+    position: absolute;
+    width: calc(60px - 20px);
+    height: calc(60px - 20px);
+    border-radius: 50%;
+    background: #530f10;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+}
+.game-box>.box.active{
+    background: #fef2c2;
+}
+
+
+
+#boxClick{
+    top: calc(40px / 4 * 2 + 60px);
+    left: calc(40px / 4 * 2 + 60px);
+    background: #ffe74c;
+    color: #000;
+    font-size: 24px;
+}
+#boxClick:hover{
+    background: #ffdb3a;
+}
+
+
+#box1{
+    left: calc(50% - 30px);
+    top: calc(40px / 4);
+}
+
+#box2{
+    left: 15px;
+    top: 60px;
+}
+#box3{
+    left: 40px;
+    top: 138px;
+}
+#box4{
+    right: 40px;
+    top: 138px;
+}
+#box5{
+    right: 15px;
+    top: 60px;
+}
+
+.game-box>.box>div{
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    left: calc(50% - 15px);
+    background: #c52b21;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.game-box>.box>div>div{
+    position: absolute;
+    transform: rotate(45deg);
+    width: 30px;
+    height: 30px;
+    top: -20px;
+    border-radius: 5px;
+    background: #d45232;
+}
+
+.game-box>.box>div>span{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+#info{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
