@@ -5,9 +5,9 @@ import router from './router'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping,faUser,faMagnifyingGlass,faFilter } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faCartShopping,faUser)
+library.add(faCartShopping,faUser,faMagnifyingGlass,faFilter)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
