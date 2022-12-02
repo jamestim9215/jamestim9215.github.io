@@ -15,6 +15,10 @@ const filterHandler = (value) => {
 
 <template>
   <Header></Header>
+  <div class="cart-btn">
+    <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+    <span>5</span>
+  </div>
   <div class="container">
     <Banner></Banner>
     <div class="content-div">
@@ -24,7 +28,6 @@ const filterHandler = (value) => {
       </div>
       <div class="list-div">
         <button id="filterBtn" @click="filterHandler(true)"><font-awesome-icon icon="fa-solid fa-filter" /> 篩選</button>
-        
         <ProductList></ProductList>
       </div>
     </div>

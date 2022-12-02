@@ -7,7 +7,7 @@ import { ref } from 'vue'
   <div class="header">
     <div class="container ">
       <div class="logo-div">
-        GROUP BUYING
+        <router-link to="/">GROUP BUYING</router-link>
       </div>
       <div class="header-btn-group">
         <div id="cartBtn"><font-awesome-icon icon="fa-solid fa-cart-shopping" /> 購物車</div>

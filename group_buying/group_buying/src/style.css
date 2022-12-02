@@ -47,3 +47,41 @@ input{
   padding: 0 10px;
   width: calc(100% - 20px);
 }
+
+a{
+  text-decoration: none;
+  color: #000
+}
+
+.cart-btn{
+  position: fixed;
+  z-index: 10;
+  bottom: 30px;
+  right: 30px;
+  background: var(--theme-yellow);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: var(--theme-black);
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.cart-btn>span{
+  position: absolute;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  top: -8px;
+  right: -8px;
+  background: var(--theme-red);
+}
+.cart-btn:hover{
+  transform: scale(1.1);
+  box-shadow: var(--theme-yellow) 0px 0px 10px;
+}

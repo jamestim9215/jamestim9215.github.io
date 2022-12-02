@@ -192,7 +192,7 @@ const productData = ref([
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 589px) {
   .product-list-div>div{
     min-height: 10px;
     width: calc(100% / 1 - 20px); 
