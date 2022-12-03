@@ -1,15 +1,5 @@
 <script>
-  import {defineComponent,ref} from 'vue'
-  import { Splide, SplideSlide } from '@splidejs/vue-splide';
-  // Default theme
-  import '@splidejs/vue-splide/css';
-
-  export default defineComponent( {
-    components: {
-      Splide,
-      SplideSlide,
-    },
-  } );
+  // import {ref} from 'vue'
 </script>
 
 <template>

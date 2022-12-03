@@ -7,6 +7,7 @@ const productData = ref([
     tag: "最新上市",
     name: "原味烤饅頭 (5入) x 10份",
     content: "必須排隊超過一個小時的超平民美食～超好吃的脆皮烤饅頭",
+    img: "banner.png",
     price: 400,
     sales: 360,
     isCoupon: true,
@@ -17,6 +18,7 @@ const productData = ref([
     tag: "",
     name: "花生烤饅頭 (5入) x 10份",
     content: "必須排隊超過一個小時的超平民美食～超好吃的脆皮烤饅頭",
+    img: "banner.png",
     price: 400,
     sales: 360,
     isCoupon: false,
@@ -27,6 +29,7 @@ const productData = ref([
     tag: "",
     name: "蔥烤饅頭 (5入) x 10份",
     content: "必須排隊超過一個小時的超平民美食～超好吃的脆皮烤饅頭",
+    img: "banner.png",
     price: 400,
     sales: 360,
     isCoupon: false,
@@ -34,18 +37,27 @@ const productData = ref([
   }
 ])
 
+const getUrl = (key)=> {
+  // return encodeURI(key)
+  return key
+}
+
+const getImageUrl = (name) => {
+  return new URL(`../assets/product/${name}`, import.meta.url).href
+}
+
 </script>
 
 <template>
   <h2 class="tag-title">NEW! 最新團購</h2>
   <div class="product-list-div">
     <div v-for="(key,index) in productData" :key="key.id">
-      <a href="">
+      <router-link :to="'/product/'+getUrl(key.name)">
         <div>
           <div class="notice-tag" v-if="key.tag">
             {{key.tag}}
           </div>
-          <img src="@/assets/product/product.png" alt="">
+          <img :src="getImageUrl(key.img)" alt="">
           <div class="product-title">{{key.name}}</div>
           <div class="product-content">{{key.content}}</div>
           <div class="product-price">市價 $ {{key.price}}</div>
@@ -55,7 +67,7 @@ const productData = ref([
             <span class="tag-giveaway" v-if="key.isGiveaway">贈品</span>
           </div>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
@@ -95,6 +107,9 @@ const productData = ref([
 }
 .product-list-div>div>a>div>img{
   width: 100%;
+  height: 135px;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .notice-tag{
@@ -130,8 +145,8 @@ const productData = ref([
 .product-sales-price{
   position: absolute;
   z-index: 10;
-  right:10px;
-  bottom: 0;
+  right: 5px;
+  bottom: 2px;
   color: var(--theme-red);
   font-size: 18px;
   padding: 0 5px;
@@ -145,7 +160,7 @@ const productData = ref([
 .product-price{
   position: absolute;
   z-index: 10;
-  right:10px;
+  right: 5px;
   bottom: 35px;
   color: var(--theme-gray);
   font-size: 14px;
@@ -156,7 +171,7 @@ const productData = ref([
 .product-discount-coupon{
   position: absolute;
   z-index: 10;
-  left: 15px;
+  left: 5px;
   bottom: 5px;
   width: calc(50% - 30px);
 }
