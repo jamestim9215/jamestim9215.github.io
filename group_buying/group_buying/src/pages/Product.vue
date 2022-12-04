@@ -60,16 +60,24 @@ onMounted(() => {
   }
 });
 
+const ShippingMethod = ref('')
+const Quantity = ref(10)
+const QuantityMin = ref(10)
+const QuantityMax = ref(100)
+
+
 // mainSplide.value.mount();
 // thumbsSplide.value.mount();
 </script>
 
 <template>
   <Header></Header>
-  <div class="cart-btn">
-    <font-awesome-icon icon="fa-solid fa-cart-shopping" />
-    <span>5</span>
-  </div>
+  <router-link to="/shopping-cart">
+    <div class="cart-btn">
+      <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+      <span>5</span>
+    </div>
+  </router-link>
   <div class="container">
     <div class="product-div">
       <div
@@ -121,7 +129,70 @@ onMounted(() => {
               市價 $ 400
             </div>
           </div>
+          <div class="input-info-div">
+            <div class="input-div">
+              <label for="">運送方式</label>
+              <select name="" id="" v-model="ShippingMethod">
+                <option value="">--請選擇--</option>
+                <option value="A">自取</option>
+                <option value="B">宅配</option>
+              </select>
+              <font-awesome-icon icon="fa-solid fa-caret-down" />
+            </div>
+            <div class="input-div">
+              <label for="">選擇分店</label>
+              <select name="" id="">
+                <option value="">--請選擇--</option>
+                <option value="">二良烤饅頭 (新莊)</option>
+              </select>
+              <font-awesome-icon icon="fa-solid fa-caret-down" />
+            </div>
+            <div class="input-div" v-if="ShippingMethod==='B'">
+              <label for="">預計送達</label>
+              <select name="" id="">
+                <option value="">--請選擇--</option>
+                <option value="">2022-12-05 下午</option>
+              </select>
+              <font-awesome-icon icon="fa-solid fa-caret-down" />
+            </div>
+            <div class="input-div" v-if="ShippingMethod==='A'">
+              <label for="">預計取貨</label>
+              <select name="" id="">
+                <option value="">--請選擇--</option>
+                <option value="">2022-12-05 下午</option>
+              </select>
+              <font-awesome-icon icon="fa-solid fa-caret-down" />
+            </div>
+            <div class="input-div">
+              <label for="">規格</label>
+              <select name="" id="">
+                <option value="">--請選擇--</option>
+                <option value="">原味烤饅頭</option>
+              </select>
+              <font-awesome-icon icon="fa-solid fa-caret-down" />
+            </div>
+            <div class="input-div">
+              <label for="">數量</label>
+              <input type="number" :min="QuantityMin" :max="QuantityMax" name="" id="" v-model="Quantity">
+              <small>* 最低下單數量 {{QuantityMin}}</small>
+            </div>
+            <div class="totel-price-div">
+              共: <span>$ 36,000</span> 元
+            </div>
+            <div>
+              <button class="btn add-to-cart-btn"><font-awesome-icon icon="fa-solid fa-cart-shopping" /> 加入購物車</button>
+              <button class="btn buy-now-btn">直接購買</button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="product-description">
+        <div class="title">產品介紹</div>
+        <div style="font-size: 32px;line-height: 39px;color: #FF00FF;">
+          <p>必須排隊超過一個小時的超平民美食～</p> 
+          <p>超好吃的脆皮烤饅頭</p>
+        </div>
+        <div class="title">店家資訊</div>
       </div>
     </div>
   </div>
@@ -223,8 +294,205 @@ h1{
   height: 76px;
   border: 3px solid var(--theme-yellow);
 }
+.input-info-div{
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.input-div{
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+}
+.input-div>label{
+  width: 160px;
+  font-size: 16px;
+  align-self: center;
+}
+.input-div>select,
+.input-div>input{
+  width: 100%;
+  border: 1px solid var(--theme-gray);
+  height: 38px;
+  line-height: 38px;
+  font-size: 16px;
+  color: var(--theme-black);
+}
+.input-div>select{
+  padding: 0 40px 0 10px;
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+}
+.input-div>input[type=number]{
+  padding: 0 0 0 10px;
+}
+.input-div>small{
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  bottom: -18px;
+  right: 0;
+  color: var(--theme-gray);
+}
 
+.input-div>svg{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: var(--theme-gray);
+}
+
+.totel-price-div{
+  margin: 20px 0;
+  color: var(--theme-gray);
+  font-size: 20px;
+  text-align: right;
+  font-weight: 500;
+}
+.totel-price-div>span{
+  color: var(--theme-red);
+  font-size:30px;
+  font-weight: 500;
+}
+
+.add-to-cart-btn,
+.buy-now-btn{
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  padding: 0 30px;
+  border: 0;
+}
+
+.add-to-cart-btn{
+  background: var(--theme-yellow);
+  color: var(--theme-black);
+  margin: 0 15px 10px 0;
+  width: 220px;
+}
+.buy-now-btn{
+  background: var(--theme-red);
+  color: var(--theme-white);
+  width: calc(100% - 15px - 220px);
+}
+
+.add-to-cart-btn:hover{
+  background: var(--theme-yellow-hover);
+}
+.buy-now-btn:hover{
+  background: var(--theme-red-hover);
+}
+
+.product-description{
+  position: relative;
+  background: var(--theme-white);
+  margin-top: 15px;
+  width: calc(100% - 50px);
+  padding: 25px;
+}
+.product-description>.title{
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0px 0 15px 0;
+}
+
+@media (max-width: 909px) {
+  .product-img-div {
+    position: relative;
+    width: 300px;
+    height: auto;
+    min-height: 450px;
+    padding: 25px;
+  }
+
+  .product-preview-img img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .product-preview-img-list {
+    width: calc(100% + 10px);
+    margin: 0 -6px;
+    margin-top: 6px;
+  }
+
+  .product-preview-img-list img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .splide__track--nav>.splide__list>.splide__slide.is-active::after{
+    left: 4px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .product-info{
+    width: calc(100% - 300px);
+  }
+
+  .add-to-cart-btn{
+    width: calc(60% - 15px);
+    padding: 0 10px;
+  }
+  .buy-now-btn{
+    width: calc(40%);
+    padding: 0 10px;
+  }
+
+}
 @media (max-width: 767px) {
+
+
+  .product-content {
+    flex-wrap: wrap
+  }
+  
+  .product-img-div {
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    min-height: inherit;
+  }
+
+  .product-preview-img img {
+    width: 100%;
+    height: 300px;
+  }
+
+  .product-preview-img-list {
+    width: calc(100% + 10px);
+    margin: 0 -6px;
+    margin-top: 6px;
+  }
+
+  .product-preview-img-list img {
+    position: relative;
+    width: calc(100% - 10px);
+    height: 70px;
+  }
+
+  .splide__track--nav>.splide__list>.splide__slide.is-active::after{
+    left: 5px;
+    width: calc(100% - 16px);
+    height: 64px;
+  }
+
+  .product-info{
+    width: calc(100%);
+    padding: 10px;
+  }
+  .input-info-div{
+    max-width: inherit;
+  }
+  .product-description{
+    margin-top: 10px;
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
 }
 
 @media (max-width: 390px) {

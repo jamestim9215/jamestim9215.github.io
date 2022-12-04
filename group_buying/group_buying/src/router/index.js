@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
 import Product from '@/pages/Product.vue'
+import ShoppingCart from '@/pages/ShoppingCart.vue'
 
 let history = createWebHistory()
 let routes = [
@@ -13,6 +14,11 @@ let routes = [
     path: '/product/:id',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/shopping-cart',
+    name: 'ShoppingCart',
+    component: ShoppingCart
   }
 
 ]

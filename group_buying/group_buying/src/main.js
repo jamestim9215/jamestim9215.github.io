@@ -11,12 +11,14 @@ import {
     faMagnifyingGlass,
     faFilter,
     faAngleLeft,
-    faAngleRight
+    faAngleRight,
+    faCaretDown,
+    faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import VueSplide from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 
-library.add(faCartShopping, faUser, faMagnifyingGlass, faFilter, faAngleLeft,faAngleRight)
+library.add(faCartShopping, faUser, faMagnifyingGlass, faFilter, faAngleLeft,faAngleRight,faCaretDown,faXmark)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)

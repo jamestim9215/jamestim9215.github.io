@@ -115,7 +115,7 @@ const getImageUrl = (name) => {
 .notice-tag{
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 0px;
   width: 80px;
   height: 35px;
   line-height: 35px;

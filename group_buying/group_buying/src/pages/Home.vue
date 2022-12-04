@@ -15,10 +15,12 @@ const filterHandler = (value) => {
 
 <template>
   <Header></Header>
-  <div class="cart-btn">
-    <font-awesome-icon icon="fa-solid fa-cart-shopping" />
-    <span>5</span>
-  </div>
+  <router-link to="/shopping-cart">
+    <div class="cart-btn">
+      <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+      <span>5</span>
+    </div>
+  </router-link>
   <div class="container">
     <Banner></Banner>
     <div class="content-div">
