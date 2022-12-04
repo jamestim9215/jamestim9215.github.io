@@ -5,10 +5,12 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  publicPath: "./",
-  assetsDir: "assets",
-  outputDir: "./dist",
   plugins: [vue()],
+  base: './',
+  build: {
+    outDir: './dist',
+    assetsDir: "assets",
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
