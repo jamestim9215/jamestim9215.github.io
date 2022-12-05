@@ -49,12 +49,12 @@ import Header from '@/components/Header.vue'
           <div>
             <img src="@/assets/product/banner.png" alt="">
           </div>
-          <div>原味烤饅頭 (5入) x 10組</div>
-          <div>
+          <div class="one-line">原味烤饅頭 (5入) x 10組</div>
+          <div class="one-line">
             <span>自取  -  二良烤饅頭(新莊)</span>
             <span>2022-11-01 14:00:00</span>
           </div>
-          <div>原味烤饅頭</div>
+          <div class="one-line">原味烤饅頭</div>
           <div>$360</div>
           <div>
             <input type="number">
@@ -142,6 +142,8 @@ h1{
   min-height: 70px;
   line-height: 70px;
   vertical-align: middle;
+}
+.one-line{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -259,13 +261,96 @@ h1{
   background: var(--theme-red-hover);
 }
 
-
-@media (max-width: 767px) {
+@media (max-width: 899px) {
   
+  .order-list-title>div{
+    display: none;
+  }
 
-}
+  .order-list{
+    position: relative;
+  }
+  .order-list>div:nth-child(1)::before{
+    position: absolute;
+    content: "規格:";
+    z-index: 3;
+    left: 10px;
+    top: 45px;
+    color: var(--theme-gray);
+    font-size: 14px;
+  }
+  .order-list>div:nth-child(1)::after{
+    position: absolute;
+    content: "運送:";
+    z-index: 3;
+    left: 10px;
+    top: 80px;
+    color: var(--theme-gray);
+    font-size: 14px;
+  }
+  .order-list>div:nth-child(2){
+    width: calc(100% - 70px);
+  }
+  .order-list>div:nth-child(3){
+    width: calc(100% - 80px);
+    padding: 30px 10px 0 70px;
+  }
+  .order-list>div:nth-child(3)>span:nth-child(1){
+    top: 35px;
+  }
+  .order-list>div:nth-child(3)>span:nth-child(2){
+    top: 60px;
+    color: var(--theme-gray)
+  }
+  .order-list>div:nth-child(4){
+    position: absolute;
+    background: none;
+    top: 45px;
+    left: 70px;
+  }
+  .order-list>div:nth-child(5){
+    position: absolute;
+    z-index: 1;
+    background: none;
+    bottom: 10px;
+    left: 70px;
+    line-height: 30px;
+    min-height: 30px;
+  }
+  .order-list>div:nth-child(5)::before{
+    position: absolute;
+    content: "x";
+    z-index: 2;
+    right: 3px;
+    color: var(--theme-black);
+    font-size: 14px;
+  }
+  .order-list>div:nth-child(6){
+    position: absolute;
+    z-index: 1;
+    background: none;
+    bottom: 10px;
+    left: 170px;
+    overflow: auto;
+    line-height: 30px;
+    min-height: 30px;
+  }
+  .order-list>div:nth-child(7){
+    padding: 0 10px;
+    line-height: 30px;
+    min-height: 30px;
+    width: calc(100% - 10px);
+    padding: 0 10px 10px 0;
+    text-align: right;
+  }
+  .order-list>div:nth-child(8){
+    position: absolute;
+    background: none;
+    top: 0;
+    right: 0;
+    line-height: 40px;
+    color: var(--theme-red);
+  }
 
-@media (max-width: 390px) {
-  
 }
 </style>
