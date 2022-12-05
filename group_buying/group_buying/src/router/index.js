@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
 import Product from '@/pages/Product.vue'
 import ShoppingCart from '@/pages/ShoppingCart.vue'
 
-let history = createWebHistory()
+// let history = createWebHistory()
+let history = createWebHashHistory()
 let routes = [
   {
     path: '/',
@@ -20,7 +21,6 @@ let routes = [
     name: 'ShoppingCart',
     component: ShoppingCart
   }
-
 ]
 
 export default createRouter({ history, routes })
