@@ -1,18 +1,20 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import Header from '@/components/Header.vue'
 import Cart from '@/components/Cart.vue'
 
 import  { useState } from '@/store/store'
 
-const { CartList } = useState()
-
+const { getCardData } = useState()
+const route = useRoute()
+const CartList = getCardData(Number(route.params.cartId))
+console.log(getCardData(Number(route.params.cartId)));
 </script>
 
 <template>
   <Header></Header>
-
   <div class="container">
     <div class="cart-div">
       <div
@@ -20,11 +22,12 @@ const { CartList } = useState()
           vertical-align: middle;
           display: flex;
           justify-content: space-between;
+          margin-bottom: 10px
         "
       >
-        <router-link to="/">
+        <router-link to="/shopping-cart">
           <button class="btn back-btn">
-            <font-awesome-icon icon="fa-solid fa-angle-left" /> 繼續購買
+            <font-awesome-icon icon="fa-solid fa-angle-left" /> 返回購物車
           </button>
         </router-link>
         <div class="bread-crumbs-div">
@@ -33,11 +36,8 @@ const { CartList } = useState()
           <router-link to="/"><span>Home</span></router-link>
         </div>
       </div>
-      <div class="title-div">
-        <h1>購物車</h1>
-      </div>
-      
-      <Cart :dataList="CartList" :type="'cart'"/>
+
+      <Cart :dataList="CartList" :type="'checkout'"/>
 
 
     </div>
@@ -47,16 +47,6 @@ const { CartList } = useState()
 <style scoped>
 .cart-div {
   padding: 10px;
-}
-.title-div{
-  background: var(--theme-white);
-  padding: 10px;
-  margin: 10px 0;
-}
-h1{
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0;
 }
 
 @media (max-width: 899px) {

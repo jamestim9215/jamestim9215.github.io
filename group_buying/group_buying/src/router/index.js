@@ -2,6 +2,8 @@ import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
 import Product from '@/pages/Product.vue'
 import ShoppingCart from '@/pages/ShoppingCart.vue'
+import Checkout from '@/pages/Checkout.vue'
+import Order from '@/pages/Order.vue'
 
 // let history = createWebHistory()
 let history = createWebHashHistory()
@@ -20,7 +22,17 @@ let routes = [
     path: '/shopping-cart',
     name: 'ShoppingCart',
     component: ShoppingCart
-  }
+  },
+  {
+    path: '/checkout/:cartId',
+    name: 'Checkout',
+    component: Checkout
+  },
+  {
+    path: '/order/:orderStatus/:cartId',
+    name: 'Order',
+    component: Order
+  },
 ]
 
 export default createRouter({ history, routes })

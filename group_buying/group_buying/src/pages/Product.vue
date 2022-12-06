@@ -139,14 +139,14 @@ const QuantityMax = ref(100)
               </select>
               <font-awesome-icon icon="fa-solid fa-caret-down" />
             </div>
-            <div class="input-div">
+            <!-- <div class="input-div">
               <label for="">選擇分店</label>
               <select name="" id="">
                 <option value="">--請選擇--</option>
                 <option value="">二良烤饅頭 (新莊)</option>
               </select>
               <font-awesome-icon icon="fa-solid fa-caret-down" />
-            </div>
+            </div> -->
             <div class="input-div" v-if="ShippingMethod==='B'">
               <label for="">預計送達</label>
               <select name="" id="">
@@ -168,6 +168,7 @@ const QuantityMax = ref(100)
               <select name="" id="">
                 <option value="">--請選擇--</option>
                 <option value="">原味烤饅頭</option>
+                <option value="">花生烤饅頭</option>
               </select>
               <font-awesome-icon icon="fa-solid fa-caret-down" />
             </div>
