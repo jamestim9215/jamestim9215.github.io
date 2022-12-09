@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Header from '@/components/Header.vue'
+import Boxing from '@/components/boxing.vue'
 import { showLoading, hideLoading } from '@/common/common'
 
 </script>
@@ -11,10 +12,12 @@ import { showLoading, hideLoading } from '@/common/common'
     <div>
       <font-awesome-icon icon="fa-solid fa-face-sad-tear" />
       <div>
+        頁面不存在 !<br>
         Page 404 not found  !
       </div>
     </div>
   </div>
+  <Boxing />
 </template>
 
 <style scoped>
@@ -38,6 +41,7 @@ import { showLoading, hideLoading } from '@/common/common'
   font-size: 36px;
   font-weight: 500;
 }
+
 
 @media (max-width: 767px) {
   

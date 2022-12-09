@@ -4,6 +4,7 @@ import { ref , nextTick } from 'vue'
 import Header from '@/components/Header.vue'
 import Banner from '@/components/Banner.vue'
 import Filter from '@/components/Filter.vue'
+import Boxing from '@/components/boxing.vue'
 import ProductList from '@/components/ProductList.vue'
 import { showLoading, hideLoading } from '@/common/common' 
 
@@ -36,6 +37,7 @@ const filterHandler = (value) => {
       </div>
     </div>
   </div>
+  <Boxing/>
 </template>
 
 <style scoped>

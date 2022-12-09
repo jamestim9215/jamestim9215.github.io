@@ -3,6 +3,8 @@ import { watch } from 'vue'
 
 import Home from '@/pages/Home.vue'
 import Login from '@/pages/Login.vue'
+import ForgetPwd from '@/pages/ForgetPwd.vue'
+import SignUp from '@/pages/SignUp.vue'
 import Product from '@/pages/Product.vue'
 import ShoppingCart from '@/pages/ShoppingCart.vue'
 import Checkout from '@/pages/Checkout.vue'
@@ -19,15 +21,20 @@ let routes = [
     component: Home
   },
   {
-    path: '/login/',
+    path: '/login',
     name: 'Login',
     component: Login
   },
-  // {
-  //   path: '/sign-up/',
-  //   name: 'SignUp',
-  //   component: SignUp
-  // },
+  {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/forget-pwd',
+    name: 'ForgetPwd',
+    component: ForgetPwd
+  },
   {
     path: '/product/:id',
     name: 'Product',

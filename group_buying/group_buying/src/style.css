@@ -39,13 +39,15 @@ html,body{
 
 input[type='text'],
 input[type='number'],
-input[type='password']{
+input[type='password'],
+input[type='email']{
   all: unset;
 }
 
 input[type='text'],
 input[type='number'],
-input[type='password']{
+input[type='password'],
+input[type='email']{
   position: relative;
   display: block;
   border: 1px solid var(--theme-gray);
@@ -55,6 +57,12 @@ input[type='password']{
   line-height: 30px;
   padding: 0 10px;
   width: calc(100% - 20px);
+}
+
+hr{
+  margin: 10px 0;
+  border: 0;
+  border-bottom: 2px solid var(--theme-white-50);
 }
 
 a{

@@ -6,22 +6,14 @@ import Boxing from '@/components/boxing.vue'
 import { showLoading, hideLoading } from '@/common/common' 
 
 const router = useRouter()
-sessionStorage.removeItem('isLogin');
 
 const my_account = ref('')
 const my_password = ref('')
+const my_password_check = ref()
 
 
-const loginHandler = () => {
+const signupHandler = () => {
 
-  if(my_account.value === '' || my_password.value === ''){
-    alert('帳號或密碼錯誤!');
-  }else{
-    sessionStorage.setItem('isLogin',"aaa");
-    // alert('登入成功!');
-    router.push('/')
-  }
-  
 }
 const signUpHandler = () => {
   router.push('/sign-up')
@@ -31,32 +23,44 @@ const signUpHandler = () => {
 
 <template>
   <Header></Header>
-  <div class="login-div">
+  <div class="signup-div">
     <div class="content">
-      登入
+      註冊
     </div>
     <div class="input">
-      <label for="">帳號</label>
-      <input type="text" v-model="my_account">
+      <label for="">Email 帳號</label>
+      <input type="email" v-model="my_account">
     </div>
     <div class="input">
       <label for="">密碼</label>
       <input type="password" v-model="my_password">
     </div>
-    <div class="forget-pwd">
-      <router-link to="/forget-pwd">
-        忘記密碼?
-      </router-link>
+    <div class="input">
+      <label for="">再次輸入密碼</label>
+      <input type="password" v-model="my_password_check">
     </div>
-    <div class="button-div">
-      <button class="btn btn-login" @click="loginHandler()">登入</button>
+    <div class="input">
+      <label for="">暱稱</label>
+      <input type="text" v-model="nickName">
     </div>
-    <hr>
+    <div class="input">
+      <label for="">姓名</label>
+      <input type="text" v-model="name">
+    </div>
+    <div class="input">
+      <label for="">手機號碼</label>
+      <input type="text" v-model="phoneNumber">
+    </div>
+    <div class="input">
+      <label for="">地址</label>
+      <input type="text" v-model="address">
+    </div>
     <div class="content">
-      還不是會員?
+      <button class="btn btn-sign" @click="signUpHandler()">註冊</button>
     </div>
-    <div class="button-div">
-      <button class="btn btn-sign" @click="signUpHandler()">點我註冊</button>
+      <hr>
+    <div class="back-div">
+      或回上頁<router-link to="/login" >登入</router-link>
     </div>
   </div>
   <Boxing />
@@ -64,10 +68,10 @@ const signUpHandler = () => {
 
 <style scoped>
   
-.login-div{
+.signup-div{
   position: relative;
   display: block;
-  width: calc(100% - 20px);
+  width: calc(100% - 30px - 20px);
   height: auto;
   max-width: 500px;
   min-height: 100px;
@@ -78,11 +82,11 @@ const signUpHandler = () => {
   padding: 15px;
 }
 
-.login-div>div{
+.signup-div>div{
   padding: 5px 0;
 }
 
-.login-div .content{
+.signup-div .content{
   text-align: center;
   font-size: 24px;
   font-weight: 500;
@@ -90,20 +94,20 @@ const signUpHandler = () => {
 }
 
 
-.login-div .forget-pwd{
+.signup-div .forget-pwd{
   text-align: right;
   font-size: 14px;
 }
-.login-div .forget-pwd>a{
+.signup-div .forget-pwd>a{
   color:  var(--theme-red);
 }
 
-.login-div .button-div{
+.signup-div .button-div{
   display: flex;
   justify-content: space-between;
 }
 
-.login-div input{
+.signup-div input{
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -111,7 +115,7 @@ const signUpHandler = () => {
   font-size: 14px;
 }
 
-.btn-login{
+.btn-sign{
   width: 100%;
   background: var(--theme-yellow);
   color: var(--theme-black);
@@ -119,22 +123,16 @@ const signUpHandler = () => {
   font-weight: 700;
   font-size: 16px;
 }
-.btn-login:hover{
-  background: var(--theme-yellow-hover);
-  /* color: var(--theme-white); */
-}
-.btn-sign{
-  width: 100%;
-  background: var(--theme-white);
-  color: var(--theme-red);
-  border:1px solid var(--theme-red);
-  font-weight: 700;
-  font-size: 16px;
-}
 .btn-sign:hover{
-  background: var(--theme-red);
-  color: var(--theme-white);
-  border:1px solid var(--theme-red);
+  background: var(--theme-yellow-hover);
+}
+.back-div{
+  text-align: center;
+  color: var(--theme-black);
+  font-size: 14px;
+}
+.back-div>a{
+  color: var(--theme-red);
 }
 
 @media (max-width: 767px) {

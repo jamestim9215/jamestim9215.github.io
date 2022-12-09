@@ -6,25 +6,11 @@ import Boxing from '@/components/boxing.vue'
 import { showLoading, hideLoading } from '@/common/common' 
 
 const router = useRouter()
-sessionStorage.removeItem('isLogin');
 
 const my_account = ref('')
-const my_password = ref('')
 
+const resendHandler = () => {
 
-const loginHandler = () => {
-
-  if(my_account.value === '' || my_password.value === ''){
-    alert('帳號或密碼錯誤!');
-  }else{
-    sessionStorage.setItem('isLogin',"aaa");
-    // alert('登入成功!');
-    router.push('/')
-  }
-  
-}
-const signUpHandler = () => {
-  router.push('/sign-up')
 }
 
 </script>
@@ -33,30 +19,20 @@ const signUpHandler = () => {
   <Header></Header>
   <div class="login-div">
     <div class="content">
-      登入
+      忘記密碼
+    </div>
+    <div class="back-div" style="margin: 15px 0">
+      請輸入你的Email以收到重設密碼相關資訊。
     </div>
     <div class="input">
-      <label for="">帳號</label>
       <input type="text" v-model="my_account">
     </div>
-    <div class="input">
-      <label for="">密碼</label>
-      <input type="password" v-model="my_password">
-    </div>
-    <div class="forget-pwd">
-      <router-link to="/forget-pwd">
-        忘記密碼?
-      </router-link>
-    </div>
     <div class="button-div">
-      <button class="btn btn-login" @click="loginHandler()">登入</button>
+      <button class="btn btn-resend" @click="resendHandler()">重設密碼</button>
     </div>
-    <hr>
-    <div class="content">
-      還不是會員?
-    </div>
-    <div class="button-div">
-      <button class="btn btn-sign" @click="signUpHandler()">點我註冊</button>
+      <hr>
+    <div class="back-div">
+      或回上頁<router-link to="/login" >登入</router-link>
     </div>
   </div>
   <Boxing />
@@ -111,7 +87,7 @@ const signUpHandler = () => {
   font-size: 14px;
 }
 
-.btn-login{
+.btn-resend{
   width: 100%;
   background: var(--theme-yellow);
   color: var(--theme-black);
@@ -119,22 +95,18 @@ const signUpHandler = () => {
   font-weight: 700;
   font-size: 16px;
 }
-.btn-login:hover{
+.btn-resend:hover{
   background: var(--theme-yellow-hover);
   /* color: var(--theme-white); */
 }
-.btn-sign{
-  width: 100%;
-  background: var(--theme-white);
-  color: var(--theme-red);
-  border:1px solid var(--theme-red);
-  font-weight: 700;
+
+.back-div{
+  text-align: center;
+  color: var(--theme-black);
   font-size: 16px;
 }
-.btn-sign:hover{
-  background: var(--theme-red);
-  color: var(--theme-white);
-  border:1px solid var(--theme-red);
+.back-div>a{
+  color: var(--theme-red);
 }
 
 @media (max-width: 767px) {
