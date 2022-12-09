@@ -8,6 +8,7 @@ export const createStore = () => {
             id: 1,
             shopName: '二良烤饅頭(新莊店)',
             totolPrice: '7200',
+            orderStatus: 'payment',
             productList: [
                 {
                     id: 1,
@@ -35,6 +36,7 @@ export const createStore = () => {
             id: 2,
             shopName: '二良烤饅頭(XX店)',
             totolPrice: '36000',
+            orderStatus: 'complete',
             productList: [
                 {
                     id: 1,
@@ -79,9 +81,19 @@ export const createStore = () => {
         return []
     }
 
+    const getOrdersCardListData = () => {
+        return CartList.map((item)=>{
+            return {
+                ...item,
+                isShowInfo: false
+            }
+        })
+    }
+
     return {
         // fetchUserData,
         getCardData,
+        getOrdersCardListData,
         CartList: readonly(CartList)
     }
 }

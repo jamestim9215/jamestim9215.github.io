@@ -95,7 +95,7 @@ const QuantityMax = ref(100)
         <div class="bread-crumbs-div">
           <span>{{ $route.params.id }}</span>
           <font-awesome-icon icon="fa-solid fa-angle-left" />
-          <router-link to="/"><span>Home</span></router-link>
+          <router-link to="/"><span>首頁</span></router-link>
         </div>
       </div>
       <div class="product-content">

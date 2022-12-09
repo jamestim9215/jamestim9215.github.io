@@ -4,6 +4,7 @@ import Product from '@/pages/Product.vue'
 import ShoppingCart from '@/pages/ShoppingCart.vue'
 import Checkout from '@/pages/Checkout.vue'
 import Order from '@/pages/Order.vue'
+import MyOrders from '@/pages/MyOrders.vue'
 
 // let history = createWebHistory()
 let history = createWebHashHistory()
@@ -32,6 +33,11 @@ let routes = [
     path: '/order/:orderStatus/:cartId',
     name: 'Order',
     component: Order
+  },
+  {
+    path: '/my-orders',
+    name: 'MyOrders',
+    component: MyOrders
   },
 ]
 

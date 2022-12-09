@@ -3,14 +3,13 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Header from '@/components/Header.vue'
-import Cart from '@/components/Cart.vue'
+import OrdersCart from '@/components/OrdersCart.vue'
 
 import  { useState } from '@/store/store'
 
-const { getCardData } = useState()
+const { getOrdersCardListData } = useState()
 const route = useRoute()
-const CartList = getCardData(Number(route.params.cartId))
-const CartOrderStatus =  route.params.orderStatus;
+const OrderCartList = getOrdersCardListData(Number(route.params.cartId))
 </script>
 
 <template>
@@ -31,17 +30,13 @@ const CartOrderStatus =  route.params.orderStatus;
           </button>
         </router-link>
         <div class="bread-crumbs-div">
-          <span v-if="CartOrderStatus==='checkout'">確認訂單</span>
-          <span v-if="CartOrderStatus==='establish'">訂單成立</span>
-          <span v-if="CartOrderStatus==='payment'">付款</span>
-          <span v-if="CartOrderStatus==='status'">狀態</span>
-          <span v-if="CartOrderStatus==='complete'">訂單完成</span>
+          我的訂單
           <font-awesome-icon icon="fa-solid fa-angle-left" />
           <router-link to="/"><span>首頁</span></router-link>
         </div>
       </div>
 
-      <Cart :dataList="CartList" :type="route.params.orderStatus"/>
+      <OrdersCart :dataList="OrderCartList" :type="'myorders'"/>
 
 
     </div>

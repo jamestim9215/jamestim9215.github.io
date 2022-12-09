@@ -24,6 +24,9 @@ const checkoutHandler = () => {
 const establishHandler = () => {
   router.push('/order/payment/'+route.params.cartId)
 }
+const paymentHandler = () => {
+  router.push('/order/status/'+route.params.cartId)
+}
 
 </script>
 
@@ -48,13 +51,13 @@ const establishHandler = () => {
       }" >狀態</div>
       <div :class="{
         'active':type==='complete'
-      }">完成訂單</div>
+      }">訂單完成</div>
     </div>
 
     <div class="shop-name" v-if="type==='cart' || type==='checkout' || type==='complete'">
       {{item.shopName}}
     </div>
-    <div class="order-list-title" v-if="type==='cart' || type==='checkout' || type==='complete'">
+    <div class="order-list-title" v-if="type==='cart' || type==='checkout' || type==='complete' || type==='myorders'">
       <div></div>
       <div>項目</div>
       <div>運送方式</div>
@@ -127,6 +130,36 @@ const establishHandler = () => {
       <p>金額 $ 72,000</p>
     </div>
 
+    <div class="payment-div" v-if="type==='payment' || type==='status'">
+      <div class="box title"><label>匯款金額</label> <span>${{toLocaleString(72000)}}</span></div>
+      <div class="box" v-if="type==='payment'">
+        <div>
+          <label>匯款期限：</label>   <span>2022-11-03 23:59:59 (如超過此期限訂單自動失效)</span>
+        </div>
+        <div>請匯款至以下帳號</div>
+        <div class="content">
+          <label>銀行  :</label>  (000) XX銀行 OO分行<br>
+          <label>帳號  :</label>  000000-000000000<br>
+          <label>姓名  :</label>  OOO
+        </div>
+      </div>
+      <div class="box" v-if="type==='payment'">
+        匯款帳號後五碼
+        <input type="text" maxlength="5">
+
+      </div>
+      <div class="box title" v-if="type==='status'">
+        <label>訂單狀態</label>  
+
+        <span>款項確認中</span>
+        <span>已確認款項</span>
+        <span>訂單準備中</span>
+        <span>可取貨</span>
+        <span>已出貨</span>
+        <span>已完成</span>
+      </div>
+    </div>
+
     <div class="options-div">
       <router-link :to="'/checkout/'+item.id">
         <button  v-if="type==='cart'" class="btn buy-now-btn">去買單</button>
@@ -139,6 +172,14 @@ const establishHandler = () => {
       </div>
       <div  v-if="type==='establish'" >
         <button @click="establishHandler"  class="btn buy-now-btn">下一步 付款</button>
+      </div>  
+      <div  v-if="type==='payment'" >
+        <button @click="paymentHandler"  class="btn buy-now-btn">我已經匯款</button>
+      </div>  
+      <div  v-if="type==='status'" >
+        <router-link to="/my-orders/">
+          <button  class="btn buy-now-btn">我的訂單</button>
+        </router-link>
       </div>  
     
     </div>
@@ -435,7 +476,6 @@ const establishHandler = () => {
   display: block;
   padding: 10px;
 }
-
 .establish-div>.title{
   font-size: 24px;
   font-weight: 400;
@@ -446,6 +486,53 @@ const establishHandler = () => {
   opacity: 1;
   animation-name: okimg;
   animation-duration: 0.5s;
+}
+
+
+.payment-div{
+  position: relative;
+  display: block;
+  font-weight: 400;
+}
+
+.payment-div>.box{
+  position: relative;
+  display: block;
+  background: var(--theme-light-50);
+  padding: 10px;
+  margin-bottom: 10px;
+  line-height: 32px;
+}
+
+.payment-div>.box.title{
+  font-size: 20px;
+}
+
+.payment-div>.box>label{
+  position: relative;
+  display: inline-block;
+  width: 120px;
+}
+
+.payment-div>.box>span{
+  color: var(--theme-red);
+}
+
+.payment-div>.box>.content{
+  position: relative;
+  display: block;
+  /* padding:  0 10px 0 10px; */
+}
+
+.payment-div>.box>.content>label{
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  padding:0 30px;
+}
+
+.payment-div>.box>input{
+  width: 200px;
 }
 
 @keyframes okimg {
