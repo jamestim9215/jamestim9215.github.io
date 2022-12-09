@@ -37,11 +37,11 @@ const signUpHandler = () => {
     </div>
     <div class="input">
       <label for="">帳號</label>
-      <input type="text" v-model="my_account">
+      <input type="text" v-model="my_account"  @keyup.enter="loginHandler()">
     </div>
     <div class="input">
       <label for="">密碼</label>
-      <input type="password" v-model="my_password">
+      <input type="password" v-model="my_password"  @keyup.enter="loginHandler()">
     </div>
     <div class="forget-pwd">
       <router-link to="/forget-pwd">

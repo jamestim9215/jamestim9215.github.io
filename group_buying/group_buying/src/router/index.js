@@ -11,6 +11,7 @@ import Checkout from '@/pages/Checkout.vue'
 import Order from '@/pages/Order.vue'
 import MyOrders from '@/pages/MyOrders.vue'
 import Page404 from '@/pages/Page404.vue'
+import MyInfo from '@/pages/MyInfo.vue'
 
 // let history = createWebHistory()
 let history = createWebHashHistory()
@@ -59,6 +60,11 @@ let routes = [
     path: '/my-orders',
     name: 'MyOrders',
     component: MyOrders
+  },
+  {
+    path: '/my-info',
+    name: 'MyInfo',
+    component: MyInfo
   },
   {
     path: '/404',
