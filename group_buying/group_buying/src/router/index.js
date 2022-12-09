@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
+import Login from '@/pages/Login.vue'
 import Product from '@/pages/Product.vue'
 import ShoppingCart from '@/pages/ShoppingCart.vue'
 import Checkout from '@/pages/Checkout.vue'
 import Order from '@/pages/Order.vue'
 import MyOrders from '@/pages/MyOrders.vue'
+import Page404 from '@/pages/Page404.vue'
 
 // let history = createWebHistory()
 let history = createWebHashHistory()
@@ -14,6 +16,16 @@ let routes = [
     name: 'Home',
     component: Home
   },
+  {
+    path: '/login/',
+    name: 'Login',
+    component: Login
+  },
+  // {
+  //   path: '/sign-up/',
+  //   name: 'SignUp',
+  //   component: SignUp
+  // },
   {
     path: '/product/:id',
     name: 'Product',
@@ -38,6 +50,15 @@ let routes = [
     path: '/my-orders',
     name: 'MyOrders',
     component: MyOrders
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: Page404
+  },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
   },
 ]
 

@@ -38,12 +38,14 @@ html,body{
 }
 
 input[type='text'],
-input[type='number']{
+input[type='number'],
+input[type='password']{
   all: unset;
 }
 
 input[type='text'],
-input[type='number']{
+input[type='number'],
+input[type='password']{
   position: relative;
   display: block;
   border: 1px solid var(--theme-gray);

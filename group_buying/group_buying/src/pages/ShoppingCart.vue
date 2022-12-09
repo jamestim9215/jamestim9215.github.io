@@ -1,13 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 
 import Header from '@/components/Header.vue'
 import Cart from '@/components/Cart.vue'
 
 import  { useState } from '@/store/store'
+import { showLoading, hideLoading } from '@/common/common'
 
 const { CartList } = useState()
 
+onMounted(() => {
+  hideLoading()
+})
 </script>
 
 <template>

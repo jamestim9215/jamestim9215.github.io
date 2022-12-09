@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 // import { Splide, SplideSlide, Options } from '@splidejs/vue-splide';
 import Header from "@/components/Header.vue";
+import { showLoading, hideLoading } from '@/common/common' 
 
 const slides = ref([
   {
@@ -58,7 +59,9 @@ onMounted(() => {
   if (thumbsSplide) {
     mainSplide.value?.sync(thumbsSplide);
   }
-});
+
+  hideLoading()
+})
 
 const ShippingMethod = ref('')
 const Quantity = ref(10)

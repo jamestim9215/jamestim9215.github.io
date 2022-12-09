@@ -1,15 +1,21 @@
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Header from '@/components/Header.vue'
 import OrdersCart from '@/components/OrdersCart.vue'
 
 import  { useState } from '@/store/store'
+import { showLoading, hideLoading } from '@/common/common'
 
 const { getOrdersCardListData } = useState()
 const route = useRoute()
 const OrderCartList = getOrdersCardListData(Number(route.params.cartId))
+
+onMounted(() => {
+  hideLoading()
+})
+
 </script>
 
 <template>

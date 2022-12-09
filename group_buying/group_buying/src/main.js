@@ -21,6 +21,10 @@ import '@splidejs/vue-splide/css';
 
 library.add(faCartShopping, faUser, faMagnifyingGlass, faFilter, faAngleLeft,faAngleRight,faCaretDown,faXmark)
 
+router.afterEach((to, from, next) => {
+	window.scrollTo(0, 0);
+});
+
 createApp(App)
     .provide(state, createStore())
     .component('font-awesome-icon', FontAwesomeIcon)

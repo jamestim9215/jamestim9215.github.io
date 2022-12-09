@@ -1,16 +1,21 @@
 <script setup>
-import { ref } from 'vue'
+import { ref , nextTick, onMounted } from 'vue'
 
 import Header from '@/components/Header.vue'
 import Banner from '@/components/Banner.vue'
 import Filter from '@/components/Filter.vue'
 import ProductList from '@/components/ProductList.vue'
+import { showLoading, hideLoading } from '@/common/common' 
 
 const filterStatus = ref(false);
 const filterHandler = (value) => {
   filterStatus.value = value;
   document.getElementById('mobile-filter-cover').style.visibility = value?'visible':'hidden';
 }
+
+onMounted(() => {
+  hideLoading()
+})
 </script>
 
 <template>

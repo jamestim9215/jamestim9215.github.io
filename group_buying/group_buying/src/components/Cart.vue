@@ -35,22 +35,28 @@ const paymentHandler = () => {
     <div class="status-div" v-if="type!=='cart'">
       <div :class="{
         'active':type==='checkout',
-        'done': type==='establish' || type==='payment' || type==='status' || type==='complete'
-      }">確認訂單</div>
+        'done': type==='establish' || type==='payment' || type==='status' || type==='complete',
+        'show': type==='checkout'
+      }"
+      >確認訂單</div>
       <div :class="{
         'active':type==='establish',
-        'done': type==='payment' || type==='status' || type==='complete'
+        'done': type==='payment' || type==='status' || type==='complete',
+        'show': type==='checkout' ||type==='establish'
       }">訂單成立</div>
       <div :class="{
         'active':type==='payment',
-        'done': type==='status' || type==='complete'
+        'done': type==='status' || type==='complete',
+        'show': type==='establish' || type==='payment'
       }" >付款</div>
       <div :class="{
         'active':type==='status',
-        'done': type==='complete'
+        'done': type==='complete',
+        'show': type==='payment' || type==='status' || type==='complete'
       }" >狀態</div>
       <div :class="{
-        'active':type==='complete'
+        'active':type==='complete',
+        'show': type==='status' || type==='complete'
       }">訂單完成</div>
     </div>
 
@@ -445,6 +451,9 @@ const paymentHandler = () => {
 .status-div>div.done{
   background: var(--theme-yellow-50);
 }
+.status-div>div.show{
+  display: inline;
+}
 
 .status-div>div::after{
   position: absolute;
@@ -640,6 +649,15 @@ const paymentHandler = () => {
     right: 0;
     line-height: 40px;
     color: var(--theme-red);
+  }
+
+  
+  .status-div>div{
+    display: none;
+  }
+  
+  .status-div>div.show{
+    display: inline;
   }
 
 }
