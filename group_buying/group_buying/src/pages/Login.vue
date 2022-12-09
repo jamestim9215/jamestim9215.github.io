@@ -1,5 +1,5 @@
 <script setup>
-import { ref,onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter,useRoute } from 'vue-router'
 import Header from '@/components/Header.vue'
 import { showLoading, hideLoading } from '@/common/common' 
@@ -26,9 +26,6 @@ const signUpHandler = () => {
   router.push('/sign-up')
 }
 
-onMounted(() => {
-  hideLoading()
-})
 </script>
 
 <template>

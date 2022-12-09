@@ -59,8 +59,6 @@ onMounted(() => {
   if (thumbsSplide) {
     mainSplide.value?.sync(thumbsSplide);
   }
-
-  hideLoading()
 })
 
 const ShippingMethod = ref('')

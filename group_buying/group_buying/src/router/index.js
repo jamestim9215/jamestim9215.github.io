@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory,useRoute } from 'vue-router'
+import { watch } from 'vue'
+
 import Home from '@/pages/Home.vue'
 import Login from '@/pages/Login.vue'
 import Product from '@/pages/Product.vue'
@@ -61,5 +63,9 @@ let routes = [
     redirect: '/404'
   },
 ]
+
+
+
+
 
 export default createRouter({ history, routes })

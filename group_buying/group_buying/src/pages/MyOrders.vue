@@ -1,5 +1,5 @@
 <script setup>
-import { ref,onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Header from '@/components/Header.vue'
@@ -12,9 +12,7 @@ const { getOrdersCardListData } = useState()
 const route = useRoute()
 const OrderCartList = getOrdersCardListData(Number(route.params.cartId))
 
-onMounted(() => {
-  hideLoading()
-})
+
 
 </script>
 

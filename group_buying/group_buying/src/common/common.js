@@ -22,6 +22,8 @@ const hideLoading = () => {
             document.getElementById("loading-cover").classList.add('close');
             setTimeout(() => {
                 document.getElementById("loading-cover").style.display = 'none'
+                
+                console.log(`hideLoading`);
             }, 300)
         }).catch(error => {
             console.error("Some image(s) failed loading!");
@@ -31,8 +33,8 @@ const hideLoading = () => {
 }
 
 const showLoading = () => {
+    document.getElementById("loading-cover").classList.remove('close');
     document.getElementById("loading-cover").style.display = 'inline'
-    document.getElementById("loading-cover").classList.add('close');
 }
 
 export { showLoading, hideLoading }

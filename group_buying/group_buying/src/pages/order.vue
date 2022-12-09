@@ -1,5 +1,5 @@
 <script setup>
-import { ref,onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Header from '@/components/Header.vue'
@@ -13,9 +13,6 @@ const route = useRoute()
 const CartList = getCardData(Number(route.params.cartId))
 const CartOrderStatus =  route.params.orderStatus;
 
-onMounted(() => {
-  hideLoading()
-})
 </script>
 
 <template>

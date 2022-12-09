@@ -1,5 +1,5 @@
 <script setup>
-import { ref , nextTick, onMounted } from 'vue'
+import { ref , nextTick } from 'vue'
 
 import Header from '@/components/Header.vue'
 import Banner from '@/components/Banner.vue'
@@ -13,9 +13,6 @@ const filterHandler = (value) => {
   document.getElementById('mobile-filter-cover').style.visibility = value?'visible':'hidden';
 }
 
-onMounted(() => {
-  hideLoading()
-})
 </script>
 
 <template>
