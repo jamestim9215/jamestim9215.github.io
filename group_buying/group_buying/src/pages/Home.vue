@@ -18,7 +18,7 @@ const filterHandler = (value) => {
 
 <template>
   <Header></Header>
-  <router-link to="/shopping-cart">
+  <router-link to="/shopping-cart" title="結帳">
     <div class="cart-btn">
       <font-awesome-icon icon="fa-solid fa-cart-shopping" />
       <span>5</span>

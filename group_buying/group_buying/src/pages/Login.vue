@@ -67,7 +67,7 @@ const signUpHandler = () => {
 .login-div{
   position: relative;
   display: block;
-  width: calc(100% - 20px);
+  width: calc(100% - 30px - 20px);
   height: auto;
   max-width: 500px;
   min-height: 100px;
