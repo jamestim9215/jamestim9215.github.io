@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const boxingCount = ref(30);
+const boxingCount = ref(10);
 const boxingList = ref([]);
 const getRandom = (min,max) => {
     return Math.floor(Math.random()*max)+min;

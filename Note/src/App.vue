@@ -225,7 +225,7 @@ const mouseupOther = (event) => {
 </script>
 
 <template>
-  <Snow />
+  <!-- <Snow /> -->
   <Card
     v-for="(item, key) in DataList"
     :key="key"
