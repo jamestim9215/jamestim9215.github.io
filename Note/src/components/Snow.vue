@@ -37,7 +37,7 @@ for(var key=0; key<boxingCount.value; key++){
   position: absolute;
   z-index: 0;
   background: #fff;
-  border-radius: 30%;
+  border-radius: 50%;
   opacity: 0.5;
   top: -20%;
   animation-name: rotatebox;    /*動畫名稱，需與 keyframe 名稱對應*/
