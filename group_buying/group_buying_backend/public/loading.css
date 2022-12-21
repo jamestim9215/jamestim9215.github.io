@@ -1,0 +1,63 @@
+.loading-div-cover{
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.loading-div{
+    position: relative;
+    width: calc(30px*3 + 30px);
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.loading-div>div{
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background: #FFB23F;
+    transform-origin: center center;
+    transform: scale(0.5);
+    align-self: center;
+    animation-name: loading;    /*動畫名稱，需與 keyframe 名稱對應*/
+    animation-duration: 2s;    /*動畫持續時間，單位為秒*/
+    animation-iteration-count: infinite;    /*動畫次數，infinite 為無限次*/ 
+}
+
+.loading-div>div:nth-child(1){
+    animation-delay: 0s;    /*動畫延遲開始時間*/
+}
+.loading-div>div:nth-child(2){
+    animation-delay: 0.25s;    /*動畫延遲開始時間*/  
+}
+.loading-div>div:nth-child(3){
+    animation-delay: 0.5s;    /*動畫延遲開始時間*/ 
+}
+
+.loading-div-cover.close{
+    opacity: 0;
+}
+
+@keyframes loading{
+    0%{
+        transform: scale(0.5);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.5);
+    }
+}

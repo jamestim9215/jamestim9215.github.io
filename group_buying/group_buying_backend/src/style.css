@@ -1,0 +1,136 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+:root {
+  font-family: 'Noto Sans TC','Microsoft JhengHei', Arial, sans-serif;
+  font-weight: 300;
+  background: #D9D9D9;
+  --theme-yellow: #FFB23F;
+  --theme-yellow-50: rgba(255, 178, 63,.5);
+  --theme-yellow-10: rgba(255, 178, 63,.1);
+  --theme-yellow-hover: #e49c30;
+  --theme-white: #FFFFFF;
+  --theme-white-50: rgba(255,255,255,0.5);
+  --theme-light-50: rgba(217, 217, 217,.5);
+  --theme-light: #D9D9D9;
+  --theme-gray: #B8B8B8;
+  --theme-999: #999999;
+  --theme-black: #000000;
+  --theme-red: #E25C5C;
+  --theme-red-hover: #cd4b4b;
+  --theme-pink: #FFE4E4;
+}
+
+html,body{
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.container{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.container-fluid{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email']{
+  all: unset;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email']{
+  position: relative;
+  display: block;
+  border: 1px solid var(--theme-gray);
+  background: var(--theme-white);
+  border-width: 0px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  width: calc(100% - 20px);
+}
+
+select{
+  position: relative;
+  display: block;
+  border: 1px solid var(--theme-gray);
+  background: var(--theme-white);
+  border-width: 0px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  /* width: 100%; */
+}
+
+hr{
+  margin: 10px 0;
+  border: 0;
+  border-bottom: 2px solid var(--theme-white-50);
+}
+
+a{
+  text-decoration: none;
+  color: #000
+}
+
+
+.btn{
+  position: relative;
+  display: inline-block;
+  width:auto;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid var(--theme-gray);
+  background: var(--theme-white);
+  color: var(--theme-gray);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.btn:hover{
+  border: 1px solid var(--theme-black);
+  color: var(--theme-black);
+}
+
+.back-btn{
+  border: 1px solid rgba(0,0,0,0);
+  background: var(--theme-white);
+  color: var(--theme-gray);
+}
+
+.bread-crumbs-div{
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  color: var(--theme-black);
+  font-size: 14px;
+}
+.bread-crumbs-div>span{
+  margin: 0;
+}
+.bread-crumbs-div>svg{
+  margin: 0 5px;
+  color: var(--theme-gray);
+}
+
+.content-list-div{
+  width: calc(100% - 20px);
+  height: calc(100vh - 130px);
+  background: var(--theme-white);
+  border: 1px solid var(--theme-light);
+  border-top: 0;
+  padding: 10px;
+}
