@@ -461,6 +461,7 @@ const mouseupOther = () => {
       width: calc(100% - 20px);
       border: 1px solid #333;
       background: #242424;
+      color: #fff;
       height: 40px;
       font-size: 16px;
       padding: 0 10px;
