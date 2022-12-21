@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import Card from "./components/Card.vue";
-import Snow from '@/components/Snow.vue'
+import Snow from "@/components/Snow.vue";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -14,7 +14,7 @@ import {
   doc,
   deleteDoc,
   onSnapshot,
-  updateDoc 
+  updateDoc,
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,12 +50,12 @@ const getPos = () => {
   var deg = (Math.round(Math.random()) * 2 - 1) * getRandom(0, 15);
   var w = window.innerWidth;
   var h = window.innerHeight;
-  var left = getRandom(15, w - 400) ;
-  var top = getRandom(15, h - 300) ;
+  var left = getRandom(15, w - 400);
+  var top = getRandom(15, h - 300);
   let pos = {
     X: left,
     Y: top,
-    Deg: deg
+    Deg: deg,
   };
   return pos;
 };
@@ -64,13 +64,12 @@ const AddNote = async (data) => {
     const docRef = await addDoc(collection(db, dbUrl), data);
 
     // console.log("Document written with ID: ", docRef.id);
-    closeNewCardHandler()
+    closeNewCardHandler();
   } catch (e) {
     console.error("Error adding document: ", e);
     // if(e.match('ImageBase64')){
-      alert('圖片太大張了')
+    alert("圖片太大張了");
     // }
-
   }
 };
 
@@ -125,13 +124,12 @@ const previewFiles = (file) => {
   convertFile(file)
     .then((data) => {
       // console.log(data); // 把編碼後的字串輸出到console
-      if(data.length > 1048487) {
-        alert('圖片檔案太大了!換一張!');
-        document.getElementById('imgFile').value = '';
-      }else{
+      if (data.length > 1048487) {
+        alert("圖片檔案太大了!換一張!");
+        document.getElementById("imgFile").value = "";
+      } else {
         previewImg.value = data;
       }
-      
     })
     .catch((err) => console.log(err));
 };
@@ -144,91 +142,86 @@ const openNewCardHandler = () => {
 };
 const closeNewCardHandler = () => {
   document.getElementById("add-card-cover").classList.remove("active");
-  
-  previewImg.value = '';
+
+  previewImg.value = "";
   choosedColor.value = 2;
-  CardName.value = '';
-  CardContent.value = '';
+  CardName.value = "";
+  CardContent.value = "";
 };
 
 const pad = (v) => {
-  return (v<10)?'0'+v:v
-}
+  return v < 10 ? "0" + v : v;
+};
 
 const getDateString = (d) => {
-  let year = d.getFullYear()
-  let month = pad(d.getMonth()+1)
-  let day = pad(d.getDate())
-  let hour = pad(d.getHours())
-  let min = pad(d.getMinutes())
-  let sec = pad(d.getSeconds())
+  let year = d.getFullYear();
+  let month = pad(d.getMonth() + 1);
+  let day = pad(d.getDate());
+  let hour = pad(d.getHours());
+  let min = pad(d.getMinutes());
+  let sec = pad(d.getSeconds());
   //YYYY-MM-DD hh:mm:ss
-  return year+"-"+month+"-"+day+" "+hour+":"+min+":"+sec
-  
-}
+  return year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
+};
 
 const addNewCardHandler = () => {
   var date = new Date();
   let data = {
     Name: CardName.value,
-    Content:  CardContent.value,
+    Content: CardContent.value,
     ImageBase64: previewImg.value,
-    Color : choosedColor.value,
+    Color: choosedColor.value,
     Date: getDateString(date),
     Pos: getPos(),
-  }
+  };
   AddNote(data);
 };
 
-const xPos = ref(0)
-const yPos = ref(0)
-const isClick = ref(false)
-const cardkey = ref('')
-const _xPos = ref(0)
-const _yPos = ref(0)
+const xPos = ref(0);
+const yPos = ref(0);
+const isClick = ref(false);
+const cardkey = ref("");
+const _xPos = ref(0);
+const _yPos = ref(0);
 
-
-
-const UpdateNote = async (key) =>{
+const UpdateNote = async (key) => {
   const washingtonRef = doc(db, dbUrl, key);
 
   await updateDoc(washingtonRef, DataList.value[key]);
-}
+};
 
-
-const mousedown = (event,item,key) => {
+const mousedown = (event, item, key) => {
   isClick.value = true;
   cardkey.value = key;
   xPos.value = event.clientX;
-  yPos.value  = event.clientY;
+  yPos.value = event.clientY;
   _xPos.value = event.clientX - item.Pos.X;
   _yPos.value = event.clientY - item.Pos.Y;
 
-  console.log(xPos.value,yPos.value,_xPos.value,_yPos.value);
-}
+  console.log(xPos.value, yPos.value, _xPos.value, _yPos.value);
+};
 
 const mousemove = (event) => {
   xPos.value = event.clientX;
-  yPos.value  = event.clientY;
-  if(isClick.value){
+  yPos.value = event.clientY;
+  if (isClick.value) {
     DataList.value[cardkey.value].Pos.X = xPos.value - _xPos.value;
     DataList.value[cardkey.value].Pos.Y = yPos.value - _yPos.value;
   }
-    
+
   // console.log(xPos.value,yPos.value,item.Pos);
-}
+};
 
-const mouseup = () => {
+const mouseup = (event) => {
   isClick.value = false;
   UpdateNote(cardkey.value);
-}
+};
 
-const mouseupOther = () => {
+const mouseupOther = (event) => {
   isClick.value = false;
 
   UpdateNote(cardkey.value);
-}
-
+};
 </script>
 
 <template>
@@ -238,25 +231,28 @@ const mouseupOther = () => {
     :key="key"
     :card-key="key"
     :card-info="item"
-    @mousedown="mousedown($event,item,key)"
+    @mousedown="mousedown($event, item, key)"
     @mouseup="mouseup"
     @mousemove="mousemove"
   >
     <div class="delbtn" @click="DeleteNote(key)"></div>
   </Card>
 
-  <div class="add-card-cover" id="add-card-cover"
+  <div
+    class="add-card-cover"
+    id="add-card-cover"
     @mousemove="mousemove"
-    @mouseup="mouseupOther">
+    @mouseup="mouseupOther"
+  >
     <div class="add-card-div">
       <div class="closeBtn" @click="closeNewCardHandler()"></div>
       <div>
         暱稱
-        <input type="text" v-model="CardName" maxlength="50"/>
+        <input type="text" v-model="CardName" maxlength="50" />
       </div>
       <div>
         內容
-        <input type="text" v-model="CardContent"  />
+        <input type="text" v-model="CardContent" />
       </div>
       <div>
         圖片<br />
@@ -324,7 +320,7 @@ const mouseupOther = () => {
           </label>
         </div>
       </div>
-      <div style="text-align: center;margin:0">
+      <div style="text-align: center; margin: 0">
         <button class="addCardBtn" @click="addNewCardHandler()">新增</button>
       </div>
     </div>
@@ -398,6 +394,8 @@ const mouseupOther = () => {
 .add-card-cover {
   position: fixed;
   z-index: -10;
+  top:0;
+  left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);

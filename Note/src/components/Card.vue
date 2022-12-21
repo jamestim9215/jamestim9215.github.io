@@ -76,6 +76,8 @@ const setPos = (pos) => {
     img{
       max-width: 400px;
       border-radius: 10px;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
   }
 

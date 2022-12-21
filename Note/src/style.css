@@ -20,8 +20,9 @@
   --theme-green: #cfffa3;
   --theme-blue: #a3ddff;
   --theme-purple: #e2a3ff;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 body{
   overflow: auto;
-  user-select: none;
 }
