@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import Card from "./components/Card.vue";
+import Snow from '@/components/Snow.vue'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -231,6 +232,7 @@ const mouseupOther = () => {
 </script>
 
 <template>
+  <Snow />
   <Card
     v-for="(item, key) in DataList"
     :key="key"
