@@ -58,7 +58,7 @@ const  diffTime = (date1, date2) => {
     return _data
   }
   _data.num = min.toFixed(0);
-  _data.string = '小時前';
+  _data.string = '分鐘前';
 
   return _data
 }
