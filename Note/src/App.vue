@@ -15,6 +15,9 @@ import {
   deleteDoc,
   onSnapshot,
   updateDoc,
+  query, 
+  orderBy,
+  limit
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -59,6 +62,7 @@ const getPos = () => {
   };
   return pos;
 };
+
 const AddNote = async (data) => {
   try {
     const docRef = await addDoc(collection(db, dbUrl), data);
@@ -73,8 +77,11 @@ const AddNote = async (data) => {
   }
 };
 
+const noteRef = collection(db, dbUrl);
+const q = query(noteRef, orderBy("OrderDate", "asc"), limit(50));
+
 const ReadNote = async () => {
-  const querySnapshot = await getDocs(collection(db, dbUrl));
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     let _data = {
       id: doc.id,
@@ -88,7 +95,7 @@ const DeleteNote = async (key) => {
   await deleteDoc(doc(db, dbUrl, key));
 };
 
-const unsubscribe = onSnapshot(collection(db, dbUrl), (data) => {
+const unsubscribe = onSnapshot(q, (data) => {
   DataList.value = {};
   data.docs.forEach((doc) => {
     DataList.value[doc.id] = doc.data();
@@ -197,8 +204,9 @@ const mousedown = (event, item, key) => {
   yPos.value = event.clientY;
   _xPos.value = event.clientX - item.Pos.X;
   _yPos.value = event.clientY - item.Pos.Y;
+  DataList.value[key].OrderDate = getDateString(new Date());
 
-  console.log(xPos.value, yPos.value, _xPos.value, _yPos.value);
+  // console.log(xPos.value, yPos.value, _xPos.value, _yPos.value);
 };
 
 const mousemove = (event) => {
@@ -222,6 +230,7 @@ const mouseupOther = (event) => {
 
   UpdateNote(cardkey.value);
 };
+
 </script>
 
 <template>
@@ -394,7 +403,7 @@ const mouseupOther = (event) => {
 .add-card-cover {
   position: fixed;
   z-index: -10;
-  top:0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
