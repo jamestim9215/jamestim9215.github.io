@@ -69,10 +69,11 @@ const setTimeString = (data) => {
 
 const isShowCard = (data) => {
   if(data.string == '天前'){
-    if(data.num > 2) return false 
+    if(data.num > 2) return 2 
+    if(data.num > 1) return 1 
   }
 
-  return true
+  return 0
 }
 </script>
 
@@ -84,8 +85,9 @@ const isShowCard = (data) => {
       'color03':cardInfo.Color == 3,
       'color04':cardInfo.Color == 4,
       'color05':cardInfo.Color == 5,
+      'opacity-50':isShowCard(diffTime(cardInfo.Date,nowDate)) == 1,
+      'opacity-25':isShowCard(diffTime(cardInfo.Date,nowDate)) == 2,
     }"
-    v-if="isShowCard(diffTime(cardInfo.Date,nowDate))"
   >
     <slot></slot>
     <div class="name" v-if="cardInfo.Name"><b>{{cardInfo.Name}}</b> 說</div>
@@ -123,6 +125,12 @@ const isShowCard = (data) => {
   }
   &.color05{
     background: var(--theme-purple);
+  }
+  &.opacity-50{
+    opacity: .5;
+  }
+  &.opacity-25{
+    opacity: .25;
   }
   .name{
     position: relative;
