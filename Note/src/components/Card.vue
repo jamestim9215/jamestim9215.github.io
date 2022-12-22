@@ -88,9 +88,9 @@ const isShowCard = (data) => {
     v-if="isShowCard(diffTime(cardInfo.Date,nowDate))"
   >
     <slot></slot>
-    <div class="name"><b>{{cardInfo.Name}}</b> 說</div>
-    <div class="content">{{cardInfo.Content}}</div>
-    <div class="ImageBase64"><img :src="cardInfo.ImageBase64" alt=""></div>
+    <div class="name" v-if="cardInfo.Name"><b>{{cardInfo.Name}}</b> 說</div>
+    <div class="content" v-if="cardInfo.Content">{{cardInfo.Content}}</div>
+    <div class="ImageBase64" v-if="cardInfo.ImageBase64"><img :src="cardInfo.ImageBase64" alt=""></div>
     <div class="date" >{{setTimeString(diffTime(cardInfo.Date,nowDate))}}</div>
   </div>
 </template>
@@ -101,6 +101,7 @@ const isShowCard = (data) => {
   position: absolute;
   width: auto;
   min-width: 200px;
+  max-width: 400px;
   min-height: 100px;
   height: auto;
   color: #000;
@@ -125,21 +126,23 @@ const isShowCard = (data) => {
   }
   .name{
     position: relative;
-    font-size: 16px;
+    font-size: 20px;
     color: #333;
   }
 
   .content{
     position: relative;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 32px;
+    font-weight: 700;
+    color: 000;
   }
 
   .ImageBase64{
     position: relative;
     text-align: center;
     img{
-      max-width: 400px;
+      max-width: 100%;
       border-radius: 10px;
       -webkit-user-drag: none;
       pointer-events: none;

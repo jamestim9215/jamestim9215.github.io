@@ -179,6 +179,7 @@ const addNewCardHandler = () => {
     ImageBase64: previewImg.value,
     Color: choosedColor.value,
     Date: getDateString(date),
+    OrderDate: getDateString(date),
     Pos: getPos(),
   };
   AddNote(data);
