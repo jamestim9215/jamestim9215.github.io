@@ -1,0 +1,16 @@
+:root{
+    --color-black: #111;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background: var(--color-black);
+}
+
+canvas{
+    align-self: center;
+}
