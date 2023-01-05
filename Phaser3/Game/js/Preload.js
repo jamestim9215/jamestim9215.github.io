@@ -67,6 +67,11 @@ class Preload extends Phaser.Scene{
         });
 
         // this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
+
+         // 載入地圖資源
+
+        this.load.tilemapTiledJSON('map', 'assets/desert.json')
+        this.load.image('tiles', 'assets/nature-paltformer-tileset-16x16.png')
     }
 
     create(){

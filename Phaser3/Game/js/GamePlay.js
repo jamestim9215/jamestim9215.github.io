@@ -12,6 +12,20 @@ class GamePlay extends Phaser.Scene{
     }
 
     create(){
+
+        // 新增地圖
+        this.map = this.make.tilemap({ key: 'map' });
+        this.tileset = this.map.addTilesetImage('nature-paltformer-tileset-16x16', 'tiles');
+        this.sky = this.map.createLayer('sky', this.tileset, 0, 0);
+        this.ground = this.map.createLayer('ground', this.tileset, 0, 0).setScale(2);
+
+        this.sky.setScale(2);
+        this.ground.setScale(2);
+        this.ground.setCollisionByExclusion([-1])
+        
+
+        this.ground.debug = true
+
         this.leftright = 'right';
 
         //***角色**********************************************************************************
@@ -28,6 +42,8 @@ class GamePlay extends Phaser.Scene{
         this.player.anims.play('CharacterIdle');
         //***角色 End**********************************************************************************
 
+
+        this.physics.add.collider(this.player, this.ground);
         
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -46,7 +62,7 @@ class GamePlay extends Phaser.Scene{
 
             if (this.cursors.left.isDown || this.keys.A.isDown)
             {
-                this.player.flipX = -1;
+                this.player.flipX = true;
                 this.player.setVelocityX(-300);
                 this.leftright = 'left';
                 this.player.status = 'Run';
@@ -54,7 +70,7 @@ class GamePlay extends Phaser.Scene{
             }
             else if (this.cursors.right.isDown || this.keys.D.isDown)
             {
-                this.player.flipX = 0;
+                this.player.flipX = false;
                 this.player.setVelocityX(300);
                 this.leftright = 'right';
                 this.player.status = 'Run';
