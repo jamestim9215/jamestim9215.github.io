@@ -3,6 +3,15 @@ body
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background: #131313;
+}
+
+.game-div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
 }
 
 .game-box{
@@ -11,70 +20,21 @@ body
     margin-top: calc(50vh - 100px);
     width: 200px;
     height: 200px;
-    background: #fff;
     cursor: pointer;
 }
 
 .game-box .box{
     z-index: 0;
     position: absolute;
-    width: 200px;
-    height: 200px;
     top: 0px;
-    left: 0px;
-    background: #dc2e2e;
+    left: -20px;
+    transform: rotate(-10deg);
 }
 
 .game-box .box-case{
     z-index: 1;
     position: absolute;
-    width: 220px;
-    height: 50px;
-    top: -10px;
-    left: -10px;
-    background: #ca2929;
-    box-shadow: 0px 1px 2px#333 ;
-}
-
-.game-box .box-case>div{
-    position: absolute;
-    background: rgb(255, 187, 0);
-    width: 100px;
-    height: 50px;
-    border-radius: 50%;
-    top: -115%;
-    left: 15px;
-    transform: rotate(30deg);
-}
-
-.game-box .box-case>div:nth-child(2){
-    left: auto;
-    right: 15px;
-    transform: rotate(-30deg);
-}
-
-
-.game-box .box-case>div>div{
-    position: absolute;
-    background: rgb(228, 167, 0);
-    width: 80%;
-    height: 70%;
-    top: 20%;
-    right: 0;
-    border-radius: 50%;
-}
-.game-box .box-case>div:nth-child(2)>div{
-    right: auto;
-    left: 0;
-}
-
-
-.game-box .box-case span{
-    position: absolute;
-    background: rgb(255, 187, 0);
-    width: 50px;
-    height: 100%;
-    left: calc(50% - 25px);
+    transform: translate3d(-10px,-220px,0) rotate(39deg);
 }
 
 .game-box .box span{
@@ -88,28 +48,41 @@ body
 .card{
     position: absolute;
     z-index: 10;
-    height: auto;
-    min-height: 300px;
-    width: 150px;
-    left: calc(50% - 75px);
+    left: calc(50% - 200px);
     top:  calc(50% - 300px);
-    background: #ca2929;
-    box-shadow: 0px 0px 50px #333;
     transform: scale(0);
 }
-.card>div{
+
+.card>#game-message{
     position: absolute;
-    left: 13px;
-    top: 13px;
-    width: calc(100% - 30px);
-    height: calc(100% - 30px);
-    /* border: 2px solid #fff; */
-    text-align: center;
-    color: #ca2929;
-    /* line-height: 12vh; */
-    /* font-size: 10vh; */
-    font-size: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    white-space:nowrap;
+    font-size: 24px;
+    left: 70%;
+    top: 0px;
+}
+
+
+.card>#game-message::before{
+    position: absolute;
+    content: "";
+    z-index: -1;
+    border-top: 15px solid rgba(0,0,0,0);
+    border-left: 15px solid rgba(0,0,0,0);
+    border-bottom: 15px solid rgba(0,0,0,0);
+    border-left: 15px solid #fff;
+    bottom: -15px;
+}
+
+.card>#game-point{
+    position: absolute;
+    font-size: 24px;
     font-weight: 700;
+    left: 45%;
+    transform: translateX(-50%);
+    bottom: 120px;
 }
 
 .card.active{
@@ -125,54 +98,50 @@ body
     top: 0;
 }
 
-.game-box .somepaper>div{
+.game-box .somepaper>img{
     position: absolute;
-    width: 40px;
-    height: 40px;
-    left: -20px;
-    transform: scale(0.5) rotate(0);
+    left: -100px;
+    top: -50px;
+    opacity: 0;
+}
+.game-box .somepaper>img:nth-child(1){
+    transform: scale(0.1) rotate(180deg);
+}
+.game-box .somepaper>img:nth-child(2){
+    transform: scale(0.1) rotate(-180deg);
+}
+.game-box .somepaper>img:nth-child(3){
+    transform: scale(0.1) rotate(180deg);
 }
 
-.game-box .somepaper.active>div{
+.game-box .somepaper.active>img{
     transition: 1s ease-out;
 }
-.game-box .somepaper.active>div:nth-child(1){
-    background: #ff6400;
-    transform:  translate3d(180px,-180px,0) scale(1) rotate(270deg);
+.game-box .somepaper.active>img:nth-child(1){
+    transform:  translate3d(230px,180px,0) scale(1) rotate(0);
+    opacity: 1;
 } 
 
-.game-box .somepaper.active>div:nth-child(2){
-    background: #ffd000;
-    transform:  translate3d(80px,-180px,0) scale(0.8) rotate(-210deg);
+.game-box .somepaper.active>img:nth-child(2){
+    transform:  translate3d(360px,-120px,0) scale(1) rotate(0);
+    opacity: 1;
 } 
 
-.game-box .somepaper.active>div:nth-child(3){
-    background: #d10f0f;
-    transform:  translate3d(40px,-270px,0) scale(1.2) rotate(-320deg);
+.game-box .somepaper.active>img:nth-child(3){
+    transform:  translate3d(-320px,-120px,0) scale(1) rotate(0);
+    opacity: 1;
 } 
-
-.game-box .somepaper.active>div:nth-child(4){
-    background: #c300ff;
-    transform:  translate3d(200px,-60px,0) scale(1) rotate(200deg);
-} 
-
-.game-box .somepaper.active>div:nth-child(5){
-    background: #00ff1e;
-    transform:  translate3d(-100px,-100px,0) scale(0.5) rotate(70deg);
-} 
-
 
 
 
 .cover{
     position: absolute;
-    width: 100px;
-    height: 100px;
     z-index: 2;
-    transform: scale(0) rotate(0);
-    left: calc(50% - 50px);
-    top: calc(50% - 150px);
     opacity: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0) scale(0) rotate(0);
+    
     /* background: #c00; */
 }
 
@@ -187,28 +156,6 @@ body
 	animation: coverrotate 10s linear infinite;
 }
 
-.cover>div:nth-child(2n){
-    position: absolute;
-    z-index: 3;
-    width: 600px;
-    height: 300px;
-    right: 50px;
-    bottom: 50px;
-    transform-origin: 100% 100%;
-    transform: rotate(0deg) skew(60deg);
-    background-image: linear-gradient(-26.5deg, rgba(246, 211, 101,.5) 0%, rgba(246, 211, 101,0) 50%);
-}
-.cover>div:nth-child(2n-1){
-    position: absolute;
-    z-index: 2;
-    width: 600px;
-    height: 300px;
-    right: 50px;
-    bottom: 50px;
-    transform-origin: 100% 100%;
-    transform: rotate(0deg) skew(60deg);
-    background-image: linear-gradient(-26.5deg, rgba(246, 101, 101, 0.5) 0%, rgba(246, 211, 101,0) 50%);
-}
 
 
 .shake{
@@ -224,7 +171,7 @@ body
 }
 
 .game-box .box-case.active{
-    transform: translate3d(-100px,-150px,0) rotate(-60deg);
+    transform: translate3d(-100px,-360px,0) rotate(0deg);
 }
 
 #restart-btn{
@@ -281,7 +228,7 @@ body
 	    transform: translate3d(0);
 	}
 	100% {
-	    transform: translate3d(-100px,-150px,0) rotate(-60deg);
+        transform: translate3d(-100px,-360px,0) rotate(0deg);
 	}
 }
 
@@ -297,18 +244,18 @@ body
 
 @keyframes covershow {
     0%{
-        transform: scale(0) rotate(0deg);
+        transform: translate3d(-50%,-50%,0) scale(0) rotate(0deg);
     }
     100%{
-        transform: scale(2) rotate(60deg);
+        transform: translate3d(-50%,-50%,0) scale(2) rotate(60deg);
     }
 }
 
 @keyframes coverrotate {
     0%{
-        transform: scale(2) rotate(60deg);
+        transform: translate3d(-50%,-50%,0) scale(2) rotate(60deg);
     }
     100%{
-        transform: scale(2) rotate(360deg);
+        transform: translate3d(-50%,-50%,0) scale(2) rotate(360deg);
     }
 }

@@ -8,48 +8,42 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="cover" id="cover">
-        <div style="transform: rotate(0deg) skew(60deg);"></div>
-        <div style="transform: rotate(30deg) skew(60deg);"></div>
-        <div style="transform: rotate(60deg) skew(60deg);"></div>
-        <div style="transform: rotate(90deg) skew(60deg);"></div>
-        <div style="transform: rotate(120deg) skew(60deg);"></div>
-        <div style="transform: rotate(150deg) skew(60deg);"></div>
-        <div style="transform: rotate(180deg) skew(60deg);"></div>
-        <div style="transform: rotate(210deg) skew(60deg);"></div>
-        <div style="transform: rotate(240deg) skew(60deg);"></div>
-        <div style="transform: rotate(270deg) skew(60deg);"></div>
-        <div style="transform: rotate(300deg) skew(60deg);"></div>
-        <div style="transform: rotate(330deg) skew(60deg);"></div>
-    </div>
-    <div id="card" class="card">
-        <div>
-            <!-- 恭喜 -->
+    <div class="game-div">
+        <div class="cover" id="cover">
+            <img src="./images/light/light.png" alt="">
         </div>
-    </div>
-    <div id="game-box" class="game-box" onclick="clickBox()">
-        <div id="box-case" class="box-case">
-            <span></span>
+        <div id="card" class="card">
             <div>
-                <div></div>
-            </div>
-            <div>
-                <div></div>
             </div>
         </div>
-        <div class="box">
-            <span></span>
+        <div id="game-box" class="game-box" onclick="clickBox()">
+            <div style="visibility: hidden;">
+                <span id="blue_text_1">Nothing beats a great smile.</span>
+                <span id="blue_text_2"><mark>50</mark> points</span>
+                <span id="pink_text_1">The best is yet to come.</span>
+                <span id="pink_text_2"><mark>70</mark> points</span>
+                <span id="silver_text_1">You will soon witness a miracle.</span>
+                <span id="silver_text_2"><mark>100</mark> Points</span>
+                <span id="white_text_1">Good luck.</span>
+                <span id="white_text_2"><mark>30</mark> points</span>
+                <span id="black_text_1">Watch your back.</span>
+                <span id="black_text_2"><mark>5</mark> points</span>
+            </div>
+            <div id="box-case" class="box-case">
+                <img src="./images/box/cap.png" alt="">
+            </div>
+            <div class="box">
+                <img src="./images/box/box.png" alt="">
+            </div>
+            <div id="somepaper" class="somepaper">
+                <img src="./images/candy/candy.png" alt="">
+                <img src="./images/ribbon/ribbon1.png" alt="">
+                <img src="./images/ribbon/ribbon2.png" alt="">
+            </div>
         </div>
-        <div id="somepaper" class="somepaper">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <div id="restart-btn" onclick="clickBtn()">
+            再抽一次
         </div>
-    </div>
-    <div id="restart-btn" onclick="clickBtn()">
-        再抽一次
     </div>
 
     <script src="./js/script.js"></script>
