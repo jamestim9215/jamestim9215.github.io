@@ -30,8 +30,7 @@ class GamePlay extends Phaser.Scene{
         // this.sky.setScale(2);
 
         this.leftright = 'right';
-        this.playerSkin = 1;
-        this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, this.playerSkin);
+        this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo.skin);
         this.player.setSize(13,20);
         this.player.setOffset(10, 10);
 
@@ -68,9 +67,9 @@ class GamePlay extends Phaser.Scene{
 
         this.input.keyboard.on('keydown', function (event) {
             if(event.key==='c'){
-                _this.playerSkin = _this.playerSkin + 1;
-                if(_this.playerSkin > 32) _this.playerSkin = 1;
-                _this.player.skin = _this.playerSkin;
+                PlayerInfo.skin =PlayerInfo.skin + 1;
+                if(PlayerInfo.skin > 32) PlayerInfo.skin = 1;
+                _this.player.skin = PlayerInfo.skin;
                 _this.player.setAnims();
             }
         });
@@ -85,7 +84,6 @@ class GamePlay extends Phaser.Scene{
     }
 
     hitEvent(sprite, tile){
-        console.log(tile);
         if(tile.properties.type==='Door'){
             PlayerInfo.x = this.player.x;
             PlayerInfo.y = this.player.y;

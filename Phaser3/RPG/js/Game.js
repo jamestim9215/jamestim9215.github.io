@@ -23,7 +23,9 @@ var config = {
 }
 
 var PlayerInfo = {
-    x: 130, y:150
+    x: 130, 
+    y:150,
+    skin:1
 }
 
 window.onload = function(){
