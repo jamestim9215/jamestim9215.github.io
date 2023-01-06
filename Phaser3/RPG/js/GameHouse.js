@@ -17,7 +17,7 @@ class GameHouse extends Phaser.Scene{
         var h = (config.height - 320) / 2;
         // 新增地圖
         this.map = this.make.tilemap({ key: 'mapHouse' });
-        this.tileset = this.map.addTilesetImage('tilesetInHouse', 'tilesHouse');
+        this.tileset = this.map.addTilesetImage('tilesetInHouse2', 'tilesHouse');
         this.ground = this.map.createLayer('Ground', this.tileset, w , h);
         this.wall = this.map.createLayer('Wall', this.tileset,  w , h);
         this.target = this.map.createLayer('target', this.tileset,  w , h);
