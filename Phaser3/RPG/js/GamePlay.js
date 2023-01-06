@@ -15,33 +15,87 @@ class GamePlay extends Phaser.Scene{
 
         // 新增地圖
         this.map = this.make.tilemap({ key: 'map' });
-        this.tileset = this.map.addTilesetImage('nature-paltformer-tileset-16x16', 'tiles');
-        this.sky = this.map.createLayer('sky', this.tileset, 0, 0);
-        this.tree = this.map.createLayer('tree', this.tileset, 0, 0);
+        this.tileset = this.map.addTilesetImage('tileset', 'tiles');
+        this.water = this.map.createLayer('water', this.tileset, 0, 0);
+        this.waterWall = this.map.createLayer('waterwall', this.tileset, 0, 0);
+        this.wave = this.map.createLayer('wave', this.tileset, 0, 0);
         this.ground = this.map.createLayer('ground', this.tileset, 0, 0);
+        this.wall = this.map.createLayer('wall', this.tileset, 0, 0);
+        this.ground2 = this.map.createLayer('ground2', this.tileset, 0, 0);
+        this.target = this.map.createLayer('target', this.tileset, 0, 0);
+        this.wall2 = this.map.createLayer('wall2', this.tileset, 0, 0);
+        this.house = this.map.createLayer('house', this.tileset, 0, 0);
 
-        this.sky.setScale(2);
-        this.tree.setScale(2);
-        this.ground.setScale(2);
-        this.ground.setCollisionByExclusion([-1])
-        
 
-        this.ground.debug = true;
+        // this.sky.setScale(2);
 
         this.leftright = 'right';
+        this.playerSkin = 1;
+        this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, this.playerSkin);
+        this.player.setSize(13,20);
+        this.player.setOffset(10, 10);
 
-        this.player = new Player(this, 100, 150);
-        this.player.setSize(16,32, 30, 20);
 
-        this.physics.add.collider(this.player, this.ground);
+        this.tree = this.map.createLayer('tree', this.tileset, 0, 0);
+        this.treeWall = this.map.createLayer('treewall', this.tileset, 0, 0);
+        this.object = this.map.createLayer('object', this.tileset, 0, 0);
+        this.objectWall = this.map.createLayer('objectWall', this.tileset, 0, 0);
+
+        this.waterWall.setCollisionByExclusion([-1])
+        this.wall.setCollisionByExclusion([-1])
+        this.wall2.setCollisionByExclusion([-1])
+        this.house.setCollisionByExclusion([-1])
+        this.treeWall.setCollisionByExclusion([-1])
+        this.objectWall.setCollisionByExclusion([-1])
+        this.target.setCollisionByExclusion([-1])
+        
+
+        this.physics.add.collider(this.player, this.waterWall);
+        this.physics.add.collider(this.player, this.wall);
+        this.physics.add.collider(this.player, this.wall2);
+        this.physics.add.collider(this.player, this.house);
+        this.physics.add.collider(this.player, this.treeWall);
+        this.physics.add.collider(this.player, this.objectWall);
+
+        this.physics.add.collider(this.player, this.target,this.hitEvent, null, this);
+
+        this.waterWall.debug = true;
 
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keys = this.input.keyboard.addKeys('A,W,D,S');
+        this.keys = this.input.keyboard.addKeys('A,W,D,S,C');
+        var _this = this;
+        
 
+        this.input.keyboard.on('keydown', function (event) {
+            if(event.key==='c'){
+                _this.playerSkin = _this.playerSkin + 1;
+                if(_this.playerSkin > 32) _this.playerSkin = 1;
+                _this.player.skin = _this.playerSkin;
+                _this.player.setAnims();
+            }
+        });
+
+        this.cameras.main.setBounds(0, 0, 800, 800);
+        this.cameras.main.startFollow(this.player, true);
     }
 
     update(){
         this.player.update(this.cursors,this.keys)
+
+    }
+
+    hitEvent(sprite, tile){
+        console.log(tile);
+        if(tile.properties.type==='Door'){
+            PlayerInfo.x = this.player.x;
+            PlayerInfo.y = this.player.y;
+            this.scene.start("GameHouse");
+        }
+        // map.removeTile(tile, 29, false);
+    
+        // pickups = map.filterTiles(function (tile) {
+        //     return (tile.index === 82);
+        // });
     }
 
     playGame(){

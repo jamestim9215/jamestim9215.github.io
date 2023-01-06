@@ -9,50 +9,136 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setScale(2);
         this.body.immovable = true;
 
+        this.skin = 1;
         this.status = 'Idle';
+        this.isChangeSkin=false;
 
         this.setBounce(0); //反弹（bounce）值
-        this.setCollideWorldBounds(true); //世界边界（bound）的碰撞
+        // this.setCollideWorldBounds(true); //世界边界（bound）的碰撞
 
-        this.anims.play('CharacterIdle');
+        this.create();
+        this.setAnims();
+
+        this.anims.play('CharacterIdle'+this.skin);
+
+        
+    }
+
+    setAnims(){
+
+        var keyName = 'Character'+this.skin;
+
+        this.setTexture(keyName);
+
+        
+    }
+
+    create() {
+        
+        for(var i=1; i<=32;i++){
+
+            var keyName = 'Character'+i;
+
+            this.anims.create({
+                key: "CharacterIdle"+i,
+                frames: this.anims.generateFrameNumbers(keyName,{ frames: [ 1 ] }),
+                frameRate: 5,
+                repeat: -1
+            })
+    
+            this.anims.create({
+                key: "CharacterDown"+i,
+                frames: this.anims.generateFrameNumbers(keyName,{ frames: [ 0,1,2,1,0 ] }),
+                frameRate: 10,
+                repeat: -1
+            })
+    
+            this.anims.create({
+                key: "CharacterLeft"+i,
+                frames: this.anims.generateFrameNumbers(keyName,{ frames: [ 3,4,5,4,3 ] }),
+                frameRate: 10,
+                repeat: -1
+            })
+    
+            this.anims.create({
+                key: "CharacterRight"+i,
+                frames: this.anims.generateFrameNumbers(keyName,{ frames: [ 6,7,8,7,6 ] }),
+                frameRate: 10,
+                repeat: -1
+            })
+    
+            this.anims.create({
+                key: "CharacterUp"+i,
+                frames: this.anims.generateFrameNumbers(keyName,{ frames: [ 9,10,11,10,9 ] }),
+                frameRate: 10,
+                repeat: -1
+            })
+        }
     }
 
     update(cursors,keys) {
-
-            if (cursors.left.isDown || keys.A.isDown)
+            if ((cursors.up.isDown || keys.W.isDown) && (cursors.left.isDown || keys.A.isDown))
             {
-                this.flipX = true;
-                this.setVelocityX(-300);
-                this.leftright = 'left';
-                this.status = 'Run';
-                if(this.status!='Jump')
-                    this.anims.play('CharacterRun', true);
+                this.setVelocityX(-100);
+                this.setVelocityY(-100);
+                this.status = 'walking';
+                this.anims.play('CharacterLeft'+this.skin, true);
+            }
+            else if ((cursors.up.isDown || keys.W.isDown) && (cursors.right.isDown || keys.D.isDown))
+            {
+                this.setVelocityX(100);
+                this.setVelocityY(-100);
+                this.status = 'walking';
+                this.anims.play('CharacterRight'+this.skin, true);
+            }
+            else if ((cursors.down.isDown || keys.S.isDown) && (cursors.left.isDown || keys.A.isDown))
+            {
+                this.setVelocityX(-100);
+                this.setVelocityY(100);
+                this.status = 'walking';
+                this.anims.play('CharacterLeft'+this.skin, true);
+            }
+            else if ((cursors.down.isDown || keys.S.isDown) && (cursors.right.isDown || keys.D.isDown))
+            {
+                this.setVelocityX(100);
+                this.setVelocityY(100);
+                this.status = 'walking';
+                this.anims.play('CharacterRight'+this.skin, true);
+            }
+            else if (cursors.left.isDown || keys.A.isDown)
+            {
+                this.setVelocityX(-100);
+                this.setVelocityY(0);
+                this.status = 'walking';
+                this.anims.play('CharacterLeft'+this.skin, true);
             }
             else if (cursors.right.isDown || keys.D.isDown)
             {
-                this.flipX = false;
-                this.setVelocityX(300);
-                this.leftright = 'right';
-                this.status = 'Run';
-                if(this.status!='Jump')
-                    this.anims.play('CharacterRun', true);
+                this.setVelocityX(100);
+                this.setVelocityY(0);
+                this.status = 'walking';
+                this.anims.play('CharacterRight'+this.skin, true);
+            }
+            else if (cursors.up.isDown || keys.W.isDown)
+            {
+                this.setVelocityX(0);
+                this.setVelocityY(-100);
+                this.status = 'walking';
+                this.anims.play('CharacterUp'+this.skin, true);
+            }
+            else if (cursors.down.isDown || keys.S.isDown)
+            {
+                this.setVelocityX(0);
+                this.setVelocityY(100);
+                this.status = 'walking';
+                this.anims.play('CharacterDown'+this.skin, true);
             }
             else
             {
                 this.setVelocityX(0);
+                this.setVelocityY(0);
                 this.status = 'Idle';
-                this.anims.play('CharacterIdle', true);
-            }
-
-            if ((cursors.up.isDown || cursors.space.isDown) && this.body.blocked.down)
-            {
-                this.setVelocityY(-420);
-                this.status = 'Jump';
-                this.anims.play('CharacterJump', false);
-            }
-
-            if(!this.body.touching.down){
-                this.status = 'Jump';
+                this.anims.play('CharacterIdle'+this.skin, true);
             }
     }
 }

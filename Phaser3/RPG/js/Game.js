@@ -5,20 +5,25 @@ var height = window.innerHeight;
 
 var config = {
 	type: Phaser.AUTO,
-	width: 640,
-	height: 320,
+	width: 400 ,
+	height: 400,
 	backgroundColor: 0x000000,
     scene: [
         Preload,
-        GamePlay
+        GamePlay,
+        GameHouse
     ],
     physics:{
         default: "arcade",
         arcade:{
-			gravity: { y: 1000 },
-            debug: true
+			gravity: { y: 0 },
+            debug: false
         }
     }
+}
+
+var PlayerInfo = {
+    x: 130, y:150
 }
 
 window.onload = function(){

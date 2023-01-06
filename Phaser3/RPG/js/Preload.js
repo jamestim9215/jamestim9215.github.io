@@ -40,77 +40,32 @@ class Preload extends Phaser.Scene{
         });
         //loading End 進度條
 
-        this.load.spritesheet('CharacterIdle',"assets/CHARACTER_SPRITES/Blue/Gunner_Blue_Idle.png",{
-            frameWidth: 48,
-            frameHeight: 48
-        });
+        for(var i=1; i<=32;i++){
+            var num = 0;
+            if(i<10){ 
+                num = '0' + i 
+            }else{ 
+                num = i 
+            }
 
-        this.load.spritesheet('CharacterRun',"assets/CHARACTER_SPRITES/Blue/Gunner_Blue_Run.png",{
-            frameWidth: 48,
-            frameHeight: 48
-        });
-        
-        this.load.spritesheet('CharacterJump',"assets/CHARACTER_SPRITES/Blue/Gunner_Blue_Jump.png",{
-            frameWidth: 48,
-            frameHeight: 48
-        });
+            this.load.spritesheet('Character'+i,"assets/CharacterNEKONIN/pipo-nekonin0"+num+".png",{
+                frameWidth: 32,
+                frameHeight: 32
+            });  
 
-        
-        this.load.spritesheet('CharacterCrouch',"assets/CHARACTER_SPRITES/Blue/Gunner_Blue_Crouch.png",{
-            frameWidth: 48,
-            frameHeight: 48
-        });
-
-        this.load.spritesheet('CharacterDeath',"assets/CHARACTER_SPRITES/Blue/Gunner_Blue_Death.png",{
-            frameWidth: 48,
-            frameHeight: 48
-        });
-
+        }
         // this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
 
          // 載入地圖資源
 
-        this.load.tilemapTiledJSON('map', 'assets/desert.json')
-        this.load.image('tiles', 'assets/nature-paltformer-tileset-16x16.png')
+         this.load.tilemapTiledJSON('map', 'assets/map.json')
+         this.load.image('tiles', 'assets/SERENE_VILLAGE_REVAMPED/Serene_Village_32x32.png')
+
+         this.load.tilemapTiledJSON('mapHouse', 'assets/houseMap.json')
+         this.load.image('tilesHouse', 'assets/Full.png')
     }
 
     create(){
-
-
-        this.anims.create({
-            key: "CharacterIdle",
-            frames: this.anims.generateFrameNumbers('CharacterIdle'),
-            frameRate: 5,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: "CharacterRun",
-            frames: this.anims.generateFrameNumbers('CharacterRun'),
-            frameRate: 10,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: "CharacterJump",
-            frames: this.anims.generateFrameNumbers('CharacterJump'),
-            frameRate: 5,
-            repeat: 0
-        })
-
-        this.anims.create({
-            key: "CharacterCrouch",
-            frames: this.anims.generateFrameNumbers('CharacterCrouch'),
-            frameRate: 18,
-            repeat: 0
-        })
-
-        this.anims.create({
-            key: "CharacterDeath",
-            frames: this.anims.generateFrameNumbers('CharacterDeath'),
-            frameRate: 5,
-            repeat: 0
-        })
 
         this.scene.start("GamePlay");
     }
