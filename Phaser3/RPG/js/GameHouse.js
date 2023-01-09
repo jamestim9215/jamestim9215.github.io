@@ -25,7 +25,7 @@ class GameHouse extends Phaser.Scene{
 
 
         this.leftright = 'right';
-        this.player = new Player(this, config.width / 2 , config.height / 4 * 3  , PlayerInfo.skin);
+        this.player = new Player(this, config.width / 2 , config.height / 2 + 95  , PlayerInfo.skin);
         this.player.isUp = 'Up';
         this.player.anims.play('CharacterIdleUp'+PlayerInfo.skin, true);
 
