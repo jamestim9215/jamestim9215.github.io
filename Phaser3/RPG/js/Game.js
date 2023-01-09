@@ -5,26 +5,30 @@ var height = window.innerHeight;
 
 var config = {
 	type: Phaser.AUTO,
-	width: 400 ,
-	height: 400,
+	width: window.innerWidth * window.devicePixelRatio,
+	height: window.innerHeight * window.devicePixelRatio,
 	backgroundColor: 0x000000,
     scene: [
         Preload,
         GamePlay,
         GameHouse
     ],
+    scale: {
+        // mode: Phaser.Scale.FIT,
+        // autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+    },
     physics:{
         default: "arcade",
         arcade:{
 			gravity: { y: 0 },
-            debug: false
+            debug: true
         }
     }
 }
 
 var PlayerInfo = {
     x: 130, 
-    y:150,
+    y: 680,
     skin:1
 }
 

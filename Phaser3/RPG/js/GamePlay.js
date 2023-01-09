@@ -31,8 +31,7 @@ class GamePlay extends Phaser.Scene{
 
         this.leftright = 'right';
         this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo.skin);
-        this.player.setSize(13,20);
-        this.player.setOffset(10, 10);
+        this.player.anims.play('CharacterIdleDown'+PlayerInfo.skin, true);
 
 
         this.tree = this.map.createLayer('tree', this.tileset, 0, 0);
@@ -75,7 +74,10 @@ class GamePlay extends Phaser.Scene{
         });
 
         this.cameras.main.setBounds(0, 0, 800, 800);
-        this.cameras.main.startFollow(this.player, true);
+        this.cameras.main.startFollow(this.player, true);  
+
+        // scaleRatio = window.devicePixelRatio / 3;
+        // myAsset.scale.setTo(scaleRatio, scaleRatio);
     }
 
     update(){

@@ -15,6 +15,7 @@ class GameHouse extends Phaser.Scene{
 
         var w = (config.width - 320) / 2;
         var h = (config.height - 320) / 2;
+
         // 新增地圖
         this.map = this.make.tilemap({ key: 'mapHouse' });
         this.tileset = this.map.addTilesetImage('tilesetInHouse2', 'tilesHouse');
@@ -24,9 +25,7 @@ class GameHouse extends Phaser.Scene{
 
 
         this.leftright = 'right';
-        this.player = new Player(this, 200, 290, PlayerInfo.skin);
-        this.player.setSize(13,20);
-        this.player.setOffset(10, 10);
+        this.player = new Player(this, config.width / 2 , config.height / 4 * 3  , PlayerInfo.skin);
         this.player.isUp = 'Up';
         this.player.anims.play('CharacterIdleUp'+PlayerInfo.skin, true);
 
@@ -51,6 +50,7 @@ class GameHouse extends Phaser.Scene{
 
         this.cameras.main.setBounds(0, 0, config.width, config.width);
         this.cameras.main.startFollow(this.player, true);
+
     }
 
     update(){

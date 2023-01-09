@@ -19,6 +19,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.create();
         this.setAnims();
 
+        this.setSize(11,20);
+        this.setOffset(11, 10);
+
 
     }
 
