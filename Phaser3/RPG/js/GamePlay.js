@@ -28,8 +28,6 @@ class GamePlay extends Phaser.Scene{
 
 
         // this.sky.setScale(2);
-
-        this.leftright = 'right';
         this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo.skin);
         this.player.anims.play('CharacterIdleDown'+PlayerInfo.skin, true);
 

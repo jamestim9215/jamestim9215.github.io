@@ -23,11 +23,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.setSize(11, 20);
         this.setOffset(11, 10);
-
+        // this.name = this.scene.add.bitmapText( x, y, "pixelFont",  PlayerInfo.Name, 10).setOrigin(0.5,0.5);
         this.name = this.scene.add.text(x, y, PlayerInfo.Name, {
             fontFamily: 'Arial',
-            color: '#ff00ff'
-        }).setFontSize(12).setOrigin(0.5);
+            color: '#0000FF'
+        }).setFontSize(10).setOrigin(0.5);
 
 
     }

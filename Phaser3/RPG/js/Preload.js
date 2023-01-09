@@ -40,6 +40,17 @@ class Preload extends Phaser.Scene{
         });
         //loading End 進度條
 
+        this.load.image('background',"assets/images/BG.png");
+
+        this.load.spritesheet("GameButton","./assets/PaperTheme/Spritesheet/gui_paper_animated_button1.png",{
+            frameWidth: 96,
+            frameHeight: 32
+        });
+
+
+        this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
+
+
         for(var i=1; i<=32;i++){
             var num = 0;
             if(i<10){ 
@@ -54,8 +65,6 @@ class Preload extends Phaser.Scene{
             });  
 
         }
-        // this.load.bitmapFont("pixelFont","assets/fonts/PressStart2P.png","assets/fonts/PressStart2P.xml");
-
          // 載入地圖資源
 
          this.load.tilemapTiledJSON('map', './assets/map.json')
@@ -67,7 +76,8 @@ class Preload extends Phaser.Scene{
 
     create(){
 
-        this.scene.start("GamePlay");
+        // this.scene.start("GamePlay");
+        this.scene.start("GameHome");
     }
 
     update(){

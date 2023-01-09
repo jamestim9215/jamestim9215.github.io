@@ -10,6 +10,7 @@ var config = {
 	backgroundColor: 0x000000,
     scene: [
         Preload,
+        GameHome,
         GamePlay,
         GameHouse
     ],
@@ -21,40 +22,42 @@ var config = {
         default: "arcade",
         arcade:{
 			gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     }
 }
-
-var PlayerInfo = {
+let userInput = document.getElementById('UserNameInput');
+let PlayerInfo = {
     x: 130, 
     y: 680,
     skin:1,
-    Name: "我是笨貓"
+    Name: "笨貓"
 }
 
-const socket = io('ws://localhost:5001');
+// const socket = io('ws://localhost:5001');
 
-socket.on("connect", () => {
-    console.log("connect");
-    socket.emit("hello", PlayerInfo);
-});
+// socket.on("connect", () => {
+//     console.log("connect");
+//     socket.emit("hello", PlayerInfo);
+// });
 
-socket.on("disconnect", () => {
-    console.log(socket.id); // undefined
-});
+// socket.on("disconnect", () => {
+//     console.log(socket.id); // undefined
+// });
 
 window.onload = function(){
     Game = new Phaser.Game(config);
+    var _w = (window_Height * 32 ) / 48;
+    var _h = window_Height;
 
     setTimeout(()=>{
         if(window_Width > window_Height){
-            document.querySelector("canvas").style.height = window_Height + "px";
-            document.querySelector("canvas").style.width  = (window_Height * 32) / 48 + "px";
+            document.querySelector("canvas").style.width  = _w + "px";
+            document.querySelector("canvas").style.height = _h + "px";
         }else{
             if((window_Width / window_Height) > (32/48)){
-                document.querySelector("canvas").style.height = window_Height + "px";
-                document.querySelector("canvas").style.width  = (window_Height * 32) / 48 + "px";
+                document.querySelector("canvas").style.width  = _w + "px";
+                document.querySelector("canvas").style.height = _h + "px";
             }else{
                 document.querySelector("canvas").style.width  = "100%";
             }
