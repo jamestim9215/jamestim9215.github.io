@@ -51,7 +51,7 @@ class GameHome extends Phaser.Scene{
             if(userInput.value){
                 PlayerInfo.Name = userInput.value;
                 userInput.style.visibility = "hidden";
-                _this.scene.start("GamePlay");
+                _this.scene.start("GamePlay2");
             }else{
 
             }
@@ -70,7 +70,8 @@ class GameHome extends Phaser.Scene{
     }
 
     playGame(){
-        this.scene.start('playGame');
+        // this.scene.start('playGame');
+        this.scene.start('playGame2');
     }
 }
 
