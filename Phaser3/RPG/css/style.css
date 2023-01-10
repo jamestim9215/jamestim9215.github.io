@@ -25,13 +25,14 @@ canvas{
     font-size: 18px;
     color: #fff;
     left: 50%;
-    top: 50vh;
+    top: calc(100vh / 3 * 2);
     transform: translateX(-50%) translateY(-50%);
     border: 0;
     background: rgba(0,0,0,0.3);
     padding: 0 15px;
     text-align: center;
 }
+
 .game-input-div>input:focus,
 .game-input-div>input:focus-visible {
     outline: -webkit-focus-ring-color auto 0px;
