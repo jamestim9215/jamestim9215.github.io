@@ -69,7 +69,7 @@ class GameHome extends Phaser.Scene {
                     socket.on('loginSuccess', function(data){
                         if(data.Name === userInput.value){
                             userInput.style.visibility = "hidden";
-                            _this.scene.start("GamePlay");
+                            _this.scene.start("GamePlay2");
                         }else{
                             alert('Wrong username:( Please try again!')
                         }
@@ -108,8 +108,9 @@ class GameHome extends Phaser.Scene {
         this.background.tilePositionY += 0.3;
     }
 
-    playGame() {
-        this.scene.start('playGame');
+    playGame(){
+        // this.scene.start('playGame');
+        this.scene.start('playGame2');
     }
 }
 

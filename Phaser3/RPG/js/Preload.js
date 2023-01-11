@@ -67,7 +67,10 @@ class Preload extends Phaser.Scene{
         }
          // 載入地圖資源
 
-         this.load.tilemapTiledJSON('map', './assets/map.json')
+        //  this.load.tilemapTiledJSON('map', './assets/map.json')
+        //  this.load.image('tiles', './assets/SERENE_VILLAGE_REVAMPED/Serene_Village_32x32.png')
+
+         this.load.tilemapTiledJSON('map', './map/GameMap.json')
          this.load.image('tiles', './assets/SERENE_VILLAGE_REVAMPED/Serene_Village_32x32.png')
 
          this.load.tilemapTiledJSON('mapHouse', './assets/houseMap.json')

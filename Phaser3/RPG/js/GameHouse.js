@@ -58,9 +58,9 @@ class GameHouse extends Phaser.Scene {
 
     }
 
-    hitEvent(sprite, tile) {
-        if (tile.properties.type === 'Door') {
-            this.scene.start("GamePlay");
+    hitEvent(sprite, tile){
+        if(tile.properties.type==='Door'){
+            this.scene.start("GamePlay2");
         }
         // map.removeTile(tile, 29, false);
 

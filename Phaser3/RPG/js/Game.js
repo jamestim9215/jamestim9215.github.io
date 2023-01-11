@@ -12,6 +12,7 @@ var config = {
         Preload,
         GameHome,
         GamePlay,
+        GamePlay2,
         GameHouse
     ],
     scale: {
@@ -28,9 +29,9 @@ var config = {
 }
 let userInput = document.getElementById('UserNameInput');
 let PlayerInfo = {
-    x: 130,
-    y: 680,
-    skin: 1,
+    x: 400, 
+    y: 400,
+    skin:1,
     Name: "笨貓"
 }
 
