@@ -1,62 +1,99 @@
-class GameHome extends Phaser.Scene{
-    constructor(){
+class GameHome extends Phaser.Scene {
+    constructor() {
         super('GameHome');
     }
 
-    init(){
+    init() {
 
     }
 
-    preload(){
+    preload() {
 
     }
 
-    create(){
+    create() {
         userInput.style.visibility = "visible";
 
-        this.background = this.add.tileSprite(config.width/2.2, config.height/2.2, config.width*2.2, config.height*2.2, 'background').setScale(0.5);
+        this.background = this.add.tileSprite(config.width / 2.2, config.height / 2.2, config.width * 2.2, config.height * 2.2, 'background').setScale(0.5);
 
         this.skinIndex = 1;
 
-        this.PlayerSkin = this.add.sprite(config.width / 2, config.height / 3, 'Character'+this.skinIndex).setInteractive().setOrigin(0.5).setScale(2);
+        this.PlayerSkin = this.add.sprite(config.width / 2, config.height / 3, 'Character' + this.skinIndex).setInteractive().setOrigin(0.5).setScale(2);
+        for (var i = 1; i <= 32; i++) {
+            this.anims.create({
+                key: "PlayerSkinWalk" + i,
+                frames: this.anims.generateFrameNumbers('Character' + i, { frames: [1, 2, 1, 0] }),
+                frameRate: 5,
+                repeat: -1
+            })
+        }
+        this.PlayerSkin.anims.play('PlayerSkinWalk' + this.skinIndex);
 
-        this.ChangeSkinButton = this.add.sprite(config.width / 2, config.height / 3 + 50, 'GameButton').setInteractive().setOrigin(0.5);
-        // this.anims.create({
-        //     key: "ButtonShow",
-        //     frames: this.anims.generateFrameNumbers('GameButton', { frames: [24] }),
-        //     frameRate: 5,
-        //     repeat: -1     // 循環播放 -1 
-        // })
-        // this.PlayButton.anims.play('ButtonShow');
-        
 
-        this.PlayButton = this.add.sprite(config.width / 2, config.height / 3 * 2 + 50, 'GameButton').setInteractive().setOrigin(0.5);
+
+        this.ChangeSkinButton = this.add.sprite(config.width / 2, config.height / 3 + 60, 'GameButton').setInteractive().setOrigin(0.5);
+        this.anims.create({
+            key: "ChangeSkinButtonShow",
+            frames: this.anims.generateFrameNumbers('GameButton', { frames: [24, 24, 25, 26, 25, 24, 24] }),
+            frameRate: 5,
+            repeat: -1     // 循環播放 -1 
+        })
+        this.ChangeSkinButton.anims.play('ChangeSkinButtonShow');
+        this.changeSkinText = this.add.bitmapText(config.width / 2, config.height / 3 + 60, "pixelFont", "Change", 10).setOrigin(0.5, 0.5);
+
+
+        this.PlayButton = this.add.sprite(config.width / 2, config.height / 5 * 3 + 50, 'GameButton').setInteractive().setOrigin(0.5);
         this.anims.create({
             key: "ButtonDown",
-            frames: this.anims.generateFrameNumbers('GameButton', { frames: [24,24,25,26,25,24,24] }),
+            frames: this.anims.generateFrameNumbers('GameButton', { frames: [24, 24, 25, 26, 25, 24, 24] }),
             frameRate: 10,
             repeat: -1     // 循環播放 -1 
         })
-        this.PlayButton.anims.play('ButtonDown');
+        this.PlayButton.anims.play('ButtonDown',true);
 
-        this.PlayText = this.add.bitmapText( config.width / 2, config.height / 3 * 2 + 50, "pixelFont",  "Play", 10).setOrigin(0.5,0.5);
+        this.PlayText = this.add.bitmapText(config.width / 2, config.height / 5 * 3 + 50, "pixelFont", "PLAY", 10).setOrigin(0.5, 0.5);
 
-
-        
 
 
         var _this = this;
 
         this.PlayButton.on('pointerdown', function (pointer) {
-            if(userInput.value){
+            if (userInput.value) {
                 PlayerInfo.Name = userInput.value;
-                userInput.style.visibility = "hidden";
-                _this.scene.start("GamePlay");
-            }else{
+                PlayerInfo.skin = _this.skinIndex;
 
+                // socket.on("connect", () => {
+                    console.log("???");
+                    socket.emit("login", PlayerInfo);
+                    /*登入成功*/
+                    socket.on('loginSuccess', function(data){
+                        if(data.Name === userInput.value){
+                            userInput.style.visibility = "hidden";
+                            _this.scene.start("GamePlay");
+                        }else{
+                            alert('Wrong username:( Please try again!')
+                        }
+                    })
+
+                    /*登入失敗*/
+                    socket.on('loginFail', function(){
+                        alert('Duplicate name already exists:0')
+                    })
+                    
+                    
+                // });
+
+                
+            } else {
+                alert('Please enter a name :)')
             }
-            
-    
+
+        });
+
+        this.ChangeSkinButton.on('pointerdown', function (pointer) {
+            _this.skinIndex = _this.skinIndex + 1;
+            if (_this.skinIndex > 32) _this.skinIndex = 1;
+            _this.PlayerSkin.setTexture('Character' + _this.skinIndex);
         });
 
         // setTimeout(()=>{
@@ -64,12 +101,14 @@ class GameHome extends Phaser.Scene{
         // }, 3000)
     }
 
-    update(){
+    update() {
+        this.PlayerSkin.anims.play('PlayerSkinWalk' + this.skinIndex, true);
+
         this.background.tilePositionX += 0.3;
-        this.background.tilePositionY += 0.3; 
+        this.background.tilePositionY += 0.3;
     }
 
-    playGame(){
+    playGame() {
         this.scene.start('playGame');
     }
 }

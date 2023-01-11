@@ -25,7 +25,7 @@ canvas{
     font-size: 18px;
     color: #fff;
     left: 50%;
-    top: calc(100vh / 3 * 2);
+    top: calc(100vh / 5 * 3);
     transform: translateX(-50%) translateY(-50%);
     border: 0;
     background: rgba(0,0,0,0.3);
