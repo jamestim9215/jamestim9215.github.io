@@ -12,7 +12,6 @@ var config = {
         Preload,
         GameHome,
         GamePlay,
-        GamePlay2,
         GameHouse
     ],
     scale: {
@@ -29,21 +28,21 @@ var config = {
 }
 let userInput = document.getElementById('UserNameInput');
 let PlayerInfo = {
-    x: 400, 
-    y: 400,
+    x: 96, 
+    y: 320,
     skin:1,
     Name: "笨貓"
 }
 
-let socket = io('ws://localhost:5001');
-socket.on("connect", () => {
-    console.log("connect");
-});
+// let socket = io('ws://localhost:5001');
+// socket.on("connect", () => {
+//     console.log("connect");
+// });
 
 
-socket.on("disconnect", () => {
-    console.log("disconnect",socket.id); // undefined
-});
+// socket.on("disconnect", () => {
+//     console.log("disconnect",socket.id); // undefined
+// });
 
 window.onload = function () {
     Game = new Phaser.Game(config);

@@ -12,7 +12,8 @@
 // 返回数组 Array<Tile> 或 false
 // 数组第一个元素为终点Tile，依次到起点Tile，但最后不包含起点Tile
 // 走路时，可用Array.pop()读取下一步的Tile
-Phaser.TilemapLayer.prototype.findTilePath = function (x0, y0, x1, y1, collideIndexes, limit) {
+
+Phaser.Tilemaps.TilemapLayer.prototype.findTilePath = function (x0, y0, x1, y1, collideIndexes, limit) {
 	if(limit === undefined){ limit = 100; }
 	var _layer = this.layer;
 	var excepts = []; 
@@ -21,6 +22,7 @@ Phaser.TilemapLayer.prototype.findTilePath = function (x0, y0, x1, y1, collideIn
 	if(_layer.data[y1] === undefined || _layer.data[y1][x1] === undefined){ // 目标不存在?
 		return false;
 	}
+
 	var curTile = _layer.data[y0][x0];
 	var tarTile = _layer.data[y1][x1];
 	if(collideIndexes.indexOf(tarTile.index) > -1){ // 目标不可及?
@@ -92,7 +94,7 @@ Phaser.TilemapLayer.prototype.findTilePath = function (x0, y0, x1, y1, collideIn
 // getRoundTiles （获取外围的Tiles）
 // *****************************
 // 返回 Array<Tile>
-Phaser.TilemapLayer.prototype._getRoundTiles = function(roundTiles, exceptTiles, collideIndexes){
+Phaser.Tilemaps.TilemapLayer.prototype._getRoundTiles = function(roundTiles, exceptTiles, collideIndexes){
 	var _layer = this.layer;
 	var newRoundArray = [];
 	var x;

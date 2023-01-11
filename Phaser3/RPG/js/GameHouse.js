@@ -25,7 +25,8 @@ class GameHouse extends Phaser.Scene {
 
 
         this.leftright = 'right';
-        this.player = new Player(this, config.width / 2, config.height / 2 + 95, PlayerInfo.skin);
+        this.player = new Player(this, config.width / 2, config.height / 2 + 95, PlayerInfo);
+        this.player.status = 'Idle';
         this.player.isUp = 'Up';
         this.player.anims.play('CharacterIdleUp' + PlayerInfo.skin, true);
 
@@ -51,6 +52,7 @@ class GameHouse extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, config.width, config.width);
         this.cameras.main.startFollow(this.player, true);
 
+        var _this = this;
     }
 
     update() {
@@ -60,7 +62,7 @@ class GameHouse extends Phaser.Scene {
 
     hitEvent(sprite, tile){
         if(tile.properties.type==='Door'){
-            this.scene.start("GamePlay2");
+            this.scene.start("GamePlay");
         }
         // map.removeTile(tile, 29, false);
 

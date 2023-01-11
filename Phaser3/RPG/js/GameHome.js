@@ -58,35 +58,37 @@ class GameHome extends Phaser.Scene {
         var _this = this;
 
         this.PlayButton.on('pointerdown', function (pointer) {
-            if (userInput.value) {
-                PlayerInfo.Name = userInput.value;
-                PlayerInfo.skin = _this.skinIndex;
+            // if (userInput.value) {
+            //     PlayerInfo.Name = userInput.value;
+            //     PlayerInfo.skin = _this.skinIndex;
+            //         socket.emit("login", PlayerInfo);
+            //         /*登入成功*/
+            //         socket.on('loginSuccess', function(data){
+            //             if(data.Name === userInput.value){
+            //                 userInput.style.visibility = "hidden";
+            //                 _this.scene.start("GamePlay");
+            //             }else{
+            //                 alert('Wrong username:( Please try again!')
+            //             }
+            //         })
 
-                // socket.on("connect", () => {
-                    console.log("???");
-                    socket.emit("login", PlayerInfo);
-                    /*登入成功*/
-                    socket.on('loginSuccess', function(data){
-                        if(data.Name === userInput.value){
-                            userInput.style.visibility = "hidden";
-                            _this.scene.start("GamePlay2");
-                        }else{
-                            alert('Wrong username:( Please try again!')
-                        }
-                    })
+            //         /*登入失敗*/
+            //         socket.on('loginFail', function(){
+            //             alert('Duplicate name already exists:0')
+            //         })
+            // } else {
+            //     alert('Please enter a name :)')
+            // }
 
-                    /*登入失敗*/
-                    socket.on('loginFail', function(){
-                        alert('Duplicate name already exists:0')
-                    })
-                    
-                    
-                // });
+            //test 
+            PlayerInfo.Name = userInput.value;
+            PlayerInfo.skin = _this.skinIndex;
+            userInput.style.visibility = "hidden";
+            _this.scene.start("GamePlay");
+            //test end
 
-                
-            } else {
-                alert('Please enter a name :)')
-            }
+            
+            
 
         });
 

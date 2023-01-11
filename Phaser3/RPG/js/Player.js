@@ -1,32 +1,40 @@
 
 
 class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, _playerInfo) {
-        super(scene, _playerInfo.x, _playerInfo.y, 'player', 0)
+    constructor(scene, _x,_y ,_playerInfo) {
+        super(scene, _x, _y, 'player', 0)
         this.scene = scene
         this.scene.physics.world.enable(this)
         this.scene.add.existing(this)
 
         //設定角色
-        this.setScale(2);
+        this.setScale(1);
         this.body.immovable = true;
 
         this.skin = _playerInfo.skin;
         this.status = 'Idle';
         this.isChangeSkin = false;
 
+        
+        this.isMoving = false;
+        this.movePath = [];
+
         this.setBounce(0); //反弹（bounce）值
         // this.setCollideWorldBounds(true); //世界边界（bound）的碰撞
 
         this.create();
         this.setAnims();
+        // this.setOrigin(0,0);
 
         this.setSize(11, 20);
         this.setOffset(11, 10);
-        // this.name = this.scene.add.bitmapText( x, y, "pixelFont",  _playerInfo.Name, 10).setOrigin(0.5,0.5);
+
+        this.moveSpeed = 1;
+
+        // this.name = this.scene.add.bitmapText( x, y, "pixelFont",  _playerInfo.Name, 10).setOrigin(1,1);
 
         
-        this.name = this.scene.add.text(_playerInfo.x, _playerInfo.y, _playerInfo.Name, {
+        this.name = this.scene.add.text(_x, _y, _playerInfo.Name, {
             fontFamily: 'Arial',
             color: '#ffffff'
         }).setFontSize(10).setOrigin(0.5);
@@ -106,67 +114,55 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             })
         }
 
-        setInterval(()=>{
-            socket.emit("moveing", PlayerInfo);
-        }, 5000)
+        // setInterval(()=>{
+        //     socket.emit("moveing", PlayerInfo);
+        // }, 5000)
 
     }
 
     update(cursors, keys) {
         if(cursors && keys){
             if ((cursors.up.isDown || keys.W.isDown) && (cursors.left.isDown || keys.A.isDown)) {
-                this.setVelocityX(-100);
-                this.setVelocityY(-100);
-                this.status = 'walking';
-                this.isUp = 'Left';
+                this.x = this.x - this.moveSpeed;
+                this.y = this.y - this.moveSpeed;
                 this.anims.play('CharacterLeft' + this.skin, true);
             }
             else if ((cursors.up.isDown || keys.W.isDown) && (cursors.right.isDown || keys.D.isDown)) {
-                this.setVelocityX(100);
-                this.setVelocityY(-100);
-                this.status = 'walking';
-                this.isUp = 'Right';
+                this.x = this.x + this.moveSpeed;
+                this.y = this.y - this.moveSpeed;
                 this.anims.play('CharacterRight' + this.skin, true);
             }
             else if ((cursors.down.isDown || keys.S.isDown) && (cursors.left.isDown || keys.A.isDown)) {
-                this.setVelocityX(-100);
-                this.setVelocityY(100);
-                this.status = 'walking';
-                this.isUp = 'Left';
+                this.x = this.x - this.moveSpeed;
+                this.y = this.y + this.moveSpeed;
                 this.anims.play('CharacterLeft' + this.skin, true);
             }
             else if ((cursors.down.isDown || keys.S.isDown) && (cursors.right.isDown || keys.D.isDown)) {
-                this.setVelocityX(100);
-                this.setVelocityY(100);
-                this.status = 'walking';
-                this.isUp = 'Right';
+                this.x = this.x + this.moveSpeed;
+                this.y = this.y + this.moveSpeed;
                 this.anims.play('CharacterRight' + this.skin, true);
             }
-            else if (cursors.left.isDown || keys.A.isDown) {
-                this.setVelocityX(-100);
+            else if (cursors.left.isDown || keys.A.isDown || this.isUp == 'Left' && this.status == 'walking') {
                 this.setVelocityY(0);
-                this.status = 'walkingLeft';
-                this.isUp = 'Left';
+                this.x = this.x - this.moveSpeed;
+                this.isUp = 'Left'
                 this.anims.play('CharacterLeft' + this.skin, true);
             }
-            else if (cursors.right.isDown || keys.D.isDown) {
-                this.setVelocityX(100);
+            else if (cursors.right.isDown || keys.D.isDown || this.isUp == 'Right' && this.status == 'walking') {
                 this.setVelocityY(0);
-                this.status = 'walkingRight';
-                this.isUp = 'Right';
+                this.isUp = 'Right'
+                this.x = this.x + this.moveSpeed;
                 this.anims.play('CharacterRight' + this.skin, true);
             }
-            else if (cursors.up.isDown || keys.W.isDown) {
+            else if (cursors.up.isDown || keys.W.isDown || this.isUp == 'Up' && this.status == 'walking') {
                 this.setVelocityX(0);
-                this.setVelocityY(-100);
-                this.status = 'walkingUp';
-                this.isUp = 'Up';
+                this.y = this.y - this.moveSpeed;
+                this.isUp = 'Up'
                 this.anims.play('CharacterUp' + this.skin, true);
             }
-            else if (cursors.down.isDown || keys.S.isDown) {
+            else if (cursors.down.isDown || keys.S.isDown || this.isUp == 'Down' && this.status == 'walking') {
                 this.setVelocityX(0);
-                this.setVelocityY(100);
-                this.status = 'walkingDown';
+                this.y = this.y + this.moveSpeed;
                 this.isUp = 'Down';
                 this.anims.play('CharacterDown' + this.skin, true);
             }
