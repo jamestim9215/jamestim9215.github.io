@@ -79,9 +79,9 @@ class Preload extends Phaser.Scene{
 
     create(){
 
-        this.scene.start("GamePlay");
+        // this.scene.start("GamePlay");
         // this.scene.start("GameHouse");
-        // this.scene.start("GameHome");
+        this.scene.start("GameHome");
     }
 
     update(){

@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
         for(var i=0; i<users.length; i++){
             if(users[i].Name === data.Name){
                 users[i] = data;
-                io.sockets.emit('moveing', user);
+                io.sockets.emit('moveing', data);
                 break;
             }
         }
@@ -60,7 +60,7 @@ io.on("connection", (socket) => {
         users.map(function(val, index){
             if(val.Name === user.Name){
                 console.log(reason + ": " + user.Name);
-                io.sockets.emit('logout', user);
+                io.sockets.emit('logout', user.Name);
                 users.splice(index, 1);
             }
         })
