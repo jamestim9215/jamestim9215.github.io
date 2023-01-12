@@ -10,7 +10,8 @@ console.log('app listen at ' + port)
 
 const io = new Server(app, {
     cors: {
-        origin: "http://127.0.0.1:5500",
+        // origin: "http://127.0.0.1:5500",
+        origin: "http://10.8.22.37:5500",
     }
 });
 
@@ -53,6 +54,10 @@ io.on("connection", (socket) => {
             }
         }
         
+    })
+
+    socket.on("allPlayer", (e) => {
+        io.sockets.emit('allPlayerInit', users);      
     })
 
     socket.on("disconnect", (reason) => {
