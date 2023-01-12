@@ -34,7 +34,8 @@ let PlayerInfo = {
     Name: "笨貓"
 }
 
-let socket = io('ws://localhost:5001');
+// let socket = io('ws://127.0.0.1:5001');
+let socket = io('ws://10.8.22.37:5001');
 socket.on("connect", () => {
     console.log("connect");
 });

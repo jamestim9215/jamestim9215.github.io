@@ -74,10 +74,10 @@ class GameHome extends Phaser.Scene {
 
                     /*登入失敗*/
                     socket.on('loginFail', function(){
-                        alert('Duplicate name already exists:0')
+                        alert('已經有人使用此名稱!')
                     })
             } else {
-                alert('Please enter a name :)')
+                alert('請輸入名稱 :)')
             }
 
             //test 
