@@ -12,7 +12,7 @@ class GamePlay extends Phaser.Scene {
     }
 
     create() {
-
+        console.log("IN");
 
         // 新增地圖
         this.map = this.make.tilemap({ key: 'map' });
@@ -28,7 +28,6 @@ class GamePlay extends Phaser.Scene {
         this.object = this.map.createLayer('Object', this.tileset, 0, 0);
 
 
-
         this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo,'Player');
         this.player.anims.play('CharacterIdleDown' + PlayerInfo.skin, true);
         this.player.isUser = true;
@@ -37,82 +36,58 @@ class GamePlay extends Phaser.Scene {
 
         /*加入聊天室提示*/
         socket.on('add', function (data) {
-            console.log("newUser", data.Name);
-            // _this.newPlayerInText = _this.add.text(30, 100, data.Name, {
-            //     fontFamily: 'Arial',
-            //     color: '#ffffff'
-            // }).setFontSize(14).setOrigin(0).setDepth(5);
-
-            // setTimeout(()=>{
-            //     _this.newPlayerInText.destroy();
-            // }, 5000)
-
+            console.log("New Player", data.Name, data.SocketID);
+            _this.otherPlayers.push(new Player(_this, data.x, data.y, data,'Other'));
         })
 
         this.isInit = false;
 
         socket.emit("allPlayer", null);
         socket.on('allPlayerInit', function (dataList) {
-            for(var key=0; key<dataList.length; key++){
-                console.log(dataList[key].Name , PlayerInfo.Name);
-                if(dataList[key].Name != PlayerInfo.Name) {
-                    var isNew = true;
-                    for(var index=0; index < _this.otherPlayers.length; index++){
-                        if(dataList[key].Name == _this.otherPlayers[index].name._text){
-                            isNew = false;
-                            break;
+            console.log("get all player ",dataList);
+            _this.otherPlayers = [];
+            if(dataList){
+                for(var key=0; key<dataList.length; key++){
+                    if(dataList[key].SocketID != PlayerInfo.SocketID) {
+                        var isNew = true;
+                        for(var index=0; index < _this.otherPlayers.length; index++){
+                            if(dataList[key].SocketID == _this.otherPlayers[index].SocketID){
+                                isNew = false;
+                                break;
+                            }
                         }
+                        if(isNew) _this.otherPlayers.push(new Player(_this, dataList[key].x, dataList[key].y, dataList[key],'Other'));
                     }
-                    if(isNew) _this.otherPlayers.push(new Player(_this, dataList[key].x, dataList[key].y, dataList[key],'Other'));
                 }
             }
-
             _this.isInit = true;
         })
 
-        
-
-        /*加入聊天室提示*/
         socket.on('moveing', function (data) {
-
             if(_this.isInit){
                 // var isNew = true;
-                // if (PlayerInfo.Name === data.Name) {
-                //     isNew = false;
-                // }
-                // for(var index=0; index < _this.otherPlayers.length; index++){
-                //     if (_this.otherPlayers[index].name._text == data.Name) {
-                //         isNew = false;
-                //         _this.moving(_this.otherPlayers[index], data.x, data.y);
-                //         break;
-                //     }
-                // }
-                // if (isNew) {
-                //     _this.otherPlayers.push(new Player(_this, 400, 400, data,'Other'));
-                // }
-
-                var isNew = true;
                 for(var index=0; index < _this.otherPlayers.length; index++){
-                    
-                    if(data.Name == _this.otherPlayers[index].name._text){
-                        isNew = false;
+                    if(data.SocketID == _this.otherPlayers[index].SocketID){
+                        // console.log(data,data.SocketID,_this.otherPlayers[index].SocketID);
+                        _this.otherPlayers[index].skin = data.skin;
                         _this.moving(_this.otherPlayers[index], data.x, data.y);
+                        
                         break;
                     }
                 }
-                if (PlayerInfo.Name === data.Name) {
-                    isNew = false;
-                }
-                if(isNew) _this.otherPlayers.push(new Player(_this, dataList[key].x, dataList[key].y, dataList[key],'Other'));
             }
 
         })
 
         /*離開提示*/
-        socket.on('logout', function (name) {
+        socket.on('logout', function (SocketID) {
+            console.log("Leave Player", SocketID);
             for(var index=0; index < _this.otherPlayers.length; index++){
-                if (_this.otherPlayers[index].name._text == name) {
-                    _this.otherPlayers[index].isDestroy = true;
+                if (_this.otherPlayers[index].SocketID == SocketID) {
+
+                    _this.otherPlayers[index].deletePlayer();
+                    _this.otherPlayers.splice(index, 1);
+
                     break;
                 }
             }
@@ -169,21 +144,24 @@ class GamePlay extends Phaser.Scene {
 
     moving(player, _x, _y) {
 
-        // console.log(player.x , player.y , _x, _y);
-        player.movePath = [];
         player.isMoving = false;
 
         var tileInfo0 = this.wall.getTileAtWorldXY(player.x, player.y, true);
         var tileInfo1 = this.wall.getTileAtWorldXY(_x, _y, true);
 
+        // if (player.isAutoMoving == false && (tileInfo0.x * 32 != Math.round(player.x - 16) || tileInfo0.y * 32 != Math.round(player.y - 16))) {
+        if (player.movePath.length == 0 && (tileInfo0.x * 32 != Math.round(player.x - 16) || tileInfo0.y * 32 != Math.round(player.y - 16))) {
+            player.x = tileInfo0.x * 32 + 16;
+            player.y = tileInfo0.y * 32 + 14;
+        }
 
-        player.movePath = this.wall.findTilePath(tileInfo0.x, tileInfo0.y, tileInfo1.x, tileInfo1.y, this.wall.layer.collideIndexes) || player.movePath;
+        var newPath =  this.wall.findTilePath(tileInfo0.x, tileInfo0.y, tileInfo1.x, tileInfo1.y, this.wall.layer.collideIndexes) || player.movePath;
+
+        player.movePath = newPath;
+        
         
 
-        if (player.isAutoMoving == false && (tileInfo0.x * 32 != Math.round(player.x - 16) || tileInfo0.y * 32 != Math.round(player.y - 16))) {
-            player.x = tileInfo0.x * 32 + 16;
-            player.y = tileInfo0.y * 32 + 16;
-        }
+        
     }
 
     update() {
@@ -194,12 +172,12 @@ class GamePlay extends Phaser.Scene {
         
 
         for(var index=0; index < this.otherPlayers.length; index++){
-            if(this.otherPlayers[index].isDestroy == true){
+            // if(this.otherPlayers[index].isDestroy == true){
                 
-                this.otherPlayers[index].deletePlayer();
-                this.otherPlayers.splice(index, 1);
-                break;
-            }
+            //     this.otherPlayers[index].deletePlayer();
+            //     this.otherPlayers.splice(index, 1);
+            //     break;
+            // }
             this.otherPlayers[index].update(false,false);
             this.updateMove(this.otherPlayers[index]);
         }
@@ -208,13 +186,13 @@ class GamePlay extends Phaser.Scene {
 
     updateMove(player){
         if (player.isMoving) {
-            if (player.isUp == 'Right' && player.nextTile.x * 32  <= Math.round(player.x - 14)) {
+            if (player.isUp == 'Right' && player.nextTile.x * 32  <= Math.round(player.x - 12)) {
                 player.isMoving = false;
                 player.status = 'Idle';
-            } else if (player.isUp == 'Left' && player.nextTile.x * 32 >= Math.round(player.x - 18)) {
+            } else if (player.isUp == 'Left' && player.nextTile.x * 32 >= Math.round(player.x - 19)) {
                 player.isMoving = false;
                 player.status = 'Idle';
-            } else if (player.isUp == 'Down' && player.nextTile.y * 32 <= Math.round(player.y - 14)) {
+            } else if (player.isUp == 'Down' && player.nextTile.y * 32 <= Math.round(player.y - 10)) {
                 player.isMoving = false;
                 player.status = 'Idle';
             } else if (player.isUp == 'Up' && player.nextTile.y * 32 >= Math.round(player.y - 18)) {
@@ -249,6 +227,17 @@ class GamePlay extends Phaser.Scene {
         if (tile.properties.type === 'Door') {
             PlayerInfo.x = this.player.x;
             PlayerInfo.y = this.player.y;
+
+            for(var index=0; index < this.otherPlayers.length; index++){
+                this.otherPlayers[index].deletePlayer();
+                this.otherPlayers.splice(index, 1);
+            }
+
+            socket.emit("LeaveRoom", PlayerInfo.SocketID);
+            socket.removeAllListeners();
+            socket.disconnect();
+
+            this.scene.stop();
             this.scene.start("GameHouse");
         }
     }

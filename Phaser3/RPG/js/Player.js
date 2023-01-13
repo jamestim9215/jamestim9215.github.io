@@ -5,18 +5,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         super(scene, _x, _y, _playerInfo.Name , 0)
         this.scene = scene
         this.scene.physics.world.enable(this)
-        this.scene.add.existing(this)
+        this.scene.add.existing(this);
+        this.setInteractive();
+
 
         //設定角色
         this.setScale(1);
         this.body.immovable = true;
 
+        this.SocketID = _playerInfo.SocketID;
         this.skin = _playerInfo.skin;
         this.status = 'Idle';
         this.isChangeSkin = false;
-
         this.isUser = false;
-        
         this.isMoving = false;
 
         this.isAutoMoving = false;
@@ -46,6 +47,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         // this.name = this.scene.add.bitmapText( x, y, "pixelFont",  _playerInfo.Name, 10).setOrigin(1,1);
 
+
+        console.log("add player : " +_playerInfo.Name);
         
         this.name = this.scene.add.text(_x, _y, _playerInfo.Name, {
             fontFamily: 'Arial',
@@ -53,23 +56,24 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }).setFontSize(10).setOrigin(0.5);
         // this.name.trackSprite(this, 0, 0, true);
 
-        this.setInteractive();
-
 
     }
 
+
+    deletePlayer(){
+        clearTimeout(this.setInter);
+        this.movePath = [];
+        this.name.destroy();
+        this.destroy();
+    }
+
     setAnims() {
-
         var keyName = 'Character' + this.skin;
-
         this.setTexture(keyName);
-
 
     }
 
     create() {
-        
-
         for (var i = 1; i <= 32; i++) {
 
             var keyName = 'Character' + i;
@@ -130,39 +134,21 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         var _this = this;
 
-        console.log("add player : " + PlayerInfo.Name);
-
-        // setInterval(()=>{
-        //     if((_this.isMoving || _this.isKeyMoving) && _this.isUser){
-        //         var _data = {
-        //             x:  _this.MoveX,
-        //             y:  _this.MoveY,
-        //             Name: PlayerInfo.Name,
-        //             skin: _this.skin,
-        //         }
-        //         socket.emit("moveing", _data);
-        //     }
-        // }, 500)
-
-        setInterval(()=> {
+        this.setInter = setInterval(()=> {
             if(_this.stand || _this.isKeyMoving || _this.isAutoMoving){
                 var _data = {
                     x:  _this.MoveX,
                     y:  _this.MoveY,
                     Name: _this.name._text,
                     skin: _this.skin,
+                    SocketID: _this.SocketID,
                 }
+                // _this._playerInfo = _data;
                 socket.emit("moveing", _data);
             }
-        }, 1000)
+        }, 500)
 
     }
-
-    deletePlayer(){
-        this.name.destroy();
-        this.destroy();
-    }
-
     update(cursors, keys) {
         this.moveSpeed = this.isAutoMoving? 100: 100;
         if(cursors && keys){

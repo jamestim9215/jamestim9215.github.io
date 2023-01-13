@@ -51,8 +51,6 @@ class GameHouse extends Phaser.Scene {
 
         this.cameras.main.setBounds(0, 0, config.width, config.width);
         this.cameras.main.startFollow(this.player, true);
-
-        var _this = this;
     }
 
     update() {
@@ -62,7 +60,21 @@ class GameHouse extends Phaser.Scene {
 
     hitEvent(sprite, tile){
         if(tile.properties.type==='Door'){
-            this.scene.start("GamePlay");
+            this.scene.stop();
+
+            var _this = this;
+
+            socket.connect();
+            socket.on("connect", () => {
+                console.log("connect",socket.id);
+                PlayerInfo.SocketID = socket.id;
+
+                socket.emit("login", PlayerInfo);
+                /*登入成功*/
+                socket.on('loginSuccess', function(data){
+                        _this.scene.start("GamePlay");
+                })
+            });
         }
         // map.removeTile(tile, 29, false);
 

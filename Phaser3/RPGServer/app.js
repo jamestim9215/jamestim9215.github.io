@@ -1,6 +1,7 @@
 //app.js
 /*建立http服務*/
 var app = require('http').createServer()
+const { log } = require('console');
 /*引入socket.io*/
 const { Server } = require("socket.io");
 
@@ -20,6 +21,8 @@ let users = [];
 // server-side
 io.on("connection", (socket) => {
 
+
+
     /*是否為新用戶*/
     let isNewPerson = true;
     /*當前登入用戶*/
@@ -28,17 +31,15 @@ io.on("connection", (socket) => {
     // console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     socket.on("login", (data) => {
         for(var i=0; i<users.length; i++){
-            isNewPerson = (users[i].Name === data.Name)? false : true;
+            isNewPerson = (users[i].SocketID === data.SocketID)? false : true;
         }
         if(isNewPerson){
             user = data
             users.push(data)
-            data.userCount = users.length
             /*發送 登入成功 事件*/
             socket.emit('loginSuccess', data)
             /*向所有連接的用戶廣播 add 事件*/
             io.sockets.emit('add', data);
-            io.sockets.emit('moveing', user);
         }else{
             /*發送 登入失敗 事件*/
             socket.emit('loginFail', '')
@@ -47,9 +48,9 @@ io.on("connection", (socket) => {
 
     socket.on("moveing", (data) => {
         for(var i=0; i<users.length; i++){
-            if(users[i].Name === data.Name){
+            if(users[i].SocketID === data.SocketID){
                 users[i] = data;
-                io.sockets.emit('moveing', data);
+                socket.broadcast.emit('moveing', data);
                 break;
             }
         }
@@ -57,15 +58,26 @@ io.on("connection", (socket) => {
     })
 
     socket.on("allPlayer", (e) => {
-        io.sockets.emit('allPlayerInit', users);      
+        console.log(users.length);
+        socket.emit('allPlayerInit', users);      
+    })
+
+    socket.on("LeaveRoom", (SocketID) => {
+        for(var i=0; i<users.length; i++){
+            if(users[i].SocketID === SocketID){
+                io.sockets.emit('logout', SocketID);
+                break;
+            }
+                
+        }   
     })
 
     socket.on("disconnect", (reason) => {
 
         users.map(function(val, index){
-            if(val.Name === user.Name){
+            if(val.SocketID === user.SocketID){
                 console.log(reason + ": " + user.Name);
-                io.sockets.emit('logout', user.Name);
+                io.sockets.emit('logout', user.SocketID);
                 users.splice(index, 1);
             }
         })

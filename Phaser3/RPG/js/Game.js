@@ -31,18 +31,26 @@ let PlayerInfo = {
     x: 400, 
     y: 400, 
     skin:1,
-    Name: "笨貓"
+    Name: "笨貓",
+    SocketID : null,
 }
 
-// let socket = io('ws://127.0.0.1:5001');
-let socket = io('ws://10.8.22.37:5001');
+let socket = io(
+    // 'ws://127.0.0.1:5001',
+    'ws://10.8.22.37:5001',
+    {
+        reconnection: true,
+    }
+);
+
 socket.on("connect", () => {
-    console.log("connect");
+    console.log("connect",socket.id);
+    PlayerInfo.SocketID = socket.id;
 });
 
 
 socket.on("disconnect", () => {
-    console.log("disconnect",socket.id); // undefined
+    console.log("disconnect"); // undefined
 });
 
 window.onload = function () {
