@@ -44,7 +44,7 @@ class GamePlay extends Phaser.Scene {
 
         socket.emit("allPlayer", null);
         socket.on('allPlayerInit', function (dataList) {
-            console.log("get all player ",dataList);
+            console.log(dataList);
             _this.otherPlayers = [];
             if(dataList){
                 for(var key=0; key<dataList.length; key++){
@@ -133,13 +133,11 @@ class GamePlay extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, 800, 800);
         this.cameras.main.startFollow(this.player, true);
 
-        this.input.on(Phaser.Input.Events.POINTER_UP, (pointer) => {
 
-            const { worldX, worldY } = pointer;
-
-            _this.moving(_this.player, worldX, worldY);
-
-        })
+        // this.input.on(Phaser.Input.Events.POINTER_UP, (pointer) => {
+        //     const { worldX, worldY } = pointer;
+        //     _this.moving(_this.player, worldX, worldY);
+        // })
     }
 
     moving(player, _x, _y) {
@@ -230,10 +228,10 @@ class GamePlay extends Phaser.Scene {
 
             for(var index=0; index < this.otherPlayers.length; index++){
                 this.otherPlayers[index].deletePlayer();
-                this.otherPlayers.splice(index, 1);
             }
 
-            socket.emit("LeaveRoom", PlayerInfo.SocketID);
+            this.otherPlayers = [];
+
             socket.removeAllListeners();
             socket.disconnect();
 

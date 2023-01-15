@@ -66,13 +66,12 @@ class GameHouse extends Phaser.Scene {
 
             socket.connect();
             socket.on("connect", () => {
-                console.log("connect",socket.id);
                 PlayerInfo.SocketID = socket.id;
 
                 socket.emit("login", PlayerInfo);
                 /*登入成功*/
                 socket.on('loginSuccess', function(data){
-                        _this.scene.start("GamePlay");
+                    _this.scene.start("GamePlay");
                 })
             });
         }

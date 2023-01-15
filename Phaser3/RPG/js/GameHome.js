@@ -64,31 +64,17 @@ class GameHome extends Phaser.Scene {
                     socket.emit("login", PlayerInfo);
                     /*登入成功*/
                     socket.on('loginSuccess', function(data){
-                        if(data.Name === userInput.value){
-                            userInput.style.visibility = "hidden";
-                            _this.scene.start("GamePlay");
-                        }else{
-                            alert('Wrong username:( Please try again!')
-                        }
+                        userInput.style.visibility = "hidden";
+                        _this.scene.start("GamePlay");
                     })
 
                     /*登入失敗*/
                     socket.on('loginFail', function(){
-                        alert('已經有人使用此名稱!')
+                        alert('登入失敗!')
                     })
             } else {
                 alert('請輸入名稱 :)')
             }
-
-            //test 
-            // PlayerInfo.Name = userInput.value;
-            // PlayerInfo.skin = _this.skinIndex;
-            // userInput.style.visibility = "hidden";
-            // _this.scene.start("GamePlay");
-            //test end
-
-            
-            
 
         });
 

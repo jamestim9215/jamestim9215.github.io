@@ -11,8 +11,8 @@ console.log('app listen at ' + port)
 
 const io = new Server(app, {
     cors: {
-        // origin: "http://127.0.0.1:5500",
-        origin: "http://10.8.22.37:5500",
+        origin: "http://127.0.0.1:5500",
+        // origin: "http://10.8.22.37:5500",
     }
 });
 
@@ -58,7 +58,6 @@ io.on("connection", (socket) => {
     })
 
     socket.on("allPlayer", (e) => {
-        console.log(users.length);
         socket.emit('allPlayerInit', users);      
     })
 
@@ -66,21 +65,21 @@ io.on("connection", (socket) => {
         for(var i=0; i<users.length; i++){
             if(users[i].SocketID === SocketID){
                 io.sockets.emit('logout', SocketID);
+                users.splice(i, 1);
                 break;
             }
                 
-        }   
+        }
     })
 
     socket.on("disconnect", (reason) => {
-
-        users.map(function(val, index){
-            if(val.SocketID === user.SocketID){
-                console.log(reason + ": " + user.Name);
-                io.sockets.emit('logout', user.SocketID);
-                users.splice(index, 1);
+        for(var i=0; i<users.length; i++){
+            if(users[i].SocketID === socket.id){
+                io.sockets.emit('logout', socket.id);
+                users.splice(i, 1);
+                break;
             }
-        })
+        }
     });
 
 });

@@ -28,16 +28,16 @@ var config = {
 }
 let userInput = document.getElementById('UserNameInput');
 let PlayerInfo = {
-    x: 400, 
-    y: 400, 
+    x: 100, 
+    y: 200, 
     skin:1,
     Name: "笨貓",
     SocketID : null,
 }
 
 let socket = io(
-    // 'ws://127.0.0.1:5001',
-    'ws://10.8.22.37:5001',
+    'ws://127.0.0.1:5001',
+    // 'ws://10.8.22.37:5001',
     {
         reconnection: true,
     }
@@ -64,10 +64,14 @@ window.onload = function () {
             document.querySelector("canvas").style.height = _h + "px";
         } else {
             if ((window_Width / window_Height) > (32 / 48)) {
+                console.log("???");
                 document.querySelector("canvas").style.width = _w + "px";
                 document.querySelector("canvas").style.height = _h + "px";
             } else {
-                document.querySelector("canvas").style.width = "100%";
+                console.log("???2");
+                document.querySelector("canvas").style.width = window_Width + "px";
+                document.querySelector("canvas").style.height = window_Width / 32 * 48 + "px";
+                // document.querySelector("canvas").style.width = "100%";
             }
         }
     }, 50)
