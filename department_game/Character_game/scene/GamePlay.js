@@ -2,6 +2,8 @@ import { config, PlayerInfo } from '../config'
 // import { socket } from '../socket'
 import Player from '../scene/Player.js'
 import Slime from '../scene/Slime.js'
+import Sword from '../scene/Sword.js'
+import Smear from '../scene/Smear.js'
 
 
 export default class GamePlay extends Phaser.Scene {
@@ -13,7 +15,6 @@ export default class GamePlay extends Phaser.Scene {
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('TilesetMap', 'tiles');
 
-        this.wall = this.map.createLayer('Wall', this.tileset, 0, 0);
         this.slimeWall = this.map.createLayer('SlimeWall', this.tileset, 0, 0);
         this.target = this.map.createLayer('Target', this.tileset, 0, 0);
         this.water = this.map.createLayer('Sea', this.tileset, 0, 0);
@@ -28,6 +29,19 @@ export default class GamePlay extends Phaser.Scene {
         this.player.anims.play('CharacterIdleDown' + PlayerInfo.skin, true);
         this.player.isUser = true;
 
+        this.playerContainer = this.add.container(PlayerInfo.x, PlayerInfo.y);
+        this.playerContainer.setSize(16, 28);
+        this.physics.world.enable(this.playerContainer);
+        this.playerContainer.add(this.player);
+        this.sword = new Sword(this);
+        this.smear = new Smear(this);
+        this.playerContainer.add(this.sword);
+        this.playerContainer.add(this.smear);
+        this.swordHitbox = this.add.rectangle(0,0,16,16,0xffffff,0).setOrigin(0.5,0.5);
+        this.physics.add.existing(this.swordHitbox);
+        this.playerContainer.add(this.swordHitbox);
+
+        this.wall = this.map.createLayer('Wall', this.tileset, 0, 0);
 
         this.otherPlayers = [];
 
@@ -57,17 +71,14 @@ export default class GamePlay extends Phaser.Scene {
             this.slimeGroup.push(new Slime(this, this.slimeObject[i].x, this.slimeObject[i].y))
             this.physics.add.collider(this.slimeGroup[i], this.slimeWall);
         }
-
-
-
-        this.physics.add.collider(this.player, this.wall);
-
-        this.physics.add.collider(this.player, this.target, this.hitEvent, null, this);
+        this.physics.add.collider(this.playerContainer, this.wall);
+        // this.physics.add.collider(this.player, this.wall);
+        this.physics.add.collider(this.playerContainer, this.target, this.hitEvent, null, this);
 
         // this.waterWall.debug = true;
 
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keys = this.input.keyboard.addKeys('A,W,D,S,C');
+        this.keys = this.input.keyboard.addKeys('A,W,D,S,C,Z');
         var _this = this;
 
 
@@ -124,6 +135,9 @@ export default class GamePlay extends Phaser.Scene {
         
 
         this.player.update(this.cursors, this.keys);
+        this.sword.update(this.cursors, this.keys);
+        this.smear.update(this.cursors, this.keys);
+
         this.updateMove(this.player);
         for (var index = 0; index < this.otherPlayers.length; index++) {
             this.otherPlayers[index].update(false, false);

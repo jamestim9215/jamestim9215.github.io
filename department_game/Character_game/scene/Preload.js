@@ -81,6 +81,14 @@ export default class Preload extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 64
         });
+        this.load.spritesheet('Sword', "./assets/images/Character/GumdropSource_03/SpriteSheets/Sword_FG.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
+        this.load.spritesheet('Smear', "./assets/images/Character/GumdropSource_03/SpriteSheets/Smear.png", {
+            frameWidth: 64,
+            frameHeight: 64
+        });
 
 
         this.load.spritesheet('Slime', "./assets/images/Slime 32x32.png", {
