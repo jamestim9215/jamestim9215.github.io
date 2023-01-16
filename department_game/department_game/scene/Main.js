@@ -78,6 +78,7 @@ export default class Main extends Phaser.Scene {
         },Phaser.Math.Between(2,10) * 1000)
     
     }
+    
     showName(user, npc){
         console.log(npc.name);
         clearTimeout(npc.timer);
