@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="5">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="11">
  <editorsettings>
   <export target="GameMap.json" format="json"/>
  </editorsettings>
@@ -398,6 +398,21 @@
    <point/>
   </object>
   <object id="4" x="524.938" y="684.37">
+   <point/>
+  </object>
+  <object id="6" x="457.333" y="157.104">
+   <point/>
+  </object>
+  <object id="7" x="438.694" y="469.981">
+   <point/>
+  </object>
+  <object id="8" x="138.465" y="496.609">
+   <point/>
+  </object>
+  <object id="9" x="669.69" y="648.388">
+   <point/>
+  </object>
+  <object id="10" x="341.502" y="720.949">
    <point/>
   </object>
  </objectgroup>

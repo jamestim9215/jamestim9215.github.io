@@ -4,6 +4,7 @@ import Player from '../scene/Player.js'
 import Slime from '../scene/Slime.js'
 import Sword from '../scene/Sword.js'
 import Smear from '../scene/Smear.js'
+import { Game } from 'phaser'
 
 
 export default class GamePlay extends Phaser.Scene {
@@ -15,6 +16,7 @@ export default class GamePlay extends Phaser.Scene {
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('TilesetMap', 'tiles');
 
+        this.wall = this.map.createLayer('Wall', this.tileset, 0, 0);
         this.slimeWall = this.map.createLayer('SlimeWall', this.tileset, 0, 0);
         this.target = this.map.createLayer('Target', this.tileset, 0, 0);
         this.water = this.map.createLayer('Sea', this.tileset, 0, 0);
@@ -25,23 +27,28 @@ export default class GamePlay extends Phaser.Scene {
         this.tree2 = this.map.createLayer('Tree2', this.tileset, 0, 0);
         this.object = this.map.createLayer('Object', this.tileset, 0, 0);
 
-        this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo, 'Player');
-        this.player.anims.play('CharacterIdleDown' + PlayerInfo.skin, true);
-        this.player.isUser = true;
-
         this.playerContainer = this.add.container(PlayerInfo.x, PlayerInfo.y);
-        this.playerContainer.setSize(16, 28);
+        this.playerContainer.setSize(16, 26);
         this.physics.world.enable(this.playerContainer);
-        this.playerContainer.add(this.player);
+
+        this.player = new Player(this, PlayerInfo.x, PlayerInfo.y, PlayerInfo, 'Player');
+        this.player.anims.play('CharacterIdleDown', true);
+        this.player.isUser = true;
+        
         this.sword = new Sword(this);
         this.smear = new Smear(this);
+
+        this.swordHitbox = this.add.rectangle(0, 0, 16, 16, 0xffffff, 0).setOrigin(0.5, 0.5);
+        this.swordHitbox.setActive(false).setVisible(false);
+        this.swordHitbox.isAttack = false;
+        this.swordHitbox.attackNum = 0;
+        this.physics.add.existing(this.swordHitbox);
+
+        this.playerContainer.add(this.player);
         this.playerContainer.add(this.sword);
         this.playerContainer.add(this.smear);
-        this.swordHitbox = this.add.rectangle(0,0,16,16,0xffffff,0).setOrigin(0.5,0.5);
-        this.physics.add.existing(this.swordHitbox);
         this.playerContainer.add(this.swordHitbox);
 
-        this.wall = this.map.createLayer('Wall', this.tileset, 0, 0);
 
         this.otherPlayers = [];
 
@@ -63,46 +70,36 @@ export default class GamePlay extends Phaser.Scene {
         this.slimeWall.setCollisionByExclusion([-1])
         this.target.setCollisionByExclusion([-1])
 
-        
+
         this.slimeObject = this.map.objects[0].objects;
         this.slimeGroup = [];
 
-        for (var i = 0; i < this.slimeObject.length; i++) {
-            this.slimeGroup.push(new Slime(this, this.slimeObject[i].x, this.slimeObject[i].y))
-            this.physics.add.collider(this.slimeGroup[i], this.slimeWall);
-        }
-        this.physics.add.collider(this.playerContainer, this.wall);
-        // this.physics.add.collider(this.player, this.wall);
-        this.physics.add.collider(this.playerContainer, this.target, this.hitEvent, null, this);
+        this.slimes = this.add.group();
 
-        // this.waterWall.debug = true;
+        for (var i = 0; i < this.slimeObject.length; i++) {
+            var slime = new Slime(this, this.slimeObject[i].x, this.slimeObject[i].y);
+
+            this.slimes.add(slime)
+        }
+
+        this.slimes.children.entries.forEach((slime)=>{
+            this.physics.add.collider(slime, this.slimeWall);
+            this.physics.add.overlap(this.swordHitbox, slime,this.hitSlime)
+        })
+
+
+
+        this.physics.add.collider(this.playerContainer, this.wall);
+        // this.physics.add.collider(this.playerContainer, this.target, this.hitEvent, null, this);
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys('A,W,D,S,C,Z');
-        var _this = this;
-
-
-        this.input.keyboard.on('keydown', function (event) {
-            if (event.key === 'c') {
-                PlayerInfo.skin = PlayerInfo.skin + 1;
-                if (PlayerInfo.skin > 32) PlayerInfo.skin = 1;
-                _this.player.skin = PlayerInfo.skin;
-                _this.player.setAnims();
-            }
-        });
 
 
 
         this.cameras.main.setBounds(0, 0, 800, 800);
-        this.cameras.main.startFollow(this.player, true);
-
-        // setTimeout(() => {
-        //     _this.input.on(Phaser.Input.Events.POINTER_UP, (pointer) => {
-        //         const { worldX, worldY } = pointer;
-        //         _this.moving(_this.player, worldX, worldY);
-        //     })
-        // }, 3000);
-
+        this.cameras.main.startFollow(this.playerContainer, true);
 
 
 
@@ -132,7 +129,6 @@ export default class GamePlay extends Phaser.Scene {
 
     update() {
 
-        
 
         this.player.update(this.cursors, this.keys);
         this.sword.update(this.cursors, this.keys);
@@ -143,10 +139,15 @@ export default class GamePlay extends Phaser.Scene {
             this.otherPlayers[index].update(false, false);
             this.updateMove(this.otherPlayers[index]);
         }
+
+
         
-        for (var i = 0; i < this.slimeGroup.length; i++) {
-            this.slimeGroup[i].update();
-        }
+        this.slimes.children.entries.forEach((slime)=>{
+            slime.update();
+        })
+
+
+
 
     }
 
@@ -186,7 +187,28 @@ export default class GamePlay extends Phaser.Scene {
             }
         }
     }
+    hitSlime(swordHitbox, slime) {
+        if(swordHitbox.isAttack){
+            if(swordHitbox.attackNum == 0){
+                swordHitbox.attackNum =  swordHitbox.attackNum +1;
+                
+                console.log(swordHitbox, slime);
+                setTimeout(()=>{
+                    slime.hp = slime.hp - 10;
+                    slime.slimeHpText.text = slime.hp;
+                    slime.setTint(0xff0000);
+                    setTimeout(()=>{
+                        slime.clearTint();
+                        if(slime.hp <= 0){
+                            slime.deleteSlime();
 
+                        }
+                    },50)
+                    
+                },200)
+            }
+        }
+    }
 
     hitEvent(sprite, tile) {
         console.log(tile.properties.type);

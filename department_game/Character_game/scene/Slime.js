@@ -7,7 +7,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene
         this.scene.physics.world.enable(this)
         this.scene.add.existing(this);
-        this.setInteractive();
+        // this.setInteractive();
 
 
         //設定角色
@@ -23,6 +23,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
 
         this.timer = null;
         this.status = 1;
+        this.hp = 50 * (Math.floor(Math.random() * 3) + 1);
 
 
         this.setSize(26, 20);
@@ -31,13 +32,19 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.changeCharacterAnims();
 
         this.body.immovable = true;
+       
+        
+        this.slimeHpText = this.scene.add.text(this.x, this.y - 15, this.hp, {
+            fontFamily: 'Arial',
+            color: '#ff0000'
+        }).setFontSize(10).setOrigin(0.5);
 
     }
 
     deleteSlime(){
         clearTimeout(this.timer);
         // this.movePath = [];
-        // this.name.destroy();
+        this.slimeHpText.destroy();
         this.destroy();
     }
 
@@ -50,6 +57,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
             var animsType = Math.floor(Math.random() * 2) + 1;
             var vel_x = (Math.round(Math.random()) * 2 - 1) * 30
             var vel_y = (Math.round(Math.random()) * 2 - 1) * 10
+
             _this.status = animsType;
             if(_this.status == 1){
                 // console.log("Idel");
@@ -67,17 +75,18 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     
     create() {
         if((Math.round(Math.random()) * 2 - 1) == 1) this.setFlipX(true);
-       
-
         
 
     }
-    update() {
+    update() {;
         if (this.body.velocity.x < 0) {
             this.setFlipX(true);
+            
         } else if (this.body.velocity.x > 0) {
             this.setFlipX(false);
         }
+        this.slimeHpText.x = this.x;
+        this.slimeHpText.y = this.y - 15;
         // this.anims.play('SlimeJump',true)
        
     }

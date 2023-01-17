@@ -31,8 +31,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setSize(16, 32);
         this.setOffset(24, 16);
 
-        this.moveSpeed = 50;
-        this.runSpeed = 3;
+        this.moveSpeed = 100;
+        this.runSpeed = 2;
         this.isAttack = false;
     }
 
@@ -84,25 +84,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.create({
             key: "SmearWalkDown",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [40, 41, 42, 43, 44, 45, 46, 47] }),
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         })
         this.anims.create({
             key: "SmearWalkRight",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [50, 51, 52, 53, 54, 55, 56, 57] }),
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         })
         this.anims.create({
             key: "SmearWalkUp",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [60, 61, 62, 63, 64, 65, 66, 67] }),
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         })
         this.anims.create({
             key: "SmearWalkLeft",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [70, 71, 72, 73, 74, 75, 76, 77] }),
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         })
 
@@ -162,10 +162,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         //攻擊事件
         this.scene.input.keyboard.on('keydown', function (event) {
-            if (event.key === 'z') {
+            if (event.key === 'z' && _this.isAttack == false) {
                 _this.isAttack = true;
                 _this.stand = true;
-                _this.status = 'Idle'
+                _this.status = 'Attack'
                 if (_this.isUp == 'Up') {
                     _this.anims.play('SmearAttackUp', true);
                 }
@@ -188,91 +188,61 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     update(cursors, keys) {
         if (cursors && keys) {
             this.isAutoMoving = false;
-            if ((cursors.up.isDown || keys.W.isDown) && (cursors.left.isDown || keys.A.isDown) && !keys.Z.isDown) {
-                this.isKeyMoving = true;
-                this.stand = false;
-                this.scene.playerContainer.body.setVelocityX(-this.moveSpeed / 3 * 2);
-                this.scene.playerContainer.body.setVelocityY(-this.moveSpeed / 3 * 2);
+            if (cursors.up.isDown && cursors.left.isDown && !keys.Z.isDown) {
                 this.anims.play('SmearWalkLeft', true);
             }
-            else if ((cursors.up.isDown || keys.W.isDown) && (cursors.right.isDown || keys.D.isDown) && !keys.Z.isDown) {
-                this.isKeyMoving = true;
-                this.stand = false;
-                this.scene.playerContainer.body.setVelocityX(this.moveSpeed / 3 * 2);
-                this.scene.playerContainer.body.setVelocityY(-this.moveSpeed / 3 * 2);
+            else if (cursors.up.isDown  && cursors.right.isDown && !keys.Z.isDown) {
                 this.anims.play('SmearWalkRight', true);
             }
-            else if ((cursors.down.isDown || keys.S.isDown) && (cursors.left.isDown || keys.A.isDown) && !keys.Z.isDown) {
-                this.isKeyMoving = true;
-                this.stand = false;
-                this.scene.playerContainer.body.setVelocityX(-this.moveSpeed / 3 * 2);
-                this.scene.playerContainer.body.setVelocityY(this.moveSpeed / 3 * 2);
+            else if (cursors.down.isDown && cursors.left.isDown && !keys.Z.isDown) {
                 this.anims.play('SmearWalkLeft', true);
             }
-            else if ((cursors.down.isDown || keys.S.isDown) && (cursors.right.isDown || keys.D.isDown) && !keys.Z.isDown) {
-                this.isKeyMoving = true;
-                this.stand = false;
-                this.scene.playerContainer.body.setVelocityX(this.moveSpeed / 3 * 2);
-                this.scene.playerContainer.body.setVelocityY(this.moveSpeed / 3 * 2);
+            else if (cursors.down.isDown && cursors.right.isDown && !keys.Z.isDown) {
                 this.anims.play('SmearWalkRight', true);
             }
-            else if ((cursors.left.isDown || keys.A.isDown || this.isUp == 'Left' && this.status == 'walking') && !keys.Z.isDown) {
+            else if (cursors.left.isDown && !keys.Z.isDown) {
                 if (cursors.shift.isDown) {
-                    this.scene.playerContainer.body.setVelocityX(-this.moveSpeed * this.runSpeed);
                     this.anims.play('SmearRunLeft', true);
                 } else {
-                    this.scene.playerContainer.body.setVelocityX(-this.moveSpeed);
                     this.anims.play('SmearWalkLeft', true);
                 }
                 this.scene.playerContainer.body.setVelocityY(0);
                 this.isUp = 'Left';
                 this.isKeyMoving = false;
-                this.stand = false;
+                
             }
-            else if ((cursors.right.isDown || keys.D.isDown || this.isUp == 'Right' && this.status == 'walking') && !keys.Z.isDown) {
+            else if (cursors.right.isDown && !keys.Z.isDown) {
                 if (cursors.shift.isDown) {
-                    this.scene.playerContainer.body.setVelocityX(this.moveSpeed * this.runSpeed);
                     this.anims.play('SmearRunRight', true);
                 } else {
-                    this.scene.playerContainer.body.setVelocityX(this.moveSpeed);
                     this.anims.play('SmearWalkRight', true);
                 }
-                this.scene.playerContainer.body.setVelocityY(0);
                 this.isUp = 'Right';
                 this.isKeyMoving = false;
-                this.stand = false;
+                
             }
-            else if ((cursors.up.isDown || keys.W.isDown || this.isUp == 'Up' && this.status == 'walking') && !keys.Z.isDown) {
+            else if (cursors.up.isDown && !keys.Z.isDown) {
                 if (cursors.shift.isDown) {
-                    this.scene.playerContainer.body.setVelocityY(-this.moveSpeed * this.runSpeed);
                     this.anims.play('SmearRunUp', true);
                 } else {
-                    this.scene.playerContainer.body.setVelocityY(-this.moveSpeed);
                     this.anims.play('SmearWalkUp', true);
                 }
-                this.scene.playerContainer.body.setVelocityX(0);
                 this.isUp = 'Up';
                 this.isKeyMoving = false;
-                this.stand = false;
             }
-            else if ((cursors.down.isDown || keys.S.isDown || this.isUp == 'Down' && this.status == 'walking') && !keys.Z.isDown) {
+            else if (cursors.down.isDown && !keys.Z.isDown) {
                 if (cursors.shift.isDown) {
-                    this.scene.playerContainer.body.setVelocityY(this.moveSpeed * this.runSpeed);
                     this.anims.play('SmearRunDown', true);
                 } else {
-                    this.scene.playerContainer.body.setVelocityY(this.moveSpeed);
                     this.anims.play('SmearWalkDown', true);
                 }
-                this.scene.playerContainer.body.setVelocityX(0);
                 this.isUp = 'Down';
                 this.isKeyMoving = false;
-                this.stand = false;
             }
             else{ 
                 if(this.isAttack == false){ 
 
                     this.isKeyMoving = false;
-                    this.stand = true;
                     this.status = 'Idle'
 
                     if (this.isUp == 'Up') {
@@ -288,8 +258,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('SmearIdleLeft', true);
                     }
                 }
-                this.scene.playerContainer.body.setVelocityX(0);
-                this.scene.playerContainer.body.setVelocityY(0);
             }
         }
     }
