@@ -9,8 +9,8 @@ let PlayerInfo = {
 
 
 let config = {
-  width: 320,
-  height: 480,
+  width: 480,
+  height: 320,
   backgroundColor: 0x000000,
   scale: {
       // mode: Phaser.Scale.FIT,

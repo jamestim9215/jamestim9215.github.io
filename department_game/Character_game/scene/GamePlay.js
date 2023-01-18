@@ -189,10 +189,8 @@ export default class GamePlay extends Phaser.Scene {
     }
     hitSlime(swordHitbox, slime) {
         if(swordHitbox.isAttack){
-            if(swordHitbox.attackNum == 0){
-                swordHitbox.attackNum =  swordHitbox.attackNum +1;
-                
-                console.log(swordHitbox, slime);
+            if(swordHitbox.attackNum == 0 && slime.hp > 0){
+                swordHitbox.attackNum =  1;
                 setTimeout(()=>{
                     slime.hp = slime.hp - 10;
                     slime.slimeHpText.text = slime.hp;
@@ -200,12 +198,16 @@ export default class GamePlay extends Phaser.Scene {
                     setTimeout(()=>{
                         slime.clearTint();
                         if(slime.hp <= 0){
-                            slime.deleteSlime();
-
+                            slime.setVelocity(0, 0);
+                            slime.setTint(0x000000);
+                            setTimeout(()=>{
+                                slime.clearTint();
+                                slime.deleteSlime();
+                            },500)
                         }
                     },50)
                     
-                },200)
+                },100)
             }
         }
     }

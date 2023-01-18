@@ -82,12 +82,23 @@ export default class Preload extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.spritesheet('Boss', "./assets/images/Boss/Boss.png", {
+            frameWidth: 96,
+            frameHeight: 96
+        });
+        this.load.spritesheet('AttackCicle', "./assets/images/Effects/weaponhit.png", {
+            frameWidth: 100,
+            frameHeight: 100
+        });
 
 
         // 載入地圖資源
 
         this.load.tilemapTiledJSON('map', './assets/map/GameMap.json')
         this.load.image('tiles', './assets/images/Map/Serene_Village_32x32.png')
+        
+        this.load.tilemapTiledJSON('mapBoss', './assets/map/BossMap.json')
+        this.load.image('tilesBoss', './assets/images/Full.png')
 
 
     }
@@ -178,25 +189,50 @@ export default class Preload extends Phaser.Scene {
         this.anims.create({
             key: "CharacterAttackDown",
             frames: this.anims.generateFrameNumbers(keyName, { frames: [120, 121, 122, 123, 124, 125] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "CharacterAttackRight",
             frames: this.anims.generateFrameNumbers(keyName, { frames: [130, 131, 132, 133, 134, 135] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "CharacterAttackUp",
             frames: this.anims.generateFrameNumbers(keyName, { frames: [140, 141, 142, 143, 144, 145] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "CharacterAttackLeft",
             frames: this.anims.generateFrameNumbers(keyName, { frames: [150, 151, 152, 153, 154, 155] }),
-            frameRate: 20,
+            frameRate: 30,
+            repeat: 0
+        })
+        //攻擊 往左揮動
+        this.anims.create({
+            key: "CharacterAttackLDown",
+            frames: this.anims.generateFrameNumbers(keyName, { frames: [160, 161, 162, 163, 164, 165] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "CharacterAttackLRight",
+            frames: this.anims.generateFrameNumbers(keyName, { frames: [170, 171, 172, 173, 174, 175] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "CharacterAttackLUp",
+            frames: this.anims.generateFrameNumbers(keyName, { frames: [180, 181, 182, 183, 184, 185] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "CharacterAttackLLeft",
+            frames: this.anims.generateFrameNumbers(keyName, { frames: [190, 191, 192, 193, 194, 195] }),
+            frameRate: 30,
             repeat: 0
         })
 
@@ -285,25 +321,50 @@ export default class Preload extends Phaser.Scene {
         this.anims.create({
             key: "SwordAttackDown",
             frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [120, 121, 122, 123, 124, 125] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SwordAttackRight",
             frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [130, 131, 132, 133, 134, 135] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SwordAttackUp",
             frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [140, 141, 142, 143, 144, 145] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SwordAttackLeft",
             frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [150, 151, 152, 153, 154, 155] }),
-            frameRate: 20,
+            frameRate: 30,
+            repeat: 0
+        })
+        //攻擊 往左揮動
+        this.anims.create({
+            key: "SwordAttackLDown",
+            frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [160, 161, 162, 163, 164, 165] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SwordAttackLRight",
+            frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [170, 171, 172, 173, 174, 175] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SwordAttackLUp",
+            frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [180, 181, 182, 183, 184, 185] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SwordAttackLLeft",
+            frames: this.anims.generateFrameNumbers(keyNameSword, { frames: [190, 191, 192, 193, 194, 195] }),
+            frameRate: 30,
             repeat: 0
         })
 
@@ -392,25 +453,50 @@ export default class Preload extends Phaser.Scene {
         this.anims.create({
             key: "SmearAttackDown",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [120, 121, 122, 123, 124, 125] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SmearAttackRight",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [130, 131, 132, 133, 134, 135] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SmearAttackUp",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [140, 141, 142, 143, 144, 145] }),
-            frameRate: 20,
+            frameRate: 30,
             repeat: 0
         })
         this.anims.create({
             key: "SmearAttackLeft",
             frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [150, 151, 152, 153, 154, 155] }),
-            frameRate: 20,
+            frameRate: 30,
+            repeat: 0
+        })
+        //攻擊 往左揮動
+        this.anims.create({
+            key: "SmearAttackLDown",
+            frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [160, 161, 162, 163, 164, 165] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SmearAttackLRight",
+            frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [170, 171, 172, 173, 174, 175] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SmearAttackLUp",
+            frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [180, 181, 182, 183, 184, 185] }),
+            frameRate: 30,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "SmearAttackLLeft",
+            frames: this.anims.generateFrameNumbers(keyNameSmear, { frames: [190, 191, 192, 193, 194, 195] }),
+            frameRate: 30,
             repeat: 0
         })
 
@@ -429,7 +515,32 @@ export default class Preload extends Phaser.Scene {
             repeat: -1
         })
 
-        this.scene.start("GamePlay");
+
+        
+
+        this.anims.create({
+            key: "BossIdle",
+            frames: this.anims.generateFrameNumbers("Boss", { frames: [0, 1, 2, 3] }),
+            frameRate: 5,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'AttackCicleRun',
+            frames: this.anims.generateFrameNumbers('AttackCicle', { start: 0, end: 35 }),
+            frameRate: 15,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'AttackWater',
+            frames: this.anims.generateFrameNumbers('Boss', { frames: [21,22,23,22,23,22,23,22,23,22,23,22,23,24,25]}),
+            frameRate: 60,
+            repeat: -1
+        });
+
+        this.scene.start("GameBoss");
+        // this.scene.start("GamePlay");
         // this.scene.start("GameHouse");
         // this.scene.start("GameHome");
     }
