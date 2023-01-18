@@ -37,11 +37,15 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
             ]
         }
 
-        this.bossStatus = "Idle"; // Idle, Fight , Change
-        this.bossFightMode = 1;  // 1, 2 ,3
+        this.bossStatus = "Attack"; // Idle, Attack , Change
+        this.bossFightMode = 0;  // 1, 2 ,3
 
-        this.attack1PosList = [];
-        this.isAttackInit = false;
+
+        //mode 1 參數
+        this.mode1_attack1PosList = [];
+        this.mode1_isAttackInit = false;
+        this.mode1_attackTimes = 0;
+        this.mode1_attackMaxTimes = 2;
 
 
         this.setSize(23, 38);
@@ -93,12 +97,13 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
             }
         }
 
-        // if(this.scene.GameStatus == "Start"){
+        if(this.scene.GameStatus == "Start"){
+            if(this.bossFightMode == 1){
+                if(this.bossStatus == 'Idle') this.anims.play('BossIdle',true);
+                if(this.bossStatus == 'Attack') this.anims.play('BossIdle2',true);
+            }
 
-            
-
-
-        // }
+        }
 
     }
 }

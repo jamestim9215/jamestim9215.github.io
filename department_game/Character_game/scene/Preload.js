@@ -526,6 +526,13 @@ export default class Preload extends Phaser.Scene {
         })
 
         this.anims.create({
+            key: "BossIdle2",
+            frames: this.anims.generateFrameNumbers("Boss", { frames: [0,0,0,0,0, 15, 15, 16, 16,16,] }),
+            frameRate: 5,
+            repeat: 0
+        })
+
+        this.anims.create({
             key: 'AttackCicleRun',
             frames: this.anims.generateFrameNumbers('AttackCicle', { start: 0, end: 35 }),
             frameRate: 15,
@@ -534,7 +541,7 @@ export default class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: 'AttackWater',
-            frames: this.anims.generateFrameNumbers('Boss', { frames: [21,22,23,22,23,22,23,22,23,22,23,22,23,24,25]}),
+            frames: this.anims.generateFrameNumbers('Boss', { frames: [20,21,22,23,22,23,22,23,22,23,22,23,22,23,24,24,24]}),
             frameRate: 60,
             repeat: -1
         });
