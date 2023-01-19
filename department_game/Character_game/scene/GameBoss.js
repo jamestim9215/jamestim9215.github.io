@@ -436,9 +436,11 @@ export default class GameBoss extends Phaser.Scene {
             this.player.status = 'Idle';
 
             if (this.player.hp <= 0) {
+                this.player.HpText.text =  "Hp: 0";
                 this.gameoverText.visible = true;
             }
             if (this.player.hp > 0) {
+                this.boss.HpText.text =  "Boss Hp: 0";
                 this.gameWinText.visible = true;
             }
         }
