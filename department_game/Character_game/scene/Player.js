@@ -21,6 +21,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.isUser = false;
         this.isMoving = false;
 
+        this.hp = 100; 
+
 
 
         this.movePath = [];
@@ -42,6 +44,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.isAttack = false;
         this.AttackTimes = 0;
 
+        
+        
+        this.HpText = this.scene.add.text(64, 30, "Hp: " + this.hp , {
+            fontFamily: 'Arial',
+            color: '#ffffff'
+        }).setFontSize(16).setOrigin(0);
+
     }
 
 
@@ -61,6 +70,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     }
     update(cursors, keys) {
+        this.HpText.text =  "Hp: " + this.hp;
+
         var _this = this;
         // this.moveSpeed = this.isAutoMoving? 100: 100;
         if (cursors && keys) {

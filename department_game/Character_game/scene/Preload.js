@@ -47,7 +47,7 @@ export default class Preload extends Phaser.Scene {
 
 
         //載入背景
-        this.load.image('background', "assets/images/BG.png");
+        this.load.image('background', "./assets/images/BG.png");
 
 
         //載入按鈕
@@ -58,7 +58,7 @@ export default class Preload extends Phaser.Scene {
 
 
         //載入字體
-        this.load.bitmapFont("pixelFont", "assets/fonts/PressStart2P.png", "assets/fonts/PressStart2P.xml");
+        this.load.bitmapFont("pixelFont", "./assets/fonts/PressStart2P.png", "./assets/fonts/PressStart2P.xml");
 
 
         //載入所有角色Skin
@@ -78,15 +78,33 @@ export default class Preload extends Phaser.Scene {
             frameHeight: 64
         });
 
-        this.load.spritesheet('Slime', "./assets/images/Slime 32x32.png", {
+        this.load.spritesheet('Slime', "./assets/images/SlimeRed.png", {
             frameWidth: 32,
             frameHeight: 32
         });
+        // this.load.spritesheet('SlimeBlue', "./assets/images/SlimeBlue.png", {
+        //     frameWidth: 32,
+        //     frameHeight: 32
+        // });
+
+
         this.load.spritesheet('Boss', "./assets/images/Boss/Boss.png", {
             frameWidth: 96,
             frameHeight: 96
         });
+        this.load.spritesheet('BossEgg', "./assets/images/Boss/egg.png", {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.spritesheet('AttackCicle', "./assets/images/Effects/weaponhit.png", {
+            frameWidth: 100,
+            frameHeight: 100
+        });
+        this.load.spritesheet('AttackShock', "./assets/images/Effects/shock.png", {
+            frameWidth: 140,
+            frameHeight: 50
+        });
+        this.load.spritesheet('AttackFire', "./assets/images/Effects/fire.png", {
             frameWidth: 100,
             frameHeight: 100
         });
@@ -96,7 +114,7 @@ export default class Preload extends Phaser.Scene {
 
         this.load.tilemapTiledJSON('map', './assets/map/GameMap.json')
         this.load.image('tiles', './assets/images/Map/Serene_Village_32x32.png')
-        
+
         this.load.tilemapTiledJSON('mapBoss', './assets/map/BossMap.json')
         this.load.image('tilesBoss', './assets/images/Full.png')
 
@@ -516,7 +534,7 @@ export default class Preload extends Phaser.Scene {
         })
 
 
-        
+
 
         this.anims.create({
             key: "BossIdle",
@@ -527,8 +545,21 @@ export default class Preload extends Phaser.Scene {
 
         this.anims.create({
             key: "BossIdle2",
-            frames: this.anims.generateFrameNumbers("Boss", { frames: [0,0,0,0,0, 15, 15, 16, 16,16,] }),
+            frames: this.anims.generateFrameNumbers("Boss", { frames: [0, 0, 0, 0, 0, 15, 15, 16, 16, 16,] }),
             frameRate: 5,
+            repeat: 0
+        })
+
+        this.anims.create({
+            key: "BossIdleHide",
+            frames: this.anims.generateFrameNumbers("Boss", { frames: [15,16,17,18,19] }),
+            frameRate: 10,
+            repeat: 0
+        })
+        this.anims.create({
+            key: "BossIdleShow",
+            frames: this.anims.generateFrameNumbers("Boss", { frames: [19,18,17,16,15] }),
+            frameRate: 10,
             repeat: 0
         })
 
@@ -538,12 +569,31 @@ export default class Preload extends Phaser.Scene {
             frameRate: 15,
             repeat: -1
         });
+        this.anims.create({
+            key: 'AttackShockRun',
+            frames: this.anims.generateFrameNumbers('AttackShock', { start: 0, end: 6 }),
+            frameRate: 15,
+            repeat: -1
+        });
 
         this.anims.create({
             key: 'AttackWater',
-            frames: this.anims.generateFrameNumbers('Boss', { frames: [20,21,22,23,22,23,22,23,22,23,22,23,22,23,24,24,24]}),
-            frameRate: 60,
+            frames: this.anims.generateFrameNumbers('Boss', { frames: [20, 21, 22, 23, 22, 23, 22, 23, 22, 23, 22, 23, 22, 23, 24, 24, 24] }),
+            frameRate: 5,
             repeat: -1
+        });
+
+        this.anims.create({
+            key: 'EggRun',
+            frames: this.anims.generateFrameNumbers('BossEgg', { frames: [0,0,1,0,2,0,1,0,2,0,0] }),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'AttackFireRun',
+            frames: this.anims.generateFrameNumbers('AttackFire', { start: 0, end: 71 }),
+            frameRate: 30,
+            repeat: 0
         });
 
         this.scene.start("GameBoss");

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="22">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="191">
  <editorsettings>
   <export target="BossMap.json" format="json"/>
  </editorsettings>
@@ -77,61 +77,181 @@
 0,14,14,14,14,14,14,14,14,14,14,14,14,14,0
 </data>
  </layer>
- <objectgroup id="5" name="BossAttack1">
-  <object id="1" x="112.5" y="143">
+ <objectgroup id="5" name="BossAttack1" visible="0">
+  <object id="29" x="96.5" y="128.5">
    <point/>
   </object>
-  <object id="2" x="113" y="239">
+  <object id="30" x="97" y="159.5">
    <point/>
   </object>
-  <object id="3" x="367.5" y="240.5">
+  <object id="31" x="95.5" y="192">
    <point/>
   </object>
-  <object id="4" x="368.5" y="145">
+  <object id="32" x="96.5" y="224.5">
    <point/>
   </object>
-  <object id="6" x="176" y="143.5">
+  <object id="33" x="96" y="256">
    <point/>
   </object>
-  <object id="7" x="175.5" y="239.5">
+  <object id="34" x="128.5" y="254">
    <point/>
   </object>
-  <object id="8" x="303.5" y="142.5">
+  <object id="35" x="128" y="225.5">
    <point/>
   </object>
-  <object id="9" x="305" y="239.5">
+  <object id="36" x="128.5" y="192.5">
    <point/>
   </object>
-  <object id="10" x="240" y="241.5">
+  <object id="37" x="129" y="128">
    <point/>
   </object>
-  <object id="11" x="240" y="143">
+  <object id="38" x="128.5" y="159.5">
    <point/>
   </object>
-  <object id="12" x="144.5" y="190.5">
+  <object id="39" x="160.5" y="128">
    <point/>
   </object>
-  <object id="13" x="337" y="190">
+  <object id="40" x="192.5" y="129">
    <point/>
   </object>
-  <object id="14" x="210.5" y="190.5">
+  <object id="41" x="224" y="128">
    <point/>
   </object>
-  <object id="15" x="273" y="191.5">
+  <object id="42" x="256" y="127.5">
+   <point/>
+  </object>
+  <object id="43" x="288" y="126.5">
+   <point/>
+  </object>
+  <object id="44" x="319.5" y="126">
+   <point/>
+  </object>
+  <object id="45" x="351.5" y="127.5">
+   <point/>
+  </object>
+  <object id="46" x="383.5" y="127">
+   <point/>
+  </object>
+  <object id="47" x="160" y="160">
+   <point/>
+  </object>
+  <object id="48" x="192.5" y="159">
+   <point/>
+  </object>
+  <object id="49" x="224" y="159">
+   <point/>
+  </object>
+  <object id="50" x="257" y="160">
+   <point/>
+  </object>
+  <object id="51" x="288" y="159.5">
+   <point/>
+  </object>
+  <object id="52" x="319.5" y="159.5">
+   <point/>
+  </object>
+  <object id="53" x="352" y="159.5">
+   <point/>
+  </object>
+  <object id="54" x="383.5" y="159">
+   <point/>
+  </object>
+  <object id="55" x="160" y="192.5">
+   <point/>
+  </object>
+  <object id="56" x="160" y="224">
+   <point/>
+  </object>
+  <object id="57" x="160.5" y="255.5">
+   <point/>
+  </object>
+  <object id="58" x="192" y="256.5">
+   <point/>
+  </object>
+  <object id="59" x="225" y="256">
+   <point/>
+  </object>
+  <object id="60" x="255.5" y="255">
+   <point/>
+  </object>
+  <object id="61" x="288" y="256.5">
+   <point/>
+  </object>
+  <object id="62" x="319.5" y="256">
+   <point/>
+  </object>
+  <object id="63" x="353" y="255">
+   <point/>
+  </object>
+  <object id="64" x="386" y="255.5">
+   <point/>
+  </object>
+  <object id="65" x="384.5" y="224">
+   <point/>
+  </object>
+  <object id="66" x="385" y="191.5">
+   <point/>
+  </object>
+  <object id="67" x="351.5" y="192.5">
+   <point/>
+  </object>
+  <object id="68" x="352.5" y="223.5">
+   <point/>
+  </object>
+  <object id="69" x="319.5" y="222.5">
+   <point/>
+  </object>
+  <object id="70" x="319.5" y="193">
+   <point/>
+  </object>
+  <object id="71" x="289" y="191">
+   <point/>
+  </object>
+  <object id="72" x="287" y="225">
+   <point/>
+  </object>
+  <object id="73" x="256" y="225">
+   <point/>
+  </object>
+  <object id="74" x="256.5" y="192.5">
+   <point/>
+  </object>
+  <object id="75" x="223.5" y="192">
+   <point/>
+  </object>
+  <object id="76" x="223.5" y="224">
+   <point/>
+  </object>
+  <object id="77" x="191.5" y="223.5">
+   <point/>
+  </object>
+  <object id="128" x="192" y="191.5">
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="7" name="BossAttack2">
-  <object id="16" x="399.5" y="111">
+ <objectgroup id="10" name="BossAttack2">
+  <object id="183" x="112.333" y="144.333">
    <point/>
   </object>
-  <object id="17" x="400.5" y="274">
+  <object id="184" x="112" y="240.333">
    <point/>
   </object>
-  <object id="18" x="79" y="274">
+  <object id="185" x="368" y="143.667">
    <point/>
   </object>
-  <object id="20" x="79.5" y="112.5">
+  <object id="186" x="367.333" y="240.667">
+   <point/>
+  </object>
+  <object id="187" x="191.667" y="191">
+   <point/>
+  </object>
+  <object id="188" x="288" y="191.667">
+   <point/>
+  </object>
+  <object id="189" x="239.667" y="256.667">
+   <point/>
+  </object>
+  <object id="190" x="239" y="128">
    <point/>
   </object>
  </objectgroup>
