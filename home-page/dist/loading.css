@@ -1,0 +1,177 @@
+.loading-cover {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: #222;
+  z-index: 9999;
+  opacity: 1;
+  transition: 0.5s all;
+}
+
+.loading-cover.d-none{
+  opacity: 0;
+}
+
+.loading-cover > .loading {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: calc(50vh - 15px);
+}
+.loading-cover > .loading > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.loading-cover > .loading > div > div:nth-child(1) {
+  position: absolute;
+  height: 2px;
+  left: 0;
+  top: 0;
+  background: #d9ff00;
+
+  animation-name: loadingTop;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+.loading-cover > .loading > div > div:nth-child(2) {
+  position: absolute;
+  width: 2px;
+  right: 0;
+  background: #d9ff00;
+
+  animation-name: loadingRight;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+.loading-cover > .loading > div > div:nth-child(3) {
+  position: absolute;
+  height: 2px;
+  background: #d9ff00;
+  bottom: 0;
+  right: 0;
+
+  animation-name: loadingBottom;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+.loading-cover > .loading > div > div:nth-child(4) {
+  position: absolute;
+  width: 2px;
+  left: 0;
+  bottom: 0;
+  background: #d9ff00;
+
+  animation-name: loadingLeft;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loadingTop {
+  0% {
+    left: 0;
+    width: 0%;
+  }
+  25% {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  50% {
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+  75% {
+    left: auto;
+    right: 0;
+    width: 0%;
+  }
+  100% {
+    left: 0;
+    right: auto;
+    width: 0%;
+  }
+}
+
+@keyframes loadingRight {
+  0% {
+    top: 0;
+    height: 0;
+  }
+  25% {
+    top: 0;
+    height: 0;
+  }
+  50% {
+    bottom: 0;
+    height: 100%;
+  }
+  75% {
+    bottom: 0;
+    height: 100%;
+  }
+  100% {
+    top: auto;
+    bottom: 0;
+    height: 0;
+  }
+}
+
+@keyframes loadingBottom {
+  0% {
+    right: 0;
+    width: 0;
+  }
+  25% {
+    right: 0;
+    width: 100%;
+  }
+  50% {
+    right: 0;
+    width: 100%;
+  }
+  75% {
+    left: 0;
+    width: 0%;
+  }
+  100% {
+    right: 0;
+    width: 0%;
+  }
+}
+@keyframes loadingLeft {
+  0% {
+    bottom: 0;
+    height: 0;
+  }
+  25% {
+    top: auto;
+    bottom: 0;
+    height: 0;
+  }
+  50% {
+    bottom: 0;
+    height: 100%;
+  }
+  75% {
+    bottom: 0;
+    height: 100%;
+  }
+  100% {
+    top: 0;
+    height: 0;
+  }
+}
