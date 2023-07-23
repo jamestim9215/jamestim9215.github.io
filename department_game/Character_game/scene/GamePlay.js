@@ -121,10 +121,6 @@ export default class GamePlay extends Phaser.Scene {
         var newPath = this.wall.findTilePath(tileInfo0.x, tileInfo0.y, tileInfo1.x, tileInfo1.y, this.wall.layer.collideIndexes) || player.movePath;
 
         player.movePath = newPath;
-
-
-
-
     }
 
     update() {

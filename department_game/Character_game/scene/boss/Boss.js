@@ -23,7 +23,7 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
 
         this.timer = null;
         this.status = 1;
-        this.hp = 3000;
+        this.hp = 2000;
 
         this.bossPos = {
             idle: [
@@ -44,8 +44,23 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
         //mode 1 參數
         this.mode1_attack1PosList = [];
         this.mode1_isAttackInit = false;
+        this.mode1_attackNum = 12;
         this.mode1_attackTimes = 0;
-        this.mode1_attackMaxTimes = 2;
+        this.mode1_attackMaxTimes = 1;
+
+        this.mode1_waitTime = 4.5;
+
+        //mode 2 參數
+        this.mode2_attack1PosList = [];
+        this.mode2_isAttackInit = false;
+        this.mode2_attackFlyTimes = 0;
+        this.mode2_attackFlyMaxTimes = 6;
+        this.mode2_attackTimes = 0;
+        this.mode2_attackMaxTimes = 1;
+
+        this.mode2_waitTime = 4.5;
+
+        this.isBossHitPlayer = 0;
 
 
         this.setSize(23, 38);
@@ -56,7 +71,7 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
         this.body.immovable = true;
        
         
-        this.HpText = this.scene.add.text(64, 30, "Boss Hp: " + this.hp , {
+        this.HpText = this.scene.add.text(320, 30, "Boss Hp: " + this.hp , {
             fontFamily: 'Arial',
             color: '#ff0000'
         }).setFontSize(16).setOrigin(0);
@@ -86,6 +101,8 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
     }
     update() {
 
+        this.HpText.text =  "Boss Hp: " + this.hp;
+
         if(this.scene.GameStatus == "Load"){
             if(this.y <= 60){
                 this.setVelocityY(60);
@@ -101,6 +118,12 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
             if(this.bossFightMode == 1){
                 if(this.bossStatus == 'Idle') this.anims.play('BossIdle',true);
                 if(this.bossStatus == 'Attack') this.anims.play('BossIdle2',true);
+            }
+            if(this.bossFightMode == 2){
+                if(this.bossStatus == 'Idle') this.anims.play('BossIdle',true);
+                if(this.bossStatus == 'IdleAttack') this.anims.play('BossIdle2',true);
+                if(this.bossStatus == 'Hide') this.anims.play('BossIdleHide',true);
+                if(this.bossStatus == 'Show') this.anims.play('BossIdleShow',true);
             }
 
         }
