@@ -11,8 +11,10 @@ defineProps({});
 const theme = ref(1);
 const MainPageType = ref(2);
 
+
 const nowPage = ref('');
 const route = useRoute();
+const router = useRouter();
 
 const item = computed(() => {
 
@@ -35,11 +37,11 @@ watch(route, (to) => {
       <div class="login-box">
         <div class="login-div">
           <div class="title">Login</div>
-          <button>
+          <button @click="router.push('/backend')">
             <img src="@/assets/images/FB.png" alt="">
             Facebook
           </button>
-          <button>
+          <button @click="router.push('/backend')">
             <img src="@/assets/images/GOOGLE.png" alt="">
             Sign in with Google
           </button>

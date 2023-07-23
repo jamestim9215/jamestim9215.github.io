@@ -6,6 +6,10 @@ import Login from '@/views/Login.vue'
 import MainPage from '@/views/MainPage.vue'
 import DetailPage from '@/views/DetailPage.vue'
 
+import BackendHome from '@/views/backend/BackendHome.vue'
+
+
+
 const routes = [
   {
     path: '/',
@@ -33,6 +37,13 @@ const routes = [
       watchParam: 'item' ,
       watchParam: 'id' //
     }
+  },
+
+  
+  {
+    path: '/backend',
+    name: 'backend',
+    component: BackendHome,
   },
 
 ]
