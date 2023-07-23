@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap');
+
+:root {
+  --theme-color-1: #FFA800;
+  --theme-color-1-01: rgba(255, 168, 0, 0.1);
+  --theme-color-1-02: rgba(255, 168, 0, 0.2);
+  --theme-color-1-03: rgba(255, 168, 0, 0.3);
+  --theme-color-1-04: rgba(255, 168, 0, 0.4);
+  --theme-color-1-05: rgba(255, 168, 0, 0.5);
+  --theme-color-1-06: rgba(255, 168, 0, 0.6);
+  --theme-color-1-07: rgba(255, 168, 0, 0.7);
+  --theme-color-1-08: rgba(255, 168, 0, 0.8);
+  --theme-color-1-09: rgba(255, 168, 0, 0.9);
+
+  --theme-color-2: #6079BA;
+  --theme-color-2-01: rgba(96, 121, 186, 0.1);
+  --theme-color-2-02: rgba(96, 121, 186, 0.2);
+  --theme-color-2-03: rgba(96, 121, 186, 0.3);
+  --theme-color-2-04: rgba(96, 121, 186, 0.4);
+  --theme-color-2-05: rgba(96, 121, 186, 0.5);
+  --theme-color-2-06: rgba(96, 121, 186, 0.6);
+  --theme-color-2-07: rgba(96, 121, 186, 0.7);
+  --theme-color-2-08: rgba(96, 121, 186, 0.8);
+  --theme-color-2-09: rgba(96, 121, 186, 0.9);
+
+  --theme-color-3: #FF4D4D;
+
+  --text-color: #ffffff;
+
+
+
+}
+
+html, body{
+  padding: 0;
+  margin: 0;
+  background: #F1F3F2;
+  font-family: 'Titillium Web','Microsoft JhengHei', sans-serif;
+  overflow-x: hidden;
+}
+
+.container{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1300px;
+}
+
+
+.container-fluid{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.material-icons,
+.material-icons-outlined{
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover{
+  color: var(--theme-color-1);
+}
