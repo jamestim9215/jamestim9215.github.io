@@ -1,0 +1,83 @@
+{
+  "Message": {
+    "noticeboard": "Notice Board",
+    "somebody": "Some Body",
+    "player": "Player",
+    "stone": "Stone",
+    "xxx": "",
+    "aorusgirl": "",
+    "boejgar": "Bo Je Gar"
+  },
+  "TpadBtn": {
+    "next": "Next",
+    "in": "In",
+    "getweapon": "Get",
+    "out": "Out",
+    "cancel": "Cancel"
+  },
+  "Room": {
+    "//Notice": "",
+    "room_notice_1_1": "",
+    "room_notice_1_2": "",
+    "//NpcAORUSgirl": "",
+    "room_npc_1_1": "",
+    "room_npc_1_2": "",
+    "room_npc_1_3": "",
+    "room_npc_1_4": "",
+    "room_npc_1_5": "",
+    "room_npc_2_1": "",
+    "room_npc_2_2": "",
+    "room_npc_2_3": "",
+    "room_npc_2_4": "",
+    "room_npc_2_5": "",
+    "room_npc_2_6": "",
+    "room_npc_2_7": "",
+    "room_npc_2_8": "",
+    "room_npc_3_1": "",
+    "room_npc_3_2": "",
+    "room_npc_4_1": "",
+    "room_npc_4_2": "",
+    "room_npc_4_3": "",
+    "room_npc_4_4": "",
+    "room_npc_4_5": "",
+    "room_npc_4_6": ""
+  },
+  "Main": {
+    "//門": "",
+    "main_house_1_1": "",
+    "main_house_1_2": "",
+    "main_house_1_3": "",
+    "//石頭": "",
+    "main_bossdoor_0_1": "",
+    "main_bossdoor_0_2": "",
+    "main_bossdoor_1_1": "",
+    "main_bossdoor_1_2": "",
+    "main_bossdoor_2_1": "",
+    "main_bossdoor_2_2": ""
+  },
+  "Home": {
+    "//Npc": "",
+    "home_quest_1_1": "",
+    "home_quest_1_2": "",
+    "home_quest_1_3": "",
+    "home_quest_1_4": "",
+    "home_quest_1_5": "",
+    "home_quest_1_6": "",
+    "home_quest_2_1": "",
+    "home_quest_2_2": "",
+    "home_quest_2_3": "",
+    "home_quest_2_4": "",
+    "home_quest_2_5": "",
+    "home_quest_2_6": "",
+    "home_quest_3_1": "",
+    "home_quest_3_2": "",
+    "home_quest_3_3": "",
+    "home_quest_3_4": "",
+    "home_quest_3_5": ""
+  },
+  "Boss": {
+    "//boss": "",
+    "boss_quest_1_1": "",
+    "boss_quest_1_2": ""
+  }
+}

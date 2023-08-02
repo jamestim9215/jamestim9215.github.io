@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="140">
+ <editorsettings>
+  <export target="CyberMain.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="CyberMain1Tiled" tilewidth="32" tileheight="32" tilecount="152" columns="8">
+  <image source="../images/32CyberPop Vexed/Mid-TownA5.png" trans="ff00ff" width="256" height="608"/>
+ </tileset>
+ <tileset firstgid="153" name="CyberMain2Tiled" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../images/32CyberPop Vexed/Mid-TownD.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="409" name="CyberMain3Tiled" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../images/32CyberPop Vexed/Mid-TownB.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="665" name="CyberMain4Tiled" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../images/32CyberPop Vexed/Mid-TownC.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="921" name="CyberMain5Tiled" tilewidth="32" tileheight="32" tilecount="208" columns="13">
+  <image source="../images/32CyberPop Vexed/CP_WallsA4.png" trans="ff00ff" width="416" height="512"/>
+ </tileset>
+ <layer id="1" name="Ground" width="20" height="20" locked="1">
+  <data encoding="csv">
+401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,
+401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,
+401,401,64,64,64,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,
+401,401,64,64,64,64,64,64,64,64,64,401,401,401,401,401,401,401,401,401,
+401,401,105,1,1,1,1,1,1,1,1,1,1,1,1,1,64,401,401,401,
+401,401,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,64,401,
+401,401,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,401,
+401,401,401,401,401,401,401,401,401,9,9,9,9,9,9,9,9,9,9,401,
+401,401,401,401,401,401,401,401,401,401,9,9,9,401,401,401,401,401,401,401,
+401,401,401,401,401,401,401,401,401,401,9,9,9,401,401,401,401,401,401,57,
+57,57,57,57,57,57,57,57,57,57,9,9,9,9,9,9,9,9,9,401,
+57,57,57,57,57,57,57,57,57,57,9,9,9,9,9,9,9,9,9,401,
+57,57,57,57,57,57,57,57,57,57,105,108,9,9,9,9,9,9,9,401,
+57,57,57,1,1,1,1,1,1,105,9,9,9,9,9,9,9,9,9,401,
+57,9,105,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,401,
+57,105,9,9,9,9,9,57,57,57,57,9,9,9,9,9,9,9,9,401,
+57,9,9,9,9,9,57,57,57,57,401,401,9,9,9,9,9,9,9,401,
+57,9,9,9,9,9,57,57,57,57,401,401,401,9,9,9,9,9,9,401,
+57,9,9,9,9,9,57,57,57,57,401,401,401,401,9,9,9,9,9,401,
+57,57,57,57,57,57,57,57,57,57,401,401,401,401,401,401,401,401,401,401
+</data>
+ </layer>
+ <layer id="2" name="Map" width="20" height="20">
+  <data encoding="csv">
+0,0,62,975,975,975,975,975,975,975,975,975,975,975,975,975,63,0,0,0,
+0,69,66,33,37,33,33,33,34,35,36,33,33,33,33,37,67,975,63,0,
+0,369,74,41,45,41,41,41,42,43,44,41,19,20,21,45,75,37,67,68,
+0,369,89,49,53,49,49,49,50,51,52,49,27,28,29,53,83,45,75,373,
+0,369,97,0,0,0,0,0,0,0,0,0,0,0,0,0,100,53,83,373,
+0,369,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,373,
+0,385,386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,388,389,
+0,0,402,403,403,403,403,403,403,386,265,266,388,403,403,403,403,403,404,405,
+0,0,0,0,0,0,0,0,0,73,220,221,80,0,0,0,0,0,0,0,
+0,0,58,975,975,975,975,975,975,66,236,237,71,975,975,975,975,975,975,935,
+0,62,66,33,34,35,36,37,38,74,236,237,79,33,33,33,33,33,33,373,
+65,66,74,41,42,43,44,45,46,82,252,253,87,41,41,41,41,22,41,373,
+369,74,89,49,50,51,52,53,54,97,0,0,100,49,49,49,49,30,49,373,
+369,82,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,373,
+369,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,373,
+369,0,0,0,0,0,388,403,403,403,949,386,0,0,0,0,0,0,0,373,
+369,0,0,0,0,0,373,0,0,0,0,402,386,0,0,0,0,0,0,373,
+369,0,0,0,0,388,389,0,0,0,0,0,402,386,0,0,0,0,0,373,
+923,949,950,951,25,961,0,0,0,0,0,0,0,402,386,0,0,0,388,389,
+962,962,962,923,403,922,405,0,0,0,0,0,0,0,402,403,403,403,404,405
+</data>
+ </layer>
+ <layer id="3" name="Object" width="20" height="20" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,153,154,155,0,0,0,0,0,0,0,0,613,614,0,0,0,
+0,0,257,258,169,170,171,497,498,0,0,501,0,0,0,629,630,0,0,0,
+0,0,273,274,0,0,0,513,514,515,516,517,0,0,0,645,646,482,0,0,
+0,0,289,290,0,0,0,529,530,531,532,533,0,0,0,291,662,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,453,0,306,0,0,453,159,160,571,572,573,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,469,175,176,587,588,589,0,
+0,351,352,0,0,0,0,0,0,0,0,0,0,0,0,0,603,604,605,0,
+0,367,368,0,0,0,0,0,0,0,0,0,0,0,671,672,0,303,304,0,
+0,383,384,0,0,0,0,0,0,0,0,0,0,0,687,688,0,319,320,0,
+0,399,400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,335,336,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="6" name="UserPosition">
+  <object id="122" x="144.622" y="575.35">
+   <properties>
+    <property name="Position" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="123" x="559.5" y="439">
+   <properties>
+    <property name="Position" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="134" x="432" y="154">
+   <properties>
+    <property name="Position" value="2"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Event">
+  <object id="120" name="Home" x="559.636" y="395.864">
+   <properties>
+    <property name="EventId" value="main_house_1_1,main_house_2_1"/>
+    <property name="ObjectId" value="2"/>
+   </properties>
+  </object>
+  <object id="131" name="Npc" x="277.903" y="654.563" width="25.1932" height="23.875">
+   <properties>
+    <property name="EventId" value=""/>
+    <property name="ObjectId" value=""/>
+    <property name="Type" value="AORUSGirl1"/>
+   </properties>
+  </object>
+  <object id="132" name="Npc" x="306.903" y="655.063" width="25.1932" height="23.875">
+   <properties>
+    <property name="EventId" value=""/>
+    <property name="ObjectId" value=""/>
+    <property name="Type" value="AORUSGirl2"/>
+   </properties>
+  </object>
+  <object id="133" name="Npc" x="335.903" y="655.563" width="25.1932" height="23.875">
+   <properties>
+    <property name="EventId" value=""/>
+    <property name="ObjectId" value=""/>
+    <property name="Type" value="AORUSGirl3"/>
+   </properties>
+  </object>
+  <object id="135" name="Boss" x="432.5" y="114">
+   <properties>
+    <property name="EventId" value="main_bossdoor_0_1,main_bossdoor_1_1,main_bossdoor_2_1"/>
+    <property name="ObjectId" value="6"/>
+   </properties>
+  </object>
+  <object id="136" name="Room" x="143" y="609">
+   <properties>
+    <property name="EventId" value="main_room_1_1"/>
+    <property name="ObjectId" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Wall">
+  <object id="1" x="94.6667" y="224" width="194.667" height="18.6667"/>
+  <object id="2" x="416" y="224.667" width="160" height="18.6667"/>
+  <object id="3" x="13.1667" y="575.833" width="113.333" height="19.1667"/>
+  <object id="4" x="480" y="608.667" width="95.9997" height="18.6667"/>
+  <object id="5" x="222.667" y="481" width="129.333" height="18.6667"/>
+  <object id="6" x="192.667" y="511.333" width="17.333" height="33.6667"/>
+  <object id="7" x="608.667" y="375.667" width="17.333" height="200"/>
+  <object id="8" x="13.3335" y="445.5" width="17.333" height="161.167"/>
+  <object id="9" x="44.0002" y="85.8788" width="17.333" height="106.121"/>
+  <object id="10" x="56.6665" y="100.333" width="455" height="18.6667"/>
+  <object id="11" x="352.666" y="102.667" width="27.334" height="34"/>
+  <object id="12" x="542.333" y="117.333" width="34.6673" height="18.6667"/>
+  <object id="13" x="608.667" y="146.833" width="17.333" height="45.167"/>
+  <object id="14" x="415.333" y="382.333" width="192.667" height="18.6667"/>
+  <object id="15" x="95.9695" y="382.333" width="191.031" height="18.6667"/>
+  <object id="17" x="170.333" y="578.667">
+   <ellipse/>
+  </object>
+  <object id="18" x="180.333" y="569.333">
+   <ellipse/>
+  </object>
+  <object id="19" x="189" y="560" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="20" x="191" y="559.333">
+   <ellipse/>
+  </object>
+  <object id="21" x="199" y="550.667">
+   <ellipse/>
+  </object>
+  <object id="22" x="468.667" y="610.667">
+   <ellipse/>
+  </object>
+  <object id="23" x="456.667" y="600">
+   <ellipse/>
+  </object>
+  <object id="25" x="443.75" y="586.5">
+   <ellipse/>
+  </object>
+  <object id="27" x="432.875" y="574.625">
+   <ellipse/>
+  </object>
+  <object id="28" x="421.75" y="563.25">
+   <ellipse/>
+  </object>
+  <object id="29" x="410.75" y="552.75">
+   <ellipse/>
+  </object>
+  <object id="30" x="399.625" y="541.5">
+   <ellipse/>
+  </object>
+  <object id="31" x="387.375" y="530.375">
+   <ellipse/>
+  </object>
+  <object id="32" x="376.875" y="520">
+   <ellipse/>
+  </object>
+  <object id="33" x="366.875" y="508.75">
+   <ellipse/>
+  </object>
+  <object id="34" x="355.875" y="498">
+   <ellipse/>
+  </object>
+  <object id="35" x="348.25" y="491.125">
+   <ellipse/>
+  </object>
+  <object id="36" x="203.333" y="512.334">
+   <ellipse/>
+  </object>
+  <object id="37" x="213.333" y="503">
+   <ellipse/>
+  </object>
+  <object id="38" x="224" y="493">
+   <ellipse/>
+  </object>
+  <object id="39" x="584" y="612.334">
+   <ellipse/>
+  </object>
+  <object id="40" x="594" y="603">
+   <ellipse/>
+  </object>
+  <object id="41" x="602.667" y="593.667" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="42" x="604.667" y="593">
+   <ellipse/>
+  </object>
+  <object id="43" x="612.667" y="584.334">
+   <ellipse/>
+  </object>
+  <object id="44" x="382.333" y="254.166" width="20.333" height="111.667"/>
+  <object id="45" x="302.834" y="255.916" width="16.833" height="110.167"/>
+  <object id="46" x="285.841" y="391.303">
+   <ellipse/>
+  </object>
+  <object id="47" x="293.295" y="383.788">
+   <ellipse/>
+  </object>
+  <object id="48" x="299.667" y="366" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="49" x="303.417" y="374.333">
+   <ellipse/>
+  </object>
+  <object id="53" x="47.3636" y="425.394" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="55" x="52.3636" y="428.061">
+   <ellipse/>
+  </object>
+  <object id="56" x="60.2724" y="420.849">
+   <ellipse/>
+  </object>
+  <object id="57" x="69.2724" y="413.515">
+   <ellipse/>
+  </object>
+  <object id="58" x="77.9394" y="404.182" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="59" x="78.9394" y="403.515">
+   <ellipse/>
+  </object>
+  <object id="60" x="87.9394" y="394.849">
+   <ellipse/>
+  </object>
+  <object id="61" x="415.947" y="390.864">
+   <ellipse/>
+  </object>
+  <object id="62" x="400.947" y="374.822">
+   <ellipse/>
+  </object>
+  <object id="64" x="408.989" y="383.364">
+   <ellipse/>
+  </object>
+  <object id="65" x="309.959" y="259.5">
+   <ellipse/>
+  </object>
+  <object id="66" x="294.959" y="243.458">
+   <ellipse/>
+  </object>
+  <object id="67" x="287.417" y="235.333">
+   <ellipse/>
+  </object>
+  <object id="68" x="303" y="252">
+   <ellipse/>
+  </object>
+  <object id="69" x="394.841" y="258.303">
+   <ellipse/>
+  </object>
+  <object id="70" x="402.295" y="250.788">
+   <ellipse/>
+  </object>
+  <object id="71" x="410.417" y="242" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="72" x="412.417" y="241.333">
+   <ellipse/>
+  </object>
+  <object id="73" x="418.417" y="234.542">
+   <ellipse/>
+  </object>
+  <object id="74" x="586.424" y="225.761">
+   <ellipse/>
+  </object>
+  <object id="75" x="593.878" y="218.246">
+   <ellipse/>
+  </object>
+  <object id="76" x="604" y="208.791">
+   <ellipse/>
+  </object>
+  <object id="77" x="610" y="202">
+   <ellipse/>
+  </object>
+  <object id="78" x="84.6257" y="225.833">
+   <ellipse/>
+  </object>
+  <object id="79" x="69.6257" y="209.791">
+   <ellipse/>
+  </object>
+  <object id="80" x="62.0837" y="201.666">
+   <ellipse/>
+  </object>
+  <object id="81" x="77.6667" y="218.333">
+   <ellipse/>
+  </object>
+  <object id="82" x="255.333" y="148.333" width="96.334" height="18.6667"/>
+  <object id="83" x="531.565" y="145.864">
+   <ellipse/>
+  </object>
+  <object id="84" x="516.565" y="129.822">
+   <ellipse/>
+  </object>
+  <object id="85" x="509.023" y="121.697">
+   <ellipse/>
+  </object>
+  <object id="86" x="524.606" y="138.364">
+   <ellipse/>
+  </object>
+  <object id="87" x="81.0907" y="141.428">
+   <ellipse/>
+  </object>
+  <object id="88" x="89.5447" y="132.913">
+   <ellipse/>
+  </object>
+  <object id="89" x="98.6667" y="123.458">
+   <ellipse/>
+  </object>
+  <object id="90" x="106.667" y="114.667">
+   <ellipse/>
+  </object>
+  <object id="92" x="62.5" y="140.583" width="19.3333" height="11.0417"/>
+  <object id="93" x="227.666" y="104.5" width="27.334" height="31.3334"/>
+  <object id="94" x="253.626" y="151.167">
+   <ellipse/>
+  </object>
+  <object id="95" x="238.626" y="135.125">
+   <ellipse/>
+  </object>
+  <object id="96" x="246.667" y="143.667">
+   <ellipse/>
+  </object>
+  <object id="97" x="260" y="157">
+   <ellipse/>
+  </object>
+  <object id="98" x="346.424" y="157.303">
+   <ellipse/>
+  </object>
+  <object id="99" x="353.878" y="149.788">
+   <ellipse/>
+  </object>
+  <object id="100" x="362" y="141" width="0.666667">
+   <ellipse/>
+  </object>
+  <object id="101" x="364" y="140.333">
+   <ellipse/>
+  </object>
+  <object id="102" x="370" y="133.542">
+   <ellipse/>
+  </object>
+  <object id="103" x="608.209" y="155.25">
+   <ellipse/>
+  </object>
+  <object id="104" x="593.209" y="139.208">
+   <ellipse/>
+  </object>
+  <object id="105" x="585.667" y="131.083">
+   <ellipse/>
+  </object>
+  <object id="106" x="601.25" y="147.75">
+   <ellipse/>
+  </object>
+  <object id="107" x="576.167" y="388.167" width="15.917" height="18.6667"/>
+  <object id="108" x="571.792" y="448.417" width="36.417" height="77.394"/>
+  <object id="109" x="550.292" y="479.667" width="20.917" height="19.6667"/>
+  <object id="110" x="452.042" y="451.917" width="54.667" height="39.9167"/>
+  <object id="111" x="31.3938" y="415.86" width="36.3034" height="109.735"/>
+  <object id="112" x="67.6665" y="480.042" width="22.1216" height="22.4623"/>
+  <object id="113" x="321.084" y="224.416" width="11.083" height="141.917"/>
+  <object id="114" x="372.209" y="224.291" width="11.083" height="141.917"/>
+  <object id="115" x="529.303" y="132.212" width="12.94" height="18.6667"/>
+  <object id="116" x="498.166" y="103.03" width="13.5764" height="18.6667"/>
+  <object id="128" x="392.818" y="366.727">
+   <ellipse/>
+  </object>
+  <object id="129" x="310" y="367">
+   <ellipse/>
+  </object>
+  <object id="137" x="160.833" y="576.667" width="17.333" height="33.6667"/>
+  <object id="138" x="118.833" y="608.917" width="58.833" height="19.1667"/>
+  <object id="139" x="109.333" y="579.667" width="17.333" height="33.6667"/>
+ </objectgroup>
+</map>
