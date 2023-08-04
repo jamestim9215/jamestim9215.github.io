@@ -43,7 +43,7 @@ export default class CreatePlayerPreload extends Phaser.Scene {
         //loading End 進度條
 
         //載入背景
-        this.load.image('homeBg', "./src/assets/images/Map.png");
+        this.load.image('homeBg', "./src/assets/images/Maps.png");
 
         //載入字體
         this.load.bitmapFont("pixelFont", "./src/assets/fonts/PressStart2P.png", "./src/assets/fonts/PressStart2P.xml");

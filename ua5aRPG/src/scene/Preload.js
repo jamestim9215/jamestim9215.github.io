@@ -48,7 +48,7 @@ export default class Preload extends Phaser.Scene {
 		this.load.addFile(new WebFontFile(this.load, 'Press Start 2P'))
 
         //載入背景
-        this.load.image('homeBg', "./src/assets/images/Map.png");
+        this.load.image('homeBg', "./src/assets/images/Maps.png");
 
         // //載入按鈕圖片
         // this.load.spritesheet('ButtonBg', './src/assets/images/ui/PixelGUIButtons.png', { frameWidth: 16, frameHeight: 32 });
