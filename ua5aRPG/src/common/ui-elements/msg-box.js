@@ -33,6 +33,7 @@ let CreateMsgBtn = (scene) => {
           width: 10,
           // background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 5, '0xffffff'),
           text: scene.add.text(0, 0, "", {
+            fontFamily: '"Microsoft JhengHei"',
             fontSize: "10px",
             color: "#ff6400",
           }),
@@ -329,6 +330,7 @@ var createLabel = function (scene, text) {
     background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 5, 0xff6400),
 
     text: scene.add.text(0, -10, text, {
+      fontFamily: '"Microsoft JhengHei"',
       fontSize: "10px",
     }),
 
@@ -348,6 +350,7 @@ var createContent = function (scene, text) {
     background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 80, null),
 
     text: scene.add.text(0, 0, text, {
+      fontFamily: '"Microsoft JhengHei"',
       fontSize: "12px",
       color: "#000000",
       wordWrap: { width: config.width - 30, useAdvancedWrap: true },
@@ -366,6 +369,7 @@ var createActionBtn = function (scene, text) {
     background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 5, 0xffffff),
 
     text: scene.add.text(0, 0, text, {
+      fontFamily: '"Microsoft JhengHei"',
       fontSize: "10px",
       color: "#cccccc",
     }),
@@ -382,6 +386,7 @@ var createTpadActionBtn = function (scene, text) {
     background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 5, 0xff6400),
 
     text: scene.add.text(0, 0, text, {
+      fontFamily: '"Microsoft JhengHei"',
       fontSize: "10px",
       color: "#fff",
     }),

@@ -45,13 +45,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
   create() {}
   update(cursors, keys, GameStatus) {
-    // this.HpText.text =  "Hp: " + this.hp;
     var _this = this;
-
-    // if(_this.scene.isFStatus){
-    //    _this.scene.playerContainer.body.setVelocityX(0);
-    //   _this.scene.playerContainer.body.setVelocityY(0);
-    // }else{
+    if(GameStatus == 'pause'){
+         _this.scene.playerContainer.body.setVelocityX(0);
+        _this.scene.playerContainer.body.setVelocityY(0);
+    }
 
     if (cursors && keys && GameStatus == "play") {
       // let sword = this.scene.sword;
