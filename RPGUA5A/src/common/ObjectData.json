@@ -1,0 +1,173 @@
+{
+    "Player":{
+        "theme": [
+            {
+                "name": "davidmartinez",
+                "assetsUrl": "./src/assets/images/characters/davidmartinez.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "dorio",
+                "assetsUrl": "./src/assets/images/characters/dorio.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "faraday",
+                "assetsUrl": "./src/assets/images/characters/faraday.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "judy",
+                "assetsUrl": "./src/assets/images/characters/judy.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "kiwi",
+                "assetsUrl": "./src/assets/images/characters/kiwi.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "lucy",
+                "assetsUrl": "./src/assets/images/characters/lucy.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "maine",
+                "assetsUrl": "./src/assets/images/characters/maine.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "rebecca",
+                "assetsUrl": "./src/assets/images/characters/rebecca.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "johnny",
+                "assetsUrl": "./src/assets/images/characters/johnny.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            },
+            {
+                "name": "takemurajacket",
+                "assetsUrl": "./src/assets/images/characters/takemurajacket.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0,6, 12]
+            }
+        ]
+
+    },
+    "Npc": {
+        "theme": [
+            {
+                "name": "river",
+                "assetsUrl": "./src/assets/images/characters/river.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [
+                    [0, 1, 2, 3 ],
+                    [4, 5, 6, 7 ],
+                    [8, 9,10, 11],
+                    [12,13,14,15 ]
+                ],
+                "frameRate": [0 ,6, 12]
+            }
+        ]
+
+    },
+    "Boss": {
+        "theme": [
+            {
+                "name": "Boss",
+                "assetsUrl": "./src/assets/images/Boss/Boss01.png",
+                "frameWidth": 128,
+                "frameHeight": 128,
+                "frames" : [
+                    [0],
+                    [0],
+                    [0],
+                    [0]
+                ],
+                "frameRate": [0]
+            }
+        ]
+
+    }
+}

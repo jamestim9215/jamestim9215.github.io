@@ -1,0 +1,55 @@
+{
+    "Player":{
+        "theme": [
+            {
+                "name": "Character1",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Hero_P1.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            },
+            {
+                "name": "Character2",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Hero_P2.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            },
+            {
+                "name": "Character3",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Hero_P3.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            },
+            {
+                "name": "Character4",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Modern_Hero_P1.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            },
+            {
+                "name": "Character5",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Modern_Hero_P2.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            },
+            {
+                "name": "Character6",
+                "assetsUrl": "./src/assets/images/player/GumdropSource_03/SpriteSheets/Modern_Hero_P3.png",
+                "frameWidth": 64,
+                "frameHeight": 64,
+                "frames" : [0, 1, 2, 3, 4, 5, 6, 7],
+                "frameRate": 10
+            }
+        ]
+
+    }
+}
