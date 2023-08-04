@@ -1,13 +1,31 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, } from "vue";
 import {useRouter,useRoute} from 'vue-router';
 
 defineProps({});
 
+const router = useRouter();
+const route = useRoute();
+
+const nowPageUrl = computed(() => {
+  return route.fullPath
+});
+const menu = computed(() => {
+  return oute.params.menu
+});
+const item = computed(() => {
+  return oute.params.item
+});
+
+const detail = computed(() => {
+  return oute.params.detail
+});
+
+
 const menuData = ref([
   {
     title: "Material",
-    isSubMenuShow: true,
+    isSubMenuShow: false,
     subMenu: [
       {
         title: "Introduction(HEM)",
@@ -76,18 +94,28 @@ const menuData = ref([
 ]);
 
 const menuShow = ref(false);
-const menuIndex = ref(0);
+const menuIndex = ref(-1);
 const nowPage = ref("/backend/material/introduction");
 
+nowPage.value = nowPageUrl.value;
+menuData.value.map((item)=>{
+  if(item.subMenu.some((item)=>item.path == nowPage.value)){
+    menuIndex.value = menuData.value.indexOf(item);
+    item.isSubMenuShow = true;
+  }
+})
 
-const router = useRouter();
-const route = useRoute();
+if(menuIndex.value==-1){
+  menuData.value.map((item)=>{
+    router.push('/backend/material/introduction')
+  })
+}
 
 </script>
 <template>
   <div class="backend-menu-div">
     <div class="menu-title" v-for="(key,index) in menuData" :key="key.title">
-      <span :class="menuIndex==index?'active':''" @click="key.isSubMenuShow==true?key.isSubMenuShow=false:key.isSubMenuShow=true">{{key.title}}</span>
+      <span :class="menuIndex==index?'active':''" @click="key.isSubMenuShow==true?key.isSubMenuShow=false:key.isSubMenuShow=true;">{{key.title}}</span>
       <div class="sub-menu-div" :class="key.isSubMenuShow?'active':''">
         <div class="sub-menu-title" v-for="(keys,indexs) in key.subMenu" :key="keys.title">
           <router-link :to="keys.path"><span :class="nowPage == keys.path?'active':''">{{keys.title}}</span></router-link>
