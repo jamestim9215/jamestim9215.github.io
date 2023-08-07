@@ -6,6 +6,7 @@ import HomeSetting from "@/components/backend/Home.vue";
 import AboutUsSetting from "@/components/backend/AboutUs.vue";
 import BackendAccountSetting from "@/components/backend/AccountSetting.vue";
 import IntroductionSetting from "@/components/backend/Introduction.vue";
+import DemoCasesSetting from "@/components/backend/DemoCases.vue";
 import MaterialInformaticsSetting from "@/components/backend/MaterialInformatics.vue";
 
 import {useRouter,useRoute} from 'vue-router';
@@ -34,12 +35,13 @@ const item = computed(() => {
         <div class="backend-content">
             <div class="bread-crumbs-div" v-if="item">
                 <!-- <span class="bread-crumbs">{{menu}}</span> -->
-                <span class="bread-crumbs">{{item}}</span>
+                <span class="bread-crumbs">{{item.replace(/-/g," ")}}</span>
                 <span class="bread-crumbs" v-if="item.match(/home|about-us/)">Setting</span>
-                <span class="bread-crumbs" v-if="item.match(/account|introduction|material-informatics/)">List</span>
+                <span class="bread-crumbs" v-if="item.match(/account|introduction|material-informatics|demo-cases/)">List</span>
             </div>
             <IntroductionSetting v-if="item=='introduction'"/>
             <MaterialInformaticsSetting v-if="item=='material-informatics'"/>
+            <DemoCasesSetting v-if="item=='demo-cases'"/>
 
             <HomeSetting v-if="item=='home'"/>
             <AboutUsSetting v-if="item=='about-us'"/>

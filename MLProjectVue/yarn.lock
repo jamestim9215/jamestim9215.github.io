@@ -29,6 +29,11 @@
   resolved "https://registry.yarnpkg.com/@codexteam/icons/-/icons-0.0.6.tgz#5553ada48dddf5940851ccc142cfe17835c36ad3"
   integrity sha512-L7Q5PET8PjKcBT5wp7VR+FCjwCi5PUp7rd/XjsgQ0CI5FJz0DphyHGRILMuDUdCW2MQT9NHbVr4QP31vwAkS/A==
 
+"@codexteam/icons@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@codexteam/icons/-/icons-0.0.8.tgz#25bc8ba083b179b958b0e133d3ee5c2475b02343"
+  integrity sha512-toTLbLPbrDFl2ZK2mtDC+P7sdrJaqOK6URsjFy6m54Pry8q4ckKeKJ1fOEwVcSGKiwdRhrRO3ZzSbL16DaIBJA==
+
 "@editorjs/editorjs@^2.27.2":
   version "2.27.2"
   resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.27.2.tgz#b27ff83bccc7c443fd62f05740acaa8b8f0cb785"
@@ -65,6 +70,13 @@
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.8.0.tgz#c64b88679f23c0129ffac589004300832c345d3b"
   integrity sha512-Vq6cjyTXBzgegYv/MtTfuDdiz59yGhDEc/yAVXr6lmvoWAFs9cJ4TLuh4/9SbrbhIptcQLDvUjMDKmRrV6v2NQ==
+  dependencies:
+    "@codexteam/icons" "^0.0.4"
+
+"@editorjs/paragraph@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/paragraph/-/paragraph-2.10.0.tgz#dcf152e69738a9399b4af83262606d76cf1376e5"
+  integrity sha512-AzaGxR9DQAdWhx43yupBcwqtwH0WWi5jBDOCSeALIK86IYOnO6Lp4anEbH8IYmYrE/5MdnRiTwdU8/Xs8W15Nw==
   dependencies:
     "@codexteam/icons" "^0.0.4"
 
@@ -189,6 +201,13 @@
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
   integrity sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==
+
+"@sotaproject/strikethrough@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sotaproject/strikethrough/-/strikethrough-1.0.1.tgz#7ea490dd7a1dc00b672631fbef59d541c15eb49b"
+  integrity sha512-tgfYXrg+lY6lCh2ZXyoPfe8rxpe+orRgiI2mOSyu1z/+gb9xIjOGhIXNgC6ehOmZUzqtoWzi9SrIEALCYfQpjA==
+  dependencies:
+    "@codexteam/icons" "^0.0.8"
 
 "@vitejs/plugin-vue@^4.2.3":
   version "4.2.3"
@@ -329,6 +348,26 @@ csstype@^3.1.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
+
+editorjs-inline-font-size-tool@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/editorjs-inline-font-size-tool/-/editorjs-inline-font-size-tool-1.0.1.tgz#43c1eac14c1716927a8279d10cadc33e46ba9cf8"
+  integrity sha512-ZuwRGaLrPBwPqW9KawMGjWuvyvPGO/tPUReWYBdyqAmFuOB5H5nw8TK1gAVIMFp7Q+vT0pQdscgHwnktj8pd5w==
+
+editorjs-text-alignment-blocktune@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/editorjs-text-alignment-blocktune/-/editorjs-text-alignment-blocktune-1.0.3.tgz#7942fe2d3fbdbd7fcfd10fbb9b341c97ec3eb84f"
+  integrity sha512-DAJ2LJP+WjETvU4lVOJCqZ1kZkKHp0GkujkqZgza9DRv7bO46m1M/s2d5Ba5hPFdmqk1vA/ci++MQXgWD7mWYw==
+
+editorjs-text-color-plugin@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/editorjs-text-color-plugin/-/editorjs-text-color-plugin-2.0.4.tgz#6e143c9507abe59da54ca0f8d6f9ffb14447c29d"
+  integrity sha512-QpibTkOxs3ndlKNOLT8ZlC4ktc3/eKIajiLO0Jm/hh9AJug/CrM1/rAvHy+ldfUKavbWeI+YZvgjad0YTyoyGw==
+
+editorjs-youtube-embed@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/editorjs-youtube-embed/-/editorjs-youtube-embed-1.0.3.tgz#ed54250e0a9501197ccbba0bad35ff48a452f6c1"
+  integrity sha512-0jhveTlXpM8BkltqChhk5Co+cTQvyGk0aKgAiCgCRv7VJDDujHHaNyBLSzL3QLAVs7f7kcYdYQscwhLFZWJivA==
 
 esbuild@^0.18.10:
   version "0.18.15"
