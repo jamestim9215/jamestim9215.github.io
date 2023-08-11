@@ -149,12 +149,12 @@ const editHander = (row) => {
         </button>
         <button class="btn btn-color-1 mr-1" v-if="row.IsShow==false">
           <span class="material-icons">
-            done
+            visibility
           </span>
         </button>
         <button class="btn btn-color-3 mr-1" v-if="row.IsShow==true">
           <span class="material-icons">
-            clear
+            visibility_off
           </span>
         </button>
         <button class="btn btn-color-3">

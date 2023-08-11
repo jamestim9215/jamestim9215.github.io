@@ -23,7 +23,7 @@ const route = useRoute();
   <div class="header-div">
     <div class="container">
       <div>
-        <div><router-link to="/"><img src="" alt=""> XXX</router-link></div>
+        <div><router-link to="/"><img src="" alt="">半導體設計服務平台</router-link></div>
         <div>
           <div class="menu-btn" @click="menuShow=true">
             <span class="material-icons">

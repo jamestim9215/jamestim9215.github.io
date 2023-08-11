@@ -34,6 +34,17 @@
   --theme-color-3-08: rgba(255, 77, 77, 0.8);
   --theme-color-3-09: rgba(255, 77, 77, 0.9);
 
+  --theme-color-4: #57ac2f;
+  --theme-color-4-01: rgba(87, 172, 47, 0.1);
+  --theme-color-4-02: rgba(87, 172, 47, 0.2);
+  --theme-color-4-03: rgba(87, 172, 47, 0.3);
+  --theme-color-4-04: rgba(87, 172, 47, 0.4);
+  --theme-color-4-05: rgba(87, 172, 47, 0.5);
+  --theme-color-4-06: rgba(87, 172, 47, 0.6);
+  --theme-color-4-07: rgba(87, 172, 47, 0.7);
+  --theme-color-4-08: rgba(87, 172, 47, 0.8);
+  --theme-color-4-09: rgba(87, 172, 47, 0.9);
+
   --text-color: #ffffff;
 }
 
@@ -122,6 +133,16 @@ a:hover{
   color: var(--text-color);
 }
 
+.btn-color-4{
+  border: 1px solid var(--theme-color-4-05);
+  color:  var(--theme-color-4-05);
+}
+.btn-color-4:hover{
+  background: var(--theme-color-4);
+  border: 1px solid var(--theme-color-4);
+  color: var(--text-color);
+}
+
 .btn-color-1-full{
   background: var(--theme-color-1);
   border: 1px solid var(--theme-color-1);
@@ -152,6 +173,17 @@ a:hover{
 .btn-color-3-full:hover{
   background: var(--theme-color-3-05);
   border: 1px solid var(--theme-color-3-05);
+  color: var(--text-color);
+}
+
+.btn-color-4-full{
+  background: var(--theme-color-4);
+  border: 1px solid var(--theme-color-4);
+  color: var(--text-color);
+}
+.btn-color-4-full:hover{
+  background: var(--theme-color-4-05);
+  border: 1px solid var(--theme-color-4-05);
   color: var(--text-color);
 }
 
@@ -193,7 +225,9 @@ a:hover{
   color: var(--theme-color-2);
 }
 
-input, textarea, select{
+input[type="text"],
+textarea, 
+select{
   position: relative;
   display: block;
   width: 100%;
@@ -203,11 +237,19 @@ input, textarea, select{
   background: #fff;
 }
 
-.input-div>input,
+.input-div>input[type="text"],
 .input-div>textarea,
 .input-div>select{
   width: calc(100% - 120px);
 }
+
+.input-div>input[type="checkbox"]{
+  width: auto;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 
 .input-div>#editorjs{
   position: relative;

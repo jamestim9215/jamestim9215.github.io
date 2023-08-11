@@ -28,13 +28,21 @@ const showList = ref(10);
 const listData = ref([
   {
     id: 1,
-    email: "aaa@aaa.aaa",
+    email: "admin@aaa.aaa",
     visible: true,
+    isAdmin: true,
   },
   {
     id: 2,
     email: "2222@aaa.aaa",
     visible: false,
+    isAdmin: false,
+  },
+  {
+    id: 3,
+    email: "333@aaa.aaa",
+    visible: true,
+    isAdmin: false,
   }
 ]);
 
@@ -44,7 +52,14 @@ const columns = ref([
     slot: "tdIndex",
     thAlign: "center",
     tdAlign: "center",
-    width: "70px",
+    width: "30px",
+  },
+  {
+    title: "",
+    slot: "checkbox",
+    thAlign: "center",
+    tdAlign: "center",
+    width: "30px",
   },
   {
     title: "Options",
@@ -61,6 +76,14 @@ const columns = ref([
     tdAlign: "left",
   },
   {
+    title: "isAdmin",
+    key: "isAdmin",
+    slot: "isAdmin",
+    thAlign: "center",
+    tdAlign: "center",
+    width: "70px",
+  },
+  {
     title: "Visible",
     key: "visible",
     slot: "visible",
@@ -74,10 +97,19 @@ const columns = ref([
 </script>
 <template>
   <div class="account-div">
-    <div class="function-div"  v-if="item==''">
-        <div class="btn btn-color-2">
-            Create
-        </div>
+    <div class="function-div">
+        <button class="btn btn-lg btn-color-4-full mr-1">
+          設為管理者權限
+        </button>
+        <button class="btn btn-lg btn-color-3-full mr-1">
+          取消管理者權限
+        </button>
+        <button class="btn btn-lg btn-color-4-full mr-1">
+          帳號通過
+        </button>
+        <button class="btn btn-lg btn-color-3-full mr-1">
+          帳號失效
+        </button>
     </div>
     <Table 
       id="member"
@@ -85,6 +117,9 @@ const columns = ref([
       :list-data="listData"
       is-null-str="-"
       :isloading="isloading">
+      <template #checkbox="{ index }" >
+        <input type="checkbox" name="" :id="'checkbox-'+index">
+      </template>
       <template #tdIndex="{ index }" >
         {{index+1}}
       </template>
@@ -93,23 +128,30 @@ const columns = ref([
           done
         </span>
       </template>
+      <template #isAdmin="{ row }" >
+        <span class="material-icons text-color2"  v-if="row.isAdmin">
+          done
+        </span>
+      </template>
       <template #options="{ row }">
-        <!-- <button class="btn btn-color-2 mr-1">
+        <!-- <button class="btn btn-color-4 mr-1" v-if="row.isAdmin==true">
           <span class="material-icons">
-            edit
+            admin_panel_settings
           </span>
         </button> -->
+<!-- 
         <button class="btn btn-color-1 mr-1" v-if="row.visible==false">
           <span class="material-icons">
-            done
+            visibility
           </span>
         </button>
         <button class="btn btn-color-3 mr-1" v-if="row.visible==true">
           <span class="material-icons">
-            clear
+            visibility_off
           </span>
-        </button>
-        <button class="btn btn-color-3">
+        </button> -->
+
+        <button class="btn btn-color-3" title="刪除帳號">
           <span class="material-icons">
             delete
           </span>
