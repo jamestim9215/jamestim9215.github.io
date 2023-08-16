@@ -28,9 +28,11 @@ const isEdit = ref(false);
 const initParams = () => {
   console.log("init");
   lang.value = urlParams.get('lang') ? urlParams.get('lang') : "en-us";
+  let replaceStr = 'lang=' + lang.value + '&';
+  let localStorageUserData = localStorage.getItem('userUrl').replace(replaceStr, '');
 
-  
-  if((localStorage.getItem('userUrl') && !urlParams.get('lang')) || (localStorage.getItem('userUrl') == queryString)){
+  console.log(urlParams.get('lang')==null);
+  if((urlParams.get('lang')==null && localStorage.getItem('userUrl')) ||(urlParams.get('lang') && urlParams.get('name')==null) || (localStorage.getItem('userUrl') == queryString)){
     var url = new URL(location.href);
     var search_params = url.searchParams;
 
