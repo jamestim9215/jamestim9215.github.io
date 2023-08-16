@@ -1,0 +1,1 @@
+const e={EnterYourName:"Enter your name",Edit:"Edit",CreateNew:"Create New",Back:"Back",Next:"Next",OK:"OK",UseItContent:"Use it an....",Download:"Download",ShareYourAORUSWarrior:"Share your AORUS warrior",Share:"Share",Twitter:"Twitter",Facebook:"Facebook"},r={GameTrans:e};export{e as GameTrans,r as default};

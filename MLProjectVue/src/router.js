@@ -32,6 +32,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/about_us',
+    name: 'AboutUs',
+    component: DetailPage,
+  },
+  {
     path: '/login',
     name: 'Loging',
     component: Login,
@@ -45,7 +50,7 @@ const routes = [
     path: '/:item/',
     name: 'MainPage',
     component: MainPage,
-  },
+  }
 
 ]
 

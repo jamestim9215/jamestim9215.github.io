@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, } from "vue";
+import { ref, computed,onMounted } from "vue";
 import {useRouter,useRoute} from 'vue-router';
 import Table from "@/components/common/hq_table.vue";
 
@@ -7,6 +7,8 @@ defineProps({});
 
 const router = useRouter();
 const route = useRoute();
+const confirm = ref(null);
+const confirmDel = ref(null);
 
 const nowPageUrl = computed(() => {
   return route.fullPath
@@ -93,12 +95,45 @@ const columns = ref([
   },
 ])
 
+const deleteAccount = (row,index) => {
+  var _this = this;
+
+  // console.log(confirmDel.value.show);
+  
+  confirmDel.value.show(
+    `Confirm to delete account ? <br> 
+    Please input account email : 
+    ${row.email}`,
+    "Confirm",
+    "Cancel",
+    "color-1-full btn-lg",
+    "color-3-full btn-lg",
+    row.email
+  )
+  .then(() => {
+    listData.value.splice(index, 1);
+  })
+  .catch(() => {
+    return;
+  });
+}
+
+const showMessage = () => {
+  confirm.value.show(
+    "Messages .... ",
+    "Confirm",
+    null,
+    "color-1-full btn-lg",
+    null,
+  )
+}
+
 
 </script>
 <template>
   <div class="account-div">
     <div class="function-div">
-        <button class="btn btn-lg btn-color-4-full mr-1">
+        <button class="btn btn-lg btn-color-4-full mr-1" @click="showMessage">
           設為管理者權限
         </button>
         <button class="btn btn-lg btn-color-3-full mr-1">
@@ -133,7 +168,7 @@ const columns = ref([
           done
         </span>
       </template>
-      <template #options="{ row }">
+      <template #options="{ row,index }">
         <!-- <button class="btn btn-color-4 mr-1" v-if="row.isAdmin==true">
           <span class="material-icons">
             admin_panel_settings
@@ -151,7 +186,7 @@ const columns = ref([
           </span>
         </button> -->
 
-        <button class="btn btn-color-3" title="刪除帳號">
+        <button class="btn btn-color-3" title="刪除帳號" @click="deleteAccount(row,index)">
           <span class="material-icons">
             delete
           </span>
@@ -159,6 +194,8 @@ const columns = ref([
       </template>
     </Table>
   </div>
+  <HQConfirm ref="confirm"/>
+  <HQConfirmDel ref="confirmDel"/>
 </template>
 
 <style lang="scss" scoped>
