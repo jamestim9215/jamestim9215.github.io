@@ -28,8 +28,6 @@ const isEdit = ref(false);
 const initParams = () => {
   console.log("init");
   lang.value = urlParams.get('lang') ? urlParams.get('lang') : "en-us";
-  let replaceStr = 'lang=' + lang.value + '&';
-  let localStorageUserData = localStorage.getItem('userUrl').replace(replaceStr, '');
 
   console.log(urlParams.get('lang')==null);
   if((urlParams.get('lang')==null && localStorage.getItem('userUrl')) ||(urlParams.get('lang') && urlParams.get('name')==null) || (localStorage.getItem('userUrl') == queryString)){
