@@ -443,9 +443,10 @@ const isShowShareDiv = ref(false);
 
 let shareUrl = new URL(location.href)
 const encodedSearchParams = encodeURIComponent(shareUrl.searchParams.toString());
-
+// let shareDomain = 'https://jamestim9215.github.io/LandingPageGame/dressing-game/dist?';
+let shareDomain = 'https://member.aorus.com/global/whyjoin?';
 const TITLE = ref("");
-const URLENCODED_URL = ref('http://localhost:9001/?'+encodedSearchParams);
+const URLENCODED_URL = ref(shareDomain+encodedSearchParams);
 const TEXT = ref("");
 const TWITTER_HANDLE = ref("");
 
