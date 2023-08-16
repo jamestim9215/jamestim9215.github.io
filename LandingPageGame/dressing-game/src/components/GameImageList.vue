@@ -498,9 +498,19 @@ const okHandler = () => {
   setStep(4,pageType); 
 }
 
+const hiddenImg = ref([]);
+for(var item in gameImageData){
+  for(var items in gameImageData[item].list){
+    hiddenImg.value.push(gameImageData[item].list[items]);
+  }
+}
+
 </script>
 
 <template>
+  <div class="hiddenImg" v-show="0">
+    <img :src="key" v-for="(key,index) in hiddenImg" :key="index" alt="">
+  </div>
   <div class="btn-div">
     <button
       id="BackBtn"
