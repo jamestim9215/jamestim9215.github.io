@@ -128,6 +128,8 @@ itemIndex.value = props.itemIndex;
 const emit = defineEmits(['setStepStatus'])
 const name = ref('')
 
+const imgPreview = ref(null);
+
 name.value = props.name;
 
 
@@ -191,7 +193,8 @@ const setStep = (stepStatus,type) => {
       typeIndex.value = "headgear";
     }
 
-    if(stepStatus == 2 && type == 'create'){
+
+    if(stepStatus == 2 && type == 'create' && props.stepStatus == 1){
       _itemIndex = {
           headgear: 0,
           expression: 0,
@@ -231,22 +234,6 @@ const ChangeItem = (index) => {
   imgArr.value[6] = gameImageData["headgear"].list[itemIndex.value["headgear"]];
 
 
-  // imgArr.value = [
-  //   gameImageData["background"].list[itemIndex.value["background"]],
-  //   gameImageData["mainBody"].list[itemIndex.value["mainBody"]],
-  //   gameImageData["rightHandAccessory"].list[
-  //     itemIndex.value["rightHandAccessory"]
-  //   ],
-  //   gameImageData["leftHandAccessory"].list[
-  //     itemIndex.value["leftHandAccessory"]
-  //   ],
-  //   gameImageData["outfit"].list[itemIndex.value["outfit"]],
-  //   gameImageData["expression"].list[itemIndex.value["expression"]],
-  //   gameImageData["headgear"].list[itemIndex.value["headgear"]],
-  // ];
-
-  // drawAndShareImage();
-  // drawAndShareImageForMeta();
 };
 
 const SetBg = (index) => {
@@ -258,7 +245,7 @@ const SetBg = (index) => {
   console.log(imgArr.value);
 };
 
-const loadImage = (canvas, context, imgIndex, width, height) => {
+const loadImage = (canvas, context, imgIndex, width, height,isDownload) => {
   let myImage = new Image();
   myImage.src = downloadImgArr[imgIndex];
   myImage.crossOrigin = "Anonymous";
@@ -270,21 +257,29 @@ const loadImage = (canvas, context, imgIndex, width, height) => {
 
     if (downloadImgArr.length - 1 > imgIndex) {
       imgIndex++;
-      loadImage(canvas, context, imgIndex, width, height);
+      loadImage(canvas, context, imgIndex, width, height,isDownload);
     } else if (downloadImgArr.length - 1 == imgIndex) {
-      let base64 = canvas.toDataURL("image/png");
-      downloadBase64 = base64;
-      console.log("????");
-      download();
-      return;
+
+      let myLogo = new Image();
+      myLogo.src = logo;
+      myLogo.crossOrigin = "Anonymous";
+
+      myLogo.onload = function () {
+        context.drawImage(myLogo, 15, 15, 250, 59);
+
+        let base64 = canvas.toDataURL("image/png");
+        downloadBase64 = base64;
+        console.log("isDownload",isDownload);
+        download(isDownload);
+        return;
+      }
     }
 
-    // let img = document.getElementById('imgPreview');
-    // img.setAttribute('src', window.base64);
   };
 };
 
-const drawAndShareImage = () => {
+const drawAndShareImage = (isDownload) => {
+  console.log("drawAndShareImage");
   imgIndex = 0;
   let canvas = document.createElement("canvas");
   let width = 1200;
@@ -297,7 +292,7 @@ const drawAndShareImage = () => {
   context.fillStyle = "rgba(0, 0, 0, 1)";
   context.fill();
 
-  loadImage(canvas, context, imgIndex, width, height);
+  loadImage(canvas, context, imgIndex, width, height,isDownload);
 };
 
 const loadImageForMeta = (canvas, context, imgIndexForMeta, width, height) => {
@@ -357,7 +352,7 @@ onMounted(() => {
   // drawAndShareImageForMeta();
 });
 
-const download = () => {
+const download = (isDownload) => {
   var imgSrc = downloadBase64;
   var name = "test";
 
@@ -370,11 +365,14 @@ const download = () => {
     let context = canvas.getContext("2d");
     context.drawImage(image, 0, 0, image.width, image.height);
     let url = canvas.toDataURL("image/png");
-    let a = document.createElement("a");
-    let event = new MouseEvent("click");
-    a.download = name || "photo";
-    a.href = url;
-    a.dispatchEvent(event);
+    if(isDownload) {
+      let a = document.createElement("a");
+      let event = new MouseEvent("click");
+      a.download = name || "photo";
+      a.href = url;
+      a.dispatchEvent(event);
+    }
+    imgPreview.value = imgSrc;
   };
   image.src = imgSrc;
 };
@@ -407,7 +405,7 @@ const downloadHandler = () => {
     if(imgArr.value[key] != null)
       downloadImgArr.push(imgArr.value[key])
   }
-  drawAndShareImage();
+  drawAndShareImage(true);
   drawAndShareImageForMeta();
 };
 
@@ -460,6 +458,13 @@ const okHandler = () => {
 
   localStorage.setItem('userUrl', queryString);
 
+  downloadImgArr = [];
+  for(let key in imgArr.value){
+    if(imgArr.value[key] != null)
+      downloadImgArr.push(imgArr.value[key])
+  }
+  drawAndShareImage(false);
+
   setStep(4,pageType); 
 }
 
@@ -469,7 +474,7 @@ const okHandler = () => {
   <div class="btn-div">
     <button
       id="BackBtn"
-      @click="setStep(props.stepStatus - 1,pageType)"
+      @click="setStep(props.stepStatus - 1,pageType);imgPreview = null;"
       v-if="props.stepStatus == 2 || props.stepStatus == 3 || props.stepStatus == 4"
     >
       {{ t("GameTrans.Back") }}
@@ -477,8 +482,8 @@ const okHandler = () => {
     <button id="NextBtn" @click="setStep(3,pageType)" v-if="props.stepStatus == 2">{{ t("GameTrans.Next") }}</button>
     <button id="OkBtn" @click="okHandler();" v-if="props.stepStatus == 3 && itemIndex.leftHandAccessory!=-1">{{ t("GameTrans.OK") }}</button>
   </div>
-  <!-- <img src="" alt="" id="imgPreview"> -->
-  <div class="image-list-div">
+  <img :src="imgPreview" alt="" id="imgPreview" v-if="imgPreview">
+  <div class="image-list-div" v-else>
     <img v-for="(key, index) in imgArr" :key="index" :src="key" alt="" />
   </div>
   <div class="home-div" v-if="props.stepStatus == 1">
@@ -578,6 +583,13 @@ const okHandler = () => {
     color: #fff;
     font-size: 18px;
   }
+}
+#imgPreview{
+  position: relative;
+  margin: 0 auto;
+    display: block;
+  width: calc(100% - 50px);
+  aspect-ratio: 1 / 1;
 }
 .image-list-div {
   position: relative;
