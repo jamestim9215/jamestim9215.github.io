@@ -527,8 +527,8 @@ const okHandler = () => {
 
   <div class="downloadBtn-div"  v-if="props.stepStatus == 4">
 
-    <p>{{ t("GameTrans.UseItContent") }}</p>
-    <button class="downloadBtn" @click="downloadHandler">{{ t("GameTrans.Download") }}</button>
+    <p class="downloadBtnPC">{{ t("GameTrans.UseItContent") }}</p>
+    <button class="downloadBtn downloadBtnPC" @click="downloadHandler">{{ t("GameTrans.Download") }}</button>
 
 
     <p>{{ t("GameTrans.ShareYourAORUSWarrior") }}</p>
@@ -839,6 +839,23 @@ const okHandler = () => {
           color: #fff;
         }
       }
+    }
+  }
+
+  /* 使用設備類型判斷是手機 */
+  @media only screen and (max-device-width: 767px) and (max-device-height: 1023px) {
+    /* 在這裡放置手機裝置的 CSS 樣式 */
+    .downloadBtnPC{
+      display: none !important;
+    }
+  }
+
+  
+  /* 使用設備類型判斷是平板 */
+  @media only screen and (min-device-width: 768px) and (max-device-height: 1023px) {
+    /* 在這裡放置手機裝置的 CSS 樣式 */
+    .downloadBtnPC{
+      display: none !important;
     }
   }
 </style>
