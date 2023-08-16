@@ -267,6 +267,21 @@ const loadImage = (canvas, context, imgIndex, width, height,isDownload) => {
       myLogo.onload = function () {
         context.drawImage(myLogo, 15, 15, 250, 59);
 
+        // 设置字体样式
+        context.font = "60px Arial";
+        context.fillStyle = "#fff"; // 文字颜色
+        
+        // 获取文字的宽度
+        var text = name.value;
+        var textWidth = context.measureText(text).width;
+        
+        // 计算文字的位置
+        var x = (canvas.width - textWidth) / 2; // 水平居中
+        var y = canvas.height - 100; // 在底部留出一些间距
+        
+        // 绘制文字
+        context.fillText(text, x, y);
+
         let base64 = canvas.toDataURL("image/png");
         downloadBase64 = base64;
         console.log("isDownload",isDownload);
@@ -313,6 +328,21 @@ const loadImageForMeta = (canvas, context, imgIndexForMeta, width, height) => {
 
       myLogo.onload = function () {
         context.drawImage(myLogo, 15, 15, 250, 59);
+
+        // 设置字体样式
+        context.font = "30px Arial";
+        context.fillStyle = "#fff"; // 文字颜色
+        
+        // 获取文字的宽度
+        var text = name.value;
+        var textWidth = context.measureText(text).width;
+        
+        // 计算文字的位置
+        var x = (canvas.width - textWidth) / 2; // 水平居中
+        var y = canvas.height - 50; // 在底部留出一些间距
+        
+        // 绘制文字
+        context.fillText(text, x, y);
 
         let base64 = canvas.toDataURL("image/png");
         downloadBase64ForMeta = base64;
