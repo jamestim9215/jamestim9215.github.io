@@ -506,6 +506,25 @@ for(var item in gameImageData){
   }
 }
 
+const copyText = () => {
+      const textToCopy = location.href;
+      
+      // 创建一个临时文本框来容纳要复制的文本
+      const tempInput = document.createElement("textarea");
+      tempInput.value = textToCopy;
+      document.body.appendChild(tempInput);
+      
+      // 选择文本并复制到剪贴板
+      tempInput.select();
+      document.execCommand("copy");
+      
+      // 清理临时元素
+      document.body.removeChild(tempInput);
+      
+      // 可以添加一些用户反馈，比如提示复制成功
+      alert("已複製到剪貼簿! " + textToCopy);
+    }
+
 </script>
 
 <template>
@@ -571,7 +590,6 @@ for(var item in gameImageData){
     <p class="downloadBtnPC">{{ t("GameTrans.UseItContent") }}</p>
     <button class="downloadBtn downloadBtnPC" @click="downloadHandler">{{ t("GameTrans.Download") }}</button>
 
-
     <p>{{ t("GameTrans.ShareYourAORUSWarrior") }}</p>
     <button class="downloadBtn" @click="isShowShareDiv = true">{{ t("GameTrans.Share") }}</button>
 
@@ -600,6 +618,12 @@ for(var item in gameImageData){
             </span>
           </a>
         <div>{{ t("GameTrans.Facebook") }}</div>
+      </div>
+      <div>
+        <span @click="copyText">
+          <img src="@/assets/images/share.png" alt="">
+        </span>
+        <div>{{ t("GameTrans.Share") }}</div>
       </div>
     </div>
   </div>
@@ -873,7 +897,7 @@ for(var item in gameImageData){
         div{
           position: absolute;
           line-height: auto;
-          top: 50px;
+          top: 60px;
           left: 50%;
           transform: translateX(-50%);
           font-size: 14px;
