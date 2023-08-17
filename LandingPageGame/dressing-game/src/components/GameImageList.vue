@@ -1,26 +1,33 @@
 <script setup>
 import { ref, onMounted ,defineProps, defineEmits, watch} from "vue";
 
+
+import headgear_type from "@/assets/images/type/headgear.png";
 import headgear_0 from "@/assets/images/headgear/headgear_0.png";
 import headgear_1 from "@/assets/images/headgear/headgear_1.png";
 import headgear_2 from "@/assets/images/headgear/headgear_2.png";
 
+import expression_type from "@/assets/images/type/expression.png";
 import expression_0 from "@/assets/images/expression/expression_0.png";
 import expression_1 from "@/assets/images/expression/expression_1.png";
 import expression_2 from "@/assets/images/expression/expression_2.png";
 
+import outfit_type from "@/assets/images/type/outfit.png";
 import outfit_0 from "@/assets/images/outfit/outfit_0.png";
 import outfit_1 from "@/assets/images/outfit/outfit_1.png";
 import outfit_2 from "@/assets/images/outfit/outfit_2.png";
 import outfit_3 from "@/assets/images/outfit/outfit_3.png";
 
+import leftHandAccessory_type from "@/assets/images/type/leftHandAccessory.png";
 import leftHandAccessory_0 from "@/assets/images/leftHandAccessory/leftHandAccessory_0.png";
 import leftHandAccessory_1 from "@/assets/images/leftHandAccessory/leftHandAccessory_1.png";
 import leftHandAccessory_2 from "@/assets/images/leftHandAccessory/leftHandAccessory_2.png";
 
+import rightHandAccessory_type from "@/assets/images/type/rightHandAccessory.png";
 import rightHandAccessory_0 from "@/assets/images/rightHandAccessory/rightHandAccessory_0.png";
 import rightHandAccessory_1 from "@/assets/images/rightHandAccessory/rightHandAccessory_1.png";
 
+import mainBody_type from "@/assets/images/type/mainBody.png";
 import mainBody_0 from "@/assets/images/mainBody/mainBody_0.png";
 import mainBody_1 from "@/assets/images/mainBody/mainBody_1.png";
 import mainBody_2 from "@/assets/images/mainBody/mainBody_2.png";
@@ -81,30 +88,37 @@ let gameImageData = {
   headgear: {
     isShowIndex: 2,
     list: [headgear_0, headgear_1, headgear_2],
+    typeImg: headgear_type,
   },
   expression: {
     isShowIndex: 2,
     list: [ expression_0, expression_1, expression_2],
+    typeImg: expression_type,
   },
   outfit: {
     isShowIndex: 2,
     list: [outfit_0, outfit_1, outfit_2, outfit_3],
+    typeImg: outfit_type,
   },
   leftHandAccessory: {
     isShowIndex: 3,
     list: [leftHandAccessory_0, leftHandAccessory_1, leftHandAccessory_2],
+    typeImg: leftHandAccessory_type,
   },
   rightHandAccessory: {
     isShowIndex: 2,
     list: [rightHandAccessory_0, rightHandAccessory_1],
+    typeImg: rightHandAccessory_type,
   },
   mainBody: {
     isShowIndex: 2,
     list: [mainBody_0, mainBody_1, mainBody_2,mainBody_3],
+    typeImg: mainBody_type,
   },
   background: {
     isShowIndex: 3,
     list: [background_0,background_1, background_2],
+    typeImg: null,
   },
 };
 
@@ -582,6 +596,7 @@ if(props.stepStatus == 1){
         class="tab"
         v-for="(key, index) in gameImageData"
         :key="index"
+        :src="key.typeImg"
         :class="typeIndex == index ? 'active' : ''"
         @click="typeIndex = index"
         v-show="key.isShowIndex==2"
