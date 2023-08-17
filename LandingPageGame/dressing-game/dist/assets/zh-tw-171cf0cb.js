@@ -1,0 +1,1 @@
+const e={EnterYourName:"輸入你的名字",Edit:"編輯",CreateNew:"建立新的",Back:"返回",Next:"下一步",OK:"完成",UseItContent:"使用他...",Download:"下載",ShareYourAORUSWarrior:"分享你的AORUS戰士",Share:"分享",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"長按圖片保存"},a={GameTrans:e};export{e as GameTrans,a as default};

@@ -163,6 +163,8 @@ let imgIndex = 0;
 let imgIndexForMeta = 0;
 
 const setStep = (stepStatus,type) => {
+  
+
     let _data = {};
 
     let _itemIndex = itemIndex.value;
@@ -213,6 +215,17 @@ const setStep = (stepStatus,type) => {
 
     console.log(_data);
     itemIndex.value = _data.itemIndex;
+
+
+
+    
+    if(stepStatus == 1){
+      okHandler(1);
+    }
+    if(stepStatus != 1 && stepStatus != 4){
+      imgPreview.value = null
+    }
+
     emit('setStepStatus', _data)
 }
 
@@ -450,44 +463,46 @@ const URLENCODED_URL = ref(shareDomain+encodedSearchParams);
 const TEXT = ref("");
 const TWITTER_HANDLE = ref("");
 
-const okHandler = () => {
+const okHandler = (_step) => {
 
-  var url = new URL(location.href);
-  var search_params = url.searchParams;
+  if(_step == 4){
+    var url = new URL(location.href);
+    var search_params = url.searchParams;
 
-  search_params.set('lang', props.lang); 
-  search_params.set('name', name.value);
-  search_params.set('headgear', itemIndex.value.headgear);
-  search_params.set('expression', itemIndex.value.expression);
-  search_params.set('outfit', itemIndex.value.outfit);
-  search_params.set('leftHandAccessory', itemIndex.value.leftHandAccessory);
-  search_params.set('rightHandAccessory', itemIndex.value.rightHandAccessory);
-  search_params.set('mainBody', itemIndex.value.mainBody);
-  search_params.set('background', itemIndex.value.background);
+    search_params.set('lang', props.lang); 
+    search_params.set('name', name.value);
+    search_params.set('headgear', itemIndex.value.headgear);
+    search_params.set('expression', itemIndex.value.expression);
+    search_params.set('outfit', itemIndex.value.outfit);
+    search_params.set('leftHandAccessory', itemIndex.value.leftHandAccessory);
+    search_params.set('rightHandAccessory', itemIndex.value.rightHandAccessory);
+    search_params.set('mainBody', itemIndex.value.mainBody);
+    search_params.set('background', itemIndex.value.background);
 
 
-  url.search = search_params.toString();
+    url.search = search_params.toString();
 
-  var new_url = url.toString();
-  var obj = {
-   Title: '??',
-   Url: new_url
-  };
+    var new_url = url.toString();
+    var obj = {
+    Title: '??',
+    Url: new_url
+    };
 
-  localStorage.setItem('name', name.value);
-  localStorage.setItem('headgear', itemIndex.value.headgear);
-  localStorage.setItem('expression', itemIndex.value.expression);
-  localStorage.setItem('outfit', itemIndex.value.outfit);
-  localStorage.setItem('leftHandAccessory', itemIndex.value.leftHandAccessory);
-  localStorage.setItem('rightHandAccessory', itemIndex.value.rightHandAccessory);
-  localStorage.setItem('mainBody', itemIndex.value.mainBody);
-  localStorage.setItem('background', itemIndex.value.background);
-  
-  window.history.replaceState(obj, obj.Title , obj.Url );
+    localStorage.setItem('name', name.value);
+    localStorage.setItem('headgear', itemIndex.value.headgear);
+    localStorage.setItem('expression', itemIndex.value.expression);
+    localStorage.setItem('outfit', itemIndex.value.outfit);
+    localStorage.setItem('leftHandAccessory', itemIndex.value.leftHandAccessory);
+    localStorage.setItem('rightHandAccessory', itemIndex.value.rightHandAccessory);
+    localStorage.setItem('mainBody', itemIndex.value.mainBody);
+    localStorage.setItem('background', itemIndex.value.background);
+    
+    window.history.replaceState(obj, obj.Title , obj.Url );
 
-  let queryString = window.location.search;
+    let queryString = window.location.search;
 
-  localStorage.setItem('userUrl', queryString);
+    localStorage.setItem('userUrl', queryString);
+  }
 
   downloadImgArr = [];
   for(let key in imgArr.value){
@@ -495,8 +510,9 @@ const okHandler = () => {
       downloadImgArr.push(imgArr.value[key])
   }
   drawAndShareImage(false);
-
-  setStep(4,pageType); 
+  if(_step == 4){
+    setStep(_step,pageType.value); 
+  }
 }
 
 const hiddenImg = ref([]);
@@ -507,23 +523,31 @@ for(var item in gameImageData){
 }
 
 const copyText = () => {
-      const textToCopy = location.href;
-      
-      // 创建一个临时文本框来容纳要复制的文本
-      const tempInput = document.createElement("textarea");
-      tempInput.value = textToCopy;
-      document.body.appendChild(tempInput);
-      
-      // 选择文本并复制到剪贴板
-      tempInput.select();
-      document.execCommand("copy");
-      
-      // 清理临时元素
-      document.body.removeChild(tempInput);
-      
-      // 可以添加一些用户反馈，比如提示复制成功
-      alert("已複製到剪貼簿! " + textToCopy);
-    }
+  const textToCopy = location.href;
+  
+  // 创建一个临时文本框来容纳要复制的文本
+  const tempInput = document.createElement("textarea");
+  tempInput.value = textToCopy;
+  document.body.appendChild(tempInput);
+  
+  // 选择文本并复制到剪贴板
+  tempInput.select();
+  document.execCommand("copy");
+  
+  // 清理临时元素
+  document.body.removeChild(tempInput);
+  
+  // 可以添加一些用户反馈，比如提示复制成功
+  alert("已複製到剪貼簿! " + textToCopy);
+}
+
+
+
+
+if(props.stepStatus == 1){
+  okHandler(1);
+}
+
 
 </script>
 
@@ -534,13 +558,13 @@ const copyText = () => {
   <div class="btn-div">
     <button
       id="BackBtn"
-      @click="setStep(props.stepStatus - 1,pageType);imgPreview = null;"
+      @click="setStep(props.stepStatus - 1,pageType);"
       v-if="props.stepStatus == 2 || props.stepStatus == 3 || props.stepStatus == 4"
     >
       {{ t("GameTrans.Back") }}
     </button>
     <button id="NextBtn" @click="setStep(3,pageType)" v-if="props.stepStatus == 2">{{ t("GameTrans.Next") }}</button>
-    <button id="OkBtn" @click="okHandler();" v-if="props.stepStatus == 3 && itemIndex.leftHandAccessory!=-1">{{ t("GameTrans.OK") }}</button>
+    <button id="OkBtn" @click="okHandler(4);" v-if="props.stepStatus == 3 && itemIndex.leftHandAccessory!=-1">{{ t("GameTrans.OK") }}</button>
   </div>
   <img :src="imgPreview" alt="" id="imgPreview" v-if="imgPreview">
   <div class="image-list-div" v-else>
@@ -587,6 +611,7 @@ const copyText = () => {
 
   <div class="downloadBtn-div"  v-if="props.stepStatus == 4">
 
+    <p class="downloadBtnMb">{{ t("GameTrans.LongPressToSaveThePicture") }}</p>
     <p class="downloadBtnPC">{{ t("GameTrans.UseItContent") }}</p>
     <button class="downloadBtn downloadBtnPC" @click="downloadHandler">{{ t("GameTrans.Download") }}</button>
 
@@ -906,21 +931,18 @@ const copyText = () => {
       }
     }
   }
-
+    .downloadBtnMb{
+      display: none;
+    }
   /* 使用設備類型判斷是手機 */
   @media only screen and (max-device-width: 767px) and (max-device-height: 1023px) {
     /* 在這裡放置手機裝置的 CSS 樣式 */
     .downloadBtnPC{
       display: none !important;
     }
-  }
-
-  
-  /* 使用設備類型判斷是平板 */
-  @media only screen and (min-device-width: 768px) and (max-device-height: 1023px) {
-    /* 在這裡放置手機裝置的 CSS 樣式 */
-    .downloadBtnPC{
-      display: none !important;
+    .downloadBtnMb{
+      display: inline !important;
     }
   }
+
 </style>
