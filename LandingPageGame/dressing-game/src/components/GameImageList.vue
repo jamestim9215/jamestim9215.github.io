@@ -6,32 +6,51 @@ import headgear_type from "@/assets/images/type/headgear.png";
 import headgear_0 from "@/assets/images/headgear/headgear_0.png";
 import headgear_1 from "@/assets/images/headgear/headgear_1.png";
 import headgear_2 from "@/assets/images/headgear/headgear_2.png";
+import headgear_preview_0 from "@/assets/images/headgear/headgear_preview_0.png";
+import headgear_preview_1 from "@/assets/images/headgear/headgear_preview_1.png";
+import headgear_preview_2 from "@/assets/images/headgear/headgear_preview_2.png";
 
 import expression_type from "@/assets/images/type/expression.png";
 import expression_0 from "@/assets/images/expression/expression_0.png";
 import expression_1 from "@/assets/images/expression/expression_1.png";
 import expression_2 from "@/assets/images/expression/expression_2.png";
+import expression_preview_0 from "@/assets/images/expression/expression_preview_0.png";
+import expression_preview_1 from "@/assets/images/expression/expression_preview_1.png";
+import expression_preview_2 from "@/assets/images/expression/expression_preview_2.png";
 
 import outfit_type from "@/assets/images/type/outfit.png";
 import outfit_0 from "@/assets/images/outfit/outfit_0.png";
 import outfit_1 from "@/assets/images/outfit/outfit_1.png";
 import outfit_2 from "@/assets/images/outfit/outfit_2.png";
 import outfit_3 from "@/assets/images/outfit/outfit_3.png";
+import outfit_preview_0 from "@/assets/images/outfit/outfit_preview_0.png";
+import outfit_preview_1 from "@/assets/images/outfit/outfit_preview_1.png";
+import outfit_preview_2 from "@/assets/images/outfit/outfit_preview_2.png";
+import outfit_preview_3 from "@/assets/images/outfit/outfit_preview_3.png";
 
 import leftHandAccessory_type from "@/assets/images/type/leftHandAccessory.png";
 import leftHandAccessory_0 from "@/assets/images/leftHandAccessory/leftHandAccessory_0.png";
 import leftHandAccessory_1 from "@/assets/images/leftHandAccessory/leftHandAccessory_1.png";
 import leftHandAccessory_2 from "@/assets/images/leftHandAccessory/leftHandAccessory_2.png";
+import leftHandAccessory_preview_0 from "@/assets/images/leftHandAccessory/leftHandAccessory_preview_0.png";
+import leftHandAccessory_preview_1 from "@/assets/images/leftHandAccessory/leftHandAccessory_preview_1.png";
+import leftHandAccessory_preview_2 from "@/assets/images/leftHandAccessory/leftHandAccessory_preview_2.png";
 
 import rightHandAccessory_type from "@/assets/images/type/rightHandAccessory.png";
 import rightHandAccessory_0 from "@/assets/images/rightHandAccessory/rightHandAccessory_0.png";
 import rightHandAccessory_1 from "@/assets/images/rightHandAccessory/rightHandAccessory_1.png";
+import rightHandAccessory_preview_0 from "@/assets/images/rightHandAccessory/rightHandAccessory_preview_0.png";
+import rightHandAccessory_preview_1 from "@/assets/images/rightHandAccessory/rightHandAccessory_preview_1.png";
 
 import mainBody_type from "@/assets/images/type/mainBody.png";
 import mainBody_0 from "@/assets/images/mainBody/mainBody_0.png";
 import mainBody_1 from "@/assets/images/mainBody/mainBody_1.png";
 import mainBody_2 from "@/assets/images/mainBody/mainBody_2.png";
 import mainBody_3 from "@/assets/images/mainBody/mainBody_3.png";
+import mainBody_preview_0 from "@/assets/images/mainBody/mainBody_preview_0.png";
+import mainBody_preview_1 from "@/assets/images/mainBody/mainBody_preview_1.png";
+import mainBody_preview_2 from "@/assets/images/mainBody/mainBody_preview_2.png";
+import mainBody_preview_3 from "@/assets/images/mainBody/mainBody_preview_3.png";
 
 import background_0 from "@/assets/images/background/background_0.png";
 import background_1 from "@/assets/images/background/background_1.png";
@@ -89,36 +108,43 @@ let gameImageData = {
     isShowIndex: 2,
     list: [headgear_0, headgear_1, headgear_2],
     typeImg: headgear_type,
+    preview: [headgear_preview_0, headgear_preview_1],
   },
   expression: {
     isShowIndex: 2,
     list: [ expression_0, expression_1, expression_2],
     typeImg: expression_type,
+    preview: [expression_preview_0, expression_preview_1, expression_preview_2],
   },
   outfit: {
     isShowIndex: 2,
     list: [outfit_0, outfit_1, outfit_2, outfit_3],
     typeImg: outfit_type,
+    preview: [outfit_preview_0, outfit_preview_1, outfit_preview_2, outfit_preview_3],
   },
   leftHandAccessory: {
     isShowIndex: 3,
     list: [leftHandAccessory_0, leftHandAccessory_1, leftHandAccessory_2],
     typeImg: leftHandAccessory_type,
+    preview: [leftHandAccessory_preview_0, leftHandAccessory_preview_1, leftHandAccessory_preview_2],
   },
   rightHandAccessory: {
     isShowIndex: 2,
     list: [rightHandAccessory_0, rightHandAccessory_1],
     typeImg: rightHandAccessory_type,
+    preview: [rightHandAccessory_preview_0, rightHandAccessory_preview_1],
   },
   mainBody: {
     isShowIndex: 2,
     list: [mainBody_0, mainBody_1, mainBody_2,mainBody_3],
     typeImg: mainBody_type,
+    preview: [mainBody_preview_0, mainBody_preview_1, mainBody_preview_2,mainBody_preview_3],
   },
   background: {
     isShowIndex: 3,
     list: [background_0,background_1, background_2],
     typeImg: null,
+    preview: null,
   },
 };
 
@@ -604,7 +630,7 @@ if(props.stepStatus == 1){
     </div>
     <div class="tab-choose-list">
       <img
-        v-for="(key, index) in gameImageData[typeIndex].list"
+        v-for="(key, index) in gameImageData[typeIndex].preview"
         :key="index"
         :src="key"
         :class="itemIndex[typeIndex] == index ? 'active' : ''"
@@ -614,14 +640,13 @@ if(props.stepStatus == 1){
   </div>
   <div class="chooseBG-box" v-if="props.stepStatus == 3">
       <img
-        v-for="(key, index) in gameImageData.leftHandAccessory.list"
+        v-for="(key, index) in gameImageData.leftHandAccessory.preview"
         :key="index"
         :src="key"
         :class="itemIndex.leftHandAccessory == index ? 'active' : ''"
         @click="SetBg(index)"
         v-show="key!=null"
       />
-
   </div>
 
   <div class="downloadBtn-div"  v-if="props.stepStatus == 4">
