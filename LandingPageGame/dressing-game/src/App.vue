@@ -30,7 +30,11 @@ const initParams = () => {
   lang.value = urlParams.get('lang') ? urlParams.get('lang') : "en-us";
 
   console.log(urlParams.get('lang')==null);
-  if((urlParams.get('lang')==null && localStorage.getItem('userUrl')) ||(urlParams.get('lang') && urlParams.get('name')==null) || (localStorage.getItem('userUrl') == queryString)){
+  if(
+    (urlParams.get('lang')==null && localStorage.getItem('userUrl')) ||
+    (urlParams.get('lang') && urlParams.get('name')==null && localStorage.getItem('userUrl')) || 
+    (localStorage.getItem('userUrl') == queryString)
+  ){
     var url = new URL(location.href);
     var search_params = url.searchParams;
 

@@ -323,10 +323,10 @@ const loadImage = (canvas, context, imgIndex, width, height, isDownload) => {
       myLogo.crossOrigin = "Anonymous";
 
       myLogo.onload = function () {
-        context.drawImage(myLogo, 15, 15, 250, 59);
+        context.drawImage(myLogo, 60, 60, 250, 59);
 
         // 设置字体样式
-        context.font = "60px Arial";
+        context.font = "bold 80px Arial"
         context.fillStyle = "#fff"; // 文字颜色
 
         // 获取文字的宽度
@@ -335,7 +335,7 @@ const loadImage = (canvas, context, imgIndex, width, height, isDownload) => {
 
         // 计算文字的位置
         var x = (canvas.width - textWidth) / 2; // 水平居中
-        var y = canvas.height - 100; // 在底部留出一些间距
+        var y = canvas.height - 120; // 在底部留出一些间距
 
         // 绘制文字
         context.fillText(text, x, y);
