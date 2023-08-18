@@ -103,7 +103,7 @@ let gameImageData = {
     isShowIndex: 2,
     list: [headgear_0, headgear_1, headgear_2],
     typeImg: headgear_type,
-    preview: [headgear_preview_0, headgear_preview_1],
+    preview: [headgear_preview_0, headgear_preview_1, headgear_preview_2],
   },
   expression: {
     isShowIndex: 2,
@@ -565,6 +565,12 @@ const okHandler = (_step) => {
 
 const hiddenImg = ref([]);
 for (var item in gameImageData) {
+  if(gameImageData[item].typeImg){
+    hiddenImg.value.push(gameImageData[item].typeImg);
+  }
+  for (var items in gameImageData[item].preview) {
+    hiddenImg.value.push(gameImageData[item].preview[items]);
+  }
   for (var items in gameImageData[item].list) {
     hiddenImg.value.push(gameImageData[item].list[items]);
   }
@@ -595,7 +601,7 @@ if (props.stepStatus == 1) {
 </script>
 
 <template>
-  <div class="hiddenImg" v-show="0">
+  <div class="hiddenImg" v-show="1">
     <img :src="key" v-for="(key, index) in hiddenImg" :key="index" alt="" />
   </div>
   <div class="btn-div">
@@ -747,6 +753,15 @@ if (props.stepStatus == 1) {
 </template>
 
 <style lang="scss" scoped>
+.hiddenImg{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
 .btn-div {
   position: absolute;
   z-index: 1000;
