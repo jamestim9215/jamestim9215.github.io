@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
-    "TAC": "*Terms and Conditions.",
-    "Edit": "Edit",
-    "CreateNew": "Create New",
-    "Back": "Back",
-    "Next": "Next",
-    "Done": "Done",
-    "GearUpWith": "Gear up with the most powerful AORUS Z790 X motherboards.",
-    "UseItContent": "Use this as your social media profile/bio picture.",
+    "EnterYourName": "Inserisci il tuo nome",
+    "NameMax": "*Il nome deve contenere meno di 15 caratteri.",
+    "TAC": "*Termini e Condizioni.",
+    "Edit": "Modifica",
+    "CreateNew": "Crea Nuovo",
+    "Back": "Indietro",
+    "Next": "Avanti",
+    "Done": "Finito",
+    "GearUpWith": "Equipaggiati con le più potenti schede madri AORUS Z790 X.",
+    "UseItContent": "Usa come immagine profilo sui social media.",
     "Download": "Download",
-    "ShareYourAORUS": "Share your AORUS Chibi.",
-    "Share": "Share",
+    "ShareYourAORUS": "Condividi il tuo AORUS Chibi.",
+    "Share": "Condividi",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": "Long-press to save the picture."
+    "LongPressToSaveThePicture": "Tieni premuto per salvare l'immagine."
   }
 }

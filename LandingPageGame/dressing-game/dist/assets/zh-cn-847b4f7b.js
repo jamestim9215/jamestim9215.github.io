@@ -1,0 +1,1 @@
+const e={EnterYourName:"输入姓名",NameMax:"*名字仅限15字符内",TAC:"*活动规范与细则",Edit:"编辑",CreateNew:"新增",Back:"返回",Next:"下一步",Done:"完成",GearUpWith:"搭配强大的 AORUS Z790 X 电竞主板。",UseItContent:"设定成为你的头像",Download:"下载",ShareYourAORUS:"分享你的AORUS小雕",Share:"分享",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"长按存取图片"},a={GameTrans:e};export{e as GameTrans,a as default};

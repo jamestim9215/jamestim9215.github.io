@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
-    "TAC": "*Terms and Conditions.",
-    "Edit": "Edit",
-    "CreateNew": "Create New",
-    "Back": "Back",
-    "Next": "Next",
-    "Done": "Done",
-    "GearUpWith": "Gear up with the most powerful AORUS Z790 X motherboards.",
-    "UseItContent": "Use this as your social media profile/bio picture.",
-    "Download": "Download",
-    "ShareYourAORUS": "Share your AORUS Chibi.",
-    "Share": "Share",
+    "EnterYourName": "Γράψε το όνομα σου",
+    "NameMax": "*Το όνομα σου μπορεί να αποτελέιται από έως 15 χαρακτήρες.",
+    "TAC": "*Ισχύουν όροι και προϋποθέσεις.",
+    "Edit": "Επεξεργασία",
+    "CreateNew": "Δημιουργία νέου",
+    "Back": "Πίσω",
+    "Next": "Επόμενο",
+    "Done": "Έτοιμο",
+    "GearUpWith": "Εξοπλίσου με τις πιο ισχυρές μητρικές AORUS Z790 X.",
+    "UseItContent": "Χρησιμοποίσε τη ως φωτογραφία προφίλ σου στα μέσα κοινωνικής δικτύωσης.",
+    "Download": "Λήψη",
+    "ShareYourAORUS": "Μοιράσου το ΑORUS Chibi σου.",
+    "Share": "Μοιράσου το",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": "Long-press to save the picture."
+    "LongPressToSaveThePicture": "Κράτησε το πατημένο για να αποθηκεύσεις την εικόνα"
   }
 }

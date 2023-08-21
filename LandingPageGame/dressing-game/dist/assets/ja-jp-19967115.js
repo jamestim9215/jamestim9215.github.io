@@ -1,0 +1,2 @@
+const e={EnterYourName:"お名前を入力してください",NameMax:`*お名前は15文字以内でお願いします。
+`,TAC:"*利用規約",Edit:"編集",CreateNew:"新規作成",Back:"戻る",Next:"次へ",Done:"完了",GearUpWith:"パワフルな AORUS Z790 X マザーボードを装備しよう。",UseItContent:"SNS プロフィール写真としてご使用ください。",Download:"ダウンロード",ShareYourAORUS:"AORUS チビを共有する。",Share:"共有する",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"長押しで画像を保存する。"},a={GameTrans:e};export{e as GameTrans,a as default};

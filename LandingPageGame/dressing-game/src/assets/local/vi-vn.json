@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
-    "TAC": "*Terms and Conditions.",
-    "Edit": "Edit",
-    "CreateNew": "Create New",
-    "Back": "Back",
-    "Next": "Next",
-    "Done": "Done",
-    "GearUpWith": "Gear up with the most powerful AORUS Z790 X motherboards.",
-    "UseItContent": "Use this as your social media profile/bio picture.",
-    "Download": "Download",
-    "ShareYourAORUS": "Share your AORUS Chibi.",
-    "Share": "Share",
+    "EnterYourName": "Nhập tên của bạn",
+    "NameMax": "*Tên phải trong vòng 15 ký tự.",
+    "TAC": "*Các điều khoản và điều kiện.",
+    "Edit": "Chỉnh sửa",
+    "CreateNew": "Tạo mới",
+    "Back": "Quay lại",
+    "Next": "Kế tiếp",
+    "Done": "Xong",
+    "GearUpWith": "Trang bị cho bo mạch chủ AORUS Z790 X mạnh mẽ nhất.",
+    "UseItContent": "Sử dụng làm hồ sơ truyền thông xã hội / hình ảnh tiểu sử của bạn.",
+    "Download": "Tải xuống",
+    "ShareYourAORUS": "Chia sẻ AORUS Chibi của bạn.",
+    "Share": "Chia sẻ",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": "Long-press to save the picture."
+    "LongPressToSaveThePicture": ""
   }
 }

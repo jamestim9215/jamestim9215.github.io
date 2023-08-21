@@ -1,7 +1,7 @@
 {
   "GameTrans": {
     "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
+    "NameMax": "*Name must be within 15 characters.",
     "TAC": "*Terms and Conditions.",
     "Edit": "Edit",
     "CreateNew": "Create New",

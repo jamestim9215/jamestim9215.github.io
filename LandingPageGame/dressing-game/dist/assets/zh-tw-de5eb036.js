@@ -1,1 +1,0 @@
-const e={EnterYourName:"輸入你的名字",NameMax:"*名字僅限30字元內",TAC:"*活動規範與細則",Edit:"編輯",CreateNew:"建立新的",Back:"返回",Next:"下一步",Done:"完成",GearUpWith:"搭配最強大的 AORUS Z790 X 電競主機板。",UseItContent:"設定成為你的社群大頭貼",Download:"下載",ShareYourAORUS:"分享你的AORUS Chibi",Share:"分享",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"長按存取圖片"},a={GameTrans:e};export{e as GameTrans,a as default};

@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
-    "TAC": "*Terms and Conditions.",
-    "Edit": "Edit",
-    "CreateNew": "Create New",
-    "Back": "Back",
-    "Next": "Next",
-    "Done": "Done",
-    "GearUpWith": "Gear up with the most powerful AORUS Z790 X motherboards.",
-    "UseItContent": "Use this as your social media profile/bio picture.",
-    "Download": "Download",
-    "ShareYourAORUS": "Share your AORUS Chibi.",
-    "Share": "Share",
+    "EnterYourName": "Tulis nama kamu",
+    "NameMax": "*Nama maksimal 15 karakter",
+    "TAC": "*Syarat dan ketentuan",
+    "Edit": "Ubah",
+    "CreateNew": "Buat baru",
+    "Back": "kembali",
+    "Next": "lanjut",
+    "Done": "Selesai",
+    "GearUpWith": "Bersiaplah untuk Motherboard Aorus Z790 X yang paling luar biasa",
+    "UseItContent": "Gunakan sebagai Profile Picture di social media kamu.",
+    "Download": "Unduh",
+    "ShareYourAORUS": "Bagikan AORUS Chibi kamu",
+    "Share": "Bagikan",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": "Long-press to save the picture."
+    "LongPressToSaveThePicture": "Tekan dan tahan untuk menyimpan gambar"
   }
 }

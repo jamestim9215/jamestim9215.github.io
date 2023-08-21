@@ -1,0 +1,1 @@
+const e={EnterYourName:"",NameMax:"",TAC:"",Edit:"",CreateNew:"",Back:"",Next:"",Done:"",GearUpWith:"",UseItContent:"",Download:"",ShareYourAORUS:"",Share:"",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:""},a={GameTrans:e};export{e as GameTrans,a as default};

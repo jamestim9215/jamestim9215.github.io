@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "Enter your name",
-    "NameMax": "*Name must be within 30 characters.",
-    "TAC": "*Terms and Conditions.",
-    "Edit": "Edit",
-    "CreateNew": "Create New",
-    "Back": "Back",
-    "Next": "Next",
-    "Done": "Done",
-    "GearUpWith": "Gear up with the most powerful AORUS Z790 X motherboards.",
-    "UseItContent": "Use this as your social media profile/bio picture.",
-    "Download": "Download",
-    "ShareYourAORUS": "Share your AORUS Chibi.",
-    "Share": "Share",
+    "EnterYourName": "Zadejte své jméno",
+    "NameMax": "*Jméno musí být v rozmezí 15 znaků.",
+    "TAC": "*Pravidla a podmínky.",
+    "Edit": "Upravit",
+    "CreateNew": "Vytvořit nový",
+    "Back": "Zpět",
+    "Next": "Dále",
+    "Done": "Hotovo",
+    "GearUpWith": "Vyzbrojte se nejvýkonnějšími základními deskami AORUS Z790 X.",
+    "UseItContent": "Použijte tuto fotografii jako svůj profilový/bio obrázek na sociálních médiích.",
+    "Download": "Stáhnout",
+    "ShareYourAORUS": "Sdílejte svého AORUS Chibi.",
+    "Share": "Sdílet",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": "Long-press to save the picture."
+    "LongPressToSaveThePicture": "Dlouhým stiskem uložte obrázek."
   }
 }

@@ -1,10 +1,10 @@
 {
   "GameTrans": {
-    "EnterYourName": "輸入你的名字",
-    "NameMax": "*名字僅限30字元內",
+    "EnterYourName": "輸入姓名",
+    "NameMax": "*名字僅限15字元內",
     "TAC": "*活動規範與細則",
     "Edit": "編輯",
-    "CreateNew": "建立新的",
+    "CreateNew": "新增",
     "Back": "返回",
     "Next": "下一步",
     "Done": "完成",
