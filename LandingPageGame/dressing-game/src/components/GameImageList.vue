@@ -116,10 +116,7 @@ let gameImageData = {
     isShowIndex: 2,
     list: [Cloth_0, Cloth_1],
     typeImg: Cloth_type,
-    preview: [
-      Cloth_preview_0,
-      Cloth_preview_1,
-    ],
+    preview: [Cloth_preview_0, Cloth_preview_1],
   },
   Mb: {
     isShowIndex: 3,
@@ -137,9 +134,7 @@ let gameImageData = {
     isShowIndex: 2,
     list: [Chibi_1],
     typeImg: Chibi_type,
-    preview: [
-      Chibi_preview_1,
-    ],
+    preview: [Chibi_preview_1],
   },
   Bg: {
     isShowIndex: 3,
@@ -306,15 +301,13 @@ const loadImage = (canvas, context, imgIndex, width, height, isDownload) => {
       myLogo.onload = function () {
         context.drawImage(myLogo, 1050, 36, 118.57, 28.18);
 
-        
         let myGbLogo = new Image();
         myGbLogo.src = GBLogo;
         myGbLogo.crossOrigin = "Anonymous";
 
         myGbLogo.onload = function () {
-        context.drawImage(myGbLogo, 36, 36 , 141.96, 18.28);
+          context.drawImage(myGbLogo, 36, 36, 141.96, 18.28);
 
-      
           // 设置字体样式
           context.font = "75px " + fonts.value;
           context.fillStyle = "#fff"; // 文字颜色
@@ -378,13 +371,12 @@ const loadImageForMeta = (canvas, context, imgIndexForMeta, width, height) => {
         // context.drawImage(myLogo, 15, 15, 250, 59);
         context.drawImage(myLogo, 1050, 29, 118.57, 28.18);
 
-        
         let myGbLogo = new Image();
         myGbLogo.src = GBLogo;
         myGbLogo.crossOrigin = "Anonymous";
 
         myGbLogo.onload = function () {
-        context.drawImage(myGbLogo, 29, 29 , 141.96, 18.28);
+          context.drawImage(myGbLogo, 29, 29, 141.96, 18.28);
 
           // 设置字体样式
           context.font = "50px " + fonts.value;
@@ -681,7 +673,7 @@ if (props.stepStatus == 1) {
     </div>
   </div>
   <div class="chooseBG-box" v-if="props.stepStatus == 3">
-    <div class="content">{{ t('GameTrans.GearUpWith')}}</div>
+    <div class="content">{{ t("GameTrans.GearUpWith") }}</div>
     <img
       v-for="(key, index) in gameImageData.Mb.preview"
       :key="index"
@@ -693,39 +685,93 @@ if (props.stepStatus == 1) {
   </div>
 
   <div class="downloadBtn-div" v-if="props.stepStatus == 4">
-    <p class="downloadBtnMb content">{{ t("GameTrans.LongPressToSaveThePicture") }}</p>
+    <p class="downloadBtnMb content">
+      {{ t("GameTrans.LongPressToSaveThePicture") }}
+    </p>
     <p class="downloadBtnPC content">{{ t("GameTrans.UseItContent") }}</p>
     <button class="downloadBtn downloadBtnPC" @click="downloadHandler">
       {{ t("GameTrans.Download") }}
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="28" viewBox="0 0 32 28" fill="none">
-      <path d="M28.9493 18.5806V25.0089H3.05067V18.5806H0V27.9999H32V18.5806H28.9493Z" fill="white"/>
-      <path d="M16.0001 19.5568L22.7912 12.8914H17.529V0H14.4712V12.8914H9.20898L16.0001 19.5568Z" fill="white"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="28"
+        viewBox="0 0 32 28"
+        fill="none"
+      >
+        <path
+          d="M28.9493 18.5806V25.0089H3.05067V18.5806H0V27.9999H32V18.5806H28.9493Z"
+          fill=""
+        />
+        <path
+          d="M16.0001 19.5568L22.7912 12.8914H17.529V0H14.4712V12.8914H9.20898L16.0001 19.5568Z"
+          fill=""
+        />
       </svg>
     </button>
 
     <p>{{ t("GameTrans.ShareYourAORUS") }}</p>
     <button class="downloadBtn" @click="isShowShareDiv = true">
       {{ t("GameTrans.Share") }}
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 30 28" fill="none">
-        <path d="M25.007 19.9975C24.3789 19.9988 23.7599 20.1478 23.2001 20.4327C22.6403 20.7176 22.1555 21.1303 21.7848 21.6373L8.83018 15.1682C8.94643 14.7883 9.00447 14.393 9.00236 13.9958C9.00324 13.5986 8.94522 13.2035 8.83018 12.8233L21.7848 6.35417C22.3647 7.11927 23.2103 7.63922 24.1547 7.81139C25.0992 7.98356 26.0739 7.79545 26.8864 7.28418C27.699 6.77292 28.2904 5.97563 28.5439 5.04969C28.7974 4.12375 28.6946 3.13643 28.2558 2.28256C27.817 1.42869 27.0741 0.770299 26.1736 0.43736C25.2732 0.10442 24.2807 0.121115 23.3919 0.484125C22.5032 0.847136 21.7828 1.5301 21.373 2.39824C20.9631 3.26637 20.8936 4.2566 21.1781 5.1735L8.22344 11.6344C7.72537 10.9531 7.02462 10.4467 6.22139 10.1877C5.41817 9.92868 4.5536 9.93025 3.75133 10.1922C2.94907 10.4542 2.25019 10.9632 1.75462 11.6463C1.25906 12.3295 0.992188 13.1518 0.992188 13.9958C0.992188 14.8397 1.25906 15.6621 1.75462 16.3452C2.25019 17.0283 2.94907 17.5373 3.75133 17.7993C4.5536 18.0612 5.41817 18.0628 6.22139 17.8038C7.02462 17.5448 7.72537 17.0384 8.22344 16.3571L21.1781 22.8262C21.0618 23.2061 21.0038 23.6014 21.0059 23.9987C21.0059 24.79 21.2405 25.5636 21.6802 26.2216C22.1198 26.8796 22.7447 27.3924 23.4759 27.6953C24.207 27.9981 25.0115 28.0774 25.7876 27.923C26.5638 27.7686 27.2767 27.3875 27.8363 26.8279C28.3959 26.2684 28.7769 25.5554 28.9313 24.7793C29.0857 24.0031 29.0065 23.1986 28.7036 22.4675C28.4008 21.7364 27.888 21.1115 27.23 20.6718C26.572 20.2322 25.7984 19.9975 25.007 19.9975Z" fill=""/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="28"
+        viewBox="0 0 30 28"
+        fill="none"
+      >
+        <path
+          d="M25.007 19.9975C24.3789 19.9988 23.7599 20.1478 23.2001 20.4327C22.6403 20.7176 22.1555 21.1303 21.7848 21.6373L8.83018 15.1682C8.94643 14.7883 9.00447 14.393 9.00236 13.9958C9.00324 13.5986 8.94522 13.2035 8.83018 12.8233L21.7848 6.35417C22.3647 7.11927 23.2103 7.63922 24.1547 7.81139C25.0992 7.98356 26.0739 7.79545 26.8864 7.28418C27.699 6.77292 28.2904 5.97563 28.5439 5.04969C28.7974 4.12375 28.6946 3.13643 28.2558 2.28256C27.817 1.42869 27.0741 0.770299 26.1736 0.43736C25.2732 0.10442 24.2807 0.121115 23.3919 0.484125C22.5032 0.847136 21.7828 1.5301 21.373 2.39824C20.9631 3.26637 20.8936 4.2566 21.1781 5.1735L8.22344 11.6344C7.72537 10.9531 7.02462 10.4467 6.22139 10.1877C5.41817 9.92868 4.5536 9.93025 3.75133 10.1922C2.94907 10.4542 2.25019 10.9632 1.75462 11.6463C1.25906 12.3295 0.992188 13.1518 0.992188 13.9958C0.992188 14.8397 1.25906 15.6621 1.75462 16.3452C2.25019 17.0283 2.94907 17.5373 3.75133 17.7993C4.5536 18.0612 5.41817 18.0628 6.22139 17.8038C7.02462 17.5448 7.72537 17.0384 8.22344 16.3571L21.1781 22.8262C21.0618 23.2061 21.0038 23.6014 21.0059 23.9987C21.0059 24.79 21.2405 25.5636 21.6802 26.2216C22.1198 26.8796 22.7447 27.3924 23.4759 27.6953C24.207 27.9981 25.0115 28.0774 25.7876 27.923C26.5638 27.7686 27.2767 27.3875 27.8363 26.8279C28.3959 26.2684 28.7769 25.5554 28.9313 24.7793C29.0857 24.0031 29.0065 23.1986 28.7036 22.4675C28.4008 21.7364 27.888 21.1115 27.23 20.6718C26.572 20.2322 25.7984 19.9975 25.007 19.9975Z"
+          fill=""
+        />
       </svg>
     </button>
   </div>
 
   <div class="share-div-cover" v-if="isShowShareDiv">
     <div class="share-div">
-      <svg xmlns="http://www.w3.org/2000/svg" width="496" height="313" viewBox="0 0 496 313" fill="none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="496"
+        height="313"
+        viewBox="0 0 496 313"
+        fill="none"
+      >
         <g filter="url(#filter0_b_5342_1666)">
-        <path d="M495 312H1V23.0074L25.4897 1H166.776L179.523 20.8946H495V312Z" fill="#040404" fill-opacity="0.7"/>
-        <path d="M495 312H1V23.0074L25.4897 1H166.776L179.523 20.8946H495V312Z" stroke="#A0A0A0" stroke-width="1.3046"/>
+          <path
+            d="M495 312H1V23.0074L25.4897 1H166.776L179.523 20.8946H495V312Z"
+            fill="#040404"
+            fill-opacity="0.7"
+          />
+          <path
+            d="M495 312H1V23.0074L25.4897 1H166.776L179.523 20.8946H495V312Z"
+            stroke="#A0A0A0"
+            stroke-width="1.3046"
+          />
         </g>
         <defs>
-        <filter id="filter0_b_5342_1666" x="-19.6523" y="-19.6523" width="535.305" height="352.305" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feGaussianBlur in="BackgroundImageFix" stdDeviation="10"/>
-        <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_5342_1666"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_5342_1666" result="shape"/>
-        </filter>
+          <filter
+            id="filter0_b_5342_1666"
+            x="-19.6523"
+            y="-19.6523"
+            width="535.305"
+            height="352.305"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="10" />
+            <feComposite
+              in2="SourceAlpha"
+              operator="in"
+              result="effect1_backgroundBlur_5342_1666"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_backgroundBlur_5342_1666"
+              result="shape"
+            />
+          </filter>
         </defs>
       </svg>
       <span class="closeShareDivBtn" @click="isShowShareDiv = false"></span>
@@ -743,15 +789,29 @@ if (props.stepStatus == 1) {
           title="Share on Facebook"
         >
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="46" viewBox="0 0 22 46" fill="none">
-            <g clip-path="url(#clip0_5342_1686)">
-            <path d="M21.8239 8.42738H16.7768C15.0027 8.42738 14.6356 9.14259 14.6356 10.9306V15.2516H21.8239L21.1203 22.8507H14.605V45.5883H5.27564V22.9401H0.412109V15.2218H5.27564V9.14259C5.27564 3.45073 8.42622 0.470703 15.3392 0.470703H21.7933L21.8239 8.42738Z" fill=""/>
-            </g>
-            <defs>
-            <clipPath id="clip0_5342_1686">
-            <rect width="21.4118" height="45.1176" fill="" transform="translate(0.412109 0.470703)"/>
-            </clipPath>
-            </defs>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="46"
+              viewBox="0 0 22 46"
+              fill="none"
+            >
+              <g clip-path="url(#clip0_5342_1686)">
+                <path
+                  d="M21.8239 8.42738H16.7768C15.0027 8.42738 14.6356 9.14259 14.6356 10.9306V15.2516H21.8239L21.1203 22.8507H14.605V45.5883H5.27564V22.9401H0.412109V15.2218H5.27564V9.14259C5.27564 3.45073 8.42622 0.470703 15.3392 0.470703H21.7933L21.8239 8.42738Z"
+                  fill=""
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_5342_1686">
+                  <rect
+                    width="21.4118"
+                    height="45.1176"
+                    fill=""
+                    transform="translate(0.412109 0.470703)"
+                  />
+                </clipPath>
+              </defs>
             </svg>
           </span>
         </a>
@@ -770,8 +830,17 @@ if (props.stepStatus == 1) {
           title="Share on Twitter"
         >
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="38" viewBox="0 0 40 38" fill="none">
-            <path d="M4.34836 1.00035L17.7597 19.2016L4.26367 34H7.30109L19.1169 21.0438L28.6619 34H38.9984L24.8342 14.775L37.3962 1H34.3605L23.4771 12.9345L14.6848 1.00035H4.34836ZM8.81442 3.27128H13.5637L34.5341 31.7287H29.7841L8.81442 3.27128Z" fill=""/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="38"
+              viewBox="0 0 40 38"
+              fill="none"
+            >
+              <path
+                d="M4.34836 1.00035L17.7597 19.2016L4.26367 34H7.30109L19.1169 21.0438L28.6619 34H38.9984L24.8342 14.775L37.3962 1H34.3605L23.4771 12.9345L14.6848 1.00035H4.34836ZM8.81442 3.27128H13.5637L34.5341 31.7287H29.7841L8.81442 3.27128Z"
+                fill=""
+              />
             </svg>
           </span>
         </a>
@@ -814,17 +883,17 @@ if (props.stepStatus == 1) {
     margin: 50px 20px;
     color: #fff;
     font-size: 26px;
-      &:hover{
-        background: #fff;
-        color: #000;
-      }
+    &:hover {
+      background: #fff;
+      color: #000;
+    }
     &.nextBtn {
       background: #ff6400;
       border: 1px solid #ff6400;
-      &:hover{
+      &:hover {
         background: #fff;
         color: #ff6400;
-      border: 1px solid #fff;
+        border: 1px solid #fff;
       }
     }
   }
@@ -864,7 +933,7 @@ if (props.stepStatus == 1) {
     font-size: 22px;
     font-family: "Titillium", sans-serif;
   }
-  .text-notice{
+  .text-notice {
     margin-top: 17px;
     color: #acacac;
     font-size: 18px;
@@ -883,7 +952,7 @@ if (props.stepStatus == 1) {
   }
   button {
     position: relative;
-    margin: 40px  calc(50% - 110px) 0  calc(50% - 110px);
+    margin: 40px calc(50% - 110px) 0 calc(50% - 110px);
     border: 0;
     // width: calc(80% + 4px);
     width: 220px;
@@ -902,7 +971,7 @@ if (props.stepStatus == 1) {
     &:disabled {
       opacity: 0.5;
     }
-    &:hover{
+    &:hover {
       background: #fff;
       color: #ff6400;
       border: 1px solid #fff;
@@ -910,7 +979,7 @@ if (props.stepStatus == 1) {
     &.edit-btn {
       margin: 50px 30px 0 30px;
       background: #838383;
-      &:hover{
+      &:hover {
         background: #fff;
         color: #ff6400;
       }
@@ -963,13 +1032,13 @@ if (props.stepStatus == 1) {
       aspect-ratio: 1 / 1;
       background: #d9d9d9;
       margin: 12px;
-      border: 2px solid rgba(0,0,0,0);
+      border: 2px solid rgba(0, 0, 0, 0);
       cursor: pointer;
       // border-radius: 50%;
       &.active {
         background: #ff6400;
       }
-      &:hover{
+      &:hover {
         border: 2px solid #ff6400;
       }
     }
@@ -981,12 +1050,12 @@ if (props.stepStatus == 1) {
   padding: 10px;
   width: calc(100% - 20px);
   min-height: 300px;
-  > div{
+  > div {
     color: #fff;
     text-align: center;
     font-size: 22px;
-    padding:30px 10px 60px 10px;
-    font-family: "Titillium",'Noto Sans TC', sans-serif;
+    padding: 30px 10px 60px 10px;
+    font-family: "Titillium", "Noto Sans TC", sans-serif;
   }
   > img {
     position: relative;
@@ -996,11 +1065,11 @@ if (props.stepStatus == 1) {
     aspect-ratio: 1 / 1;
     background: #d9d9d9;
     margin: 12px;
-    border: 2px solid rgba(0,0,0,0);
+    border: 2px solid rgba(0, 0, 0, 0);
     &.active {
       background: #ff6400;
     }
-    &:hover{
+    &:hover {
       border: 2px solid #ff6400;
     }
   }
@@ -1011,15 +1080,15 @@ if (props.stepStatus == 1) {
   width: 100%;
   text-align: center;
   padding-top: 50px;
-  font-family: "Titillium",'Noto Sans TC', sans-serif;
+  font-family: "Titillium", "Noto Sans TC", sans-serif;
   p {
     color: #fff;
     font-size: 20px;
     margin-top: 50px;
     margin-bottom: 0px;
-    &.content{
-    margin-top: 0px;
-    margin-bottom:38px;
+    &.content {
+      margin-top: 0px;
+      margin-bottom: 38px;
     }
   }
   .downloadBtn {
@@ -1040,10 +1109,19 @@ if (props.stepStatus == 1) {
       0 100%,
       0 10px
     );
-    svg{
+    cursor: pointer;
+    svg {
       margin-left: 20px;
       display: inline-block;
       vertical-align: middle;
+      fill: #fff;
+    }
+    &:hover{
+      background: #fff;
+      color: #ff6400;
+      svg{
+        fill: #ff6400;
+      }
     }
   }
 }
@@ -1059,7 +1137,7 @@ if (props.stepStatus == 1) {
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   .share-div {
-    >svg{
+    > svg {
       position: absolute;
       z-index: 10px;
       left: 0px;
@@ -1067,7 +1145,7 @@ if (props.stepStatus == 1) {
       width: 100%;
       padding: 0;
     }
-    
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1076,17 +1154,25 @@ if (props.stepStatus == 1) {
     max-width: 494px;
     // min-height: 311px;
     aspect-ratio: 494 / 311;
-    
-    fill: rgba(4, 4, 4, 0.70);
+
+    fill: rgba(4, 4, 4, 0.7);
     stroke-width: 1px;
-    stroke: #A0A0A0;
+    stroke: #a0a0a0;
     // box-shadow: 0 0 10px #333;
     line-height: 300px;
 
-    clip-path: polygon(calc(33% + 4px) 0%, calc(33% + 16px) 18px, 100% 18px, 100% 100%, 0 100%, 0 20px, 23px 0);
+    clip-path: polygon(
+      calc(33% + 4px) 0%,
+      calc(33% + 16px) 18px,
+      100% 18px,
+      100% 100%,
+      0 100%,
+      0 20px,
+      23px 0
+    );
     backdrop-filter: blur(10px);
     text-align: center;
-    font-family: "Titillium",'Noto Sans TC', sans-serif;
+    font-family: "Titillium", "Noto Sans TC", sans-serif;
     > .closeShareDivBtn {
       position: absolute;
       right: 10px;
@@ -1104,7 +1190,7 @@ if (props.stepStatus == 1) {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(45deg);
-        background: #ff6400
+        background: #ff6400;
       }
       &::after {
         content: "";
@@ -1148,11 +1234,11 @@ if (props.stepStatus == 1) {
         // border: 2px solid #ffffff;
         line-height: 65px;
         color: #fff;
-        svg{
+        svg {
           stroke-width: 0px;
           display: inline-block;
           vertical-align: middle;
-            fill: #fff;
+          fill: #fff;
         }
         img {
           width: 100%;
@@ -1161,9 +1247,9 @@ if (props.stepStatus == 1) {
           object-fit: cover;
           object-position: center center;
         }
-        &:hover{
+        &:hover {
           background: #fff;
-          svg{
+          svg {
             fill: #ff6400;
           }
         }
