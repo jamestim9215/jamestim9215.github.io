@@ -4,7 +4,7 @@ import GameHome from "./components/GameHome.vue";
 import GameImageList from "./components/GameImageList.vue";
 import { useI18n } from "vue-i18n";
 
-// ?name=ray&headgear=0&expression=0&outfit=0&leftHandAccessory=0&rightHandAccessory=0&mainBody=0&background=0
+// ?name=ray&Head=0&Eye=0&Cloth=0&Mb=0&Weapon=0&Chibi=0&Bg=0
 
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
@@ -14,74 +14,83 @@ const lang = ref("zh-tw");
 const stepStatus = ref(1);
 const name = ref("");
 const itemIndex = ref({
-  headgear: 0,
-  expression: 0,
-  outfit: 0,
-  leftHandAccessory: 0,
-  rightHandAccessory: 0,
-  mainBody: 0,
-  background: 0,
-})
+  Head: 0,
+  Eye: 0,
+  Cloth: 0,
+  Mb: 0,
+  Weapon: 0,
+  Chibi: 0,
+  Bg: 0,
+});
 
 const isEdit = ref(false);
 
 const initParams = () => {
   console.log("init");
-  lang.value = urlParams.get('lang') ? urlParams.get('lang') : "en-us";
+  lang.value = urlParams.get("lang") ? urlParams.get("lang") : "en-us";
 
-  console.log(urlParams.get('lang')==null);
-  if(
-    (urlParams.get('lang')==null && localStorage.getItem('userUrl')) ||
-    (urlParams.get('lang') && urlParams.get('name')==null && localStorage.getItem('userUrl')) || 
-    (localStorage.getItem('userUrl') == queryString)
-  ){
+  console.log(urlParams.get("lang") == null);
+  if (
+    (urlParams.get("lang") == null && localStorage.getItem("userUrl")) ||
+    (urlParams.get("lang") &&
+      urlParams.get("name") == null &&
+      localStorage.getItem("userUrl")) ||
+    localStorage.getItem("userUrl") == queryString
+  ) {
     var url = new URL(location.href);
     var search_params = url.searchParams;
 
-    search_params.set('lang', lang.value);
-    search_params.set('name', localStorage.getItem('name'));
-    search_params.set('headgear', localStorage.getItem('headgear'));
-    search_params.set('expression', localStorage.getItem('expression'));
-    search_params.set('outfit', localStorage.getItem('outfit'));
-    search_params.set('leftHandAccessory', localStorage.getItem('leftHandAccessory'));
-    search_params.set('rightHandAccessory', localStorage.getItem('rightHandAccessory'));
-    search_params.set('mainBody', localStorage.getItem('mainBody'));
-    search_params.set('background', localStorage.getItem('background'));
+    search_params.set("lang", lang.value);
+    search_params.set("name", localStorage.getItem("name"));
+    search_params.set("Head", localStorage.getItem("Head"));
+    search_params.set("Eye", localStorage.getItem("Eye"));
+    search_params.set("Cloth", localStorage.getItem("Cloth"));
+    search_params.set("Mb", localStorage.getItem("Mb"));
+    search_params.set("Weapon", localStorage.getItem("Weapon"));
+    search_params.set("Chibi", localStorage.getItem("Chibi"));
+    search_params.set("Bg", localStorage.getItem("Bg"));
     url.search = search_params.toString();
 
     var new_url = url.toString();
     var obj = {
-    Title: '??',
-    Url: new_url
+      Title: "??",
+      Url: new_url,
     };
-    window.history.replaceState(obj, obj.Title , obj.Url );
+    window.history.replaceState(obj, obj.Title, obj.Url);
 
     isEdit.value = true;
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
   }
 
-  name.value = urlParams.get('name') ? urlParams.get('name') : "";
-  itemIndex.value.headgear = urlParams.get('headgear') ? Number(urlParams.get('headgear')) : 0;
-  itemIndex.value.expression = urlParams.get('expression') ? Number(urlParams.get('expression')) : 0;
-  itemIndex.value.outfit = urlParams.get('outfit') ? Number(urlParams.get('outfit')) : 0;
-  itemIndex.value.leftHandAccessory = urlParams.get('leftHandAccessory') ? Number(urlParams.get('leftHandAccessory')) : 0;
-  itemIndex.value.rightHandAccessory = urlParams.get('rightHandAccessory') ? Number(urlParams.get('rightHandAccessory')) : 0;
-  itemIndex.value.mainBody = urlParams.get('mainBody') ? Number(urlParams.get('mainBody')) : 0;
-  itemIndex.value.background = urlParams.get('background') ? Number(urlParams.get('background')) : 0;
-
-}
+  name.value = urlParams.get("name") ? (localStorage.getItem("name")?localStorage.getItem("name"):urlParams.get("name")) : "";
+  itemIndex.value.Head = urlParams.get("Head")
+    ? Number(urlParams.get("Head"))
+    : 0;
+  itemIndex.value.Eye = urlParams.get("Eye") ? Number(urlParams.get("Eye")) : 0;
+  itemIndex.value.Cloth = urlParams.get("Cloth")
+    ? Number(urlParams.get("Cloth"))
+    : 0;
+  itemIndex.value.Mb = urlParams.get("Mb") ? Number(urlParams.get("Mb")) : 0;
+  itemIndex.value.Weapon = urlParams.get("Weapon")
+    ? Number(urlParams.get("Weapon"))
+    : 0;
+  itemIndex.value.Chibi = urlParams.get("Chibi")
+    ? Number(urlParams.get("Chibi"))
+    : 0;
+  itemIndex.value.Bg = urlParams.get("Bg")
+    ? Number(urlParams.get("Bg"))
+    : 0;
+};
 
 initParams();
-
 
 const setStepStatusFun = (data) => {
   if (data.name) name.value = data.name;
   if (data.itemIndex) itemIndex.value = data.itemIndex;
   stepStatus.value = data.stepStatus;
   console.log(stepStatus.value);
-  if(stepStatus.value == 1){
-
+  if (stepStatus.value == 1) {
     // initParams();
   }
 };
@@ -111,7 +120,7 @@ const setStepStatusFun = (data) => {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 573px;
   height: auto;
   min-height: 100vh;
   background: #000;
