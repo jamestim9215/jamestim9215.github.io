@@ -731,8 +731,8 @@ if (props.stepStatus == 1) {
     <div class="share-div">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="496"
-        height="313"
+        width=""
+        height=""
         viewBox="0 0 496 313"
         fill="none"
       >
@@ -1133,50 +1133,51 @@ if (props.stepStatus == 1) {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 500px;
+  max-width: 573px;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   .share-div {
-    > svg {
-      position: absolute;
-      z-index: 10px;
-      left: 0px;
-      top: -10px;
-      width: 100%;
-      padding: 0;
-    }
-
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 30px);
-    max-width: 494px;
-    // min-height: 311px;
-    aspect-ratio: 494 / 311;
+    height: auto; /* 讓高度隨比例調整 */
+    max-width: 496px;
+    aspect-ratio: 496 / 313;
 
-    fill: rgba(4, 4, 4, 0.7);
-    stroke-width: 1px;
-    stroke: #a0a0a0;
-    // box-shadow: 0 0 10px #333;
-    line-height: 300px;
-
+    // stroke: #a0a0a0;
+    // stroke: #ff0000;
+    // background: #f00;
     clip-path: polygon(
-      calc(33% + 4px) 0%,
-      calc(33% + 16px) 18px,
-      100% 18px,
+      33.6% 0%,
+      36.4% 6.6%,
+      100% 6.6%,
       100% 100%,
       0 100%,
-      0 20px,
-      23px 0
+      0 7.5%,
+      5.2% 0
     );
-    backdrop-filter: blur(10px);
     text-align: center;
     font-family: "Titillium", "Noto Sans TC", sans-serif;
+
+    > svg {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: auto; /* 讓高度隨比例調整 */
+      // padding: 0;
+      aspect-ratio: 496 / 313;
+      // path{
+        backdrop-filter: blur(10px);
+      // }
+    }
+
     > .closeShareDivBtn {
       position: absolute;
       right: 10px;
-      top: 25px;
+      top: 30px;
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -1222,6 +1223,8 @@ if (props.stepStatus == 1) {
       display: inline-block;
       vertical-align: middle;
       line-height: 18px;
+      top: 50%;
+      transform: translateY(-50%);
       span {
         position: relative;
         display: inline-block;
