@@ -231,6 +231,7 @@ a:hover{
 }
 
 input[type="text"],
+input[type="file"],
 textarea, 
 select{
   position: relative;
@@ -243,6 +244,7 @@ select{
 }
 
 .input-div>input[type="text"],
+.input-div>input[type="file"],
 .input-div>textarea,
 .input-div>select{
   width: calc(100% - 120px);
@@ -265,4 +267,33 @@ select{
   border: 1px solid #ccc;
   background: #fff;
   width: calc(100% - 120px);
+}
+
+.overflow-auto{
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  
+  .input-div{
+    position: relative;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .input-div label{
+    display: block;
+    width: 100%;
+  }
+  .input-div>input[type="text"],
+  .input-div>input[type="file"],
+  .input-div>textarea,
+  .input-div>select{
+    display: block;
+    width: calc(100% - 20px);
+  }
+  .input-div>#editorjs{
+    width: calc(100% - 20px);
+  }
 }

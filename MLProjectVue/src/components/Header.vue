@@ -174,8 +174,20 @@ const route = useRoute();
 @media (max-width: 960px) {
   .header-div{
     >div>div{
+      height: 60px;
+      // line-height: 60px;
       >div{
-        padding: 0 15px;
+        padding: 0 10px;
+        height: 60px;
+        line-height: 60px;
+        img{
+          height: 40px;
+          min-width: 100px;
+          margin: 0;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+        font-size: 22px;
         &:nth-last-child(1){
           width: auto;
           div.menu-btn{
@@ -183,7 +195,7 @@ const route = useRoute();
             // padding: 0 15px;
             .material-icons{
               font-size: 25px;
-
+              vertical-align: middle;
             }
           }
           div.menu-div{

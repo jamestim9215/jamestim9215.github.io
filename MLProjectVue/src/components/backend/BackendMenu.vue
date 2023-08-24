@@ -1,8 +1,21 @@
 <script setup>
-import { ref, computed, } from "vue";
+import { ref, computed, defineEmits, watch  } from "vue";
 import {useRouter,useRoute} from 'vue-router';
 
-defineProps({});
+const props = defineProps({
+  modelValue: Boolean
+});
+
+const emit = defineEmits([
+  'update:modelValue'
+]);
+
+const menuShow = ref(props.modelValue);
+
+// 监听 modelValue 的变化
+watch(() => props.modelValue, (newVal) => {
+  menuShow.value = newVal;
+});
 
 const router = useRouter();
 const route = useRoute();
@@ -93,7 +106,6 @@ const menuData = ref([
   },
 ]);
 
-const menuShow = ref(false);
 const menuIndex = ref(-1);
 const nowPage = ref("/backend/material/introduction");
 
@@ -111,9 +123,21 @@ if(menuIndex.value==-1){
   })
 }
 
+const closeMenu = () => {
+  emit('update:modelValue',false)
+}
+
+
 </script>
 <template>
-  <div class="backend-menu-div">
+  <div class="backend-menu-div" :class="menuShow?'show':''">
+    <div class="closeBtnDiv mbBtn" >
+      <span class="closeBtn" @click="closeMenu()">
+        <span class="material-icons">
+        clear
+        </span>
+      </span>
+    </div>
     <div class="menu-title" v-for="(key,index) in menuData" :key="key.title">
       <span :class="menuIndex==index?'active':''" @click="key.isSubMenuShow==true?key.isSubMenuShow=false:key.isSubMenuShow=true;">{{key.title}}</span>
       <div class="sub-menu-div" :class="key.isSubMenuShow?'active':''">
@@ -126,6 +150,9 @@ if(menuIndex.value==-1){
 </template>
 
 <style lang="scss" scoped>
+.mbBtn{
+  display: none;
+}
 .backend-menu-div{
   position: relative;
   display: inline-block;
@@ -194,7 +221,39 @@ if(menuIndex.value==-1){
     }
   }
 }
-@media (max-width: 960px) {
-  
+@media (max-width: 768px) {
+  .mbBtn{
+    display: inline-block;
+  }
+  .backend-menu-div{
+    position: fixed;
+    display: block;
+    z-index: 100;
+    left: -100%;
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    background: #D9D9D9;
+    transition: 0.3s ease-in-out;
+    &.show{
+      left: 0;
+    }
+    .closeBtnDiv{
+      display: block;
+      width: 100%;
+      height: 50px;
+      text-align: right;
+      background: rgba(96, 121, 186, 0.25);
+      .closeBtn{
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>

@@ -26,12 +26,14 @@ const item = computed(() => {
   return route.params.item
 });
 
+const menuShow = ref(false);
+
 </script>
 <template>
-    <Header/>
+    <Header v-model="menuShow"/>
     <div class="content-div">
         
-        <BackendMenu/>
+        <BackendMenu v-model="menuShow" />
         <div class="backend-content">
             <div class="bread-crumbs-div" v-if="item">
                 <!-- <span class="bread-crumbs">{{menu}}</span> -->
@@ -93,6 +95,11 @@ const item = computed(() => {
 }
 
 @media (max-width: 768px) {
+
+    .backend-content{
+        width: 100%;
+        height: calc(100vh - 40px);
+    }
 
 }
 </style>
