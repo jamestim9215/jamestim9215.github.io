@@ -626,7 +626,7 @@ watch(
 </script>
 
 <template>
-  <img src="@/assets/images/pattern-bg.png" alt="" class="patternBgImg">
+  <img src="@/assets/images/pattern-bg.png" alt="" class="patternBgImg" v-if="props.stepStatus == 1">
   <div class="hiddenImg" v-show="1">
     <img :src="key" v-for="(key, index) in hiddenImg" :key="index" alt="" />
   </div>
