@@ -3,11 +3,48 @@
   --theme-aorus-dark: #131313;
 
 }
+
 html,body{
   margin: 0;
   padding: 0;
   background: var(--theme-aorus-dark);
-  font-family: 'AORUS-Font','Titillium', sans-serif;
+  font-family: 'AORUS-Font', 'Aldrich','Titillium','微軟正黑體', 'Microsoft JhengHei', sans-serif;
 }
 
+.fontAorus{
+  font-family: 'Titillium', sans-serif;
+}
+.fontAldrich{
+  font-family: '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+}
+.fontRoboto{
+  font-family: 'Roboto', sans-serif;
+}
 
+.fontNotoSansThai{
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.fontNotoSansKR{
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.fontNotoSansJP{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.fontNotoSansTC{
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.fontNotoSansSC{
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.fontAlmarai{
+  font-family: 'Almarai', sans-serif;
+}
+
+.fontOpenSans{
+  font-family: 'Open Sans', sans-serif;
+}

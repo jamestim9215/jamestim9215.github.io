@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import GameHome from "./components/GameHome.vue";
 import GameImageList from "./components/GameImageList.vue";
 import { useI18n } from "vue-i18n";
+import language from "@/assets/local/language.json";
 
 // ?name=ray&Head=0&Eye=0&Cloth=0&Mb=0&Weapon=0&Chibi=0&Bg=0
 
@@ -11,7 +12,7 @@ let urlParams = new URLSearchParams(queryString);
 
 const lang = ref("zh-tw");
 
-const stepStatus = ref(1);
+const stepStatus = ref(0);
 const name = ref("");
 const itemIndex = ref({
   Head: 0,
@@ -22,6 +23,8 @@ const itemIndex = ref({
   Chibi: 0,
   Bg: 0,
 });
+
+console.log(language);
 
 const isEdit = ref(false);
 
@@ -63,7 +66,11 @@ const initParams = () => {
     urlParams = new URLSearchParams(queryString);
   }
 
-  name.value = urlParams.get("name") ? (localStorage.getItem("name")?localStorage.getItem("name"):urlParams.get("name")) : "";
+  name.value = urlParams.get("name")
+    ? localStorage.getItem("name")
+      ? localStorage.getItem("name")
+      : urlParams.get("name")
+    : "";
   itemIndex.value.Head = urlParams.get("Head")
     ? Number(urlParams.get("Head"))
     : 0;
@@ -78,12 +85,30 @@ const initParams = () => {
   itemIndex.value.Chibi = urlParams.get("Chibi")
     ? Number(urlParams.get("Chibi"))
     : 0;
-  itemIndex.value.Bg = urlParams.get("Bg")
-    ? Number(urlParams.get("Bg"))
-    : 0;
+  itemIndex.value.Bg = urlParams.get("Bg") ? Number(urlParams.get("Bg")) : 0;
 };
 
 initParams();
+
+const getLangFonts = (type) => {
+  var font = "fontAldrich";
+  language.forEach((element) => {
+    if (element.code == lang.value) {
+      if (element.family == "AORUS-Font") font = "fontAorus";
+      if (element.family == "Aldrich") font = "fontAldrich";
+      if (element.family == "Roboto") font = "fontRoboto";
+      if (element.family == "Noto Sans Thai") font = "fontNotoSansThai";
+      if (element.family == "Noto Sans KR") font = "fontNotoSansKR";
+      if (element.family == "Noto Sans JP") font = "fontNotoSansJP";
+      if (element.family == "Noto Sans TC") font = "fontNotoSansTC";
+      if (element.family == "Noto Sans SC") font = "fontNotoSansSC";
+      if (element.family == "Almarai") font = "fontAlmarai";
+      if (element.family == "Open Sans") font = "fontOpenSans";
+    }
+  });
+  console.log("init font: " + font);
+  return font;
+};
 
 const setStepStatusFun = (data) => {
   if (data.name) name.value = data.name;
@@ -97,7 +122,9 @@ const setStepStatusFun = (data) => {
 </script>
 
 <template>
-  <div class="dressing-game-div">
+  <div class="dressing-game-div" :class="getLangFonts()">
+
+    <!-- {{stepStatus}} -->
     <GameHome
       :step-status="stepStatus"
       @setStepStatus="setStepStatusFun"
@@ -110,7 +137,6 @@ const setStepStatusFun = (data) => {
       :itemIndex="itemIndex"
       :lang="lang"
       :isEdit="isEdit"
-      v-if="stepStatus != 0"
     />
   </div>
 </template>

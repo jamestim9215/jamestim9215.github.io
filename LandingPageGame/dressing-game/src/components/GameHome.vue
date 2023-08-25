@@ -17,12 +17,17 @@ const setStep = (stepStatus) => {
     emit('setStepStatus', _data)
 }
 
+let timer = setTimeout(() => {
+    setStep(1);
+    clearTimeout(timer);
+}, 1000);
+
 </script>
 <template>
     <div class="home-div">
-        <img src="@/assets/logo.png" alt="">
+        <!-- <img src="@/assets/logo.png" alt="">
 
-        <button @click="setStep(1);">try to make</button>
+        <button @click="setStep(1);">try to make</button> -->
     </div>
 </template>
 <style lang="scss" scoped>

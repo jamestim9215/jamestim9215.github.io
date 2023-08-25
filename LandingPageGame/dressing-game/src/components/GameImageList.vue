@@ -2,6 +2,7 @@
 import { ref, onMounted, defineProps, defineEmits, watch } from "vue";
 
 // import PatternBg from "@/assets/images/Pattern-bg.png";
+import language from "@/assets/local/language.json";
 
 import Head_type from "@/assets/images/type/Head.png";
 import Head_0 from "@/assets/images/Head/Head_0.png";
@@ -149,7 +150,16 @@ let gameImageData = {
 let typeIndex = ref("Chibi");
 let pageType = ref("create");
 
-let fonts = ref("AORUS-Font");
+let fonts = ref("Aldrich");
+
+language.forEach((element) => {
+    if (element.code == props.lang) {
+      fonts.value = element.family;
+    }
+});
+
+console.log("Image font: " +fonts.value);
+
 
 // 頭飾 / 表情 / 服裝 / 左手配件 / 右手配件 / 本體 / 背景
 
@@ -247,7 +257,7 @@ const setStep = (stepStatus, type) => {
     stepStatus: stepStatus,
   };
 
-  console.log(_data);
+  // console.log(_data);
   itemIndex.value = _data.itemIndex;
 
   if (stepStatus == 1) {
@@ -288,7 +298,7 @@ const loadImage = (canvas, context, imgIndex, width, height, isDownload) => {
   myImage.src = downloadImgArr[imgIndex];
   myImage.crossOrigin = "Anonymous";
 
-  console.log(downloadImgArr);
+  // console.log(downloadImgArr);
 
   myImage.onload = function () {
     context.drawImage(myImage, 0, 0, width, height);
@@ -546,7 +556,11 @@ const okHandler = (_step) => {
   for (let key in imgArr.value) {
     if (imgArr.value[key] != null) downloadImgArr.push(imgArr.value[key]);
   }
-  drawAndShareImage(false);
+  let timer = setTimeout(() => {
+    drawAndShareImage(false);
+    clearTimeout(timer);
+  }, 0);
+
   if (_step == 4) {
     setStep(_step, pageType.value);
   }
@@ -584,9 +598,26 @@ const copyText = () => {
   alert("已複製到剪貼簿! " + textToCopy);
 };
 
-if (props.stepStatus == 1) {
-  okHandler(1);
-}
+watch(
+  () => props.stepStatus,
+  (newVal, oldVal) => {
+    if (newVal == 1) {
+      okHandler(1);
+      let timer = setTimeout(() => {
+        okHandler(1);
+        clearTimeout(timer);
+      }, 100);
+    }
+  }
+);
+      // let timer = setTimeout(() => {
+      //   okHandler(1);
+      //   clearTimeout(timer);
+      // }, 100);
+
+// if (props.stepStatus == 1){
+//     okHandler(1);
+// }
 </script>
 
 <template>
@@ -879,7 +910,8 @@ if (props.stepStatus == 1) {
   button {
     position: relative;
     display: inline-block;
-    width: 110px;
+    width: auto;
+    min-width: 110px;
     height: 50px;
     background: #000;
     border: 1px solid #fff;
@@ -935,19 +967,19 @@ if (props.stepStatus == 1) {
 .home-div {
   position: relative;
   text-align: center;
-  font-family: "Titillium", sans-serif;
+  // font-family: "Titillium", sans-serif;
 
   .text {
     // margin-top: 30px;
     color: #fff;
     font-size: 22px;
-    font-family: "Titillium", sans-serif;
+    // font-family: "Titillium", sans-serif;
   }
   .text-notice {
     margin-top: 17px;
     color: #acacac;
     font-size: 18px;
-    font-family: "Titillium", sans-serif;
+    // font-family: "Titillium", sans-serif;
   }
   input {
     position: relative;
@@ -1092,7 +1124,7 @@ if (props.stepStatus == 1) {
   width: 100%;
   text-align: center;
   padding-top: 50px;
-  font-family: "Titillium", "Noto Sans TC", sans-serif;
+  // font-family: "Titillium", "Noto Sans TC", sans-serif;
   p {
     color: #fff;
     font-size: 20px;
