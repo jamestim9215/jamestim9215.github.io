@@ -122,6 +122,14 @@ const setStepStatusFun = (data) => {
 </script>
 
 <template>
+    <div class="loading-div show active">
+        <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <!-- <span> Please wait ...</span> -->
+        </div>
+    </div>
   <div class="dressing-game-div" :class="getLangFonts()">
 
     <!-- {{stepStatus}} -->
@@ -152,4 +160,79 @@ const setStepStatusFun = (data) => {
   background: #000;
   padding: 0 0;
 }
+.loading-div {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,1);
+  display: none;
+  opacity: 0;
+  transition: 0.5s all;
+  font-family: "Noto Sans TC", sans-serif;
+  color: rgba(255,255,255,0.5);
+  &.show {
+    opacity: 1;
+    transition: 0.5s all;
+  }
+
+  &.active {
+    display: inline;
+  }
+}
+
+.loading-div > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  > div {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+    background: #ff6400;
+    animation-name: loading;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+  > span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1) skewX(0deg);
+  }
+  15% {
+    transform: scale(1.3) skewX(0deg);
+    background: var(--theme-color);
+  }
+  30% {
+    transform: scale(1) skewX(0deg);
+  }
+  100% {
+    transform: scale(1) skewX(0deg);
+  }
+}
+
 </style>

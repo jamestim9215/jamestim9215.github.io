@@ -606,7 +606,12 @@ watch(
       let timer = setTimeout(() => {
         okHandler(1);
         clearTimeout(timer);
-      }, 100);
+        var timer2 = setTimeout(() => {
+          document.querySelector(".loading-div").classList.remove('active');
+          document.querySelector(".loading-div").classList.remove('show');
+          clearTimeout(timer2);
+        }, 500);
+      }, 500);
     }
   }
 );

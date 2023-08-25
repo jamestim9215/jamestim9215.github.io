@@ -31,6 +31,8 @@ let timer = setTimeout(() => {
     </div>
 </template>
 <style lang="scss" scoped>
+
+    
     .home-div{
         position: relative;
         text-align: center;
@@ -45,4 +47,6 @@ let timer = setTimeout(() => {
         color: #fff;
         font-size: 20px;
     }
+
+ 
 </style>
