@@ -1,2 +1,0 @@
-const e={EnterYourName:"당신의 이름을 입력하세요",NameMax:`*이름은 15자 이내여야 합니다.
-`,TAC:"*이용 약관",Edit:"편집",CreateNew:"새로 만들기",Back:"뒤로 가기",Next:"다음",Done:"완료",GearUpWith:"가장 강력한 AORUS Z790 X 메인보드를 장착하세요.",UseItContent:"SNS 프로필 사진으로 사용하세요.",Download:"다운로드",ShareYourAORUS:"당신의 AORUS CHIBI를 공유하세요.",Share:"공유",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:""},a={GameTrans:e};export{e as GameTrans,a as default};

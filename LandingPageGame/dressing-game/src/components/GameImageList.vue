@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted, defineProps, defineEmits, watch } from "vue";
 
+// import PatternBg from "@/assets/images/Pattern-bg.png";
+
 import Head_type from "@/assets/images/type/Head.png";
 import Head_0 from "@/assets/images/Head/Head_0.png";
 import Head_1 from "@/assets/images/Head/Head_1.png";
@@ -100,11 +102,11 @@ let downloadBase64 = null;
 let downloadBase64ForMeta = null;
 
 let gameImageData = {
-  Head: {
+  Chibi: {
     isShowIndex: 2,
-    list: [Head_0, Head_1],
-    typeImg: Head_type,
-    preview: [Head_preview_0, Head_preview_1],
+    list: [Chibi_1],
+    typeImg: Chibi_type,
+    preview: [Chibi_preview_1],
   },
   Eye: {
     isShowIndex: 2,
@@ -112,29 +114,29 @@ let gameImageData = {
     typeImg: Eye_type,
     preview: [Eye_preview_0, Eye_preview_1],
   },
-  Cloth: {
-    isShowIndex: 2,
-    list: [Cloth_0, Cloth_1],
-    typeImg: Cloth_type,
-    preview: [Cloth_preview_0, Cloth_preview_1],
-  },
-  Mb: {
-    isShowIndex: 3,
-    list: [Mb_1],
-    typeImg: null,
-    preview: [Mb_preview_1],
-  },
   Weapon: {
     isShowIndex: 2,
     list: [Weapon_0, Weapon_1],
     typeImg: Weapon_type,
     preview: [Weapon_preview_0, Weapon_preview_1],
   },
-  Chibi: {
+  Cloth: {
     isShowIndex: 2,
-    list: [Chibi_1],
-    typeImg: Chibi_type,
-    preview: [Chibi_preview_1],
+    list: [Cloth_0, Cloth_1],
+    typeImg: Cloth_type,
+    preview: [Cloth_preview_0, Cloth_preview_1],
+  },
+  Head: {
+    isShowIndex: 2,
+    list: [Head_0, Head_1],
+    typeImg: Head_type,
+    preview: [Head_preview_0, Head_preview_1],
+  },
+  Mb: {
+    isShowIndex: 3,
+    list: [Mb_1],
+    typeImg: null,
+    preview: [Mb_preview_1],
   },
   Bg: {
     isShowIndex: 3,
@@ -144,7 +146,7 @@ let gameImageData = {
   },
 };
 
-let typeIndex = ref("Head");
+let typeIndex = ref("Chibi");
 let pageType = ref("create");
 
 let fonts = ref("AORUS-Font");
@@ -225,7 +227,7 @@ const setStep = (stepStatus, type) => {
   //   };
   // }
   if (stepStatus == 2) {
-    typeIndex.value = "Head";
+    typeIndex.value = "Chibi";
   }
 
   if (stepStatus == 2 && type == "create" && props.stepStatus == 1) {
@@ -588,6 +590,7 @@ if (props.stepStatus == 1) {
 </script>
 
 <template>
+  <img src="@/assets/images/pattern-bg.png" alt="" class="patternBgImg">
   <div class="hiddenImg" v-show="1">
     <img :src="key" v-for="(key, index) in hiddenImg" :key="index" alt="" />
   </div>
@@ -645,7 +648,7 @@ if (props.stepStatus == 1) {
         setStep(2, 'create');
         pageType = 'create';
       "
-      :disabled="name == ''"
+      :disabled="name == ''"  style="margin-bottom: 50px;"
     >
       {{ t("GameTrans.CreateNew") }}
     </button>
@@ -710,7 +713,7 @@ if (props.stepStatus == 1) {
     </button>
 
     <p>{{ t("GameTrans.ShareYourAORUS") }}</p>
-    <button class="downloadBtn" @click="isShowShareDiv = true">
+    <button class="downloadBtn" @click="isShowShareDiv = true" style="margin-bottom: 50px;">
       {{ t("GameTrans.Share") }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -898,6 +901,13 @@ if (props.stepStatus == 1) {
     }
   }
 }
+
+.patternBgImg{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
 #imgPreview {
   position: relative;
   margin: 0 auto;
@@ -944,7 +954,8 @@ if (props.stepStatus == 1) {
     width: 80%;
     height: 50px;
     margin-top: 10px;
-    background: #000;
+    // background: #000;
+    background: rgba(0,0,0,0);
     color: #fff;
     border: 2px solid #fff;
     text-align: center;
@@ -1010,11 +1021,12 @@ if (props.stepStatus == 1) {
       margin: 10px;
       text-align: center;
       line-height: 20px;
-      background: #fff;
+      background: #d9d9d9;
       border-radius: 50%;
       white-space: nowrap;
       cursor: pointer;
       &.active {
+        // background: linear-gradient(90deg, #00ffff 0%, #ff00ff 100%);
         background: #ff6400;
       }
     }

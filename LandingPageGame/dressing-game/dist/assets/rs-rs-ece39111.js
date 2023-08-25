@@ -1,0 +1,2 @@
+const a={EnterYourName:"Unesi svoje ime",NameMax:"*Ime može imati 15 karaktera.",TAC:"*Uslovi korišćenja",Edit:"Izmeni",CreateNew:"Napravi novo",Back:"Nazad",Next:"Sledeći",Done:"Gotovo",GearUpWith:`Opremi se sa najmoćnijom
+AORUS Z790 X matičnom pločom`,UseItContent:"Koristite ovo kao vašu profilnu sliku na društvenim mrežama",Download:"Sačuvaj",ShareYourAORUS:"Podeli tvog AORUS Chibi-ja.",Share:"Podeli",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"Zadrži klik da sačuvaš sliku."},e={GameTrans:a};export{a as GameTrans,e as default};

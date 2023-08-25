@@ -1,20 +1,20 @@
 {
   "GameTrans": {
-    "EnterYourName": "",
-    "NameMax": "",
-    "TAC": "",
-    "Edit": "",
-    "CreateNew": "",
-    "Back": "",
-    "Next": "",
-    "Done": "",
-    "GearUpWith": "",
-    "UseItContent": "",
-    "Download": "",
-    "ShareYourAORUS": "",
-    "Share": "",
+    "EnterYourName": "ใส่ชื่อของคุณ",
+    "NameMax": "*ชื่อต้องอยู่ภายใน 15 อักขระ",
+    "TAC": "*ข้อกำหนดและเงื่อนไข",
+    "Edit": "แก้ไข",
+    "CreateNew": "สร้างใหม่",
+    "Back": "กลับ",
+    "Next": "ต่อไป",
+    "Done": "เสร็จแล้ว",
+    "GearUpWith": "พร้อมกับเมนบอร์ด AORUS Z790 X ที่ทรงพลังที่สุด",
+    "UseItContent": "ใส่รูปโปรไฟล์ของคุณ",
+    "Download": "การดาวน์โหลด",
+    "ShareYourAORUS": "แบ่งปัน AORUS Chibi ของคุณ",
+    "Share": "แบ่งปัน",
     "Twitter": "Twitter",
     "Facebook": "Facebook",
-    "LongPressToSaveThePicture": ""
+    "LongPressToSaveThePicture": "กดบันทึกภาพภายในเวลาที่กำหนด"
   }
 }
