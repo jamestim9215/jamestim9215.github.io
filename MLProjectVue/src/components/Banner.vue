@@ -2,14 +2,22 @@
 import { ref } from "vue";
 import {useRouter,useRoute} from 'vue-router';
 
-defineProps({});
+const props = defineProps({
+  bannerData: {
+    type: Object,
+    default: () => {}
+  }
+});
+
+console.log(props.bannerData);
 
 const router = useRouter();
 const route = useRoute();
+
 </script>
 
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" v-if="props.bannerData.title">
     <div class="banner-div">
       <div class="banner-bg">
         <img src="@/assets/images/banner.png" alt="">
@@ -17,11 +25,11 @@ const route = useRoute();
       <div class="container">
         <div class="banner-content">
           <div class="title">
-            Title 
+            {{props.bannerData.title}}
           </div>
           <div class="content">
-            content content content content content content content content content content content content content content content content content content .....
-            <button @click="router.push('/tes/123')" >LEARN MORE</button>
+            {{props.bannerData.content}}
+            <button @click="router.push(props.bannerData.link)" >LEARN MORE</button>
           </div>
         </div>
       </div>

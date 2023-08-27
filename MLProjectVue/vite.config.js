@@ -9,9 +9,16 @@ export default defineConfig(
       'process.env': process.env
     },
     plugins: [vue()],
-    server:{
-      port: 5500,
-      host: true
+    server: {
+      port: 9000,
+      cors: true,
+      proxy: {
+        "/dev": {
+          target: "https://ai-nb-thermal.azurewebsites.net",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/dev/, ""),
+        },
+      },
     },
     resolve: {
       alias: {

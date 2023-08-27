@@ -4,10 +4,57 @@ import {useRouter,useRoute} from 'vue-router';
 
 const router = useRouter();
 
-defineProps({});
+const props = defineProps({
+  contentList: {
+    type: Array,
+    default: () => []
+  }
+});
 </script>
 
-<template>
+<template v-if="props.contentList.length>0">
+  <div :class="
+    [
+      'content-template-'+(index%2==0?1:2),
+    ]" 
+    v-for="(key,index) in props.contentList" 
+    :key="index">
+    <div class="container">
+      <div v-if="index%2==0">
+        <div class="title">{{key.title}}</div>
+        <div class="content">
+          {{key.content}}
+        </div>
+      </div>
+      <div>
+        <img :src="key.img"/>
+        <button @click="router.push(key.link)">MORE</button>
+      </div>
+      <div v-if="index%2!=0">
+        <div class="title">{{key.title}}</div>
+        <div class="content">
+          {{key.content}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- <div class="content-template-2">
+    <div class="container">
+      <div>
+        <img src="" alt="" />
+        <button @click="router.push('/test/123')">MORE</button>
+      </div>
+      <div>
+        <div class="title">Title</div>
+        <div class="content">
+          content content content content content content content content
+          content content content content content content content content
+          content content .....
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="content-template-1">
     <div class="container">
       <div>
@@ -23,39 +70,7 @@ defineProps({});
         <button @click="router.push('/test/123')">MORE</button>
       </div>
     </div>
-  </div>
-  <div class="content-template-2">
-    <div class="container">
-      <div>
-        <img src="" alt="" />
-        <button @click="router.push('/test/123')">MORE</button>
-      </div>
-      <div>
-        <div class="title">Title</div>
-        <div class="content">
-          content content content content content content content content
-          content content content content content content content content
-          content content .....
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="content-template-1">
-    <div class="container">
-      <div>
-        <div class="title">Title</div>
-        <div class="content">
-          content content content content content content content content
-          content content content content content content content content
-          content content .....
-        </div>
-      </div>
-      <div>
-        <img src="" alt="" />
-        <button @click="router.push('/test/123')">MORE</button>
-      </div>
-    </div>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>

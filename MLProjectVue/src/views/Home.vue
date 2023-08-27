@@ -6,11 +6,40 @@ import HomeContentList from "@/components/HomeContentList.vue";
 import Footer from "@/components/Footer.vue";
 
 defineProps({});
+
+const BannerData = ref({
+  title: "Title",
+  content: "content content content content content content content content content content content content content content content content content content .....",
+  link: "/tes/123",
+});
+
+const BannerContentList = ref([
+  {
+    title: "Title",
+    content: "content content content content content content content content content content content content content content content content content content .....",
+    link: "/tes/123",
+    img: "",
+  },
+  {
+    title: "Title",
+    content: "content content content content content content content content content content content content content content content content content content .....",
+    link: "/tes/123",
+    img: "",
+  },
+  {
+    title: "Title",
+    content: "content content content content content content content content content content content content content content content content content content .....",
+    link: "/tes/123",
+    img: "",
+  }
+]);
+
+
 </script>
 
 <template>
   <Header />
-  <Banner />
+  <Banner :banner-data="BannerData" />
   <div>
     <div class="container">
       <div class="account-info-div">
@@ -37,7 +66,7 @@ defineProps({});
       </div>
     </div>
   </div>
-  <HomeContentList/>
+  <HomeContentList :content-list="BannerContentList"/>
   <Footer />
 </template>
 
