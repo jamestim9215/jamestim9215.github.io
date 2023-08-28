@@ -507,7 +507,15 @@ const encodedSearchParams = encodeURIComponent(
   shareUrl.searchParams.toString()
 );
 // let shareDomain = 'https://jamestim9215.github.io/LandingPageGame/dressing-game/dist?';
-let shareDomain = "https://member.aorus.com/global/whyjoin?";
+let shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023";
+
+let domain = location.pathname.split('/')[1];
+if(domain!=''){
+  shareDomain = "https://www.aorus.com/"+domain+"/event/aorus-gamerchallenge2023";
+}
+
+console.log(shareDomain);
+
 const TITLE = ref("");
 const URLENCODED_URL = ref(shareDomain + encodedSearchParams);
 const TEXT = ref("");

@@ -21,5 +21,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // base: './event/event/aorus-gamerchallenge2023/chibi-generator/',
   base: './'
 })
