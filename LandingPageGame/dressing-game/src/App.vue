@@ -145,6 +145,7 @@ const setStepStatusFun = (data) => {
       :itemIndex="itemIndex"
       :lang="lang"
       :isEdit="isEdit"
+      :family="getLangFonts()"
     />
   </div>
 </template>

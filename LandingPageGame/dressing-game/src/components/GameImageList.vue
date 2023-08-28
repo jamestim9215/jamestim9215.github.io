@@ -97,6 +97,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  family: {
+    type: String,
+    default: "Aldrich",
+  }
 });
 
 let downloadBase64 = null;
@@ -606,9 +610,36 @@ const copyText = () => {
   alert("已複製到剪貼簿! " + textToCopy);
 };
 
+
+const nameStyle = ref('');
+
+const getNameStyle = () => {
+  let _style = 'font-family: '+fonts.value + ';';
+  let img_w = 0;
+
+  let timer = setTimeout(() => {
+
+    if(document.querySelector(".image-list-div")){
+      img_w = document.querySelector(".image-list-div").offsetWidth;
+
+      if(img_w < 573){
+        console.log(img_w);
+        _style += 'font-size:'+ img_w / 16+'px;';
+      }else{
+        _style += 'font-size:'+ img_w / 16+'px;';
+      }
+      nameStyle.value = _style;
+    }
+    nameStyle.value = _style;
+    clearTimeout(timer);
+  }, 100);
+};
+
 watch(
   () => props.stepStatus,
   (newVal, oldVal) => {
+    console.log("change font size");
+    getNameStyle();
     if (newVal == 1) {
       okHandler(1);
       let timer = setTimeout(() => {
@@ -623,6 +654,7 @@ watch(
     }
   }
 );
+
       // let timer = setTimeout(() => {
       //   okHandler(1);
       //   clearTimeout(timer);
@@ -668,6 +700,7 @@ watch(
   <img :src="imgPreview" alt="" id="imgPreview" v-if="imgPreview" />
   <div class="image-list-div" v-else>
     <img v-for="(key, index) in imgArr" :key="index" :src="key" alt="" />
+    <span class="name-div" :style="nameStyle">{{name}}</span>
   </div>
   <div class="home-div" v-if="props.stepStatus == 1">
     <div class="text">{{ t("GameTrans.EnterYourName") }}</div>
@@ -975,6 +1008,15 @@ watch(
     width: 100%;
     height: auto;
   }
+  >.name-div{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 8.5%;
+    // font-size: calc(573px / 16);
+    color: #fff;
+    text-align: center;
+  }
 }
 
 .home-div {
@@ -1197,6 +1239,7 @@ watch(
     position: absolute;
     top: 50%;
     left: 50%;
+    transition: 0ms all;
     transform: translate(-50%, -50%);
     width: calc(100% - 30px);
     height: auto; /* 讓高度隨比例調整 */
@@ -1227,6 +1270,7 @@ watch(
       // padding: 0;
       aspect-ratio: 496 / 313;
       // path{
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
       // }
     }
@@ -1280,8 +1324,7 @@ watch(
       display: inline-block;
       vertical-align: middle;
       line-height: 18px;
-      top: 50%;
-      transform: translateY(-50%);
+      margin-top: 20%;
       span {
         position: relative;
         display: inline-block;
