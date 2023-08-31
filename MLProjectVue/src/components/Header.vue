@@ -51,7 +51,7 @@ const route = useRoute();
             </div>
             <div>Materials Explorer
             <div>
-              <router-link to="/data_base"><div>Data base</div></router-link>
+              <router-link to="/materials_explorer"><div>Data base</div></router-link>
             </div></div>
             <div>ML platform
             <div>

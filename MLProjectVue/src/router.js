@@ -5,6 +5,7 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import MainPage from '@/views/MainPage.vue'
 import DetailPage from '@/views/DetailPage.vue'
+import MaterialsExplorer from '@/views/MaterialsExplorer.vue'
 
 import BackendHome from '@/views/backend/BackendHome.vue'
 import BackendDetailPage from '@/views/backend/BackendDetailPage.vue'
@@ -35,6 +36,11 @@ const routes = [
     path: '/about_us',
     name: 'AboutUs',
     component: DetailPage,
+  },
+  {
+    path: '/materials_explorer',
+    name: 'MaterialsExplorer',
+    component: MaterialsExplorer,
   },
   {
     path: '/login',
