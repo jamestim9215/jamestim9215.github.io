@@ -2,6 +2,13 @@
 import { ref } from "vue";
 import ptableData from "@/assets/ptable.json";
 
+const props = defineProps({
+    text: {
+        type: String,
+        default: ''
+    }
+});
+
 const PTablePreview = ref({
     "Background": '#fff',
     "Value": '',
@@ -10,6 +17,111 @@ const PTablePreview = ref({
 });
 
 const PTypeIndex = ref(1);
+
+const emit = defineEmits(['setText']);
+
+const hasItemFun = (item) => {
+    let hasItem = false;
+    let type = '';
+    
+    if(PTypeIndex.value == 1){
+        type = '-';
+    }
+    if(PTypeIndex.value == 2){
+        type = ',';
+    }
+    let arr = props.text.split(type);
+    arr.forEach(element => {
+        if(element == item){
+            hasItem = true;
+        }
+    });
+
+    const arrayOfWords = props.text.split(/(?=[A-Z])/);
+
+    if(PTypeIndex.value == 3){
+        hasItem = false;
+        arrayOfWords.forEach(element => {
+            if(element == item){
+                hasItem = true;
+            }
+        });
+    }
+
+
+    return hasItem;
+}
+
+const clickPTableFun = (item,type) => {
+
+    let splitString = "";
+    let addType = '';
+    let regex = '';
+
+    if(PTypeIndex.value == 1){
+        addType = '-';
+        if(type != 'dot') regex = new RegExp(`\\b${item}-\\b|\\b-${item}\\b|\\b${item}\\b`, 'g');
+    }
+    if(PTypeIndex.value == 2){
+        addType = ',';
+        if(type != 'dot') regex = new RegExp(`\\b${item},\\b|\\b,${item}\\b|\\b${item}\\b`, 'g');
+    }
+    if(PTypeIndex.value == 3){
+        addType = '';
+        if(type != 'dot') regex = new RegExp(`\\b${item}\\b`, 'g');
+    }
+    console.log(regex);
+    
+
+    
+
+    if(type == 'num'){
+        splitString = props.text + item;
+    }
+    if(type == 'PTable'){
+        let hasItem = hasItemFun(item);
+        if(hasItem){
+            if(PTypeIndex.value!=3){
+                splitString = props.text.replace(regex, '');
+            }else{
+                const arrayOfWords = props.text.split(/(?=[A-Z])/);
+                const index = arrayOfWords.indexOf(item);
+                arrayOfWords.splice(index, 1);
+                splitString = arrayOfWords.join('');
+            }
+        }else{
+            splitString = props.text?props.text + addType + item:props.text + item;
+        }
+    }
+    if(type == 'dot'){
+        splitString = props.text?props.text + addType + item:props.text + item;
+    }
+            
+            
+    // splitString = splitString.replace(/--/g, '-');
+    // splitString = splitString.replace(/,,/g, ',');
+    // splitString = (splitString[0]==','||splitString[splitString.length-1]==',')?splitString.replace(/,/g, ''):'';
+
+    
+
+    emit('setText', splitString);
+}
+
+const changePTypeIndex = (index) => {
+    PTypeIndex.value = index;
+    let splitString = '';
+    if(index == 1 && props.text.match(/[A-Z][a-z]*/g)){
+        splitString = props.text.match(/[A-Z][a-z]*/g).join('-');
+    }
+    if(index == 2 && props.text.match(/[A-Z][a-z]*/g)){
+        splitString = props.text.match(/[A-Z][a-z]*/g).join(',');
+    }
+    if(index == 3){
+        splitString = props.text.replace(/-/g,"").replace(/,/g,"");
+    }
+    emit('setText', splitString);
+}
+
 
 </script>
 
@@ -21,7 +133,11 @@ const PTypeIndex = ref(1);
         :title="key.fullName" 
         :key="index" :style="'background:'+key.background" 
         class="p-btn"
-        :class="'div'+(index+1)"
+        :class="[
+            'div'+(index+1),
+            hasItemFun(key.name)?'active':'',
+        ]"
+        @click="clickPTableFun(key.name,'PTable');"
         @mouseover="PTablePreview.Background=key.background;PTablePreview.Value=key.value;PTablePreview.Name=key.name;PTablePreview.FullName=key.fullName"
         @mouseout="PTablePreview.Background='';PTablePreview.Value='';PTablePreview.Name='';PTablePreview.FullName=''"
         >
@@ -32,7 +148,10 @@ const PTypeIndex = ref(1);
         <span class="name">{{PTablePreview.Name}}</span>
         <span class="full-name">{{PTablePreview.FullName}}</span>
     </div>
-    <div class="div122 p-btn" v-if="PTypeIndex==1 || PTypeIndex==3">*</div>
+    <div 
+        class="div122 p-btn" 
+        v-if="PTypeIndex==1 || PTypeIndex==3"
+        @click="clickPTableFun('*','dot')">*</div>
     <div class="div123" v-if="PTypeIndex==1">
         Select elements to search for materials with only these elements
     </div>
@@ -40,23 +159,23 @@ const PTypeIndex = ref(1);
         Select elements to search for materials with at least these elements
     </div>
     <div class="div123 type3" style="border:0" v-if="PTypeIndex==3">
-        <div class="p-btn">0</div>
-        <div class="p-btn">1</div>
-        <div class="p-btn">2</div>
-        <div class="p-btn">3</div>
-        <div class="p-btn">4</div>
-        <div class="p-btn">5</div>
-        <div class="p-btn">6</div>
-        <div class="p-btn">7</div>
-        <div class="p-btn">8</div>
-        <div class="p-btn">9</div>
-        <div class="p-btn">(</div>
-        <div class="p-btn">)</div>
+        <div class="p-btn" @click="clickPTableFun('0','num')">0</div>
+        <div class="p-btn" @click="clickPTableFun('1','num')">1</div>
+        <div class="p-btn" @click="clickPTableFun('2','num')">2</div>
+        <div class="p-btn" @click="clickPTableFun('3','num')">3</div>
+        <div class="p-btn" @click="clickPTableFun('4','num')">4</div>
+        <div class="p-btn" @click="clickPTableFun('5','num')">5</div>
+        <div class="p-btn" @click="clickPTableFun('6','num')">6</div>
+        <div class="p-btn" @click="clickPTableFun('7','num')">7</div>
+        <div class="p-btn" @click="clickPTableFun('8','num')">8</div>
+        <div class="p-btn" @click="clickPTableFun('9','num')">9</div>
+        <div class="p-btn" @click="clickPTableFun('(','num')">(</div>
+        <div class="p-btn" @click="clickPTableFun(')','num')">)</div>
     </div>
     <div class="div124">
-        <div :class="PTypeIndex == 1?'active':''" @click="PTypeIndex=1">Only Elements</div>
-        <div :class="PTypeIndex == 2?'active':''" @click="PTypeIndex=2">At Least Elements</div>
-        <div :class="PTypeIndex == 3?'active':''" @click="PTypeIndex=3">Formula</div>
+        <div :class="PTypeIndex == 1?'active':''" @click="changePTypeIndex(1)">Only Elements</div>
+        <div :class="PTypeIndex == 2?'active':''" @click="changePTypeIndex(2)">At Least Elements</div>
+        <div :class="PTypeIndex == 3?'active':''" @click="changePTypeIndex(3)">Formula</div>
     </div>
 
 
@@ -69,7 +188,7 @@ const PTypeIndex = ref(1);
 .p-table-div {
     position: relative;
     width: calc(100% - 60px);
-    max-width: 1000px;
+    max-width: calc(1000px - 30px);
     height: auto;
     min-height: 100px;
     background: #fff;
@@ -304,10 +423,24 @@ const PTypeIndex = ref(1);
 
 .p-btn{
     transition: 0.1s ease-in-out;
+    // border: 2px solid #fff;
     cursor: pointer;
     &:hover{
         opacity: 0.7;
         transform: scale(1.05);
     }
+    &.active{
+        opacity: 0.7;
+        // border: 2px solid var(--theme-color-2);
+        outline: solid 2px var(--theme-color-2);
+        outline-offset: -2px;
+    }
+}
+
+@media (max-width: 960px) {
+    .p-table-div{
+        display: none;
+    }
+    
 }
 </style>
