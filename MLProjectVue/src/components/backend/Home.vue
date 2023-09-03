@@ -25,6 +25,9 @@ const detail = computed(() => {
 </script>
 <template>
   <div class="account-div">
+    <div class="text-right">
+      <button class="btn btn-color-2">Save</button>
+    </div>
     <h3 class="title">Banner</h3>
     <div class="content-box">
       <div class="input-div">

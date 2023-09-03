@@ -2,6 +2,7 @@
 import { ref,computed } from "vue";
 import Header from "@/components/backend/Header.vue";
 import BackendMenu from "@/components/backend/BackendMenu.vue";
+import CommonSetting from "@/components/backend/CommonSetting.vue";
 import HomeSetting from "@/components/backend/Home.vue";
 import AboutUsSetting from "@/components/backend/AboutUs.vue";
 import BackendAccountSetting from "@/components/backend/AccountSetting.vue";
@@ -32,19 +33,18 @@ const menuShow = ref(false);
 <template>
     <Header v-model="menuShow"/>
     <div class="content-div">
-        
         <BackendMenu v-model="menuShow" />
         <div class="backend-content">
             <div class="bread-crumbs-div" v-if="item">
                 <!-- <span class="bread-crumbs">{{menu}}</span> -->
                 <span class="bread-crumbs">{{item.replace(/-/g," ")}}</span>
-                <span class="bread-crumbs" v-if="item.match(/home|about-us/)">Setting</span>
+                <span class="bread-crumbs" v-if="item.match(/home|about-us|common-setting/)">Setting</span>
                 <span class="bread-crumbs" v-if="item.match(/account|introduction|material-informatics|demo-cases/)">List</span>
             </div>
             <IntroductionSetting v-if="item=='introduction'"/>
             <MaterialInformaticsSetting v-if="item=='material-informatics'"/>
             <DemoCasesSetting v-if="item=='demo-cases'"/>
-
+            <CommonSetting v-if="item=='common-setting'"/>
             <HomeSetting v-if="item=='home'"/>
             <AboutUsSetting v-if="item=='about-us'"/>
             <BackendAccountSetting v-if="item=='account'"/>

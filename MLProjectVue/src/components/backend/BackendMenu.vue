@@ -85,6 +85,10 @@ const menuData = ref([
     isSubMenuShow: false,
     subMenu: [
       {
+        title: "Common setting",
+        path: "/backend/web-setting/common-setting",
+      },
+      {
         title: "Home",
         path: "/backend/web-setting/home",
       },

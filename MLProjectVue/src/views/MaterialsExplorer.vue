@@ -57,6 +57,60 @@ const setTextFun = (data) => {
       <PTable v-show="isShowPTable" :text="searchInput" @setText="setTextFun"/>
     </div>
   </div>
+  <div class="content">
+    <div class="filter-div">
+      <div class="title">
+        Filters
+        <button>Reset</button>
+      </div>
+      <div class="filter">
+        <span class="material-icons-round">
+        arrow_drop_down
+        </span>
+        Composition
+        <div>
+
+        </div>
+      </div>
+      <div class="filter">
+        <span class="material-icons-round">
+        arrow_right
+        </span>
+        Thermodynamics
+      </div>
+    </div>
+    <div class="content-div">
+      <div class="table-info">
+        <div class="content">
+          All <span>154,718 materials</span>
+        </div>
+        <div class="showing">Showing 1-15</div>
+        <select name="" id="">
+          <option value="">Columns</option>
+        </select>
+      </div>
+      <table class="ml-table">
+        <thead>
+          <tr>
+            <th>
+              #
+            </th>
+            <th>
+              Material Explore Id
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              mp-000001
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <Footer />
 </template>
 
@@ -148,6 +202,132 @@ const setTextFun = (data) => {
   }
 
 }
+
+.content{
+  position: relative;
+  display: flex;
+  .filter-div{
+    position: relative;
+    display: block;
+    width: 400px;
+    padding: 25px;
+    >div{
+      position: relative;
+      display: block;
+      width:  calc(100% - 40px);
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      background: #fff;
+      padding: 20px;
+      &.title{
+        font-size: 20px;
+        font-weight: 700;
+      }
+      &.filter{
+        width:  calc(100% - 50px);
+        padding: 15px 10px 15px 40px;
+        .material-icons-round{
+          position: absolute;
+          left: 5px;
+          top: 10px;
+          font-size: 36px;
+        }
+        >div{
+          position: relative;
+          width: 100%;
+          height: 300px;
+        }
+      }
+      &:nth-child(1){
+        border-radius: 10px 10px 0 0;
+        background: #EBEBEB;
+        button{
+          float:right;
+          background: #fff;
+          color: #666666;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          text-align: center;
+          padding: 8px 10px;
+          cursor: pointer;
+        }
+      }
+      &:nth-last-child(1){
+        border-radius: 0 0 10px 10px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+  .content-div{
+    display: block;
+    width: calc(100% - 400px);
+    height: 100px;
+    // background: #fff;
+    padding: 25px 25px 25px 0;
+    >.table-info{
+      position: relative;
+      display: block;
+      width: calc(100% - 40px);
+      height: 80px;
+      font-size: 20px;
+      background: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 10px;
+      padding: 0 20px;
+      .content{
+        position: absolute;
+        width: 100%;
+        top: 15px;
+        >span{
+          margin-left: 10px;
+          font-weight: 700;
+        }
+      }
+      .showing{
+        position: absolute;
+        width: 100%;
+        top: 40px;
+        font-size: 14px;
+        color: #ccc;
+      }
+      select{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 150px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 16px;
+        color: #000;
+      }
+    }
+    >.ml-table{
+      position: relative;
+      margin-top: 15px;
+      width: 100%;
+      // border: 1px solid #CCCCCC;
+      border-radius: 10px;
+      background: #fff;
+      border-collapse: collapse;
+      
+      thead>tr>th{
+        border-bottom: 3px solid #F1F3F2;
+      }
+      tbody>tr>td{
+        text-align: center;
+        border-bottom: 2px solid #F1F3F2;
+      }
+      tbody>tr:nth-last-child(1)>td{
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
 @media (max-width: 960px) {
   .search-div{
     padding: 10px;

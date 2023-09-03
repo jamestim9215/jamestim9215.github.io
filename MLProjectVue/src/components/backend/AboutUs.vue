@@ -142,6 +142,9 @@ const saveEditHandler = () => {
 </script>
 <template>
   <div class="account-div">
+    <div class="text-right pb-2">
+      <button class="btn btn-color-2">Save</button>
+    </div>
     <div class="content-box">
       <div class="input-div">
         <label for=""> Image </label>

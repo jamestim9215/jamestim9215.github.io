@@ -17,6 +17,9 @@ const menu = computed(() => {
 const item = computed(() => {
   return route.params.item
 });
+const edit = computed(() => {
+  return route.query.edit
+});
 
 const detail = computed(() => {
   return route.params.detail
@@ -100,6 +103,9 @@ const editHander = (row) => {
 </script>
 <template>
   <div class="account-div">
+    <div class="text-right">
+      <button class="btn btn-color-2">Save</button>
+    </div>
     <h3 class="title">Banner</h3>
     <div class="content-box">
       <div class="input-div">
@@ -122,8 +128,8 @@ const editHander = (row) => {
       </div>
     </div>
 
-    <div class="function-div"  v-if="item==''">
-        <div class="btn btn-color-2">
+    <div class="function-div border-top pt-2">
+        <div class="btn btn-color-2"  v-if="!edit">
             Create
         </div>
     </div>
