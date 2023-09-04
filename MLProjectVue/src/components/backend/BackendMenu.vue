@@ -61,25 +61,29 @@ const menuData = ref([
     ],
   },
   {
-    title: "Materials Explorer",
+    title: "Data driven",
     isSubMenuShow: false,
     subMenu: [
       {
-        title: "Setting",
-        path: "/backend/materials-explorer/setting",
+        title: "Materials Informatics",
+        path: "/backend/data-driven/materials-informatics",
       },
-    ],
-  },
-  {
-    title: "ML Platform",
-    isSubMenuShow: false,
-    subMenu: [
       {
-        title: "Setting",
-        path: "/backend/ml-platform/setting",
+        title: "Semiconductor Informatics",
+        path: "/backend/data-driven/semiconductor-informatics",
       },
     ],
   },
+  // {
+  //   title: "ML Platform",
+  //   isSubMenuShow: false,
+  //   subMenu: [
+  //     {
+  //       title: "Setting",
+  //       path: "/backend/ml-platform/setting",
+  //     },
+  //   ],
+  // },
   {
     title: "Web Setting",
     isSubMenuShow: false,
@@ -121,11 +125,11 @@ menuData.value.map((item)=>{
   }
 })
 
-if(menuIndex.value==-1){
-  menuData.value.map((item)=>{
-    router.push('/backend/material/introduction')
-  })
-}
+// if(menuIndex.value==-1){
+//   menuData.value.map((item)=>{
+//     router.push('/backend/material/introduction')
+//   })
+// }
 
 const closeMenu = () => {
   emit('update:modelValue',false)

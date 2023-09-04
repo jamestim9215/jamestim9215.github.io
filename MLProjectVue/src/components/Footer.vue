@@ -12,7 +12,7 @@ const route = useRoute();
   <div class="footer-div">
     <div class="container">
       <div class="menu-div">
-        <div>Logo</div>
+        <div>Logo 半導體設計服務平台</div>
         <div>
           <div>
             <div>Material</div>

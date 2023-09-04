@@ -5,7 +5,11 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import MainPage from '@/views/MainPage.vue'
 import DetailPage from '@/views/DetailPage.vue'
+// import MaterialsExplorerMainPage from '@/views/MaterialsExplorerMainPage.vue'
 import MaterialsExplorer from '@/views/MaterialsExplorer.vue'
+// import DataVisualizer from '@/views/DataVisualizer.vue'
+// import DataWarehouse from '@/views/DataWarehouse.vue'
+// import ModelWarehouse from '@/views/ModelWarehouse.vue'
 
 import BackendHome from '@/views/backend/BackendHome.vue'
 import BackendDetailPage from '@/views/backend/BackendDetailPage.vue'
@@ -38,15 +42,31 @@ const routes = [
     component: DetailPage,
   },
   {
-    path: '/materials_explorer',
-    name: 'MaterialsExplorer',
-    component: MaterialsExplorer,
-  },
-  {
     path: '/login',
-    name: 'Loging',
+    name: 'Login',
     component: Login,
   },
+      {
+        path: '/materials_informatics/data_explorer',
+        name: 'DataExplorer',
+        component: MaterialsExplorer,
+      },
+      // {
+      //   path: '/materials_informatics/data_visualizer',
+      //   name: 'DataVisualizer',
+      //   component: DataVisualizer,
+      // },
+      // {
+      //   path: '/materials_informatics/data_warehouse',
+      //   name: 'DataWarehouse',
+      //   component: DataWarehouse,
+      // },
+      // {
+      //   path: '/materials_informatics/model_warehouse',
+      //   name: 'ModelWarehouse',
+      //   component: ModelWarehouse,
+      // },
+
   {
     path: '/:item/:id',
     name: 'DetailPage',
@@ -56,7 +76,9 @@ const routes = [
     path: '/:item/',
     name: 'MainPage',
     component: MainPage,
-  }
+  },
+  
+
 
 ]
 

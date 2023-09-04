@@ -38,7 +38,7 @@ const menuShow = ref(false);
             <div class="bread-crumbs-div" v-if="item">
                 <!-- <span class="bread-crumbs">{{menu}}</span> -->
                 <span class="bread-crumbs">{{item.replace(/-/g," ")}}</span>
-                <span class="bread-crumbs" v-if="item.match(/home|about-us|common-setting/)">Setting</span>
+                <span class="bread-crumbs" v-if="item.match(/home|about-us|common-setting|materials-informatics|semiconductor-informatics/)">Setting</span>
                 <span class="bread-crumbs" v-if="item.match(/account|introduction|material-informatics|demo-cases/)">List</span>
             </div>
             <IntroductionSetting v-if="item=='introduction'"/>

@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import Header from "@/components/Header.vue";
-
 import Footer from "@/components/Footer.vue";
 import PTable from "@/components/PTable.vue";
+import DataPageTypeDiv from "@/components/DataPageType.vue"
 
 import {useRouter,useRoute} from 'vue-router';
 
@@ -36,6 +36,8 @@ const setTextFun = (data) => {
 
 <template>
   <Header />
+  <DataPageTypeDiv/>
+
   <div class="search-div">
     <div class="container">
       <div class="title">Materials Explorer</div>
@@ -93,18 +95,50 @@ const setTextFun = (data) => {
         <thead>
           <tr>
             <th>
-              #
+              Material Id
             </th>
             <th>
-              Material Explore Id
+              Formula
+            </th>
+            <th>
+              Crystal System
+            </th>
+            <th>
+              Space Group Symbol
+            </th>
+            <th>
+              Sites
+            </th>
+            <th>
+              Enery Above Hull(eV/atom)
+            </th>
+            <th>
+              BandGap(eV)
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
             <td>
-              mp-000001
+              <span @click="router.push('/materials_informatics/data_explorer/mp-000001')">mp-000001</span>
+            </td>
+            <td>
+              Si
+            </td>
+            <td>
+              cubic
+            </td>
+            <td>
+              Fd-3m
+            </td>
+            <td>
+              1
+            </td>
+            <td>
+              0
+            </td>
+            <td>
+              0
             </td>
           </tr>
         </tbody>
@@ -316,10 +350,22 @@ const setTextFun = (data) => {
       
       thead>tr>th{
         border-bottom: 3px solid #F1F3F2;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
       }
       tbody>tr>td{
         text-align: center;
         border-bottom: 2px solid #F1F3F2;
+        padding: 10px;
+        font-size: 14px;
+        >span{
+          cursor: pointer;
+            color: var(--theme-color-2);
+          &:hover{
+            color: var(--theme-color-1);
+          }
+        }
       }
       tbody>tr:nth-last-child(1)>td{
         border-bottom: 0;

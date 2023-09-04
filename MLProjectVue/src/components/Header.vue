@@ -36,31 +36,44 @@ const route = useRoute();
               close
               </span>
             </div>
-            <div>
+            <!-- <div>
               Material
               <div>
                 <router-link to="/introduction-hem"><div>Introduction(HEM)</div></router-link>
                 <router-link to="/material_informatics"><div>Material informatics</div></router-link>
               </div>
-            </div>
+            </div> -->
             <div>
               Collabration
               <div>
                 <router-link to="/demo_cases"><div>Demo cases</div></router-link>
               </div>
             </div>
-            <div>Materials Explorer
             <div>
-              <router-link to="/materials_explorer"><div>Data base</div></router-link>
-            </div></div>
-            <div>ML platform
-            <div>
-              <router-link to="/data_cleaning"><div>data cleaning</div></router-link>
-              <router-link to="/feature_select"><div>feature select</div></router-link>
-              <router-link to="/cross_validation"><div>Cross validation</div></router-link>
-              <router-link to="/prediction"><div>Prediction</div></router-link>
-              <router-link to="/optimization"><div>Optimization</div></router-link>
-            </div></div>
+              Data driven
+              <div>
+                <router-link to="/materials_informatics">
+                  <div>
+                  Material informatics
+                  </div>
+                </router-link>
+                <router-link to="/semiconductor_informatics">
+                  <div>
+                  Semiconductor informatics
+                  </div>
+                </router-link>
+              </div>
+            </div>
+            <!-- <div>
+              ML platform
+              <div>
+                <router-link to="/data_cleaning"><div>data cleaning</div></router-link>
+                <router-link to="/feature_select"><div>feature select</div></router-link>
+                <router-link to="/cross_validation"><div>Cross validation</div></router-link>
+                <router-link to="/prediction"><div>Prediction</div></router-link>
+                <router-link to="/optimization"><div>Optimization</div></router-link>
+              </div>
+            </div> -->
             <router-link to="/about_us"><div>About us</div></router-link>
           </div>
         </div>

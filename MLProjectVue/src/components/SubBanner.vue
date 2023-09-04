@@ -30,7 +30,9 @@ const route = useRoute();
           <div class="content">
             content content content content content content content content content content content content content content content content content content .....
           </div>
-          <button @click="router.push('/'+route.params.item+'/123')" :class="theme==1?'theme1':'theme2'">MORE</button>
+          <button @click="router.push('/materials_informatics/data_explorer')" :class="theme==1?'theme1':'theme2'" v-if="title=='Materials Informatics'">Materials Explorer</button>
+          <button @click="router.push('/'+route.params.item+'/123')" :class="theme==1?'theme1':'theme2'" v-else>MORE</button>
+          
         </div>
       </div>
     </div>
@@ -69,6 +71,7 @@ const route = useRoute();
       border: 0;
       border-radius: 10px;
       font-size: 20px;
+      padding: 0 15px;
       cursor: pointer;
       &.theme1{
         background: var(--theme-color-2);

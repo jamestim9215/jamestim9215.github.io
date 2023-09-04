@@ -46,31 +46,41 @@ const setTheme = (item) => {
         MainPageType.value = 1;
         title.value = "Data base";
         break;
-      case "data_cleaning":
-        theme.value = 2;
-        MainPageType.value = 2;
-        title.value = "Data cleaning";
+      case "materials_informatics":
+        theme.value = 1;
+        MainPageType.value = 1;
+        title.value = "Materials Informatics";
         break;
-      case "feature_select":
-        theme.value = 2;
-        MainPageType.value = 2;
-        title.value = "Feature select";
+      case "semiconductor_informatics":
+        theme.value = 1;
+        MainPageType.value = 1;
+        title.value = "Semiconductor Informatics";
         break;
-      case "cross_validation":
-        theme.value = 2;
-        MainPageType.value = 2;
-        title.value = "Cross validation";
-        break;
-      case "prediction":
-        theme.value = 2;
-        MainPageType.value = 2;
-        title.value = "Prediction";
-        break;
-      case "optimization":
-        theme.value = 2;
-        MainPageType.value = 2;
-        title.value = "Optimization";
-        break;
+      // case "data_cleaning":
+      //   theme.value = 2;
+      //   MainPageType.value = 2;
+      //   title.value = "Data cleaning";
+      //   break;
+      // case "feature_select":
+      //   theme.value = 2;
+      //   MainPageType.value = 2;
+      //   title.value = "Feature select";
+      //   break;
+      // case "cross_validation":
+      //   theme.value = 2;
+      //   MainPageType.value = 2;
+      //   title.value = "Cross validation";
+      //   break;
+      // case "prediction":
+      //   theme.value = 2;
+      //   MainPageType.value = 2;
+      //   title.value = "Prediction";
+      //   break;
+      // case "optimization":
+      //   theme.value = 2;
+      //   MainPageType.value = 2;
+      //   title.value = "Optimization";
+      //   break;
       default:
         theme.value = 1;
         MainPageType.value = 1;
