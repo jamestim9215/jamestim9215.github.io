@@ -6,9 +6,9 @@ import CommonSetting from "@/components/backend/CommonSetting.vue";
 import HomeSetting from "@/components/backend/Home.vue";
 import AboutUsSetting from "@/components/backend/AboutUs.vue";
 import BackendAccountSetting from "@/components/backend/AccountSetting.vue";
-import IntroductionSetting from "@/components/backend/Introduction.vue";
 import DemoCasesSetting from "@/components/backend/DemoCases.vue";
-import MaterialInformaticsSetting from "@/components/backend/MaterialInformatics.vue";
+import SemiconductorInformaticsSetting from "@/components/backend/SemiconductorInformatics.vue";
+import MaterialsInformaticsSetting from "@/components/backend/MaterialsInformatics.vue";
 
 import {useRouter,useRoute} from 'vue-router';
 
@@ -41,8 +41,8 @@ const menuShow = ref(false);
                 <span class="bread-crumbs" v-if="item.match(/home|about-us|common-setting|materials-informatics|semiconductor-informatics/)">Setting</span>
                 <span class="bread-crumbs" v-if="item.match(/account|introduction|material-informatics|demo-cases/)">List</span>
             </div>
-            <IntroductionSetting v-if="item=='introduction'"/>
-            <MaterialInformaticsSetting v-if="item=='material-informatics'"/>
+            <MaterialsInformaticsSetting v-if="item=='materials-informatics'"/>
+            <SemiconductorInformaticsSetting v-if="item=='semiconductor-informatics'"/>
             <DemoCasesSetting v-if="item=='demo-cases'"/>
             <CommonSetting v-if="item=='common-setting'"/>
             <HomeSetting v-if="item=='home'"/>

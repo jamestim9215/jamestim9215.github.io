@@ -290,6 +290,7 @@ a:hover{
 
 input[type="text"],
 input[type="file"],
+input[type="number"],
 textarea, 
 select{
   position: relative;
@@ -303,6 +304,7 @@ select{
 
 .input-div>input[type="text"],
 .input-div>input[type="file"],
+.input-div>input[type="number"],
 .input-div>textarea,
 .input-div>select{
   width: calc(100% - 120px);
@@ -331,6 +333,48 @@ select{
   overflow: auto;
 }
 
+.range-div{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.range-div>input{
+  text-align: center;
+  width: auto;
+}
+.range-slider{
+  margin: 10px 0;
+  background: #ccc;
+}
+
+.range-slider[data-disabled] {
+    /* CSS for disabled range slider element */
+}
+.range-slider .range-slider__range {
+    background: var(--theme-color-1);
+    /* CSS for range */
+}
+.range-slider .range-slider__range[data-active] {
+    /* CSS for active (actively being dragged) range */
+}
+.range-slider .range-slider__thumb {
+    /* CSS for thumbs */
+    background: var(--theme-color-2);
+}
+.range-slider .range-slider__thumb[data-lower] {
+    /* CSS for lower thumb */
+}
+.range-slider .range-slider__thumb[data-upper] {
+    /* CSS for upper thumb */
+}
+.range-slider .range-slider__thumb[data-active] {
+    /* CSS for active (actively being dragged) thumbs */
+}
+.range-slider .range-slider__thumb[data-disabled] {
+    /* CSS for disabled thumbs */
+}
+
 @media (max-width: 768px) {
   
   .input-div{
@@ -346,6 +390,7 @@ select{
   }
   .input-div>input[type="text"],
   .input-div>input[type="file"],
+  .input-div>input[type="number"],
   .input-div>textarea,
   .input-div>select{
     display: block;

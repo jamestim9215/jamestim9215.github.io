@@ -36,20 +36,20 @@ const detail = computed(() => {
 
 
 const menuData = ref([
-  {
-    title: "Material",
-    isSubMenuShow: false,
-    subMenu: [
-      {
-        title: "Introduction(HEM)",
-        path: "/backend/material/introduction",
-      },
-      {
-        title: "Material informatics",
-        path: "/backend/material/material-informatics",
-      },
-    ],
-  },
+  // {
+  //   title: "Material",
+  //   isSubMenuShow: false,
+  //   subMenu: [
+  //     {
+  //       title: "Introduction(HEM)",
+  //       path: "/backend/material/introduction",
+  //     },
+  //     {
+  //       title: "Material informatics",
+  //       path: "/backend/material/material-informatics",
+  //     },
+  //   ],
+  // },
   {
     title: "Collabration",
     isSubMenuShow: false,

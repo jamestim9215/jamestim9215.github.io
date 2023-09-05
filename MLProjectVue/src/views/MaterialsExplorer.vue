@@ -1,9 +1,12 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import PTable from "@/components/PTable.vue";
-import DataPageTypeDiv from "@/components/DataPageType.vue"
+import DataPageTypeDiv from "@/components/DataPageType.vue";
+
+import rangeSlider from 'range-slider-input';
+import 'range-slider-input/dist/style.css';
 
 import {useRouter,useRoute} from 'vue-router';
 
@@ -32,6 +35,33 @@ const setTextFun = (data) => {
   searchInput.value = data;
 }
 
+
+const rangeValue1 = ref(0);
+const rangeValue2 = ref(10);
+let rangeSliderElement = null;
+
+onMounted(() => {
+  rangeSliderElement = rangeSlider(document.getElementById('rangeTest'), {
+    min:0,
+    max:10,
+    value: [rangeValue1.value, rangeValue2.value],
+    onInput(e) {
+      rangeValue1.value = e[0];
+      rangeValue2.value = e[1];
+    },
+  });
+});
+
+
+//watch rangeValue1
+watch(rangeValue1, (newVal, oldVal) => {
+  rangeSliderElement.value([newVal, rangeValue2.value]);
+});
+
+//watch rangeValue2
+watch(rangeValue2, (newVal, oldVal) => {
+  rangeSliderElement.value([rangeValue1.value, newVal]);
+});
 </script>
 
 <template>
@@ -69,16 +99,50 @@ const setTextFun = (data) => {
         <span class="material-icons-round">
         arrow_drop_down
         </span>
-        Composition
-        <div>
+        <div class="title">Composition</div>
+        
+        <div class="filter-content show">
+          <div class="filter-input">
+            <div class="title">Material ID</div>
+            <input type="text">
+          </div>
+          <div class="filter-input">
+            <div class="title">Formula</div>
+            <input type="text">
+          </div>
+          <div class="filter-input">
+            <div class="title">Chemical System</div>
+            <input type="text">
+          </div>
+          <div class="filter-input">
+            <div class="title">Include Elements</div>
+            <input type="text">
+          </div>
+          <div class="filter-input">
+            <div class="title">Exclude Elements</div>
+            <input type="text">
+          </div>
 
+          <div class="filter-input">
+            <div class="title">Number of Elements</div>
+            
+            <div class="range-div">
+              <input type="number" min="0" :max="rangeValue2" v-model="rangeValue1" >
+              <input type="number" :min="rangeValue1" max="10" v-model="rangeValue2">
+            </div>
+            <div class="range-slider" id="rangeTest">
+            </div>
+          </div>
+
+            
         </div>
       </div>
       <div class="filter">
         <span class="material-icons-round">
         arrow_right
         </span>
-        Thermodynamics
+        <div class="title">Thermodynamics</div>
+        
       </div>
     </div>
     <div class="content-div">
@@ -259,18 +323,44 @@ const setTextFun = (data) => {
         font-weight: 700;
       }
       &.filter{
-        width:  calc(100% - 50px);
-        padding: 15px 10px 15px 40px;
+        width:  calc(100% - 30px);
+        padding: 15px 15px 15px 15px;
         .material-icons-round{
           position: absolute;
           left: 5px;
           top: 10px;
           font-size: 36px;
         }
-        >div{
+        >.title{
+          font-size: 18px;
+          height: auto;
+          padding: 0 10px 0 40px;
+          margin-bottom: 15px;
+        }
+        >.filter-content{
           position: relative;
           width: 100%;
-          height: 300px;
+          display: none;
+          &.show{
+            display: block;
+          }
+          
+
+          >.filter-input{
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            >input{
+              width: calc(100% - 20px);
+              padding: 5px 10px;
+            }
+            >.title{
+              position: relative;
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
         }
       }
       &:nth-child(1){

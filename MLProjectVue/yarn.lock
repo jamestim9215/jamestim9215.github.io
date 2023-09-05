@@ -548,6 +548,11 @@ proxy-from-env@^1.1.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
+range-slider-input@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/range-slider-input/-/range-slider-input-2.4.4.tgz#cddb40c955326eef8c2456992dc2c5fce1377a18"
+  integrity sha512-AbbDCz1g2FDwXUFIMgkBALqJZ4AGSiYQuUEwWmOWrbrT57zdG5OesIV3TjQ4W5D0EMUlR1S0rHI6dqla9wucMQ==
+
 readdirp@~3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.6.0.tgz#74a370bd857116e245b29cc97340cd431a02a6c7"
