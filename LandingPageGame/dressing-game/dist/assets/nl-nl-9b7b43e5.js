@@ -1,2 +1,0 @@
-const e={EnterYourName:"Vul je naam in",NameMax:`*Je naam mag maximaal 15 karakters zijn
-`,TAC:"*Voorwaarden",Edit:"Aanpassen",CreateNew:"Maak een nieuwe",Back:"Terug",Next:"Volgende",Done:"Klaar",GearUpWith:"Gear Up met de krachtigste AORUS Z790 X moederborden.",UseItContent:"Gebruik deze afbeelding als je social media profiel foto.",Download:"Download",ShareYourAORUS:"Deel je AORUS Chibi.",Share:"Share",Twitter:"Twitter",Facebook:"Facebook",LongPressToSaveThePicture:"Houd de afbeelding ingedrukt om te downloaden"},a={GameTrans:e};export{e as GameTrans,a as default};

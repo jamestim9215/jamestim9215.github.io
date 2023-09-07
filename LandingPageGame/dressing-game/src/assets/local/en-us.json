@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Long-press to save the picture."
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;700&display=swap');\nbody {\n    font-family: 'Titillium Web', \"微軟正黑體\", Microsoft JhengHei;\n}",
+    "FontFamilyTag": "AORUS"
   }
 }

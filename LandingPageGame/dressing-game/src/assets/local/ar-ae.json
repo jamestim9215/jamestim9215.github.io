@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "اضغط طويلاً لحفظ الصورة."
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;700&display=swap');",
+    "FontFamilyTag": "Almarai"
   }
 }

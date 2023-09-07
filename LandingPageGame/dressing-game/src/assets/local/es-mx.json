@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Mantén pulsado para guardar la imagen."
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');",
+    "FontFamilyTag": "Aldrich"
   }
 }

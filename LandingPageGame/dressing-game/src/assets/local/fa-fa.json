@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Long-press to save the picture."
+  },
+  "Font": {
+    "FontFamily": "",
+    "FontFamilyTag": ""
   }
 }

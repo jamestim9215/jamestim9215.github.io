@@ -10,7 +10,7 @@ export default defineConfig({
     cors: true,
     proxy: {
       '/dev': {
-        target: '',
+        target: 'https://aorusv2-southeastasia-web-staging.azurewebsites.net',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/dev/, '')
       },

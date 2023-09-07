@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Dlouhým stiskem uložte obrázek."
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');",
+    "FontFamilyTag": "Roboto"
   }
 }

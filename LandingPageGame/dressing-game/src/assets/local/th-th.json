@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "กดบันทึกภาพภายในเวลาที่กำหนด"
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;600&display=swap');",
+    "FontFamilyTag": "Noto Sans Thai"
   }
 }

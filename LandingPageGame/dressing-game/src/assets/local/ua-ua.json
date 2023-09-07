@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Натисніть і утримуйте, щоб зберегти зображення"
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');",
+    "FontFamilyTag": "Roboto"
   }
 }

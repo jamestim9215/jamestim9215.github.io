@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "長押しで画像を保存する。"
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Noto+Sans+TC:wght@300;500&display=swap');",
+    "FontFamilyTag": "Noto Sans JP"
   }
 }

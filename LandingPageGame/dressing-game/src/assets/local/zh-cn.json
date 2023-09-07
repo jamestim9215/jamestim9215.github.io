@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "长按存取图片"
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;500&display=swap');",
+    "FontFamilyTag": "Noto Sans SC"
   }
 }

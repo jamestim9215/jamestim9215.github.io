@@ -35,9 +35,7 @@ const initParams = () => {
   console.log(urlParams.get("lang") == null);
   if (
     (urlParams.get("lang") == null && localStorage.getItem("userUrl")) ||
-    (urlParams.get("lang") &&
-      urlParams.get("name") == null &&
-      localStorage.getItem("userUrl")) ||
+    
     localStorage.getItem("userUrl") == queryString
   ) {
     var url = new URL(location.href);
@@ -52,6 +50,7 @@ const initParams = () => {
     search_params.set("Weapon", localStorage.getItem("Weapon"));
     search_params.set("Chibi", localStorage.getItem("Chibi"));
     search_params.set("Bg", localStorage.getItem("Bg"));
+    search_params.set("Img", localStorage.getItem("Img"));
     url.search = search_params.toString();
 
     var new_url = url.toString();

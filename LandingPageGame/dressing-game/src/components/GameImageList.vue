@@ -5,63 +5,139 @@ import { ref, onMounted, defineProps, defineEmits, watch } from "vue";
 import language from "@/assets/local/language.json";
 
 import Head_type from "@/assets/images/type/Head.png";
+//6種
 import Head_0 from "@/assets/images/Head/Head_0.png";
 import Head_1 from "@/assets/images/Head/Head_1.png";
-// import Head_2 from "@/assets/images/Head/Head_2.png";
+import Head_2 from "@/assets/images/Head/Head_2.png";
+import Head_3 from "@/assets/images/Head/Head_3.png";
+import Head_4 from "@/assets/images/Head/Head_4.png";
+import Head_5 from "@/assets/images/Head/Head_5.png";
+import Head_6 from "@/assets/images/Head/Head_6.png";
 import Head_preview_0 from "@/assets/images/Head/Head_preview_0.png";
 import Head_preview_1 from "@/assets/images/Head/Head_preview_1.png";
-// import Head_preview_2 from "@/assets/images/Head/Head_preview_2.png";
+import Head_preview_2 from "@/assets/images/Head/Head_preview_2.png";
+import Head_preview_3 from "@/assets/images/Head/Head_preview_3.png";
+import Head_preview_4 from "@/assets/images/Head/Head_preview_4.png";
+import Head_preview_5 from "@/assets/images/Head/Head_preview_5.png";
+import Head_preview_6 from "@/assets/images/Head/Head_preview_6.png";
 
 import Eye_type from "@/assets/images/type/Eye.png";
+//8種
 import Eye_0 from "@/assets/images/Eye/Eye_0.png";
 import Eye_1 from "@/assets/images/Eye/Eye_1.png";
-// import Eye_2 from "@/assets/images/Eye/Eye_2.png";
+import Eye_2 from "@/assets/images/Eye/Eye_2.png";
+import Eye_3 from "@/assets/images/Eye/Eye_3.png";
+import Eye_4 from "@/assets/images/Eye/Eye_4.png";
+import Eye_5 from "@/assets/images/Eye/Eye_5.png";
+import Eye_6 from "@/assets/images/Eye/Eye_6.png";
+import Eye_7 from "@/assets/images/Eye/Eye_7.png";
+import Eye_8 from "@/assets/images/Eye/Eye_8.png";
+
 import Eye_preview_0 from "@/assets/images/Eye/Eye_preview_0.png";
 import Eye_preview_1 from "@/assets/images/Eye/Eye_preview_1.png";
-// import Eye_preview_2 from "@/assets/images/Eye/Eye_preview_2.png";
+import Eye_preview_2 from "@/assets/images/Eye/Eye_preview_2.png";
+import Eye_preview_3 from "@/assets/images/Eye/Eye_preview_3.png";
+import Eye_preview_4 from "@/assets/images/Eye/Eye_preview_4.png";
+import Eye_preview_5 from "@/assets/images/Eye/Eye_preview_5.png";
+import Eye_preview_6 from "@/assets/images/Eye/Eye_preview_6.png";
+import Eye_preview_7 from "@/assets/images/Eye/Eye_preview_7.png";
+import Eye_preview_8 from "@/assets/images/Eye/Eye_preview_8.png";
+
 
 import Cloth_type from "@/assets/images/type/Cloth.png";
+//8種
 import Cloth_0 from "@/assets/images/Cloth/Cloth_0.png";
 import Cloth_1 from "@/assets/images/Cloth/Cloth_1.png";
-// import Cloth_2 from "@/assets/images/Cloth/Cloth_2.png";
-// import Cloth_3 from "@/assets/images/Cloth/Cloth_3.png";
+import Cloth_2 from "@/assets/images/Cloth/Cloth_2.png";
+import Cloth_3 from "@/assets/images/Cloth/Cloth_3.png";
+import Cloth_4 from "@/assets/images/Cloth/Cloth_4.png";
+import Cloth_5 from "@/assets/images/Cloth/Cloth_5.png";
+import Cloth_6 from "@/assets/images/Cloth/Cloth_6.png";
+import Cloth_7 from "@/assets/images/Cloth/Cloth_7.png";
+import Cloth_8 from "@/assets/images/Cloth/Cloth_8.png";
+
 import Cloth_preview_0 from "@/assets/images/Cloth/Cloth_preview_0.png";
 import Cloth_preview_1 from "@/assets/images/Cloth/Cloth_preview_1.png";
-// import Cloth_preview_2 from "@/assets/images/Cloth/Cloth_preview_2.png";
-// import Cloth_preview_3 from "@/assets/images/Cloth/Cloth_preview_3.png";
+import Cloth_preview_2 from "@/assets/images/Cloth/Cloth_preview_2.png";
+import Cloth_preview_3 from "@/assets/images/Cloth/Cloth_preview_3.png";
+import Cloth_preview_4 from "@/assets/images/Cloth/Cloth_preview_4.png";
+import Cloth_preview_5 from "@/assets/images/Cloth/Cloth_preview_5.png";
+import Cloth_preview_6 from "@/assets/images/Cloth/Cloth_preview_6.png";
+import Cloth_preview_7 from "@/assets/images/Cloth/Cloth_preview_7.png";
+import Cloth_preview_8 from "@/assets/images/Cloth/Cloth_preview_8.png";
 
 // import Mb_type from "@/assets/images/type/Mb.png";
-// import Mb_0 from "@/assets/images/Mb/Mb_0.png";
+
 import Mb_1 from "@/assets/images/Mb/Mb_1.png";
-// import Mb_2 from "@/assets/images/Mb/Mb_2.png";
-// import Mb_preview_0 from "@/assets/images/Mb/Mb_preview_0.png";
+import Mb_2 from "@/assets/images/Mb/Mb_2.png";
+import Mb_3 from "@/assets/images/Mb/Mb_3.png";
+import Mb_4 from "@/assets/images/Mb/Mb_4.png";
 import Mb_preview_1 from "@/assets/images/Mb/Mb_preview_1.png";
-// import Mb_preview_2 from "@/assets/images/Mb/Mb_preview_2.png";
+import Mb_preview_2 from "@/assets/images/Mb/Mb_preview_2.png";
+import Mb_preview_3 from "@/assets/images/Mb/Mb_preview_3.png";
+import Mb_preview_4 from "@/assets/images/Mb/Mb_preview_4.png";
 
 import Weapon_type from "@/assets/images/type/Weapon.png";
+// 10種
 import Weapon_0 from "@/assets/images/Weapon/Weapon_0.png";
 import Weapon_1 from "@/assets/images/Weapon/Weapon_1.png";
+import Weapon_2 from "@/assets/images/Weapon/Weapon_2.png";
+import Weapon_3 from "@/assets/images/Weapon/Weapon_3.png";
+import Weapon_4 from "@/assets/images/Weapon/Weapon_4.png";
+import Weapon_5 from "@/assets/images/Weapon/Weapon_5.png";
+import Weapon_6 from "@/assets/images/Weapon/Weapon_6.png";
+import Weapon_7 from "@/assets/images/Weapon/Weapon_7.png";
+import Weapon_8 from "@/assets/images/Weapon/Weapon_8.png";
+import Weapon_9 from "@/assets/images/Weapon/Weapon_9.png";
+import Weapon_10 from "@/assets/images/Weapon/Weapon_10.png";
 import Weapon_preview_0 from "@/assets/images/Weapon/Weapon_preview_0.png";
 import Weapon_preview_1 from "@/assets/images/Weapon/Weapon_preview_1.png";
+import Weapon_preview_2 from "@/assets/images/Weapon/Weapon_preview_2.png";
+import Weapon_preview_3 from "@/assets/images/Weapon/Weapon_preview_3.png";
+import Weapon_preview_4 from "@/assets/images/Weapon/Weapon_preview_4.png";
+import Weapon_preview_5 from "@/assets/images/Weapon/Weapon_preview_5.png";
+import Weapon_preview_6 from "@/assets/images/Weapon/Weapon_preview_6.png";
+import Weapon_preview_7 from "@/assets/images/Weapon/Weapon_preview_7.png";
+import Weapon_preview_8 from "@/assets/images/Weapon/Weapon_preview_8.png";
+import Weapon_preview_9 from "@/assets/images/Weapon/Weapon_preview_9.png";
+import Weapon_preview_10 from "@/assets/images/Weapon/Weapon_preview_10.png";
 
 import Chibi_type from "@/assets/images/type/Chibi.png";
-// import Chibi_0 from "@/assets/images/Chibi/Chibi_0.png";
+// 10種
 import Chibi_1 from "@/assets/images/Chibi/Chibi_1.png";
-// import Chibi_2 from "@/assets/images/Chibi/Chibi_2.png";
-// import Chibi_3 from "@/assets/images/Chibi/Chibi_3.png";
-// import Chibi_preview_0 from "@/assets/images/Chibi/Chibi_preview_0.png";
+import Chibi_2 from "@/assets/images/Chibi/Chibi_2.png";
+import Chibi_3 from "@/assets/images/Chibi/Chibi_3.png";
+import Chibi_4 from "@/assets/images/Chibi/Chibi_4.png";
+import Chibi_5 from "@/assets/images/Chibi/Chibi_5.png";
+import Chibi_6 from "@/assets/images/Chibi/Chibi_6.png";
+import Chibi_7 from "@/assets/images/Chibi/Chibi_7.png";
+import Chibi_8 from "@/assets/images/Chibi/Chibi_8.png";
+import Chibi_9 from "@/assets/images/Chibi/Chibi_9.png";
+import Chibi_10 from "@/assets/images/Chibi/Chibi_10.png";
 import Chibi_preview_1 from "@/assets/images/Chibi/Chibi_preview_1.png";
-// import Chibi_preview_2 from "@/assets/images/Chibi/Chibi_preview_2.png";
-// import Chibi_preview_3 from "@/assets/images/Chibi/Chibi_preview_3.png";
+import Chibi_preview_2 from "@/assets/images/Chibi/Chibi_preview_2.png";
+import Chibi_preview_3 from "@/assets/images/Chibi/Chibi_preview_3.png";
+import Chibi_preview_4 from "@/assets/images/Chibi/Chibi_preview_4.png";
+import Chibi_preview_5 from "@/assets/images/Chibi/Chibi_preview_5.png";
+import Chibi_preview_6 from "@/assets/images/Chibi/Chibi_preview_6.png";
+import Chibi_preview_7 from "@/assets/images/Chibi/Chibi_preview_7.png";
+import Chibi_preview_8 from "@/assets/images/Chibi/Chibi_preview_8.png";
+import Chibi_preview_9 from "@/assets/images/Chibi/Chibi_preview_9.png";
+import Chibi_preview_10 from "@/assets/images/Chibi/Chibi_preview_10.png";
 
 // import Bg_0 from "@/assets/images/Bg/Bg_0.png";
 import Bg_1 from "@/assets/images/Bg/Bg_1.png";
-// import Bg_2 from "@/assets/images/Bg/Bg_2.png";
+import Bg_2 from "@/assets/images/Bg/Bg_2.png";
+import Bg_3 from "@/assets/images/Bg/Bg_3.png";
+import Bg_4 from "@/assets/images/Bg/Bg_4.png";
 
 import logo from "@/assets/logo.png";
 import GBLogo from "@/assets/gigabyte_logo.png";
 
 import { useI18n } from "vue-i18n";
+
+import { ChibiEventUploadFile } from "@/assets/api.js"
+
 const { t, locale } = useI18n();
 
 const queryString = window.location.search;
@@ -109,43 +185,43 @@ let downloadBase64ForMeta = null;
 let gameImageData = {
   Chibi: {
     isShowIndex: 2,
-    list: [Chibi_1],
+    list: [Chibi_1, Chibi_2, Chibi_3, Chibi_4, Chibi_5, Chibi_6, Chibi_7, Chibi_8, Chibi_9, Chibi_10],
     typeImg: Chibi_type,
-    preview: [Chibi_preview_1],
+    preview: [Chibi_preview_1, Chibi_preview_2, Chibi_preview_3, Chibi_preview_4, Chibi_preview_5, Chibi_preview_6, Chibi_preview_7, Chibi_preview_8, Chibi_preview_9, Chibi_preview_10],
   },
   Eye: {
     isShowIndex: 2,
-    list: [Eye_0, Eye_1],
+    list: [Eye_0, Eye_1, Eye_2, Eye_3, Eye_4, Eye_5, Eye_6, Eye_7, Eye_8],
     typeImg: Eye_type,
-    preview: [Eye_preview_0, Eye_preview_1],
+    preview: [Eye_preview_0, Eye_preview_1, Eye_preview_2, Eye_preview_3, Eye_preview_4, Eye_preview_5, Eye_preview_6, Eye_preview_7, Eye_preview_8],
   },
   Weapon: {
     isShowIndex: 2,
-    list: [Weapon_0, Weapon_1],
+    list: [Weapon_0, Weapon_1, Weapon_2, Weapon_3, Weapon_4, Weapon_5, Weapon_6, Weapon_7, Weapon_8, Weapon_9, Weapon_10],
     typeImg: Weapon_type,
-    preview: [Weapon_preview_0, Weapon_preview_1],
+    preview: [Weapon_preview_0, Weapon_preview_1, Weapon_preview_2, Weapon_preview_3, Weapon_preview_4, Weapon_preview_5, Weapon_preview_6, Weapon_preview_7, Weapon_preview_8, Weapon_preview_9, Weapon_preview_10],
   },
   Cloth: {
     isShowIndex: 2,
-    list: [Cloth_0, Cloth_1],
+    list: [Cloth_0, Cloth_1, Cloth_2, Cloth_3, Cloth_4, Cloth_5, Cloth_6, Cloth_7, Cloth_8],
     typeImg: Cloth_type,
-    preview: [Cloth_preview_0, Cloth_preview_1],
+    preview: [Cloth_preview_0, Cloth_preview_1, Cloth_preview_2, Cloth_preview_3, Cloth_preview_4, Cloth_preview_5, Cloth_preview_6, Cloth_preview_7, Cloth_preview_8],
   },
   Head: {
     isShowIndex: 2,
-    list: [Head_0, Head_1],
+    list: [Head_0, Head_1, Head_2, Head_3, Head_4, Head_5, Head_6],
     typeImg: Head_type,
-    preview: [Head_preview_0, Head_preview_1],
+    preview: [Head_preview_0, Head_preview_1, Head_preview_2, Head_preview_3, Head_preview_4, Head_preview_5, Head_preview_6],
   },
   Mb: {
     isShowIndex: 3,
-    list: [Mb_1],
+    list: [Mb_1, Mb_2, Mb_3, Mb_4],
     typeImg: null,
-    preview: [Mb_preview_1],
+    preview: [Mb_preview_1, Mb_preview_2, Mb_preview_3, Mb_preview_4],
   },
   Bg: {
     isShowIndex: 3,
-    list: [Bg_1],
+    list: [Bg_1, Bg_2, Bg_3, Bg_4],
     typeImg: null,
     preview: null,
   },
@@ -180,31 +256,31 @@ let itemIndex = ref({
 itemIndex.value = props.itemIndex;
 
 const emit = defineEmits(["setStepStatus"]);
-const name = ref("");
-
 const imgPreview = ref(null);
+
+const name = ref("");
 
 name.value = props.name;
 
 let imgArr = ref([
   gameImageData["Bg"].list[itemIndex.value["Bg"]],
   gameImageData["Chibi"].list[itemIndex.value["Chibi"]],
+  gameImageData["Eye"].list[itemIndex.value["Eye"]],
+  gameImageData["Cloth"].list[itemIndex.value["Cloth"]],
+  gameImageData["Head"].list[itemIndex.value["Head"]],
   gameImageData["Weapon"].list[itemIndex.value["Weapon"]],
   gameImageData["Mb"].list[itemIndex.value["Mb"]],
-  gameImageData["Cloth"].list[itemIndex.value["Cloth"]],
-  gameImageData["Eye"].list[itemIndex.value["Eye"]],
-  gameImageData["Head"].list[itemIndex.value["Head"]],
 ]);
 
 watch(itemIndex, () => {
   imgArr.value = [
     gameImageData["Bg"].list[itemIndex.value["Bg"]],
     gameImageData["Chibi"].list[itemIndex.value["Chibi"]],
+    gameImageData["Eye"].list[itemIndex.value["Eye"]],
+    gameImageData["Cloth"].list[itemIndex.value["Cloth"]],
+    gameImageData["Head"].list[itemIndex.value["Head"]],
     gameImageData["Weapon"].list[itemIndex.value["Weapon"]],
     gameImageData["Mb"].list[itemIndex.value["Mb"]],
-    gameImageData["Cloth"].list[itemIndex.value["Cloth"]],
-    gameImageData["Eye"].list[itemIndex.value["Eye"]],
-    gameImageData["Head"].list[itemIndex.value["Head"]],
   ];
 });
 
@@ -277,21 +353,17 @@ const setStep = (stepStatus, type) => {
 const ChangeItem = (index) => {
   itemIndex.value[typeIndex.value] = index;
 
-  // imgArr.value[0] = gameImageData["BgitemIndex.value["Bg"]];
   imgArr.value[1] = gameImageData["Chibi"].list[itemIndex.value["Chibi"]];
-  imgArr.value[2] = gameImageData["Weapon"].list[itemIndex.value["Weapon"]];
-  // imgArr.value[3] = gameImageData["Mb"].list[
-  //   itemIndex.value["Mb"]
-  // ];
-  imgArr.value[4] = gameImageData["Cloth"].list[itemIndex.value["Cloth"]];
-  imgArr.value[5] = gameImageData["Eye"].list[itemIndex.value["Eye"]];
-  imgArr.value[6] = gameImageData["Head"].list[itemIndex.value["Head"]];
+  imgArr.value[2] = gameImageData["Eye"].list[itemIndex.value["Eye"]];
+  imgArr.value[3] = gameImageData["Cloth"].list[itemIndex.value["Cloth"]];
+  imgArr.value[4] = gameImageData["Head"].list[itemIndex.value["Head"]];
+  imgArr.value[5] = gameImageData["Weapon"].list[itemIndex.value["Weapon"]];
 };
 
 const SetBg = (index) => {
   imgArr.value[0] = gameImageData["Bg"].list[index];
   itemIndex.value.Bg = index;
-  imgArr.value[3] = gameImageData["Mb"].list[index];
+  imgArr.value[6] = gameImageData["Mb"].list[index];
   itemIndex.value.Mb = index;
 
   console.log(imgArr.value);
@@ -450,7 +522,7 @@ onMounted(() => {
 
 const download = (isDownload) => {
   var imgSrc = downloadBase64;
-  var name = "test";
+  var name = 'AORUS_Chibi_Generator';
 
   let image = new Image();
   image.setAttribute("crossOrigin", "anonymous");
@@ -473,9 +545,18 @@ const download = (isDownload) => {
   image.src = imgSrc;
 };
 
+const dataURLtoFile = (dataurl, filename) => {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, {type:mime});
+}
+
 const downloadForMeta = () => {
   var imgSrc2 = downloadBase64ForMeta;
-  var name2 = "testForMeta";
+  var name2 = "AORUS_Chibi_Generator_Share.png";
 
   let image2 = new Image();
   image2.setAttribute("crossOrigin", "anonymous");
@@ -486,11 +567,29 @@ const downloadForMeta = () => {
     let context = canvas.getContext("2d");
     context.drawImage(image2, 0, 0, image2.width, image2.height);
     let url = canvas.toDataURL("image/png");
-    let a = document.createElement("a");
-    let event = new MouseEvent("click");
-    a.download = name2 || "photo";
-    a.href = url;
-    a.dispatchEvent(event);
+    let file = dataURLtoFile(url, name2);
+    ChibiEventUploadFile({
+      "CustomFile": file
+    }).then((res)=>{
+      let { StatusCode , Result} = res.data;
+      if(StatusCode == 1000){
+        let imgUrl = Result.length>0?Result[0].Value:'';
+        let imgName = imgUrl.replace("https://aorusv2-southeastasia-web-staging.azurewebsites.net/image/chibi-user-uploads/",'');
+        imgName = imgName.replace("https://www.aorus.com/image/chibi-user-uploads/",'');
+        ShareImgName.value = imgName;
+        setUrlAndLocalStorage(imgName);
+
+
+      }
+    }).catch((err)=>{
+      console.log(err);
+    });
+
+    // let a = document.createElement("a");
+    // let event = new MouseEvent("click");
+    // a.download = name2 || "photo";
+    // a.href = url;
+    // a.dispatchEvent(event);
   };
   image2.src = imgSrc2;
 };
@@ -501,7 +600,7 @@ const downloadHandler = () => {
     if (imgArr.value[key] != null) downloadImgArr.push(imgArr.value[key]);
   }
   drawAndShareImage(true);
-  drawAndShareImageForMeta();
+  // drawAndShareImageForMeta();
 };
 
 const isShowShareDiv = ref(false);
@@ -511,57 +610,106 @@ const encodedSearchParams = encodeURIComponent(
   shareUrl.searchParams.toString()
 );
 // let shareDomain = 'https://jamestim9215.github.io/LandingPageGame/dressing-game/dist?';
-let shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023";
+let shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023?";
 
 let domain = location.pathname.split('/')[1];
 if(domain!=''){
-  shareDomain = "https://www.aorus.com/"+domain+"/event/aorus-gamerchallenge2023";
+  shareDomain = "https://www.aorus.com/"+domain+"/event/aorus-gamerchallenge2023?";
 }
 
 console.log(shareDomain);
 
 const TITLE = ref("");
-const URLENCODED_URL = ref(shareDomain + encodedSearchParams);
+const URLENCODED_URL = ref(shareDomain);
 const TEXT = ref("");
 const TWITTER_HANDLE = ref("");
+const ShareImgName = ref("");
+
+const getShareUrl = () => {
+  return encodeURIComponent(
+    shareUrl.searchParams.toString()
+  );
+}
+
+const setUrlAndLocalStorage = (ImgName) =>{
+  var url = new URL(location.href);
+  var search_params = url.searchParams;
+
+  search_params.set("lang", props.lang);
+  search_params.set("name", name.value);
+  search_params.set("Head", itemIndex.value.Head);
+  search_params.set("Eye", itemIndex.value.Eye);
+  search_params.set("Cloth", itemIndex.value.Cloth);
+  search_params.set("Mb", itemIndex.value.Mb);
+  search_params.set("Weapon", itemIndex.value.Weapon);
+  search_params.set("Chibi", itemIndex.value.Chibi);
+  search_params.set("Bg", itemIndex.value.Bg);
+  search_params.set("Img", ImgName);
+
+  url.search = search_params.toString();
+
+  var new_url = url.toString();
+  var obj = {
+    Title: "??",
+    Url: new_url,
+  };
+
+  localStorage.setItem("name", name.value);
+  localStorage.setItem("Head", itemIndex.value.Head);
+  localStorage.setItem("Eye", itemIndex.value.Eye);
+  localStorage.setItem("Cloth", itemIndex.value.Cloth);
+  localStorage.setItem("Mb", itemIndex.value.Mb);
+  localStorage.setItem("Weapon", itemIndex.value.Weapon);
+  localStorage.setItem("Chibi", itemIndex.value.Chibi);
+  localStorage.setItem("Bg", itemIndex.value.Bg);
+  localStorage.setItem("Img", ImgName);
+
+  window.history.replaceState(obj, obj.Title, obj.Url);
+
+  let queryString = window.location.search;
+
+  localStorage.setItem("userUrl", queryString);
+}
 
 const okHandler = (_step) => {
   if (_step == 4) {
-    var url = new URL(location.href);
-    var search_params = url.searchParams;
+    // var url = new URL(location.href);
+    // var search_params = url.searchParams;
 
-    search_params.set("lang", props.lang);
-    search_params.set("name", name.value);
-    search_params.set("Head", itemIndex.value.Head);
-    search_params.set("Eye", itemIndex.value.Eye);
-    search_params.set("Cloth", itemIndex.value.Cloth);
-    search_params.set("Mb", itemIndex.value.Mb);
-    search_params.set("Weapon", itemIndex.value.Weapon);
-    search_params.set("Chibi", itemIndex.value.Chibi);
-    search_params.set("Bg", itemIndex.value.Bg);
+    // search_params.set("lang", props.lang);
+    // search_params.set("name", name.value);
+    // search_params.set("Head", itemIndex.value.Head);
+    // search_params.set("Eye", itemIndex.value.Eye);
+    // search_params.set("Cloth", itemIndex.value.Cloth);
+    // search_params.set("Mb", itemIndex.value.Mb);
+    // search_params.set("Weapon", itemIndex.value.Weapon);
+    // search_params.set("Chibi", itemIndex.value.Chibi);
+    // search_params.set("Bg", itemIndex.value.Bg);
 
-    url.search = search_params.toString();
+    // url.search = search_params.toString();
 
-    var new_url = url.toString();
-    var obj = {
-      Title: "??",
-      Url: new_url,
-    };
+    // var new_url = url.toString();
+    // var obj = {
+    //   Title: "??",
+    //   Url: new_url,
+    // };
 
-    localStorage.setItem("name", name.value);
-    localStorage.setItem("Head", itemIndex.value.Head);
-    localStorage.setItem("Eye", itemIndex.value.Eye);
-    localStorage.setItem("Cloth", itemIndex.value.Cloth);
-    localStorage.setItem("Mb", itemIndex.value.Mb);
-    localStorage.setItem("Weapon", itemIndex.value.Weapon);
-    localStorage.setItem("Chibi", itemIndex.value.Chibi);
-    localStorage.setItem("Bg", itemIndex.value.Bg);
+    // localStorage.setItem("name", name.value);
+    // localStorage.setItem("Head", itemIndex.value.Head);
+    // localStorage.setItem("Eye", itemIndex.value.Eye);
+    // localStorage.setItem("Cloth", itemIndex.value.Cloth);
+    // localStorage.setItem("Mb", itemIndex.value.Mb);
+    // localStorage.setItem("Weapon", itemIndex.value.Weapon);
+    // localStorage.setItem("Chibi", itemIndex.value.Chibi);
+    // localStorage.setItem("Bg", itemIndex.value.Bg);
 
-    window.history.replaceState(obj, obj.Title, obj.Url);
+    // window.history.replaceState(obj, obj.Title, obj.Url);
 
-    let queryString = window.location.search;
+    // let queryString = window.location.search;
 
-    localStorage.setItem("userUrl", queryString);
+    // localStorage.setItem("userUrl", queryString);
+
+
   }
 
   downloadImgArr = [];
@@ -570,11 +718,13 @@ const okHandler = (_step) => {
   }
   let timer = setTimeout(() => {
     drawAndShareImage(false);
+    // drawAndShareImageForMeta();
     clearTimeout(timer);
   }, 0);
 
   if (_step == 4) {
     setStep(_step, pageType.value);
+    drawAndShareImageForMeta();
   }
 };
 
@@ -651,6 +801,11 @@ watch(
           clearTimeout(timer2);
         }, 500);
       }, 500);
+    }
+    if (newVal == 4) {
+      console.log("OK");
+      document.querySelector(".loading-div").classList.add("active");
+      document.querySelector(".loading-div").classList.add("show");
     }
   }
 );
@@ -860,7 +1015,7 @@ watch(
         <a
           :href="
             'https://www.facebook.com/sharer/sharer.php?u=' +
-            URLENCODED_URL +
+            URLENCODED_URL + getShareUrl() + 
             '&t=' +
             TITLE
           "
@@ -901,7 +1056,7 @@ watch(
         <a
           :href="
             'https://twitter.com/share?url=' +
-            URLENCODED_URL +
+            URLENCODED_URL + getShareUrl() + 
             '&via=' +
             TWITTER_HANDLE
           "
@@ -1127,7 +1282,7 @@ watch(
       position: relative;
       display: inline-block;
       vertical-align: top;
-      width: calc((100% - 104px) / 4);
+      width: calc((100% - 112px) / 4);
       aspect-ratio: 1 / 1;
       background: #d9d9d9;
       margin: 12px;

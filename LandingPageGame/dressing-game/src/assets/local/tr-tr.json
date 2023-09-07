@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Resmi kaydetmek için uzun basın."
+  },
+  "Font": {
+    "FontFamily": "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');",
+    "FontFamilyTag": "Roboto"
   }
 }

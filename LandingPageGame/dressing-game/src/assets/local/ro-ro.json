@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Apăsați lung pentru a salva imaginea."
+  },
+  "Font": {
+    "FontFamily": "",
+    "FontFamilyTag": ""
   }
 }

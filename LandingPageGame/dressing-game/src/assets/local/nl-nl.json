@@ -16,5 +16,9 @@
     "Twitter": "Twitter",
     "Facebook": "Facebook",
     "LongPressToSaveThePicture": "Houd de afbeelding ingedrukt om te downloaden"
+  },
+  "Font": {
+    "FontFamily": "",
+    "FontFamilyTag": ""
   }
 }
