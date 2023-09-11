@@ -1315,7 +1315,7 @@ watch(
     position: relative;
     display: inline-block;
     vertical-align: top;
-    width: calc((100% - 94px) / 4);
+    width: calc((100% - 112px) / 4);
     aspect-ratio: 1 / 1;
     background: #d9d9d9;
     margin: 12px;
