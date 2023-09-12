@@ -155,58 +155,61 @@ watch(rangeValue2, (newVal, oldVal) => {
           <option value="">Columns</option>
         </select>
       </div>
-      <table class="ml-table">
-        <thead>
-          <tr>
-            <th>
-              Material Id
-            </th>
-            <th>
-              Formula
-            </th>
-            <th>
-              Crystal System
-            </th>
-            <th>
-              Space Group Symbol
-            </th>
-            <th>
-              Sites
-            </th>
-            <th>
-              Enery Above Hull(eV/atom)
-            </th>
-            <th>
-              BandGap(eV)
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <span @click="router.push('/materials_informatics/data_explorer/mp-000001')">mp-000001</span>
-            </td>
-            <td>
-              Si
-            </td>
-            <td>
-              cubic
-            </td>
-            <td>
-              Fd-3m
-            </td>
-            <td>
-              1
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              0
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-overflow" style="overflow:auto">
+        <table class="ml-table">
+          <thead>
+            <tr>
+              <th>
+                Material Id
+              </th>
+              <th>
+                Formula
+              </th>
+              <th>
+                Crystal System
+              </th>
+              <th>
+                Space Group Symbol
+              </th>
+              <th>
+                Sites
+              </th>
+              <th>
+                Enery Above Hull(eV/atom)
+              </th>
+              <th>
+                BandGap(eV)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span @click="router.push('/materials_informatics/data_explorer/mp-000001')">mp-000001</span>
+              </td>
+              <td>
+                Si
+              </td>
+              <td>
+                cubic
+              </td>
+              <td>
+                Fd-3m
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                0
+              </td>
+              <td>
+                0
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
     </div>
   </div>
   <Footer />
@@ -387,7 +390,7 @@ watch(rangeValue2, (newVal, oldVal) => {
   .content-div{
     display: block;
     width: calc(100% - 400px);
-    height: 100px;
+    height: auto;
     // background: #fff;
     padding: 25px 25px 25px 0;
     >.table-info{
@@ -429,36 +432,41 @@ watch(rangeValue2, (newVal, oldVal) => {
         color: #000;
       }
     }
-    >.ml-table{
-      position: relative;
+    >.table-overflow{
       margin-top: 15px;
-      width: 100%;
-      // border: 1px solid #CCCCCC;
-      border-radius: 10px;
-      background: #fff;
-      border-collapse: collapse;
-      
-      thead>tr>th{
-        border-bottom: 3px solid #F1F3F2;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: 600;
-      }
-      tbody>tr>td{
-        text-align: center;
-        border-bottom: 2px solid #F1F3F2;
-        padding: 10px;
-        font-size: 14px;
-        >span{
-          cursor: pointer;
-            color: var(--theme-color-2);
-          &:hover{
-            color: var(--theme-color-1);
+
+      >.ml-table{
+        position: relative;
+        width: 100%;
+        // border: 1px solid #CCCCCC;
+        border-radius: 10px;
+        background: #fff;
+        border-collapse: collapse;
+        
+        thead>tr>th{
+          border-bottom: 3px solid #F1F3F2;
+          padding: 10px;
+          font-size: 14px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        tbody>tr>td{
+          text-align: center;
+          border-bottom: 2px solid #F1F3F2;
+          padding: 10px;
+          font-size: 14px;
+          white-space: nowrap;
+          >span{
+            cursor: pointer;
+              color: var(--theme-color-2);
+            &:hover{
+              color: var(--theme-color-1);
+            }
           }
         }
-      }
-      tbody>tr:nth-last-child(1)>td{
-        border-bottom: 0;
+        tbody>tr:nth-last-child(1)>td{
+          border-bottom: 0;
+        }
       }
     }
   }
@@ -487,6 +495,21 @@ watch(rangeValue2, (newVal, oldVal) => {
   }
   .search-div .search-group>button.btn-ptable{
       display: none;
+  }
+
+  
+  .content{
+    display: block;
+    .filter-div{
+      width: calc(100% - 20px);
+      padding: 10px;
+    }
+    .content-div{
+      display: block;
+      width: calc(100% - 20px);
+      padding: 10px;
+      height: auto;
+    }
   }
     
 }

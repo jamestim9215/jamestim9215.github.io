@@ -1,22 +1,36 @@
 <script setup>
 import { ref } from "vue";
 import {useRouter,useRoute} from 'vue-router';
+import { isLogin, logout } from '@/assets/js/common.js';
 
 defineProps({});
+
 
 const menuShow = ref(false);
 
 const router = useRouter();
 const route = useRoute();
 
+const logoutHandler = () => {
+  logout();
+}
+
 </script>
 
 <template>
   <div class="header-log-div">
     <div class="container">
-      <button @click="router.push('/login')">
+      <button @click="router.push('/login')" v-if="!isLogin()">
         <span class="material-icons">login</span>
         Login
+      </button>
+      <button class="backendBtn" @click="router.push('/backend')" v-if="isLogin()">
+        <span class="material-icons">settings</span>
+        Backend
+      </button>
+      <button @click="logoutHandler()" v-if="isLogin()">
+        <span class="material-icons">logout</span>
+        Logout
       </button>
     </div>
   </div>
@@ -100,6 +114,10 @@ const route = useRoute();
       font-weight: 300;
       cursor: pointer;
       background: var(--theme-color-1);
+      &.backendBtn{
+        background: var(--theme-color-2);
+        margin-right: 5px ;
+      }
     }
   }
 }

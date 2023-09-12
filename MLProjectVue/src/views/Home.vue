@@ -1,9 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import Header from "@/components/Header.vue";
 import Banner from "@/components/Banner.vue";
 import HomeContentList from "@/components/HomeContentList.vue";
 import Footer from "@/components/Footer.vue";
+import { PageLoadingOn,PageLoadingOff } from '@/assets/js/common.js';
+
 
 defineProps({});
 
@@ -33,6 +35,12 @@ const BannerContentList = ref([
     img: "",
   }
 ]);
+
+onMounted(() => {
+  setInterval(()=>{
+    PageLoadingOff();
+  },1000)
+})
 
 
 </script>

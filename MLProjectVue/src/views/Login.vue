@@ -3,6 +3,7 @@ import { ref, computed, watch } from "vue";
 import Header from "@/components/Header.vue";
 import SubBanner from "@/components/SubBanner.vue";
 import Footer from "@/components/Footer.vue";
+import { login } from '@/assets/js/common.js';
 
 import {useRouter,useRoute} from 'vue-router';
 
@@ -28,6 +29,17 @@ watch(route, (to) => {
 
     }, {flush: 'pre', immediate: true, deep: true})
 
+const GoogleLoginHandler = () => {
+  login('google');
+  // router.push('/');
+}
+
+const FBLoginHandler = () => {
+  login('facebook');
+  // router.push('/');
+}
+
+
 </script>
 
 <template>
@@ -37,13 +49,13 @@ watch(route, (to) => {
       <div class="login-box">
         <div class="login-div">
           <div class="title">Login</div>
-          <button @click="router.push('/backend')">
-            <img src="@/assets/images/FB.png" alt="">
-            Facebook
-          </button>
-          <button @click="router.push('/backend')">
+          <button @click="GoogleLoginHandler()">
             <img src="@/assets/images/GOOGLE.png" alt="">
             Sign in with Google
+          </button>
+          <button @click="FBLoginHandler()">
+            <img src="@/assets/images/FB.png" alt="">
+            Facebook
           </button>
         </div>
         <div class="sign-div">

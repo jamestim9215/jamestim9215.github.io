@@ -14,6 +14,7 @@ import MaterialsExplorer from '@/views/MaterialsExplorer.vue'
 import BackendHome from '@/views/backend/BackendHome.vue'
 import BackendDetailPage from '@/views/backend/BackendDetailPage.vue'
 
+
 const routes = [
   {
     path: '/backend/:menu/:item/:edit',
