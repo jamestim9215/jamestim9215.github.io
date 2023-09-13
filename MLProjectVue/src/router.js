@@ -7,9 +7,9 @@ import MainPage from '@/views/MainPage.vue'
 import DetailPage from '@/views/DetailPage.vue'
 // import MaterialsExplorerMainPage from '@/views/MaterialsExplorerMainPage.vue'
 import MaterialsExplorer from '@/views/MaterialsExplorer.vue'
-// import DataVisualizer from '@/views/DataVisualizer.vue'
-// import DataWarehouse from '@/views/DataWarehouse.vue'
-// import ModelWarehouse from '@/views/ModelWarehouse.vue'
+import DataVisualizer from '@/views/DataVisualizer.vue'
+import DataWarehouse from '@/views/DataWarehouse.vue'
+import ModelWarehouse from '@/views/ModelWarehouse.vue'
 
 import BackendHome from '@/views/backend/BackendHome.vue'
 import BackendDetailPage from '@/views/backend/BackendDetailPage.vue'
@@ -52,21 +52,21 @@ const routes = [
         name: 'DataExplorer',
         component: MaterialsExplorer,
       },
-      // {
-      //   path: '/materials_informatics/data_visualizer',
-      //   name: 'DataVisualizer',
-      //   component: DataVisualizer,
-      // },
-      // {
-      //   path: '/materials_informatics/data_warehouse',
-      //   name: 'DataWarehouse',
-      //   component: DataWarehouse,
-      // },
-      // {
-      //   path: '/materials_informatics/model_warehouse',
-      //   name: 'ModelWarehouse',
-      //   component: ModelWarehouse,
-      // },
+      {
+        path: '/materials_informatics/data_visualizer',
+        name: 'DataVisualizer',
+        component: DataVisualizer,
+      },
+      {
+        path: '/materials_informatics/data_warehouse',
+        name: 'DataWarehouse',
+        component: DataWarehouse,
+      },
+      {
+        path: '/materials_informatics/model_warehouse',
+        name: 'ModelWarehouse',
+        component: ModelWarehouse,
+      },
 
   {
     path: '/:item/:id',

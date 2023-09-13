@@ -30,12 +30,12 @@ watch(route, (to) => {
     }, {flush: 'pre', immediate: true, deep: true})
 
 const GoogleLoginHandler = () => {
-  login('google');
+  login('google',route.query.redirect);
   // router.push('/');
 }
 
 const FBLoginHandler = () => {
-  login('facebook');
+  login('facebook',route.query.redirect);
   // router.push('/');
 }
 

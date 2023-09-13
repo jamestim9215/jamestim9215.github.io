@@ -1,8 +1,4 @@
 
-import {useRouter} from 'vue-router';
-
-const router = useRouter();
-
 const isLogin = () => {
   return localStorage.getItem('MLToken') ? true : false;
 }
@@ -12,11 +8,18 @@ const logout = () => {
   location.href = '/';
 }
 
-const login = (type) => {
-  console.log(type);
+const login = (type,redirect) => {
+  console.log(type,redirect);
+
   localStorage.setItem('MLToken',"token") 
+
+  if(redirect){
+    location.href = '/#'+redirect;
+  }else{
+    location.href = '/';
+  }
   // router.push('/');
-  location.href = '/';
+  // location.href = '/';
 
 }
 

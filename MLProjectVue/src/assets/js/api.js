@@ -13,6 +13,14 @@ var location = window.location.href;
 // api
 const apiRequest = axios.create({
   baseURL: `${apiUrl}`,
+  headers: {
+    Authorization: {
+      "username":"melung",
+      "password":"WyzdgWLWNhpEBwRj6Cja",
+      "client_id":"app",
+      "client_secret":"7EE73AB3-3BBC-4821-B799-7AB5E97CD371"
+    }
+  }
 });
 
 //解決api緩存

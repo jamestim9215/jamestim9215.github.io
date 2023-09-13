@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import {useRouter,useRoute} from 'vue-router';
+import { isLogin, logout } from '@/assets/js/common.js';
 
 defineProps({
   theme : {
@@ -16,6 +17,14 @@ defineProps({
 const router = useRouter();
 const route = useRoute();
 
+const goTo = (link) => {
+  if(isLogin()){
+    router.push(link)
+  }else{
+    router.push('/login?redirect='+link)
+  }
+}
+
 
 </script>
 
@@ -30,7 +39,7 @@ const route = useRoute();
           <div class="content">
             content content content content content content content content content content content content content content content content content content .....
           </div>
-          <button @click="router.push('/materials_informatics/data_explorer')" :class="theme==1?'theme1':'theme2'" v-if="title=='Materials Informatics'">Materials Explorer</button>
+          <button @click="goTo('/materials_informatics/data_explorer')" :class="theme==1?'theme1':'theme2'" v-if="title=='Materials Informatics'">Materials Explorer</button>
           <button @click="router.push('/'+route.params.item+'/123')" :class="theme==1?'theme1':'theme2'" v-else>MORE</button>
           
         </div>

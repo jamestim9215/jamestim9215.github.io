@@ -1,12 +1,17 @@
 <script setup>
 import { onMounted } from "vue";
 import {useRouter,useRoute } from 'vue-router';
-import { PageLoadingOn } from '@/assets/js/common.js';
+import { PageLoadingOn,PageLoadingOff } from '@/assets/js/common.js';
 
 const route = useRoute();
 
 onMounted(() => {
   PageLoadingOn();
+
+
+  setInterval(()=>{
+    PageLoadingOff();
+  },1000)
 })
 
 
