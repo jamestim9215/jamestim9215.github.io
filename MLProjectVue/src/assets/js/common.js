@@ -12,9 +12,9 @@ const login = (type,redirect) => {
   console.log(type,redirect);
 
   localStorage.setItem('MLToken',"token") 
-
+ 
   if(redirect){
-    location.href = '/#'+redirect;
+    location.href =  location.href.split("/login")[0]+redirect;
   }else{
     location.href = '/';
   }
