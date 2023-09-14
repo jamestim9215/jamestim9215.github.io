@@ -14,7 +14,7 @@ export default defineConfig(
       cors: true,
       proxy: {
         "/dev": {
-          target: "https://ai-nb-thermal.azurewebsites.net",
+          target: "https://material-platformapi.azurewebsites.net",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev/, ""),
         },

@@ -3,6 +3,8 @@ import { onMounted } from "vue";
 import {useRouter,useRoute } from 'vue-router';
 import { PageLoadingOn,PageLoadingOff } from '@/assets/js/common.js';
 
+import { GetArticle } from "@/assets/js/api.js";
+
 const route = useRoute();
 
 onMounted(() => {
@@ -12,6 +14,18 @@ onMounted(() => {
   setInterval(()=>{
     PageLoadingOff();
   },1000)
+
+  GetArticle(
+    {
+      "AuthorID": "B426E4E9-35EB-4B5C-B623-9F3E01600818",
+      "ArticleID": "5CBE33E7-8845-4E86-8C56-1055FEA34506"
+    }
+  ).then(res=>{
+    console.log(res);
+  }).catch(err=>{
+    console.log(err);
+  })
+
 })
 
 

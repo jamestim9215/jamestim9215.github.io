@@ -15,42 +15,20 @@ const route = useRoute();
         <div>Logo 半導體設計服務平台</div>
         <div>
           <div>
-            <div>Material</div>
-            <div>
-              <div @click="router.push('/introduction-hem')">
-                Introduction(HEM)
-              </div>
-              <div @click="router.push('/material_informatics')">
-                Material informatics
-              </div>
-            </div>
-          </div>
-          <div>
             <div>Collabration</div>
             <div>
-              <div @click="router.push('/demo_cases')">Demo cases</div>
+              <router-link to="/demo_cases">Demo cases</router-link>
             </div>
           </div>
           <div>
-            <div>Materials Explorer</div>
+            <div>Data driven</div>
             <div>
-              <div @click="router.push('/data_base')">Data base</div>
+              <router-link to="/materials_informatics">Material informatics</router-link>
+              <router-link to="/semiconductor_informatics">Semiconductor informatics</router-link>
             </div>
           </div>
           <div>
-            <div>ML platform</div>
-            <div>
-              <div @click="router.push('/data_cleaning')">data cleaning</div>
-              <div @click="router.push('/feature_select')">feature select</div>
-              <div @click="router.push('/cross_validation')">
-                Cross validation
-              </div>
-              <div @click="router.push('/prediction')">Prediction</div>
-              <div @click="router.push('/optimization')">Optimization</div>
-            </div>
-          </div>
-          <div>
-            <div @click="router.push('/about_us')">About us</div>
+            <router-link to="/about_us')">About us</router-link>
           </div>
         </div>
       </div>
@@ -75,7 +53,9 @@ const route = useRoute();
       display: flex;
       font-size: 20px;
       > div {
-        > div > div {
+        > div > a {
+          display: block;
+          width: 100%;
           font-size: 18px;
           margin-top: 20px;
         }
@@ -108,7 +88,7 @@ const route = useRoute();
         font-size: 18px;
         > div {
           margin-bottom: 30px;
-          > div > div {
+          > div > a {
             font-size: 14px;
             margin-top: 10px;
             padding: 0 15px;

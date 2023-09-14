@@ -50,13 +50,6 @@ const logoutHandler = () => {
               close
               </span>
             </div>
-            <!-- <div>
-              Material
-              <div>
-                <router-link to="/introduction-hem"><div>Introduction(HEM)</div></router-link>
-                <router-link to="/material_informatics"><div>Material informatics</div></router-link>
-              </div>
-            </div> -->
             <div>
               Collabration
               <div>
@@ -78,16 +71,6 @@ const logoutHandler = () => {
                 </router-link>
               </div>
             </div>
-            <!-- <div>
-              ML platform
-              <div>
-                <router-link to="/data_cleaning"><div>data cleaning</div></router-link>
-                <router-link to="/feature_select"><div>feature select</div></router-link>
-                <router-link to="/cross_validation"><div>Cross validation</div></router-link>
-                <router-link to="/prediction"><div>Prediction</div></router-link>
-                <router-link to="/optimization"><div>Optimization</div></router-link>
-              </div>
-            </div> -->
             <router-link to="/about_us"><div>About us</div></router-link>
           </div>
         </div>

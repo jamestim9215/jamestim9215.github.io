@@ -37,10 +37,26 @@ const PageLoadingOff = () => {
     }, 1000);
 }
 
+const DataLoadingOn = () => {
+  document.querySelector(".loading-div").classList.add("active");
+  document.querySelector(".loading-div").classList.add("show");
+  document.querySelector(".loading-div").classList.add("data-loading");
+}
+
+const DataLoadingOff = () => {
+  document.querySelector(".loading-div").classList.remove("show");;
+    setTimeout(() => {
+      document.querySelector(".loading-div").classList.remove("active");
+      document.querySelector(".loading-div").classList.remove("data-loading")
+    }, 1000);
+}
+
 export { 
   isLogin,
   logout,
   login,
   PageLoadingOn,
-  PageLoadingOff
+  PageLoadingOff,
+  DataLoadingOn,
+  DataLoadingOff
 };
