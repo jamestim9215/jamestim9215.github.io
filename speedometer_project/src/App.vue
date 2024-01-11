@@ -6,7 +6,7 @@ import Speedometer02 from './components/Speedometer02.vue';
 import Speedometer03 from './components/Speedometer03.vue';
 import Speedometer04 from './components/Speedometer04.vue';
 
-const SpeedometerType = ref(3);
+const SpeedometerType = ref(4);
 const headsUpDisplay = ref(false)
 
 const options =  ref({
@@ -41,6 +41,27 @@ const headsUpDisplayHandler = () => {
   headsUpDisplay.value = !headsUpDisplay.value
 }
 
+const timer = ref(null);
+const time = ref(0); 
+const averageSpeed = ref(0);
+const topSpeed = ref(0);
+
+const startStopHandler = () => {
+  if (timer.value) {
+    clearInterval(timer.value);
+    timer.value = null;
+    averageSpeed.value = Math.round(filteredSpeed.value.reduce((a, b) => a + b, 0) / filteredSpeed.value.length);
+    topSpeed.value = Math.max(...filteredSpeed.value);
+  } else {
+    time.value = "00:00:00";
+    filteredSpeed.value = [];
+    timer.value = setInterval(() => {
+      time.value = new Date(time.value).getTime() + 1000;
+      filteredSpeed.value.push(speed.value);
+    }, 1000);
+  }
+};
+
 onMounted(() => {
   // 啟用位置追蹤
   if ("geolocation" in navigator) {
@@ -56,11 +77,16 @@ onMounted(() => {
 <template>
   <div class="digital-box">
     <div class="randomSpeed">
-      <p>時速: {{ speed }} km/h</p>
       <button @click="randomSpeed()"> Random </button>
       <button @click="changeSpeedometerType()"> Type </button>
       <button @click="headsUpDisplayHandler()"> heads up </button>
     </div>
+    <!-- <div class="timer-div">
+      <p v-if="timer">Time run: {{ time }}</p>
+      <p v-if="timer">Average speed: {{ averageSpeed }} km/h</p>
+      <p v-if="timer">Top speed: {{ topSpeed }} km/h <br></p>
+      <button @click="startStopHandler()"> {{timer?'stop':'Start'}} </button>
+    </div> -->
     <div :class="headsUpDisplay?'headsUpDisplay':''" >
       <Speedometer01 :speed="speed" v-if="SpeedometerType==1" />
       <Speedometer02 :speed="speed" v-if="SpeedometerType==2" />
@@ -84,16 +110,33 @@ onMounted(() => {
       background: #333;
       padding: 10px;
       display: flex;
-      p{
-        color: #fff;
-        font-size: 16px;
-        margin: 0;
-      }
+      justify-content: space-between;
       button{
-        margin-left: 10px;
+        margin: 0 5px;
         padding: 5px 10px;
         border-radius: 5px;
         background: #222;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+      }
+    }
+    .timer-div{
+      position: absolute;
+      left: 50%;
+      bottom: 15%;
+      transform: translateX(-50%);
+      z-index: 999;
+      text-align: center;
+      p{
+        margin: 0;
+        color: #fff;
+      }
+      button{
+        margin: 10px 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: #333;
         color: #fff;
         border: 0;
         cursor: pointer;

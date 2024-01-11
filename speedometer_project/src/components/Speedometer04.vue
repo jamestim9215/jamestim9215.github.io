@@ -67,9 +67,9 @@ window.addEventListener('resize', () => {
     <div class="speed-indicator">
       <div :style="'transform: rotate('+speedIndicatorDeg+'deg)'"></div>
     </div>
-    <div class="circle-cover2" :class="'box-shadow: 0 0 0px 2px var(--meter-color-'+themeColor+';'"></div>
+    <div class="circle-cover2"></div>
   </div>
-  <div class="digital-div" :style="circleStyle" @click="changeColor()">
+  <div class="digital-div" :style="circleStyle">
     <div class="digital-speed">
       <div class="digital-speed-number">
         {{ speed }}
@@ -297,7 +297,7 @@ window.addEventListener('resize', () => {
     top: 50%;
     transform: translate(-50%, -50%);
     background: #333;
-    box-shadow: 0 0 0px 2px #f00;
+    box-shadow: 0 0 0px 3px #f00;
   }
 
 }
