@@ -30,21 +30,19 @@ const calculateSpeed = (position) => {
     const timeDifference = (position.timestamp - previousTimestamp.value) / 1000;
     const newSpeed = Math.round((distance / timeDifference) * 3600);
 
-    // 忽略速度小於某個閾值的情況
-    if (newSpeed > 1) {
-      // 將新速度添加到速度列表
-      speeds.value.push(newSpeed);
+    // 將新速度添加到速度列表
+    speeds.value.push(newSpeed);
 
-      // 保留最後 N 個速度，這裡設定為10
-      const maxSpeeds = 10;
-      if (speeds.value.length > maxSpeeds) {
-        speeds.value.shift();
-      }
-
-      // 計算平均速度
-      const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
-      filteredSpeed.value = (speeds.value.length>0)? Math.round(totalSpeed / speeds.value.length) : 0;
+    // 保留最後 N 個速度，這裡設定為10
+    const maxSpeeds = 10;
+    if (speeds.value.length > maxSpeeds) {
+      speeds.value.shift();
     }
+
+    // 計算平均速度
+    const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
+    filteredSpeed.value = (speeds.value.length>0)? Math.round(totalSpeed / speeds.value.length) : 0;
+    
   }
 
   // 更新前一個位置和時間
