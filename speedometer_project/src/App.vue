@@ -3,8 +3,9 @@ import { ref, onMounted } from 'vue';
 
 import Speedometer01 from './components/Speedometer01.vue';
 import Speedometer02 from './components/Speedometer02.vue';
+import Speedometer03 from './components/Speedometer03.vue';
 
-const SpeedometerType = ref(2);
+const SpeedometerType = ref(3);
 
 const options =  ref({
   enableHighAccuracy: true,
@@ -72,7 +73,7 @@ const randomSpeed = () => {
 };
 
 const chnageSpeedometerType = () => {
-  SpeedometerType.value = SpeedometerType.value === 1 ? 2 : 1;
+  SpeedometerType.value = (SpeedometerType.value==3)? 1 : SpeedometerType.value+1;
 };
 
 onMounted(() => {
@@ -94,9 +95,9 @@ onMounted(() => {
       <button @click="randomSpeed()"> random speed </button>
       <button @click="chnageSpeedometerType()"> change type </button>
     </div>
-    {{ speeds }}
     <Speedometer01 :speed="filteredSpeed" v-if="SpeedometerType==1"/>
     <Speedometer02 :speed="filteredSpeed" v-if="SpeedometerType==2"/>
+    <Speedometer03 :speed="filteredSpeed" v-if="SpeedometerType==3"/>
   </div>
 </template>
 
@@ -123,8 +124,8 @@ onMounted(() => {
         margin-left: 10px;
         padding: 5px 10px;
         border-radius: 5px;
-        background: #fff;
-        color: #333;
+        background: #222;
+        color: #fff;
         border: 0;
         cursor: pointer;
       }
