@@ -57,33 +57,16 @@ window.addEventListener('resize', () => {
   <div class="circle-div" :style="circleStyle">
     <div class="pie-chart" :style="'background: conic-gradient(var(--meter-color-'+themeColor+') 0deg 240deg, transparent 0deg)'"></div>
     <div class="speed-step">
-      <div>0</div>
-      <div>30</div>
-      <div>60</div>
-      <div>90</div>
-      <div>120</div>
-      <div>150</div>
+      <div v-for="i in 6">
+        {{ 30 * (i-1) }}
+      </div>
     </div>
     <div class="speed-line">
       <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in 6"></div>
       </div>
       <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in 10"></div>
       </div>
     </div>
     <div class="circle-cover"></div>

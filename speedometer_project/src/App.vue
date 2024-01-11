@@ -5,7 +5,7 @@ import Speedometer01 from './components/Speedometer01.vue';
 import Speedometer02 from './components/Speedometer02.vue';
 import Speedometer03 from './components/Speedometer03.vue';
 
-const SpeedometerType = ref(3);
+const SpeedometerType = ref(1);
 const headsUpDisplay = ref(false)
 
 const options =  ref({
@@ -22,7 +22,8 @@ const speed = ref(0);
 const calculateSpeed = (position) => {
   const currentSpeed = position.coords.speed || 0;
   console.log(position.coords.speed);
-  speed.value = (currentSpeed * 3600) / 1000;
+  // 四捨五入 取到整數
+  speed.value = Math.round((currentSpeed * 3600) / 1000);
 };
 
 

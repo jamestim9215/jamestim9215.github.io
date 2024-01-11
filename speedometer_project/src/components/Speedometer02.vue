@@ -59,24 +59,10 @@ window.addEventListener('resize', () => {
     </div>
     <div class="speed-line">
       <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in 6"></div>
       </div>
       <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in 10"></div>
       </div>
     </div>
     <div class="circle-cover"></div>
