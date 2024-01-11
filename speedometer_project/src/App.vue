@@ -43,7 +43,7 @@ const calculateSpeed = (position) => {
 
       // 計算平均速度
       const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
-      filteredSpeed.value = speeds.value.length>0?Math.round(totalSpeed / speeds.value.length):0;
+      filteredSpeed.value = (speeds.value.length>0)? Math.round(totalSpeed / speeds.value.length) : 0;
     }
   }
 
@@ -92,11 +92,11 @@ onMounted(() => {
 <template>
   <div class="digital-box">
     <div class="randomSpeed">
-      
       <p>時速: {{ filteredSpeed }} km/h</p>
       <button @click="randomSpeed()"> random speed </button>
       <button @click="chnageSpeedometerType()"> change type </button>
     </div>
+    {{ speeds }}
     <Speedometer01 :speed="filteredSpeed" v-if="SpeedometerType==1"/>
     <Speedometer02 :speed="filteredSpeed" v-if="SpeedometerType==2"/>
   </div>
