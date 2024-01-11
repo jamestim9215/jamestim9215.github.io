@@ -26,11 +26,14 @@ const itemIndex = ref({
 
 console.log(language);
 
+
 const isEdit = ref(false);
 
 const initParams = () => {
   console.log("init");
   lang.value = urlParams.get("lang") ? urlParams.get("lang") : "en-us";
+
+  
 
   console.log(urlParams.get("lang") == null);
   if (
@@ -41,15 +44,15 @@ const initParams = () => {
     var url = new URL(location.href);
     var search_params = url.searchParams;
 
-    search_params.set("lang", lang.value);
-    search_params.set("name", localStorage.getItem("name"));
-    search_params.set("Head", localStorage.getItem("Head"));
-    search_params.set("Eye", localStorage.getItem("Eye"));
-    search_params.set("Cloth", localStorage.getItem("Cloth"));
-    search_params.set("Mb", localStorage.getItem("Mb"));
-    search_params.set("Weapon", localStorage.getItem("Weapon"));
-    search_params.set("Chibi", localStorage.getItem("Chibi"));
-    search_params.set("Bg", localStorage.getItem("Bg"));
+    // search_params.set("lang", lang.value);
+    // search_params.set("name", localStorage.getItem("name"));
+    // search_params.set("Head", localStorage.getItem("Head"));
+    // search_params.set("Eye", localStorage.getItem("Eye"));
+    // search_params.set("Cloth", localStorage.getItem("Cloth"));
+    // search_params.set("Mb", localStorage.getItem("Mb"));
+    // search_params.set("Weapon", localStorage.getItem("Weapon"));
+    // search_params.set("Chibi", localStorage.getItem("Chibi"));
+    // search_params.set("Bg", localStorage.getItem("Bg"));
     search_params.set("Img", localStorage.getItem("Img"));
     url.search = search_params.toString();
 
@@ -65,26 +68,26 @@ const initParams = () => {
     urlParams = new URLSearchParams(queryString);
   }
 
-  name.value = urlParams.get("name")
-    ? localStorage.getItem("name")
-      ? localStorage.getItem("name")
-      : urlParams.get("name")
-    : "";
-  itemIndex.value.Head = urlParams.get("Head")
-    ? Number(urlParams.get("Head"))
-    : 0;
-  itemIndex.value.Eye = urlParams.get("Eye") ? Number(urlParams.get("Eye")) : 0;
-  itemIndex.value.Cloth = urlParams.get("Cloth")
-    ? Number(urlParams.get("Cloth"))
-    : 0;
-  itemIndex.value.Mb = urlParams.get("Mb") ? Number(urlParams.get("Mb")) : 0;
-  itemIndex.value.Weapon = urlParams.get("Weapon")
-    ? Number(urlParams.get("Weapon"))
-    : 0;
-  itemIndex.value.Chibi = urlParams.get("Chibi")
-    ? Number(urlParams.get("Chibi"))
-    : 0;
-  itemIndex.value.Bg = urlParams.get("Bg") ? Number(urlParams.get("Bg")) : 0;
+  // name.value = urlParams.get("name")
+  //   ? localStorage.getItem("name")
+  //     ? localStorage.getItem("name")
+  //     : urlParams.get("name")
+  //   : "";
+  // itemIndex.value.Head = urlParams.get("Head")
+  //   ? Number(urlParams.get("Head"))
+  //   : 0;
+  // itemIndex.value.Eye = urlParams.get("Eye") ? Number(urlParams.get("Eye")) : 0;
+  // itemIndex.value.Cloth = urlParams.get("Cloth")
+  //   ? Number(urlParams.get("Cloth"))
+  //   : 0;
+  // itemIndex.value.Mb = urlParams.get("Mb") ? Number(urlParams.get("Mb")) : 0;
+  // itemIndex.value.Weapon = urlParams.get("Weapon")
+  //   ? Number(urlParams.get("Weapon"))
+  //   : 0;
+  // itemIndex.value.Chibi = urlParams.get("Chibi")
+  //   ? Number(urlParams.get("Chibi"))
+  //   : 0;
+  // itemIndex.value.Bg = urlParams.get("Bg") ? Number(urlParams.get("Bg")) : 0;
 };
 
 initParams();
@@ -154,11 +157,16 @@ const setStepStatusFun = (data) => {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 573px;
+  // max-width: 573px;
+  max-width: 460px;
   height: auto;
-  min-height: 100vh;
+  min-height: 932px;
+  // max-height: 100vh;
+  // margin-top: 50%;
+  // transform: translateY(-50%);
   background: #000;
   padding: 0 0;
+  overflow: hidden;
 }
 .loading-div {
   position: fixed;

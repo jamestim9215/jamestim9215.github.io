@@ -610,11 +610,14 @@ const encodedSearchParams = encodeURIComponent(
   shareUrl.searchParams.toString()
 );
 // let shareDomain = 'https://jamestim9215.github.io/LandingPageGame/dressing-game/dist?';
-let shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023?";
+let shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023/chibi-generator";
 
-let domain = location.pathname.split('/')[1];
-if(domain!=''){
-  shareDomain = "https://www.aorus.com/"+domain+"/event/aorus-gamerchallenge2023?";
+// let domain = location.pathname.split('/')[1];
+let domain = localStorage.getItem("DomainLang");
+if(domain!='' && domain!='global'){
+  shareDomain = "https://www.aorus.com/"+domain+"/event/aorus-gamerchallenge2023/chibi-generator";
+}else{
+  shareDomain = "https://www.aorus.com/event/aorus-gamerchallenge2023/chibi-generator";
 }
 
 console.log(shareDomain);
@@ -627,7 +630,8 @@ const ShareImgName = ref("");
 
 const getShareUrl = () => {
   return encodeURIComponent(
-    shareUrl.searchParams.toString()
+    // shareUrl.searchParams.toString()
+    localStorage.getItem("userUrl")
   );
 }
 
@@ -635,16 +639,17 @@ const setUrlAndLocalStorage = (ImgName) =>{
   var url = new URL(location.href);
   var search_params = url.searchParams;
 
-  search_params.set("lang", props.lang);
-  search_params.set("name", name.value);
-  search_params.set("Head", itemIndex.value.Head);
-  search_params.set("Eye", itemIndex.value.Eye);
-  search_params.set("Cloth", itemIndex.value.Cloth);
-  search_params.set("Mb", itemIndex.value.Mb);
-  search_params.set("Weapon", itemIndex.value.Weapon);
-  search_params.set("Chibi", itemIndex.value.Chibi);
-  search_params.set("Bg", itemIndex.value.Bg);
+  // search_params.set("lang", props.lang);
+  // search_params.set("name", name.value);
+  // search_params.set("Head", itemIndex.value.Head);
+  // search_params.set("Eye", itemIndex.value.Eye);
+  // search_params.set("Cloth", itemIndex.value.Cloth);
+  // search_params.set("Mb", itemIndex.value.Mb);
+  // search_params.set("Weapon", itemIndex.value.Weapon);
+  // search_params.set("Chibi", itemIndex.value.Chibi);
+  // search_params.set("Bg", itemIndex.value.Bg);
   search_params.set("Img", ImgName);
+  search_params.delete("lang");
 
   url.search = search_params.toString();
 
@@ -654,14 +659,14 @@ const setUrlAndLocalStorage = (ImgName) =>{
     Url: new_url,
   };
 
-  localStorage.setItem("name", name.value);
-  localStorage.setItem("Head", itemIndex.value.Head);
-  localStorage.setItem("Eye", itemIndex.value.Eye);
-  localStorage.setItem("Cloth", itemIndex.value.Cloth);
-  localStorage.setItem("Mb", itemIndex.value.Mb);
-  localStorage.setItem("Weapon", itemIndex.value.Weapon);
-  localStorage.setItem("Chibi", itemIndex.value.Chibi);
-  localStorage.setItem("Bg", itemIndex.value.Bg);
+  // localStorage.setItem("name", name.value);
+  // localStorage.setItem("Head", itemIndex.value.Head);
+  // localStorage.setItem("Eye", itemIndex.value.Eye);
+  // localStorage.setItem("Cloth", itemIndex.value.Cloth);
+  // localStorage.setItem("Mb", itemIndex.value.Mb);
+  // localStorage.setItem("Weapon", itemIndex.value.Weapon);
+  // localStorage.setItem("Chibi", itemIndex.value.Chibi);
+  // localStorage.setItem("Bg", itemIndex.value.Bg);
   localStorage.setItem("Img", ImgName);
 
   window.history.replaceState(obj, obj.Title, obj.Url);
@@ -669,6 +674,8 @@ const setUrlAndLocalStorage = (ImgName) =>{
   let queryString = window.location.search;
 
   localStorage.setItem("userUrl", queryString);
+  var parameterValue = queryString;
+  window.parent.receiveParameter(parameterValue);
 }
 
 const okHandler = (_step) => {
@@ -1099,6 +1106,7 @@ watch(
   top: 0;
   left: 0;
   overflow: hidden;
+  display: none;
   z-index: -1;
 }
 .btn-div {
@@ -1119,6 +1127,7 @@ watch(
     margin: 50px 20px;
     color: #fff;
     font-size: 26px;
+    font-weight: 600;
     &:hover {
       background: #fff;
       color: #000;
@@ -1189,6 +1198,7 @@ watch(
     margin-top: 17px;
     color: #acacac;
     font-size: 18px;
+    font-weight: 600;
     // font-family: "Titillium", sans-serif;
   }
   input {
@@ -1263,10 +1273,12 @@ watch(
       margin: 10px;
       text-align: center;
       line-height: 20px;
-      background: #d9d9d9;
+      background: #999999;
       border-radius: 50%;
       white-space: nowrap;
       cursor: pointer;
+      -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
       &.active {
         // background: linear-gradient(90deg, #00ffff 0%, #ff00ff 100%);
         background: #ff6400;
@@ -1355,6 +1367,7 @@ watch(
     background: #ff6400;
     color: #fff;
     font-size: 26px;
+    font-weight: 600;
     clip-path: polygon(
       10px 0%,
       100% 0,

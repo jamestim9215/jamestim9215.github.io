@@ -2,19 +2,25 @@ import { createApp } from 'vue'
 import { createI18n } from "vue-i18n";
 import './style.css'
 import App from './App.vue'
+import language from "@/assets/local/language.json";
 
-import zh_tw from "@/assets/local/zh-tw.json";
+// import zh_tw from "@/assets/local/zh-tw.json";
 
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 
-const lang = urlParams.get("lang") || "global";
+let lang = urlParams.get("lang") || "global";
 
+
+localStorage.setItem("DomainLang", lang);
+
+language.map((item)=>{
+  if(item.code == lang){
+    lang = item.trans;
+  }
+})
 
 const langs = import.meta.glob("@/assets/local/*.json")
-
-
-
 
 async function loadTranslations() {
   let messages = {};

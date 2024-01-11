@@ -6,6 +6,10 @@ apiUrl = import.meta.env.VITE_APP_BASE_API;
 var location = window.location.href;
 if (location.match(/-dev/)) {
   apiUrl = "https://aorusv2-southeastasia-web-staging.azurewebsites.net";
+} else if (location.match(/-staging/)) {
+  apiUrl = "https://aorusv2-southeastasia-web-staging.azurewebsites.net";
+} else if (location.match(/www.aorus.com/)) {
+  apiUrl = "https://www.aorus.com";
 } else {
   apiUrl = import.meta.env.VITE_APP_BASE_API;
 }
@@ -55,19 +59,16 @@ apiRequest.interceptors.response.use(
   }
 );
 
-
 export const ChibiEventUploadFile = (data) =>
   apiRequest.post("/api/Event/ChibiEventUploadFile", data, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-
 
 // 後端map表
 function codeMap(response) {
   let code = response.data.StatusCode;
   // if(response.data.Message) code = response.data.Message
   switch (code) {
-    
     default:
       break;
   }
