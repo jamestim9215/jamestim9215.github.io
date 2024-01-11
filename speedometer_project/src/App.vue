@@ -6,6 +6,7 @@ import Speedometer02 from './components/Speedometer02.vue';
 import Speedometer03 from './components/Speedometer03.vue';
 
 const SpeedometerType = ref(3);
+const headsUpDisplay = ref(false)
 
 const options =  ref({
   enableHighAccuracy: true,
@@ -34,6 +35,10 @@ const changeSpeedometerType = () => {
   SpeedometerType.value = (SpeedometerType.value==3)? 1 : SpeedometerType.value+1;
 };
 
+const headsUpDisplayHandler = () => {
+  headsUpDisplay.value = !headsUpDisplay.value
+}
+
 onMounted(() => {
   // 啟用位置追蹤
   if ("geolocation" in navigator) {
@@ -50,12 +55,15 @@ onMounted(() => {
   <div class="digital-box">
     <div class="randomSpeed">
       <p>時速: {{ speed }} km/h</p>
-      <button @click="randomSpeed()"> random speed </button>
-      <button @click="changeSpeedometerType()"> change type </button>
+      <button @click="randomSpeed()"> Random </button>
+      <button @click="changeSpeedometerType()"> Type </button>
+      <button @click="headsUpDisplayHandler()"> heads up </button>
     </div>
-    <Speedometer01 :speed="speed" v-if="SpeedometerType==1"/>
-    <Speedometer02 :speed="speed" v-if="SpeedometerType==2"/>
-    <Speedometer03 :speed="speed" v-if="SpeedometerType==3"/>
+    <div :class="headsUpDisplay?'headsUpDisplay':''" >
+      <Speedometer01 :speed="speed" v-if="SpeedometerType==1" />
+      <Speedometer02 :speed="speed" v-if="SpeedometerType==2" />
+      <Speedometer03 :speed="speed" v-if="SpeedometerType==3" />
+    </div>
   </div>
 </template>
 
@@ -87,6 +95,10 @@ onMounted(() => {
         border: 0;
         cursor: pointer;
       }
+    }
+    .headsUpDisplay{
+      height: 100%;
+      transform: rotateY(180deg);
     }
   }
 
