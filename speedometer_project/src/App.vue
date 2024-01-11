@@ -4,8 +4,9 @@ import { ref, onMounted } from 'vue';
 import Speedometer01 from './components/Speedometer01.vue';
 import Speedometer02 from './components/Speedometer02.vue';
 import Speedometer03 from './components/Speedometer03.vue';
+import Speedometer04 from './components/Speedometer04.vue';
 
-const SpeedometerType = ref(1);
+const SpeedometerType = ref(3);
 const headsUpDisplay = ref(false)
 
 const options =  ref({
@@ -33,7 +34,7 @@ const randomSpeed = () => {
 };
 
 const changeSpeedometerType = () => {
-  SpeedometerType.value = (SpeedometerType.value==3)? 1 : SpeedometerType.value+1;
+  SpeedometerType.value = (SpeedometerType.value==4)? 1 : SpeedometerType.value+1;
 };
 
 const headsUpDisplayHandler = () => {
@@ -64,6 +65,7 @@ onMounted(() => {
       <Speedometer01 :speed="speed" v-if="SpeedometerType==1" />
       <Speedometer02 :speed="speed" v-if="SpeedometerType==2" />
       <Speedometer03 :speed="speed" v-if="SpeedometerType==3" />
+      <Speedometer04 :speed="speed" v-if="SpeedometerType==4" />
     </div>
   </div>
 </template>
