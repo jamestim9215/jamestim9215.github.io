@@ -1,7 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import DigitalDashboard from './components/Speedometer01.vue';
+import Speedometer01 from './components/Speedometer01.vue';
+import Speedometer02 from './components/Speedometer02.vue';
+
+const SpeedometerType = ref(1);
 
 const options =  ref({
   enableHighAccuracy: true,
@@ -89,7 +92,8 @@ onMounted(() => {
       <p>時速: {{ filteredSpeed.toFixed(2) }} km/h</p>
       <button @click="randomSpeed()"> random speed </button>
     </div>
-    <DigitalDashboard :speed="filteredSpeed"/>
+    <Speedometer01 :speed="filteredSpeed.toFixed(0)" v-if="SpeedometerType==1"/>
+    <Speedometer02 :speed="filteredSpeed.toFixed(0)" v-if="SpeedometerType==2"/>
   </div>
 </template>
 

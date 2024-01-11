@@ -53,11 +53,13 @@ window.addEventListener('resize', () => {
       </div>
     </div>
   </div>
-  <div class="circle-div" :style="circleStyle">
+  <div class="speed-shanxing-box" :style="circleStyle">
     <div class="speed-shanxing">
-      <div class="shanxing-1" :style="'background: linear-gradient(30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
-      <div class="shanxing-2" :style="'background: linear-gradient(-30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
+      <!-- <div class="shanxing-1" :style="'background: linear-gradient(30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
+      <div class="shanxing-2" :style="'background: linear-gradient(-30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div> -->
     </div>
+  </div>
+  <div class="circle-div" :style="circleStyle">
     <div class="speed-step">
       <div>0</div>
       <div>30</div>
@@ -98,33 +100,127 @@ window.addEventListener('resize', () => {
 </template>
 
 <style lang="scss" scoped>
+
+@-webkit-keyframes a1{
+  0%{ 
+    transform:rotate(-270deg);
+    right:0%; 
+    width:100%;
+  }
+  49.99%{
+    right:0%; 
+    width:100%;
+  }
+  50%{
+    right:50%; 
+    width:100%;
+  }
+  100%{ 
+    transform:rotate(90deg);
+    right:50%; 
+    width:100%;
+  }
+}
+@-webkit-keyframes a2{
+  0%{
+    right:50%; 
+    opacity: 1;
+    width:100%;
+  }
+  49.99%{
+    right:50%; 
+    opacity: 1;
+    width:100%;
+  }
+  50%{
+    right:0; 
+    opacity:0;
+    width:100%;
+  }
+  100%{
+    right:0; 
+    opacity:0;
+    width:100%;
+  }
+}
+@-webkit-keyframes a{
+  0%{
+    // margin-left:50%;
+    width:100%;
+    transform: translate(-50%,-50%);
+    // border-radius:0 50% 50% 0;
+  }
+  49.99%{
+    // margin-left:50%;
+    width:100%;
+    transform: translate(-50%,-50%);
+    // border-radius:0 50% 50% 0;
+  }
+  50%{
+    margin-left:0;
+    width:100%;
+    transform: translate(0%,-50%);
+    // border-radius:0;
+  }
+  100%{
+    margin-left:0;
+    width:100%;
+    transform: translate(0%,-50%);
+    // border-radius:0;
+  }
+}
+.speed-shanxing-box{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%) rotate(-120deg);
+  
+  .speed-shanxing{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(0%,-50%);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow:hidden;
+    // border-radius:50%;
+    -webkit-animation:a 5s infinite linear;
+    // background: #fff;
+    &::before,
+    &::after{
+      content:"";
+      box-sizing:border-box;
+      position:absolute;
+      top:0;
+      right:0; 
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background: linear-gradient(180deg, #fff 50%, transparent 50%);
+    }
+    &::before{
+      z-index:1;
+      -webkit-animation:a1 5s infinite linear;
+      transform:rotate(-90deg);
+    }
+    &::after{
+      opacity:0;
+      z-index:2;
+      left: 0;
+      transform:rotate(90deg);
+      -webkit-animation:a2 5s infinite linear;
+    }
+  }
+}
+
 .circle-div{
   position: absolute;
-  // width: 80%;
+  width: 80%;
   aspect-ratio: 1 / 1;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform:translate(-50%, -50%);
   // 270deg 扇形
-  .speed-shanxing{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    // background: linear-gradient(270deg, #FFD700 50%, #fff 50%);
-    .shanxing-1{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-    .shanxing-2{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-  }
   .speed-step{
     position: absolute;
     width: 100%;
@@ -136,7 +232,8 @@ window.addEventListener('resize', () => {
     div{
       position: absolute;
       width: 100%;
-      height: 110%;
+      z-index: 99;
+      height: 88%;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -285,7 +382,7 @@ window.addEventListener('resize', () => {
     align-items: center;
     div{
       position: absolute;
-      width: 50px;
+      width: 50%;
       height: 50%;
       top: 0;
       display: flex;
@@ -307,7 +404,7 @@ window.addEventListener('resize', () => {
     top: 50%;
     transform: translate(-50%, -50%);
     background: #333;
-    box-shadow: 0 0 10px 0px #999;
+    box-shadow: 0 0 0 2px #fff;
   }
 
 }
