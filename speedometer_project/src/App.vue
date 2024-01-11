@@ -43,7 +43,7 @@ const calculateSpeed = (position) => {
 
       // 計算平均速度
       const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
-      filteredSpeed.value = totalSpeed / speeds.value.length;
+      filteredSpeed.value = speeds.value.length>0?Math.round(totalSpeed / speeds.value.length):0;
     }
   }
 
