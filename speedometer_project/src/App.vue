@@ -9,13 +9,13 @@ const options =  ref({
   maximumAge: 0
 });
 
-
 const previousPosition = ref(null);
 const previousTimestamp = ref(null);
-const speed = ref(0);
+const speeds = ref([]);
+const filteredSpeed = ref(0);
+
 
 const calculateSpeed = (position) => {
-  console.log(position);
   if (previousPosition.value !== null && previousTimestamp.value !== null) {
     const distance = calculateDistance(
       previousPosition.value.coords.latitude,
@@ -27,8 +27,21 @@ const calculateSpeed = (position) => {
     const timeDifference = (position.timestamp - previousTimestamp.value) / 1000;
     const newSpeed = Math.round((distance / timeDifference) * 3600);
 
-    // 更新時速
-    speed.value = newSpeed;
+    // 忽略速度小於某個閾值的情況
+    if (newSpeed > 1) {
+      // 將新速度添加到速度列表
+      speeds.value.push(newSpeed);
+
+      // 保留最後 N 個速度，這裡設定為10
+      const maxSpeeds = 10;
+      if (speeds.value.length > maxSpeeds) {
+        speeds.value.shift();
+      }
+
+      // 計算平均速度
+      const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
+      filteredSpeed.value = totalSpeed / speeds.value.length;
+    }
   }
 
   // 更新前一個位置和時間
@@ -52,8 +65,9 @@ const deg2rad = (deg) => {
   return deg * (Math.PI / 180);
 };
 
+
 const randomSpeed = () => {
-  speed.value = Math.floor(Math.random() * 150);
+  filteredSpeed.value = Math.floor(Math.random() * 150);
 };
 
 onMounted(() => {
@@ -72,10 +86,10 @@ onMounted(() => {
   <div class="digital-box">
     <div class="randomSpeed">
       
-      <p>時速: {{ speed }} km/h</p>
+      <p>時速: {{ filteredSpeed.toFixed(2) }} km/h</p>
       <button @click="randomSpeed()"> random speed </button>
     </div>
-    <DigitalDashboard :speed="speed"/>
+    <DigitalDashboard :speed="filteredSpeed"/>
   </div>
 </template>
 
