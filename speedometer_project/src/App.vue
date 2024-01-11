@@ -19,6 +19,7 @@ const previousTimestamp = ref(null);
 const speed = ref(0);
 
 const calculateSpeed = (position) => {
+  console.log(position);
   if (previousPosition.value !== null && previousTimestamp.value !== null) {
     const distance = calculateDistance(
       previousPosition.value.coords.latitude,
@@ -93,6 +94,8 @@ onMounted(() => {
 <template>
   <div class="digital-box">
     <!-- <p>時速: {{ speed }} km/h</p> -->
+    {{speed}}
+    <button @click="speed = 100"> 100 </button>
     <DigitalDashboard :speed="speed"/>
   </div>
 </template>
