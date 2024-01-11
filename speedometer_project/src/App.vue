@@ -21,9 +21,6 @@ const filteredSpeed = ref(0);
 
 const calculateSpeed = (position) => {
   if (previousPosition.value !== null && previousTimestamp.value !== null) {
-    // 檢查時間戳是否相同，如果相同，將時間差設置為1秒
-    const timeDifference = (position.timestamp - previousTimestamp.value) / 1000 || 1;
-
     const distance = calculateDistance(
       previousPosition.value.coords.latitude,
       previousPosition.value.coords.longitude,
@@ -31,25 +28,44 @@ const calculateSpeed = (position) => {
       position.coords.longitude
     );
 
+    const timeDifference = (position.timestamp - previousTimestamp.value) / 1000;
     const newSpeed = Math.round((distance / timeDifference) * 3600);
 
-    // 將新速度添加到速度列表
-    speeds.value.push(newSpeed);
+    // 濾除極端值
+    if (newSpeed > 1 && newSpeed < 150) {
+      // 將新速度添加到速度列表
+      speeds.value.push(newSpeed);
 
-    // 保留最後 N 個速度，這裡設定為10
-    const maxSpeeds = 10;
-    if (speeds.value.length > maxSpeeds) {
-      speeds.value.shift();
+      // 保留最後 N 個速度，這裡設定為10
+      const maxSpeeds = 10;
+      if (speeds.value.length > maxSpeeds) {
+        speeds.value.shift();
+      }
+
+      // 平滑速度
+      const smoothedSpeed = exponentialMovingAverage(newSpeed);
+
+      // 計算平均速度
+      const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
+      filteredSpeed.value = (speeds.value.length > 0) ? Math.round(totalSpeed / speeds.value.length) : 0;
     }
-
-    // 計算平均速度
-    const totalSpeed = speeds.value.reduce((acc, speed) => acc + speed, 0);
-    filteredSpeed.value = (speeds.value.length > 0) ? Math.round(totalSpeed / speeds.value.length) : 0;
   }
 
   // 更新前一個位置和時間
   previousPosition.value = position;
   previousTimestamp.value = position.timestamp;
+};
+
+// 指數移動平均
+const exponentialMovingAverage = (newValue, alpha = 0.2) => {
+  if (typeof exponentialMovingAverage.prevValue === 'undefined') {
+    exponentialMovingAverage.prevValue = newValue;
+  }
+
+  const smoothedValue = alpha * newValue + (1 - alpha) * exponentialMovingAverage.prevValue;
+  exponentialMovingAverage.prevValue = smoothedValue;
+
+  return Math.round(smoothedValue);
 };
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
