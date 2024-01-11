@@ -27,10 +27,10 @@ const calculateSpeed = (position) => {
 
 
 const randomSpeed = () => {
-  filteredSpeed.value = Math.floor(Math.random() * 150);
+  speed.value = Math.floor(Math.random() * 200);
 };
 
-const chnageSpeedometerType = () => {
+const changeSpeedometerType = () => {
   SpeedometerType.value = (SpeedometerType.value==3)? 1 : SpeedometerType.value+1;
 };
 
@@ -51,7 +51,7 @@ onMounted(() => {
     <div class="randomSpeed">
       <p>時速: {{ speed }} km/h</p>
       <button @click="randomSpeed()"> random speed </button>
-      <button @click="chnageSpeedometerType()"> change type </button>
+      <button @click="changeSpeedometerType()"> change type </button>
     </div>
     <Speedometer01 :speed="speed" v-if="SpeedometerType==1"/>
     <Speedometer02 :speed="speed" v-if="SpeedometerType==2"/>

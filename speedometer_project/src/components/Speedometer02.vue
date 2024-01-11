@@ -7,6 +7,7 @@ const props = defineProps({
     default: 0
   }
 })
+const maxSpeed = ref(150);
 
 const themeColor = ref(1)
 
@@ -25,7 +26,7 @@ const circleStyle = computed(() => {
 
 // 取得指針的角度 -120deg to 120deg 對應 0 to 150
 const speedIndicatorDeg = computed(() => {
-  return props.speed * 1.6 - 120
+  return ((props.speed > maxSpeed.value)?maxSpeed.value:props.speed) * 1.6 - 120
 })
 
 // 變更顏色 1~7
