@@ -54,10 +54,7 @@ window.addEventListener('resize', () => {
     </div>
   </div>
   <div class="circle-div" :style="circleStyle">
-    <div class="speed-shanxing">
-      <div class="shanxing-1" :style="'background: linear-gradient(30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
-      <div class="shanxing-2" :style="'background: linear-gradient(-30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
-    </div>
+    <div class="pie-chart" :style="'background: conic-gradient(var(--meter-color-'+themeColor+') 0deg 240deg, transparent 0deg)'"></div>
     <div class="speed-step">
       <div>0</div>
       <div>30</div>
@@ -106,24 +103,18 @@ window.addEventListener('resize', () => {
   top: 50%;
   transform: translate(-50%, -50%);
   // 270deg 扇形
-  .speed-shanxing{
+  .pie-chart {
     position: absolute;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-120deg);
+    background: conic-gradient(
+      red 0deg 240deg,
+      transparent 0deg
+    );
     border-radius: 50%;
-    // background: linear-gradient(270deg, #FFD700 50%, #fff 50%);
-    .shanxing-1{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-    .shanxing-2{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
   }
   .speed-step{
     position: absolute;
@@ -285,7 +276,7 @@ window.addEventListener('resize', () => {
     align-items: center;
     div{
       position: absolute;
-      width: 50px;
+      width: 100px;
       height: 50%;
       top: 0;
       display: flex;

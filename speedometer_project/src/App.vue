@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 import Speedometer01 from './components/Speedometer01.vue';
 import Speedometer02 from './components/Speedometer02.vue';
 
-const SpeedometerType = ref(1);
+const SpeedometerType = ref(2);
 
 const options =  ref({
   enableHighAccuracy: true,
@@ -73,6 +73,10 @@ const randomSpeed = () => {
   filteredSpeed.value = Math.floor(Math.random() * 150);
 };
 
+const chnageSpeedometerType = () => {
+  SpeedometerType.value = SpeedometerType.value === 1 ? 2 : 1;
+};
+
 onMounted(() => {
   // 啟用位置追蹤
   if ("geolocation" in navigator) {
@@ -89,11 +93,12 @@ onMounted(() => {
   <div class="digital-box">
     <div class="randomSpeed">
       
-      <p>時速: {{ filteredSpeed.toFixed(2) }} km/h</p>
+      <p>時速: {{ filteredSpeed }} km/h</p>
       <button @click="randomSpeed()"> random speed </button>
+      <button @click="chnageSpeedometerType()"> change type </button>
     </div>
-    <Speedometer01 :speed="filteredSpeed.toFixed(0)" v-if="SpeedometerType==1"/>
-    <Speedometer02 :speed="filteredSpeed.toFixed(0)" v-if="SpeedometerType==2"/>
+    <Speedometer01 :speed="filteredSpeed" v-if="SpeedometerType==1"/>
+    <Speedometer02 :speed="filteredSpeed" v-if="SpeedometerType==2"/>
   </div>
 </template>
 
@@ -113,7 +118,7 @@ onMounted(() => {
       display: flex;
       p{
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
         margin: 0;
       }
       button{
