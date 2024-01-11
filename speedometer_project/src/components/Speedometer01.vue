@@ -8,6 +8,8 @@ const props = defineProps({
   }
 })
 
+const themeColor = ref(1)
+
 const windowWidth = ref(window.innerWidth)
 const windowHeight = ref(window.innerHeight)
 
@@ -21,6 +23,16 @@ const circleStyle = computed(() => {
   return isVertical.value ? 'width:80%' : 'height:80%'
 })
 
+// 取得指針的角度 -120deg to 120deg 對應 0 to 150
+const speedIndicatorStyle = computed(() => {
+  return `transform: rotate(${props.speed * 1.6 - 120}deg)`
+})
+
+// 變更顏色 1~7
+const changeColor = () => {
+  themeColor.value = themeColor.value === 7 ? 1 : themeColor.value + 1
+}
+
 // 監聽直式橫式
 window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth
@@ -31,7 +43,7 @@ window.addEventListener('resize', () => {
 
 <template>
 
-  <div class="digital-div" :style="circleStyle">
+  <div class="digital-div" :style="circleStyle" @click="changeColor()">
     <div class="digital-speed">
       <div class="digital-speed-number">
         {{ speed }}
@@ -43,8 +55,8 @@ window.addEventListener('resize', () => {
   </div>
   <div class="circle-div" :style="circleStyle">
     <div class="speed-shanxing">
-      <div class="shanxing-1"></div>
-      <div class="shanxing-2"></div>
+      <div class="shanxing-1" :style="'background: linear-gradient(30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
+      <div class="shanxing-2" :style="'background: linear-gradient(-30deg, rgba(0,0,0,0) 50%, var(--meter-color-'+themeColor+') 50%);'"></div>
     </div>
     <div class="speed-step">
       <div>0</div>
@@ -55,14 +67,31 @@ window.addEventListener('resize', () => {
       <div>150</div>
     </div>
     <div class="speed-line">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <div class="circle-cover"></div>
+    <div class="speed-indicator">
+      <div :style="speedIndicatorStyle"></div>
+    </div>
     <div class="circle-cover2"></div>
   </div>
 
@@ -88,14 +117,12 @@ window.addEventListener('resize', () => {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: linear-gradient(30deg, rgba(0,0,0,0) 50%, #ff6400 50%);
     }
     .shanxing-2{
       position: absolute;
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: linear-gradient(-30deg, rgba(0,0,0,0) 50%, #ff6400 50%);
     }
   }
   .speed-step{
@@ -117,7 +144,7 @@ window.addEventListener('resize', () => {
       font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
-      font-family: "Pixelify Sans", sans-serif;
+      font-family: "Tektur", sans-serif;
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;
@@ -151,47 +178,92 @@ window.addEventListener('resize', () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    div{
+    >div{
       position: absolute;
-      width: 1px;
-      height: 50%;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fff;
-      // -135deg to 135deg 五個區間
-      &:nth-child(1){
-        transform: rotate(-120deg) translate(0, -50%);
+    }
+    >div:nth-child(1){
+      div{
+        position: absolute;
+        width: 2px;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        // -135deg to 135deg 五個區間
+        &:nth-child(1){
+          width: 5px;
+          transform: rotate(-120deg) translate(0, -50%);
+        }
+        &:nth-child(2){
+          transform: rotate(-72deg) translate(0, -50%);
+        }
+        &:nth-child(3){
+          transform: rotate(-24deg) translate(0, -50%);
+        }
+        &:nth-child(4){
+          transform: rotate(24deg) translate(0, -50%);
+        }
+        &:nth-child(5){
+          transform: rotate(72deg) translate(0, -50%);
+        }
+        &:nth-child(6){
+          width: 5px;
+          transform: rotate(120deg) translate(0, -50%);
+        }
       }
-      &:nth-child(2){
-        transform: rotate(-72deg) translate(0, -50%);
-      }
-      &:nth-child(3){
-        transform: rotate(-24deg) translate(0, -50%);
-      }
-      &:nth-child(4){
-        transform: rotate(24deg) translate(0, -50%);
-      }
-      &:nth-child(5){
-        transform: rotate(72deg) translate(0, -50%);
-      }
-      &:nth-child(6){
-        transform: rotate(120deg) translate(0, -50%);
+    }
+    >div:nth-child(2){
+      div{
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg, #fff 2.4%, transparent 2.4%, transparent 95.2%);
+        
+        &:nth-child(1){
+          transform: rotate(-104deg) translate(0, 0%);
+        }
+        &:nth-child(2){
+          transform: rotate(-88deg) translate(0, 0%);
+        }
+        &:nth-child(3){
+          transform: rotate(-56deg) translate(0, 0%);
+        }
+        &:nth-child(4){
+          transform: rotate(-40deg) translate(0, 0%);
+        }
+        &:nth-child(5){
+          transform: rotate(-8deg) translate(0, 0%);
+        }
+        &:nth-child(6){
+          transform: rotate(8deg) translate(0, 0%);
+        }
+        &:nth-child(7){
+          transform: rotate(40deg) translate(0, 0%);
+        }
+        &:nth-child(8){
+          transform: rotate(56deg) translate(0, 0%);
+        }
+        &:nth-child(9){
+          transform: rotate(88deg) translate(0, 0%);
+        }
+        &:nth-child(10){
+          transform: rotate(104deg) translate(0, 0%);
+        }
+
       }
     }
   }
   .circle-cover{
-    position: absolute;
-    width: calc(70%);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: #333;
-  }
-  .circle-cover2{
     position: absolute;
     width: calc(95%);
     aspect-ratio: 1 / 1;
@@ -200,7 +272,41 @@ window.addEventListener('resize', () => {
     top: 50%;
     transform: translate(-50%, -50%);
     background: #222;
-    opacity: 0.7;
+    opacity: 0.6;
+  }
+  .speed-indicator{
+    // 指針 左邊 -120deg 開始往右轉動 最大 120deg
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div{
+      position: absolute;
+      width: 50px;
+      height: 50%;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--meter-color-3);
+      transform-origin: bottom;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      transform: rotate(-120deg);
+      transition: 0.5s ease-in-out;
+    }
+  }
+  .circle-cover2{
+    position: absolute;
+    width: calc(70%);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
   }
 
 }
@@ -225,7 +331,7 @@ window.addEventListener('resize', () => {
       font-size: 6rem;
       font-weight: 700;
       color: #fff;
-      font-family: "Pixelify Sans", sans-serif;
+      font-family: "Tektur", sans-serif;
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;
@@ -233,8 +339,8 @@ window.addEventListener('resize', () => {
     .digital-speed-unit {
       font-size: 1rem;
       font-weight: 700;
-      color: #fff;
-      font-family: "Pixelify Sans", sans-serif;
+      color: #999;
+      font-family: "Tektur", sans-serif;
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;

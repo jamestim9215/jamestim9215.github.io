@@ -1,17 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import DigitalDashboard from './components/DigitalDashboard.vue';
+import DigitalDashboard from './components/Speedometer01.vue';
 
-
-const watchPositionTimeoutHandle = ref(null);
 const options =  ref({
   enableHighAccuracy: true,
   timeout: 1000,
   maximumAge: 0
 });
-
-const watchId = ref(null);
 
 
 const previousPosition = ref(null);
@@ -41,10 +37,6 @@ const calculateSpeed = (position) => {
 };
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  if (watchPositionTimeoutHandle.value) {
-      window.clearTimeout(watchPositionTimeoutHandle.value);
-      watchPositionTimeoutHandle.value = null;
-  }
   const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
@@ -60,42 +52,29 @@ const deg2rad = (deg) => {
   return deg * (Math.PI / 180);
 };
 
+const randomSpeed = () => {
+  speed.value = Math.floor(Math.random() * 150);
+};
+
 onMounted(() => {
-  // // 啟用位置追蹤
-  // if ("geolocation" in navigator) {
-  //   navigator.geolocation.watchPosition(calculateSpeed, null, options.value);
-  // } else {
-  //   console.log("瀏覽器不支援Geolocation API");
-  // }
-
-  watchId.value = navigator.geolocation.watchPosition(calculateSpeed, (error) => {
+  // 啟用位置追蹤
+  if ("geolocation" in navigator) {
+    navigator.geolocation.watchPosition(calculateSpeed, (error) => {
       console.log(error)
-      if (watchPositionTimeoutHandle.value) {
-          window.clearTimeout(watchPositionTimeoutHandle.value);
-          watchPositionTimeoutHandle.value = null
-      }
     }, options.value);
-
-  watchPositionTimeoutHandle.value = window.setTimeout(
-    () => {
-        // if watchPositionTimeoutHandle exists, that means callback not fire.
-        // clearup here.
-        navigator.geolocation.clearWatch(watchId.value);
-    },
-    500
-  );
-
-  // cleanup
-  navigator.geolocation.clearWatch(watchId.value);
-
+  } else {
+    console.log("瀏覽器不支援Geolocation API");
+  }
 });
 </script>
 
 <template>
   <div class="digital-box">
-    <!-- <p>時速: {{ speed }} km/h</p> -->
-    {{speed}}
-    <button @click="speed = 100"> 100 </button>
+    <div class="randomSpeed">
+      
+      <p>時速: {{ speed }} km/h</p>
+      <button @click="randomSpeed()"> random speed </button>
+    </div>
     <DigitalDashboard :speed="speed"/>
   </div>
 </template>
@@ -105,6 +84,31 @@ onMounted(() => {
     position: fixed;
     width: 100%;
     height: 100dvh;
+    .randomSpeed{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      background: #333;
+      padding: 10px;
+      display: flex;
+      p{
+        color: #fff;
+        font-size: 20px;
+        margin: 0;
+      }
+      button{
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: #fff;
+        color: #333;
+        border: 0;
+        cursor: pointer;
+      }
+    }
   }
+
 
 </style>

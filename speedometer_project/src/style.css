@@ -1,8 +1,16 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Tektur&display=swap');
+
 
 :root {
-
+    --meter-color-1: #ff0000;
+    --meter-color-2: #ff8000;
+    --meter-color-3: #ffd000;
+    --meter-color-4: #00b900;
+    --meter-color-5: #0000d6;
+    --meter-color-6: #6900d3;
+    --meter-color-7: #ff00ff;
 }
 
 
