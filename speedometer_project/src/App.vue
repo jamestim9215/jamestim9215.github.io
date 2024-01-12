@@ -7,8 +7,6 @@ import Speedometer03 from './components/template/Speedometer03.vue';
 import Speedometer04 from './components/template/Speedometer04.vue';
 import Speedometer05 from './components/template/Speedometer05.vue';
 
-const keepAwakeTimer = ref(null);
-
 const templateCount = ref(5);
 
 const SpeedometerType = ref(4);
@@ -47,10 +45,6 @@ const headsUpDisplayHandler = () => {
   headsUpDisplay.value = !headsUpDisplay.value
 }
 
-const keepAwake = () => {
-  document.body.innerHTML += ' ';
-}
-
 
 onMounted(() => {
   // 啟用位置追蹤
@@ -59,21 +53,10 @@ onMounted(() => {
       console.log(error)
     }, options.value);
 
-    // 開始保持螢幕亮起
-    console.log('開始保持螢幕亮起');
-    keepAwakeTimer.value = setInterval(keepAwake, 20000); // 每 20 秒執行一次
-
   } else {
     console.log("瀏覽器不支援Geolocation API");
   }
 });
-
-onUnmounted(() => {
-  // 停止保持螢幕亮起
-  console.log('停止保持螢幕亮起');
-  clearInterval(keepAwakeTimer.value);
-});
-
 </script>
 
 <template>

@@ -30,7 +30,8 @@ const boxStyle = computed(() => {
 // 判斷時速 顯示於第幾格 1~ lineCount : 時速格子對應 0~ maxSpeed 背景顏色 #fff 並依照順序顯示白色格子 transition-delay
 const activeStyle = (i) => {
   if(i==1 && props.speed==0) return {
-    'background': '#333'
+    'background': '#333',
+    'transition-duration': '1s'
   }
 
   if((props.speed >= ((i-1) * (maxSpeed.value / lineCount.value))) ){
