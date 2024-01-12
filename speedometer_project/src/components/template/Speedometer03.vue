@@ -122,19 +122,18 @@ window.addEventListener('resize', () => {
   .pie-chart {
     position: absolute;
     // z-index: 999;
-    width: 100%;
+    width: 99.9%;
     aspect-ratio: 1 / 1;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-120deg);
-    background: conic-gradient(#ffcccc 0deg 240deg, transparent 0deg);
     border-radius: 50%;
     transition: 0.5s ease-in-out;
   }
   .pie-chart-cover,
   .pie-chart-cover2{
     position: absolute;
-    width: 100.5%;
+    width: 100%;
     aspect-ratio: 1 / 1;
     left: 50%;
     top: 50%;

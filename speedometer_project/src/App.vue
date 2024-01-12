@@ -1,12 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-import Speedometer01 from './components/Speedometer01.vue';
-import Speedometer02 from './components/Speedometer02.vue';
-import Speedometer03 from './components/Speedometer03.vue';
-import Speedometer04 from './components/Speedometer04.vue';
+import Speedometer01 from './components/template/Speedometer01.vue';
+import Speedometer02 from './components/template/Speedometer02.vue';
+import Speedometer03 from './components/template/Speedometer03.vue';
+import Speedometer04 from './components/template/Speedometer04.vue';
+import Speedometer05 from './components/template/Speedometer05.vue';
 
-const SpeedometerType = ref(4);
+const templateCount = ref(5);
+
+const SpeedometerType = ref(5);
 const headsUpDisplay = ref(false)
 
 const options =  ref({
@@ -30,37 +33,17 @@ const calculateSpeed = (position) => {
 
 
 const randomSpeed = () => {
-  speed.value = Math.floor(Math.random() * 200);
+  speed.value = Math.floor(Math.random() * 350);
 };
 
 const changeSpeedometerType = () => {
-  SpeedometerType.value = (SpeedometerType.value==4)? 1 : SpeedometerType.value+1;
+  SpeedometerType.value = (SpeedometerType.value== templateCount.value)? 1 : SpeedometerType.value+1;
 };
 
 const headsUpDisplayHandler = () => {
   headsUpDisplay.value = !headsUpDisplay.value
 }
 
-const timer = ref(null);
-const time = ref(0); 
-const averageSpeed = ref(0);
-const topSpeed = ref(0);
-
-const startStopHandler = () => {
-  if (timer.value) {
-    clearInterval(timer.value);
-    timer.value = null;
-    averageSpeed.value = Math.round(filteredSpeed.value.reduce((a, b) => a + b, 0) / filteredSpeed.value.length);
-    topSpeed.value = Math.max(...filteredSpeed.value);
-  } else {
-    time.value = "00:00:00";
-    filteredSpeed.value = [];
-    timer.value = setInterval(() => {
-      time.value = new Date(time.value).getTime() + 1000;
-      filteredSpeed.value.push(speed.value);
-    }, 1000);
-  }
-};
 
 onMounted(() => {
   // 啟用位置追蹤
@@ -68,9 +51,32 @@ onMounted(() => {
     navigator.geolocation.watchPosition(calculateSpeed, (error) => {
       console.log(error)
     }, options.value);
+
+
+    // 檢查瀏覽器是否支援 Screen Wake Lock API
+    if ('wakeLock' in navigator) {
+      // 請求持續螢幕保持亮起
+      navigator.wakeLock.request('screen')
+        .then((wakeLockObj) => {
+          console.log('螢幕已保持亮起');
+          
+          // 在需要時釋放螢幕保持亮起
+          // wakeLockObj.release();
+        })
+        .catch((error) => {
+          console.error('無法保持螢幕亮起:', error);
+        });
+    } else {
+      console.warn('瀏覽器不支援 Screen Wake Lock API');
+    }
+
+
+
   } else {
     console.log("瀏覽器不支援Geolocation API");
   }
+
+  
 });
 </script>
 
@@ -81,17 +87,13 @@ onMounted(() => {
       <button @click="changeSpeedometerType()"> Type </button>
       <button @click="headsUpDisplayHandler()"> heads up </button>
     </div>
-    <!-- <div class="timer-div">
-      <p v-if="timer">Time run: {{ time }}</p>
-      <p v-if="timer">Average speed: {{ averageSpeed }} km/h</p>
-      <p v-if="timer">Top speed: {{ topSpeed }} km/h <br></p>
-      <button @click="startStopHandler()"> {{timer?'stop':'Start'}} </button>
-    </div> -->
+
     <div :class="headsUpDisplay?'headsUpDisplay':''" >
       <Speedometer01 :speed="speed" v-if="SpeedometerType==1" />
       <Speedometer02 :speed="speed" v-if="SpeedometerType==2" />
       <Speedometer03 :speed="speed" v-if="SpeedometerType==3" />
       <Speedometer04 :speed="speed" v-if="SpeedometerType==4" />
+      <Speedometer05 :speed="speed" v-if="SpeedometerType==5" />
     </div>
   </div>
 </template>
