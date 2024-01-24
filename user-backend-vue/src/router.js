@@ -7,6 +7,8 @@ import Page404 from '@/pages/error/page404.vue'
 
 import TenantList from '@/pages/tenant/tenant-list.vue'
 
+import SuiteList from '@/pages/suite/suite-list.vue'
+
 import ContractList from '@/pages/contract/contract-list.vue'
 
 import ManagersList from '@/pages/managers/managers-list.vue'
@@ -45,15 +47,15 @@ const routes = [
   //     title: '房客詳細資料'
   //   } 
   // },
-  // {
-  //   path: '/suite-list',
-  //   name: 'suite-list',
-  //   component: SuiteList,
-  //   meta: { 
-  //     keepAlive: true, 
-  //     title: '套房列表'
-  //   } 
-  // },
+  {
+    path: '/suite-list',
+    name: 'suite-list',
+    component: SuiteList,
+    meta: { 
+      keepAlive: true, 
+      title: '套房列表'
+    } 
+  },
   // {
   //   path: '/suite-info/:suiteId',
   //   name: 'suite-info',

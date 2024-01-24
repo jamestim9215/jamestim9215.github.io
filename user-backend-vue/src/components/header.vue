@@ -48,10 +48,10 @@ watch(() =>  isShowMobile.value, (val) => {
 
 <style lang="scss" scoped>
 .header-div{
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 99;
-    width: 100%;
+    width: calc(100% - 60px);
     height: 60px;
     background: #fff;
     -webkit-backdrop-filter: blur(.3rem);
@@ -98,6 +98,7 @@ watch(() =>  isShowMobile.value, (val) => {
     
     .header-div{
         padding: 0 10px;
+        width: 100%;
 
         >div>div{
             margin-left: 10px;
