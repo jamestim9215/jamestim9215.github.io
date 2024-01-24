@@ -89,6 +89,7 @@ onMounted(() => {
           transition: 0.3s ease-in-out;
       &.is-mobile{
         left: 195px;
+        overflow: hidden;
         .menu-cover{
           position: absolute;
           display: block;
