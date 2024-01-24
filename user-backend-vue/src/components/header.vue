@@ -97,6 +97,7 @@ watch(() =>  isShowMobile.value, (val) => {
 @media (max-width: 768px) {
     
     .header-div{
+        position: absolute;
         padding: 0 10px;
         width: 100%;
 
