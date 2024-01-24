@@ -5,6 +5,12 @@ import Login from '@/pages/login/login.vue'
 
 import Page404 from '@/pages/error/page404.vue'
 
+import TenantList from '@/pages/tenant/tenant-list.vue'
+
+import ContractList from '@/pages/contract/contract-list.vue'
+
+import ManagersList from '@/pages/managers/managers-list.vue'
+
 const routes = [
   
   {
@@ -17,16 +23,73 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      title: '登入'
+    }
+  },
+  {
+    path: '/tenant-list',
+    name: 'tenant-list',
+    component: TenantList,
+    meta: { 
+      keepAlive: true, 
+      title: '房客列表'
+    } 
   },
   // {
-  //   path: '/list',
-  //   name: 'login',
-  //   component: Login,
+  //   path: '/tenant-list/:userId',
+  //   name: 'tenant-info',
+  //   component: TenantInfo,
   //   meta: { 
-  //     keepAlive: true, 
-  //     title: 'User Login'
+  //     keepAlive: false, 
+  //     title: '房客詳細資料'
   //   } 
   // },
+  // {
+  //   path: '/suite-list',
+  //   name: 'suite-list',
+  //   component: SuiteList,
+  //   meta: { 
+  //     keepAlive: true, 
+  //     title: '套房列表'
+  //   } 
+  // },
+  // {
+  //   path: '/suite-info/:suiteId',
+  //   name: 'suite-info',
+  //   component: SuiteInfo,
+  //   meta: { 
+  //     keepAlive: false, 
+  //     title: '套房詳細資料'
+  //   } 
+  // },
+  {
+    path: '/contract-list',
+    name: 'contract-list',
+    component: ContractList,
+    meta: { 
+      keepAlive: true, 
+      title: '合約列表'
+    } 
+  },
+  // {
+  //   path: '/contract-info/:contractId',
+  //   name: 'contract-info',
+  //   component: ContractInfo,
+  //   meta: {
+  //     keepAlive: false,
+  //     title: '合約詳細資料'
+  //   }
+  // },
+  {
+    path: '/managers-list',
+    name: 'managers-list',
+    component: ManagersList,
+    meta: { 
+      keepAlive: true, 
+      title: '管理人員列表'
+    } 
+  },
 
 
 

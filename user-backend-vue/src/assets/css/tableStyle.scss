@@ -1,0 +1,66 @@
+.customize-table{
+  --easy-table-border: 1px solid  var(--bs-white);
+  --easy-table-row-border: 1px solid var(--bs-white);
+
+  --easy-table-header-font-size: 13px;
+  --easy-table-header-height: 30px;
+  --easy-table-header-font-color: var(--bs-dark);
+  --easy-table-header-background-color: rgba(0,0,0,0.038);
+
+  --easy-table-header-item-padding: 13px;
+
+  --easy-table-body-even-row-font-color: var(--bs-dark);
+  --easy-table-body-even-row-background-color: rgba(0,0,0,0.038);
+
+  --easy-table-body-row-font-color: var(--bs-dark);
+  --easy-table-body-row-background-color: transparent;
+  --easy-table-body-row-height: 30px;
+  --easy-table-body-row-font-size: 14px;
+
+  // --easy-table-body-row-hover-font-color: var(--bs-dark);
+  // --easy-table-body-row-hover-background-color:  transparent;
+
+  --easy-table-body-item-padding: 13px;
+
+  --easy-table-footer-background-color: transparent;
+  --easy-table-footer-font-color: var(--bs-dark);
+  --easy-table-footer-font-size: 14px;
+  --easy-table-footer-padding: 0px 10px;
+  --easy-table-footer-height: 30px;
+
+  --easy-table-rows-per-page-selector-width: 70px;
+  --easy-table-rows-per-page-selector-option-padding: 10px;
+  --easy-table-rows-per-page-selector-z-index: 1;
+
+  --easy-table-scrollbar-track-color: transparent;
+  --easy-table-scrollbar-color: transparent;
+  --easy-table-scrollbar-thumb-color:  var(--bs-gray);
+  --easy-table-scrollbar-corner-color: transparent;
+
+  --easy-table-loading-mask-background-color: transparent;
+
+  --easy-table-message-font-color:  var(--bs-dark);
+  
+}
+
+.vue3-easy-data-table div.vue3-easy-data-table__main {
+  min-height: calc(100dvh - 300px);
+}
+
+.vue3-easy-data-table__main{
+  height: 60vdh;
+}
+
+.next-page__click-button .arrow.arrow-left,
+.previous-page__click-button .arrow.arrow-right{
+  border-color: var(--theme-color);
+}
+
+.previous-page__click-button.first-page .arrow,
+.next-page__click-button.last-page .arrow{
+  border-color: var(--theme-color-03) !important;
+}
+
+.easy-data-table__rows-selector ul.select-items{
+  background-color: #333;
+}

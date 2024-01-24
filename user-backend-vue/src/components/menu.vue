@@ -16,8 +16,63 @@ const props = defineProps({
 const route = useRoute();
 const router = useRouter();
 
+// console.log(route.path);
+
 const isMin = ref(props.isMinMenu)
 const isHover = ref(false)
+const isOpenAccountBox = ref(false)
+
+const menuList = ref([
+  {
+    type: 'link',
+    name: 'Dashboard',
+    icon: 'dashboard',
+    path: '/dashboard',
+    isActive: false
+  },
+  {
+    type: 'line'
+  },
+  {
+    type: 'category',
+    name: '房東管理'
+  },
+  {
+    type: 'link',
+    name: '房客',
+    icon: 'recent_actors',
+    path: '/tenant-list',
+    isActive: false
+  },
+  {
+    type: 'link',
+    name: '套房',
+    icon: 'home',
+    path: '/suite-list',
+    isActive: false
+  },
+  {
+    type: 'link',
+    name: '合約',
+    icon: 'history_edu',
+    path: '/contract-list',
+    isActive: false
+  },
+  {
+    type: 'line'
+  },
+  {
+    type: 'category',
+    name: '權限管理'
+  },
+  {
+    type: 'link',
+    name: '管理人員',
+    icon: 'manage_accounts',
+    path: '/managers-list',
+    isActive: false
+  },
+])
 
 const emit = defineEmits(['update:isMinMenu'])
 const isFullMenu = () => {
@@ -44,6 +99,8 @@ const isShowMobileMenuHandler = () => {
 const logoutHandler = () => {
   router.push('/login');
 }
+
+
 
 watch(() =>  isMin.value, (val) => {
   console.log("????");
@@ -78,50 +135,28 @@ watch(() =>  isMin.value, (val) => {
         </span>
       </div>
     </div>
-    <div class="menu-list-div">
-      <div class="menu-item active">
-        <div>
-          <div>
-            <span class="material-icons-outlined">
-            dashboard
-            </span>
-          </div>
-          <div v-if="!isFullMenu()">
-            Dashboard
-          </div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div>
-          <div>
-            <span class="material-icons-outlined">
-            dashboard
-            </span>
-          </div>
-          <div v-if="!isFullMenu()">
-            Dashboard
+    <div class="menu-list-div" :style="isOpenAccountBox?'padding: 0 0 130px 0;':'padding: 0 0 60px 0;'">
+      <template v-for="(menuItem, menuIndex) in menuList">
+        <div v-if="menuItem.type=='link'" class="menu-item" :class="(menuItem.isActive || route.path==menuItem.path)?'active':''">
+          <div @click="router.push(menuItem.path)">
+            <div>
+              <span class="material-icons-outlined">
+              {{menuItem.icon}}
+              </span>
+            </div>
+            <div v-if="!isFullMenu()">
+              {{menuItem.name}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="line my-1"></div>
-      <div class="menu-category-title">
-        Page
-      </div>
-      <div class="menu-item">
-        <div>
-          <div>
-            <span class="material-icons-outlined">
-            dashboard
-            </span>
-          </div>
-          <div v-if="!isFullMenu()">
-            Dashboard
-          </div>
+        <div v-if="menuItem.type=='line'" class="line my-1" :key="menuIndex+'line'"></div>
+        <div v-if="menuItem.type=='category'" class="menu-category-title" :key="menuIndex+'category'">
+          {{menuItem.name}}
         </div>
-      </div>
+      </template>
     </div>
-    <div class="account-div">
-      <div class="user-info">
+    <div class="account-div" :class="isOpenAccountBox?'active':''">
+      <div class="user-info" @click="isOpenAccountBox?isOpenAccountBox=false:isOpenAccountBox=true">
         <div>
           <img src="@/assets/images/user.webp" alt="">
         </div>
@@ -130,7 +165,7 @@ watch(() =>  isMin.value, (val) => {
           <div class="user-surname">xxxx</div>
         </div>
       </div>
-      <div class="menu-item">
+      <!-- <div class="menu-item">
         <div>
           <div>
             <span class="material-icons-outlined">
@@ -141,7 +176,7 @@ watch(() =>  isMin.value, (val) => {
             Profile
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="line my-1"></div>
       <div class="menu-item">
         <div>
@@ -228,6 +263,13 @@ watch(() =>  isMin.value, (val) => {
     
   }
   .account-div{
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+    &.active{
+      bottom: 0;
+    }
     .user-info{
       display: flex;
       justify-content: space-arounds;
