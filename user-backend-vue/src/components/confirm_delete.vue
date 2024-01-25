@@ -2,6 +2,13 @@
 <script setup>
 import { ref } from "vue";
 
+defineProps({
+  title:{
+    type:String,
+    default:"Confirm Box"
+  },
+});
+
 const isOpen = ref(false);
 const alertTitle = ref("Confirm Box");
 const alertMessage = ref("無訊息");
@@ -12,7 +19,21 @@ const falseClass = ref("btn-outline-default");
 const promiseStatus = ref(null);
 const iconStatus = ref(0);
 
-const show = (_title, _message, _trueBtnText, _falseBtnText,_trueClass='btn-outline-default',_falseClass='btn-outline-default', _icon=0) => {
+const canClickTrue = ref(true);
+const inputText = ref('');
+const checkText = ref(null);
+
+const inputCheck = () => {
+  if(inputText.value == checkText.value){
+    console.log("OK");
+    canClickTrue.value = false;
+  }else{
+    console.log("NO");
+    canClickTrue.value = true;
+  }
+}
+const show = (_title, _message, _trueBtnText, _falseBtnText,_trueClass='btn-outline-default',_falseClass='btn-outline-default', _icon=0 ,_checkText) => {
+  
   isOpen.value = true;
   alertTitle.value = _title?_title.replace(/\\n/g,'<br/>'):null;
   alertMessage.value = _message?_message.replace(/\\n/g,'<br/>'):null;
@@ -21,6 +42,7 @@ const show = (_title, _message, _trueBtnText, _falseBtnText,_trueClass='btn-outl
   trueClass.value=_trueClass;
   falseClass.value=_falseClass;
   iconStatus.value = _icon;
+  checkText.value = _checkText;
   return new Promise((resolve, reject) => {
     promiseStatus.value = { resolve, reject };
   });
@@ -32,30 +54,13 @@ const clickHandler = (action) => {
   } else {
     promiseStatus.value && promiseStatus.value.reject();
   }
+  inputText.value = '';
 }
 
+// Compiler macros, such as defineExpose, don't need to be imported
 defineExpose({
   show
 })
-
-
-
-// exsample
-
-
-  // confirm.value
-  //     .show(
-  //       t("Common.Error"),
-  //       "err",
-  //       t("Button.Confirm"),
-  //       t("Button.Cancel"),
-  //       "btn-danger btn-lg",
-  //       "btn-outline-default",
-  //       2,
-  //     )
-  //     .then(() => {
-  //       // initProjectList();
-  //     });
 
 </script>
 
@@ -69,7 +74,7 @@ defineExpose({
         <div class="icon-div" :class="[
           iconStatus==1?'icon-success':'',
           iconStatus==2?'icon-danger':'',
-          iconStatus==3?'icon-warning':'',
+          iconStatus==3?'icon-warning':''
         ]" v-if="iconStatus!=0">
           <span class="material-icons-outlined" v-if="iconStatus==1">
           check_circle
@@ -81,25 +86,31 @@ defineExpose({
           report_problem
           </span>
         </div>
-        <div class="title"  :class="[
+        <div class="title"  
+          :class="[
           iconStatus==1?'title-success':'',
           iconStatus==2?'title-danger':'',
-          iconStatus==3?'title-warning':'',
+          iconStatus==3?'title-warning':''
         ]"
           v-html="alertTitle"
-        >  
+        >
         </div>
+        <slot />
         <div
           v-if="alertMessage"
           class="confirm-message"
-          v-html="alertMessage"
+          v-html="alertMessage.replace(/\n/g,'<br/>')"
         />
+        <div class="input-div">
+          <input type="text" v-model="inputText" @keyup="inputCheck()" @change="inputCheck()">
+        </div>
         <div class="btn-div">
           <button
             v-if="trueBtnText"
             class="btn"
             :class="trueClass"
             @click="clickHandler(true)"
+            :disabled="canClickTrue"
           >
             {{ trueBtnText }}
           </button>
@@ -136,9 +147,8 @@ defineExpose({
     transform: translateX(-50%);
     background-color: #fff;
     max-width: 480px;
-    border-radius: 5px;
     width: calc(100% - 40px);
-    border: 1px solid var(--bs-light);
+    border: 1px solid var(--bs-primary);
     box-shadow:  0 0 30px rgba(255,255,255,0.3);
     text-align: center;
     >.icon-div{
@@ -184,16 +194,15 @@ defineExpose({
   .confirm-message {
     // min-height: 50px;
     font-size: 16px;
-    
   }
   .input-div{
     margin-top: 10px;
     input{
-      width: 100%;
+      width: calc(100% - 22px);
     }
   }
   .btn-div{
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     button + button{

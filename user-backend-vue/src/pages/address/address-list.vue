@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, watch, computed } from 'vue'
 import {useRouter,useRoute } from 'vue-router';
 
 import "@/assets/css/content.scss";
@@ -24,67 +24,23 @@ const suiteList = ref([
     id: 1,
     options: ["view"],
     status: 1,
-    name: "A01",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "M01",
+    imgUrl: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&w=600",
     subTitle: "address1",
-    currentRent: 9000,
-    tenantName: "tenantName1",
-    tenantImageUrl: imgUserUrl("01.webp")
+    count: 4,
+    landlordName: "landlordName1",
+    landlordImageUrl: imgUserUrl("01.webp")
   },
   {
     id: 2,
     options: ["view"],
     status: 0,
-    name: "A02",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "M02",
+    imgUrl: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&w=600",
     subTitle: "address2",
-    currentRent: 14000,
-    tenantName: "tenantName2",
-    tenantImageUrl: imgUserUrl("02.webp")
-  },
-  {
-    id: 1,
-    options: ["view"],
-    status: 1,
-    name: "A01",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
-    subTitle: "address1",
-    currentRent: 9000,
-    tenantName: "tenantName1",
-    tenantImageUrl: imgUserUrl("01.webp")
-  },
-  {
-    id: 2,
-    options: ["view"],
-    status: 0,
-    name: "A02",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
-    subTitle: "address2",
-    currentRent: 14000,
-    tenantName: "tenantName2",
-    tenantImageUrl: imgUserUrl("02.webp")
-  },
-  {
-    id: 1,
-    options: ["view"],
-    status: 1,
-    name: "A01",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
-    subTitle: "address1",
-    currentRent: 9000,
-    tenantName: "tenantName1",
-    tenantImageUrl: imgUserUrl("01.webp")
-  },
-  {
-    id: 2,
-    options: ["view"],
-    status: 0,
-    name: "A02",
-    imgUrl: "https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600",
-    subTitle: "address2",
-    currentRent: 14000,
-    tenantName: "tenantName2",
-    tenantImageUrl: imgUserUrl("02.webp")
+    count: 2,
+    landlordName: "landlordName2",
+    landlordImageUrl: imgUserUrl("02.webp")
   },
 
 ])
@@ -93,7 +49,7 @@ const deleteHandler = (item) => {
   confirmDel.value
     .show(
       "注意",
-      `確認要刪除物件"${item.name}"嗎?<br>請輸入"Delete"確認刪除物件`,
+      `確認要刪除地址"${item.name}"嗎?<br>請輸入"Delete"確認刪除`,
       "確認",
       "取消",
       "btn-danger ",
@@ -118,28 +74,24 @@ const deleteHandler = (item) => {
     })
 }
 
-onMounted(() => {
-  
-})
-
 </script>
 
 <template>
   <div class="content-page">
     <div class="content-title">
-      物件列表
+        地址列表
     </div>
     <div class="content-body">
       <div class="card-list">
-        <div class="card" v-for="(suiteItem, suiteIndex) in suiteList" :key="suiteIndex">
+        <div class="card" v-for="(addressItem, suiteIndex) in suiteList" :key="suiteIndex">
           <div>
             <div class="card-header">
               <div>
                 <div class="name">
-                  {{ suiteItem.name }}
+                  {{ addressItem.name }}
                 </div>
                 <div class="status">
-                  <span :class="'status-'+suiteItem.status">{{ suiteItem.status?'出租中':'未出租' }}</span>
+                  <span :class="'status-'+addressItem.status">{{ addressItem.status?'出租中':'未出租' }}</span>
                 </div>
               </div>
               <div>
@@ -152,7 +104,7 @@ onMounted(() => {
                       Edit
                     </button>
                     <hr> -->
-                    <button class="btn btn-block" @click="deleteHandler(suiteItem)">
+                    <button class="btn btn-block" @click="deleteHandler(addressItem)">
                       <span class="material-icons-outlined">
                       delete
                       </span>
@@ -163,16 +115,16 @@ onMounted(() => {
               </div>
             </div>
             <div class="subTitle">
-              {{ suiteItem.subTitle }}
+              {{ addressItem.subTitle }}
             </div>
-            <img :src="suiteItem.imgUrl" alt="">
+            <img :src="addressItem.imgUrl" alt="">
             <div class="card-footer">
               <div>
-                {{ suiteItem.currentRent }}$
+                {{ addressItem.count }} 物件
               </div>
               <div>
-                <img :src="suiteItem.tenantImageUrl" alt="">
-                {{ suiteItem.tenantName }}
+                <img :src="addressItem.landlordImageUrl" alt="">
+                {{ addressItem.landlordName }}
               </div>
             </div>
             <div class="view-info-btn">

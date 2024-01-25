@@ -29,13 +29,32 @@
     --bs-success: #46bcaa;
     --bs-info: #4d69fa;
     --bs-warning: #ffcf52;
-    --bs-danger: #f35421;
+    --bs-danger: #dc3545;
     --bs-light: #e7eef8;
     --bs-dark: #1f2128;
     --bs-brand: #ffcd02;
     --bs-brand-two: #323232;
     --bs-transparent: #0000;
     --bs-storybook: #ff4785;
+
+    --badge-primary-bg: #edeaff;
+    --badge-primary-color: #6c5dd3;
+    --badge-secondary-bg: #ffe2f1;
+    --badge-secondary-color: #ffa2c0;
+    --badge-success-bg: #e6fffa;
+    --badge-success-color: #46bcaa;
+    --badge-info-bg: #e7eaff;
+    --badge-info-color: #4d69fa;
+    --badge-warning-bg: #fff9e6;
+    --badge-warning-color: #ffcf52;
+    --badge-danger-bg: #ffe3e3;
+    --badge-danger-color: #dc3545;
+    --badge-light-bg: #f8f9fa;
+    --badge-light-color: #212529;
+    --badge-dark-bg: #e2e3e5;
+    --badge-dark-color: #f8f9fa;
+
+
 
     --bs-tab-bg: #e9e9ea;
 
@@ -354,7 +373,10 @@ html,body{
     display: block;
     width: 100%;
 }
-.btn 
+.btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 
 .btn-primary{

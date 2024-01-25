@@ -5,9 +5,13 @@ import Login from '@/pages/login/login.vue'
 
 import Page404 from '@/pages/error/page404.vue'
 
+import SuiteList from '@/pages/suite/suite-list.vue'
+
+import AddressList from '@/pages/address/address-list.vue'
+
 import TenantList from '@/pages/tenant/tenant-list.vue'
 
-import SuiteList from '@/pages/suite/suite-list.vue'
+import MessageList from '@/pages/message/message-list.vue'
 
 import ContractList from '@/pages/contract/contract-list.vue'
 
@@ -19,7 +23,7 @@ const routes = [
     path: '/',
     name: 'Home',
     // component: ProjectList,
-    redirect: '/login'
+    redirect: '/suite-list'
   },
   {
     path: '/login',
@@ -29,6 +33,44 @@ const routes = [
       title: '登入'
     }
   },
+  {
+    path: '/suite-list',
+    name: 'suite-list',
+    component: SuiteList,
+    meta: { 
+      keepAlive: true, 
+      title: '物件列表'
+    } 
+  },
+  // {
+  //   path: '/suite-info/:suiteId',
+  //   name: 'suite-info',
+  //   component: SuiteInfo,
+  //   meta: { 
+  //     keepAlive: false, 
+  //     title: '套房詳細資料'
+  //   } 
+  // },
+  {
+    path: '/address-list',
+    name: 'address-list',
+    component: AddressList,
+    meta: { 
+      keepAlive: true, 
+      title: '地址列表'
+    } 
+  },
+  // {
+  //   path: '/suite-info/:suiteId',
+  //   name: 'suite-info',
+  //   component: SuiteInfo,
+  //   meta: { 
+  //     keepAlive: false, 
+  //     title: '套房詳細資料'
+  //   } 
+  // },
+
+
   {
     path: '/tenant-list',
     name: 'tenant-list',
@@ -47,24 +89,17 @@ const routes = [
   //     title: '房客詳細資料'
   //   } 
   // },
+
   {
-    path: '/suite-list',
-    name: 'suite-list',
-    component: SuiteList,
+    path: '/message-list',
+    name: 'message-list',
+    component: MessageList,
     meta: { 
       keepAlive: true, 
-      title: '套房列表'
+      title: '訊息列表'
     } 
   },
-  // {
-  //   path: '/suite-info/:suiteId',
-  //   name: 'suite-info',
-  //   component: SuiteInfo,
-  //   meta: { 
-  //     keepAlive: false, 
-  //     title: '套房詳細資料'
-  //   } 
-  // },
+
   {
     path: '/contract-list',
     name: 'contract-list',

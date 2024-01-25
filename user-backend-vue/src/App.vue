@@ -30,7 +30,7 @@ onMounted(() => {
 
   <router-view v-slot="{ Component }">
     <div class="fullPage" v-if="$route.path!='/login'">
-      <Menu v-model:is-min-menu="isMinMenu" :is-show-mobile-menu="isShowMobileMenu" style="z-index:99" />
+      <Menu v-model:is-min-menu="isMinMenu" v-model:is-show-mobile-menu="isShowMobileMenu" style="z-index:99" />
       <div class="content-div" 
           :class="[
             {
@@ -42,7 +42,7 @@ onMounted(() => {
           ]"
       > 
         <div class="menu-cover" @click="isShowMobileMenu=false" v-show="isShowMobileMenu" ></div>
-        <Header v-model:is-show-mobile-menu="isShowMobileMenu"/>
+        <Header v-model:is-show-mobile-menu="isShowMobileMenu" :is-min-menu="isMinMenu"/>
         <keep-alive>
           <component :is="Component" :key="$route.path" v-if="$route.meta.keepAlive"/>
         </keep-alive>

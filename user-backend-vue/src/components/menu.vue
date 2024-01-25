@@ -19,43 +19,37 @@ const router = useRouter();
 // console.log(route.path);
 
 const isMin = ref(props.isMinMenu)
+const isShowMobile = ref(props.isShowMobileMenu);
 const isHover = ref(false)
 const isOpenAccountBox = ref(false)
 
 const menuList = ref([
-  {
-    type: 'link',
-    name: 'Dashboard',
-    icon: 'dashboard',
-    path: '/dashboard',
-    isActive: false
-  },
+  // {
+  //   type: 'link',
+  //   name: 'Dashboard',
+  //   icon: 'dashboard',
+  //   path: '/dashboard',
+  //   isActive: false
+  // },
   {
     type: 'line'
   },
   {
     type: 'category',
-    name: '房東管理'
+    name: '物件管理'
   },
   {
     type: 'link',
-    name: '房客',
-    icon: 'recent_actors',
-    path: '/tenant-list',
-    isActive: false
-  },
-  {
-    type: 'link',
-    name: '套房',
+    name: '物件列表',
     icon: 'home',
     path: '/suite-list',
     isActive: false
   },
   {
     type: 'link',
-    name: '合約',
-    icon: 'history_edu',
-    path: '/contract-list',
+    name: '地址列表',
+    icon: 'place',
+    path: '/address-list',
     isActive: false
   },
   {
@@ -63,18 +57,97 @@ const menuList = ref([
   },
   {
     type: 'category',
-    name: '權限管理'
+    name: '房客管理'
   },
   {
     type: 'link',
-    name: '管理人員',
+    name: '房客列表',
+    icon: 'recent_actors',
+    path: '/tenant-list',
+    isActive: false
+  },
+  {
+    type: 'link',
+    name: '訊息管理',
+    icon: 'chat',
+    path: '/message-list',
+    isActive: false
+  },
+  {
+    type: 'line'
+  },
+  {
+    type: 'category',
+    name: '帳務管理'
+  },
+  {
+    type: 'link',
+    name: '帳務列表',
+    icon: 'attach_money',
+    path: '/billing-list',
+    isActive: false
+  },
+  {
+    type: 'link',
+    name: '電表小幫手',
+    icon: 'bolt',
+    path: '/electricity-bill-list',
+    isActive: false
+  },
+  {
+    type: 'link',
+    name: '水表小幫手',
+    icon: 'water_drop',
+    path: '/water-bill-list',
+    isActive: false
+  },
+  {
+    type: 'line'
+  },
+  {
+    type: 'category',
+    name: '合約管理'
+  },
+  {
+    type: 'link',
+    name: '合約列表',
+    icon: 'history_edu',
+    path: '/contract-list',
+    isActive: false
+  },
+  // {
+  //   type: 'link',
+  //   name: '新增合約範本',
+  //   icon: 'history_edu',
+  //   path: '/contract-template',
+  //   isActive: false
+  // },
+  {
+    type: 'line'
+  },
+  {
+    type: 'category',
+    name: '員工管理'
+  },
+  {
+    type: 'link',
+    name: '工作人員列表',
     icon: 'manage_accounts',
     path: '/managers-list',
     isActive: false
   },
+  // {
+  //   type: 'link',
+  //   name: '新增工作人員',
+  //   icon: 'manage_accounts',
+  //   path: '/add-managers-list',
+  //   isActive: false
+  // },
 ])
 
-const emit = defineEmits(['update:isMinMenu'])
+const emit = defineEmits(['update:isMinMenu', 'update:isShowMobileMenu'])
+
+
 const isFullMenu = () => {
   if (isMin.value) {
     if(!isHover.value){
@@ -100,11 +173,16 @@ const logoutHandler = () => {
   router.push('/login');
 }
 
-
-
+watch(() =>  props.isShowMobileMenu, (val) => {
+  val ? isShowMobile.value = true : isShowMobile.value = false
+})
 watch(() =>  isMin.value, (val) => {
-  console.log("????");
   emit('update:isMinMenu', isMin.value)
+})
+
+watch(() =>  isShowMobile.value, (val) => {
+  
+  emit('update:isShowMobileMenu', isShowMobile.value)
 })
 
 </script>
@@ -138,7 +216,7 @@ watch(() =>  isMin.value, (val) => {
     <div class="menu-list-div" :style="isOpenAccountBox?'padding: 0 0 130px 0;':'padding: 0 0 60px 0;'">
       <template v-for="(menuItem, menuIndex) in menuList">
         <div v-if="menuItem.type=='link'" class="menu-item" :class="(menuItem.isActive || route.path==menuItem.path)?'active':''">
-          <div @click="router.push(menuItem.path)">
+          <div @click="isShowMobile=false;router.push(menuItem.path);">
             <div>
               <span class="material-icons-outlined">
               {{menuItem.icon}}
@@ -179,13 +257,13 @@ watch(() =>  isMin.value, (val) => {
       </div> -->
       <div class="line my-1"></div>
       <div class="menu-item">
-        <div>
+        <div @click="logoutHandler()">
           <div>
             <span class="material-icons-outlined">
             logout
             </span>
           </div>
-          <div v-if="!isFullMenu()" @click="logoutHandler()">
+          <div v-if="!isFullMenu()">
             Logout
           </div>
         </div>

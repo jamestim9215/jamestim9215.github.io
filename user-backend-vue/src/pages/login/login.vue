@@ -20,10 +20,10 @@ const loginHandler = () => {
         <div class="logo">
           Logo
         </div>
-        <div class="tab-div">
+        <!-- <div class="tab-div">
           <div :class="type==0?'active':''" @click="type=0">Login</div>
           <div :class="type==1?'active':''" @click="type=1">Sign Up</div>
-        </div>
+        </div> -->
         <template v-if="type==0">
           <div class="title">Welcome,</div>
           <div class="subTitle">Sign in to continue!</div>
