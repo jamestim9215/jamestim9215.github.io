@@ -147,8 +147,9 @@ defineExpose({
     transform: translateX(-50%);
     background-color: #fff;
     max-width: 480px;
+    border-radius: 5px;
     width: calc(100% - 40px);
-    border: 1px solid var(--bs-primary);
+    border: 1px solid var(--bs-light);
     box-shadow:  0 0 30px rgba(255,255,255,0.3);
     text-align: center;
     >.icon-div{

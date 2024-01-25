@@ -6,6 +6,7 @@ import Login from '@/pages/login/login.vue'
 import Page404 from '@/pages/error/page404.vue'
 
 import SuiteList from '@/pages/suite/suite-list.vue'
+import SuiteInfo from '@/pages/suite/suite-info.vue'
 
 import AddressList from '@/pages/address/address-list.vue'
 
@@ -42,15 +43,15 @@ const routes = [
       title: '物件列表'
     } 
   },
-  // {
-  //   path: '/suite-info/:suiteId',
-  //   name: 'suite-info',
-  //   component: SuiteInfo,
-  //   meta: { 
-  //     keepAlive: false, 
-  //     title: '套房詳細資料'
-  //   } 
-  // },
+  {
+    path: '/suite-list/:suiteId',
+    name: 'suite-info',
+    component: SuiteInfo,
+    meta: { 
+      keepAlive: false, 
+      title: '物件詳細資料'
+    } 
+  },
   {
     path: '/address-list',
     name: 'address-list',

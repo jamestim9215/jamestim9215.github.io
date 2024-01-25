@@ -89,6 +89,10 @@ const suiteList = ref([
 
 ])
 
+const previewHandler = (item) => {
+  router.push(`/suite-list/${item.id}`)
+}
+
 const deleteHandler = (item) => {
   confirmDel.value
     .show(
@@ -175,7 +179,7 @@ onMounted(() => {
                 {{ suiteItem.tenantName }}
               </div>
             </div>
-            <div class="view-info-btn">
+            <div class="view-info-btn" @click="previewHandler(suiteItem)">
               <div>
                 查看詳情
               </div>

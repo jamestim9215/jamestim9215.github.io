@@ -5,6 +5,7 @@ import { showLoading, hideLoading } from '@/assets/js/common.js';
 
 import Menu from '@/components/menu.vue';
 import Header from '@/components/header.vue';
+import Copyright from '@/components/copyright.vue';
 
 // import scss 
 import '@/assets/css/loading.scss';
@@ -47,6 +48,7 @@ onMounted(() => {
           <component :is="Component" :key="$route.path" v-if="$route.meta.keepAlive"/>
         </keep-alive>
         <component :is="Component" :key="$route.path" v-if="!$route.meta.keepAlive"/>
+        <Copyright />
       </div>
     </div>
     <component :is="Component" :key="$route.path" v-else/>
