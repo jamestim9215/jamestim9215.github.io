@@ -48,7 +48,7 @@ onMounted(() => {
           <component :is="Component" :key="$route.path" v-if="$route.meta.keepAlive"/>
         </keep-alive>
         <component :is="Component" :key="$route.path" v-if="!$route.meta.keepAlive"/>
-        <Copyright />
+        <Copyright :is-show-mobile-menu="isShowMobileMenu" :is-min-menu="isMinMenu" />
       </div>
     </div>
     <component :is="Component" :key="$route.path" v-else/>

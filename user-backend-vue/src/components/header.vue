@@ -26,9 +26,14 @@ const searchInput = ref('');
 const getHeaderWidth = () => {
     let width = window.innerWidth;
     if(width < 768){
-        return '100%'
+        return 'width:100%'
+    }else{
+        console.log(props.isMinMenu);
+        if(props.isMinMenu==true){
+            return 'width:calc(100% - 60px)'
+        }
     }
-    return isShowMobile.value ? 'calc(100% - 60px)' : 'calc(100% - 195px)'
+    return isShowMobile.value ? 'width:calc(100% - 60px)' : 'width:calc(100% - 195px)'
 }
 
 watch(() =>  props.isShowMobileMenu, (val) => {

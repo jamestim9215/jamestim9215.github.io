@@ -1,10 +1,39 @@
 <script setup>
-import { ref  } from 'vue';
+import { ref ,watch } from 'vue';
+
+const props = defineProps({
+  isShowMobileMenu: {
+    type: Boolean,
+    default: false
+  },
+  isMinMenu: {
+    type: Boolean,
+    default: false
+  }
+})
+const isShowMobile = ref(props.isShowMobileMenu);
+
+const getWidthStyle = () => {
+    let width = window.innerWidth;
+    if(width < 768){
+        return 'width:100%'
+    }else{
+        console.log(props.isMinMenu);
+        if(props.isMinMenu==true){
+            return 'width:calc(100% - 60px)'
+        }
+    }
+    return isShowMobile.value ? 'width:calc(100% - 60px)' : 'width:calc(100%)'
+}
+
+watch(() =>  props.isShowMobileMenu, (val) => {
+    val ? isShowMobile.value = true : isShowMobile.value = false
+})
 
 </script>
 
 <template>
-    <div class="copyright">
+    <div class="copyright" :style="getWidthStyle()">
         <div>
             <span>© 2024 </span>
             <span>Powered by XXXXX</span>

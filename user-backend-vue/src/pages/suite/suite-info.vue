@@ -41,13 +41,13 @@ const tableHeaders = ref([
 ]);
 const tableItems = ref([
     {
-        id: 1,
-        name: "大壯",
-        options: ["view"],
-        startDate: "2023-01-01",
-        endDate: "2023-12-31",
-        phoneNumber: "0912345678",
-        photo: imgUserUrl('01.webp')
+      id: 1,
+      name: "大壯",
+      options: ["view"],
+      startDate: "2023-01-01",
+      endDate: "2023-12-31",
+      phoneNumber: "0912345678",
+      photo: imgUserUrl('01.webp')
     },
     
 ]);
@@ -127,43 +127,97 @@ onMounted(() => {
       </div>
       <div class="info-setting">
         <div v-if="contentType==1">
-          <EasyDataTable
-              ref="dataTable"
-              buttons-pagination
-              theme-color="#6c5dd3"
-              v-model:server-options="serverOptions"
-              :server-items-length="serverItemsLength"
-              :headers="tableHeaders"
-              :items="tableItems"
-              :loading="tableLoading"
-              :sort-by="['sys_create_date']"
-              table-class-name="customize-table"
-              body-text-direction="left"
-              rowsPerPageMessage="顯示"
-              rowsOfPageSeparatorMessage="至"
-              emptyMessage="查無資料"
-              alternating
-          > 
-            <template #item-dateLimit="row" >
-              {{ row.startDate }} ~ {{ row.endDate }}
-            </template>
-            <template #item-options="row" >
-                <button class="btn btn-outline-primary" v-if="row.options.includes('view')">
-                    合約內容
-                </button>
-            </template>
-            <template #item-photo="row" >
-                <img :src="row.photo" class="img-fluid" />
-            </template>
-          </EasyDataTable>
+          <div class="title">
+            <span class="material-icons-outlined">
+            history
+            </span>
+            歷年租客與合約
+          </div>
+          <div class="content">
+            
+            <EasyDataTable
+                ref="dataTable"
+                buttons-pagination
+                theme-color="#6c5dd3"
+                v-model:server-options="serverOptions"
+                :server-items-length="serverItemsLength"
+                :headers="tableHeaders"
+                :items="tableItems"
+                :loading="tableLoading"
+                :sort-by="['sys_create_date']"
+                table-class-name="customize-table"
+                body-text-direction="left"
+                rowsPerPageMessage="顯示"
+                rowsOfPageSeparatorMessage="至"
+                emptyMessage="查無資料"
+                alternating
+            > 
+              <template #item-dateLimit="row" >
+                {{ row.startDate }} ~ {{ row.endDate }}
+              </template>
+              <template #item-options="row" >
+                  <button class="btn btn-outline-primary" v-if="row.options.includes('view')">
+                      合約內容
+                  </button>
+              </template>
+              <template #item-photo="row" >
+                  <img :src="row.photo" class="img-fluid" />
+              </template>
+            </EasyDataTable>
+          </div>
         </div>
 
         <div v-if="contentType==2">
-          BB
+          
+          <div class="title">
+            <span class="material-icons-outlined">
+              account_balance
+            </span>
+            歷年收支
+          </div>
+          <div class="content">
+
+          </div>
         </div>
 
         <div v-if="contentType==3">
-          CC
+          <div class="title">
+            <span class="material-icons-outlined">
+              edit
+            </span>
+            編輯物件
+          </div>
+          <div class="content">
+            <div class="flex upload-img">
+              <img :src="imgUserUrl('https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600')" alt="">
+              <div class="input-div file">
+                <input type="file" id="suite-image">
+                <label class="uploadBtn" for="suite-image">
+                  <span>選擇檔案</span>
+                  <div>沒有選擇檔案</div>
+                </label>
+              </div>
+            </div>
+            <hr>
+            <div class="flex">
+              <div class="input-div text">
+                <input type="text" class="form-control" v-model="name">
+                <label for="">物件名稱</label>
+              </div>
+              <div class="input-div select">
+                <select class="form-select">
+                  <option value="">--請選擇狀態--</option>
+                  <option value="0">出租中</option>
+                  <option value="1">空置中</option>
+                </select>
+                <label for="">出租狀態</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="footer">
+            <button class="btn btn-outline-primary">儲存</button>
+          </div>
         </div>
 
       </div>
@@ -237,7 +291,24 @@ onMounted(() => {
 
 }
 
-.info-setting{
-  padding: 20px;
+.upload-img{
+  
+  img{
+    width: 200px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  
+  .upload-img{
+    img{
+      width: 100%;
+      margin-right: 0;
+    }
+  }
 }
 </style>
