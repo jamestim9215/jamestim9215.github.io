@@ -300,6 +300,95 @@ hr{
     
 }
 
+.subHeader{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -20px -20px 10px -20px;
+    background: var(--bs-white);
+    >.subHeader-title{
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--bs-gray);
+    }
+    >.subHeader-btn{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        button{
+            padding: 2px 6px;
+            margin: 0 5px;
+        }
+    }
+
+}
+
+.dropdown{
+    position: relative;
+    min-width: 30px;
+    height: 30px;
+    border: 1px solid var(--bs-light);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    >span{
+        color: var(--bs-gray);
+        font-size: 20px;
+    }
+    >div{
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: auto;
+        min-width: 150px;
+        height: auto;
+        // min-height: 200px;
+        background: var(--bs-white);
+        border: 1px solid var(--bs-gray-400);
+        border-radius: 3px;
+        padding: 5px;
+        display: none;
+        z-index: 1;
+        >button{
+            color: var(--bs-gray);
+            background: transparent;
+            &:hover{
+            background: var(--badge-primary-bg);
+            color: var(--badge-primary-color);
+            }
+        }
+        &.active{
+            display: block;
+        }
+    }
+    &:hover{
+      >div{
+        display: block;
+      }
+    }
+    &.dropdown-primary{
+        border: 1px solid var(--bs-primary);
+        color: var(--bs-primary);
+        >span{
+            color: var(--bs-primary)
+        }
+        >div{
+            padding: 10px;
+            border: 1px solid var(--bs-primary);
+            width: auto;
+            min-width: 250px;
+        }
+    }
+    &.filter{
+        font-size: 14px;
+        padding: 2px 6px;
+        font-weight: 700;
+    }
+  }
+
 
 @media (max-width: 1400px) {
     .card-list{
@@ -366,6 +455,10 @@ hr{
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
+    }
+    
+    .subHeader{
+        margin: -10px -10px 10px -10px;
     }
 
     

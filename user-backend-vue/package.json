@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.4.1",
     "material-icons": "^1.13.12",
     "pinia": "^2.1.7",
     "sass": "^1.68.0",
     "vue": "^3.3.11",
+    "vue-chart-3": "^3.1.8",
     "vue-i18n": "9",
     "vue-router": "4",
     "vue3-easy-data-table": "^1.5.47"

@@ -130,6 +130,48 @@ onMounted(() => {
 
 <template>
   <div class="content-page">
+    <div class="subHeader">
+      <div class="subHeader-title">
+        
+      </div>
+      <div class="subHeader-btn">
+        
+        <div class="dropdown dropdown-primary filter">
+          <span class="material-icons-outlined">
+          filter_alt
+          </span>
+          過濾
+          <div>
+            <div>
+              <label>地址</label>
+              <select>
+                <option value="">--請選擇--</option>
+              </select>
+            </div>
+            <div>
+              <label>類型</label>
+              <select>
+                <option value="">--請選擇--</option>
+              </select>
+            </div>
+            <div>
+              <label>租金</label>
+              <div class="flex">
+                <input type="number"> ~ <input type="number">
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+
+        <button class="btn btn-outline-primary" @click="router.push('/suite-list/add')">
+          <span class="material-icons-outlined">
+          add
+          </span>
+          新增物件
+        </button>
+      </div>
+    </div>
     <div class="content-title">
       物件列表
     </div>
@@ -224,51 +266,6 @@ onMounted(() => {
                 background: var(--badge-danger-bg);
                 color: var(--badge-danger-color);
               }
-            }
-          }
-        }
-        >div>.dropdown{
-          position: relative;
-          width: 30px;
-          height: 30px;
-          border: 1px solid var(--bs-light);
-          border-radius: 3px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          >span{
-            color: var(--bs-gray);
-            font-size: 20px;
-          }
-          >div{
-            position: absolute;
-            right: 0;
-            top: 100%;
-            width: auto;
-            min-width: 150px;
-            height: auto;
-            // min-height: 200px;
-            background: var(--bs-white);
-            border: 1px solid var(--bs-gray-400);
-            border-radius: 3px;
-            padding: 5px;
-            display: none;
-            z-index: 1;
-            >button{
-              color: var(--bs-gray);
-              background: transparent;
-              &:hover{
-                background: var(--badge-primary-bg);
-                color: var(--badge-primary-color);
-              }
-            }
-            &.active{
-              display: block;
-            }
-          }
-          &:hover{
-            >div{
-              display: block;
             }
           }
         }
