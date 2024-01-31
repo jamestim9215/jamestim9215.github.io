@@ -76,6 +76,14 @@ hr{
     border-top: 1px solid var(--bs-light);
 }
 
+.line{
+    position: relative;
+    width: 2px;
+    height: 30px;
+    background: var(--bs-light);
+    margin: 0 10px;
+}
+
 .view-info-btn{
     position: relative;
     margin: 10px 0 15px 0;
@@ -388,6 +396,11 @@ hr{
         font-weight: 700;
     }
   }
+
+.chart-container{
+  position: relative;
+  width: 100%;
+}
 
 
 @media (max-width: 1400px) {

@@ -71,7 +71,7 @@ const tableHeaders = ref([
   { text: "", value: "photo" , width: 60 },
   { text: "房客姓名", value: "name" , width: 220},
   { text: "租金", value: "rent"  },
-  { text: "合約內容", value: "options" , width: 60 },
+  { text: "合約內容", value: "options" , width:120 },
 ]);
 const tableHeaders2 = ref([
   { text: "#", value: "id" , width: 30 },
@@ -216,6 +216,40 @@ const PieChartOption = ref({
 })
 
 
+const imgPreview = ref(imgUserUrl('https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600'));
+const fileOnSelected = (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    imgPreview.value = reader.result;
+  };
+};
+
+const category = ref('');
+const address = ref('');
+const rent = ref('');
+
+const categoryOptions = ref([
+  {
+    value: "0",
+    label: "套房"
+  },
+  {
+    value: "1",
+    label: "雅房"
+  },
+  {
+    value: "2",
+    label: "整層住家"
+  },
+  {
+    value: "3",
+    label: "店面"
+  },
+])
+
+
 watch(serverOptions, (value) => { 
     // initProjectList(value);
 }, { deep: true });
@@ -269,9 +303,11 @@ onMounted(() => {
             歷年數據
           </div>
           <div class="content">
-            <LineChart :chartData="LineChartData" :options="LineChartOption" />
+            <div class="chart-container">
+              <LineChart :chartData="LineChartData" :options="LineChartOption" />
+            </div>
             <div class="flex chart-flex mt-2">
-              <div>
+              <div class="chart-container">
                 <PieChart :chartData="PieChartData" :options="PieChartOption" />
               </div>
               <div>
@@ -375,28 +411,41 @@ onMounted(() => {
           </div>
           <div class="content">
             <div class="flex upload-img">
-              <img :src="imgUserUrl('https://images.pexels.com/photos/7031731/pexels-photo-7031731.jpeg?auto=compress&cs=tinysrgb&w=600')" alt="">
+              <img :src="imgPreview" alt="">
               <div class="input-div file">
-                <input type="file" id="suite-image">
+                <input type="file" id="suite-image" accept=".png, .jpg, .jpeg" @change="fileOnSelected">
                 <label class="uploadBtn" for="suite-image">
                   <span>選擇檔案</span>
                   <div>沒有選擇檔案</div>
                 </label>
               </div>
             </div>
-            <hr>
+            <hr class="my-2">
             <div class="flex">
               <div class="input-div text">
                 <input type="text" class="form-control" v-model="name">
                 <label for="">物件名稱</label>
               </div>
+            </div>
+            <div class="flex">
               <div class="input-div select">
-                <select class="form-select">
-                  <option value="">--請選擇狀態--</option>
-                  <option value="0">出租中</option>
-                  <option value="1">空置中</option>
+                <select class="form-select" v-model="category">
+                  <option value="">--請選擇類型--</option>
+                  <option :value="key.value" v-for="(key, index) in categoryOptions" :key="index">{{key.label}}</option>
                 </select>
-                <label for="">出租狀態</label>
+                <label for="">類型</label>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="input-div text">
+                <input type="text" class="form-control" v-model="address">
+                <label for="">地址</label>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="input-div text">
+                <input type="number" min="0" class="form-control" v-model="rent">
+                <label for="">預設租金</label>
               </div>
             </div>
 
@@ -510,6 +559,7 @@ onMounted(() => {
     object-fit: cover;
     border-radius: 5px;
     margin-right: 10px;
+    background: var(--bs-gray-200);
   }
 }
 
@@ -520,6 +570,18 @@ onMounted(() => {
       width: 100%;
       margin-right: 0;
     }
+  }
+
+  
+
+  .chart-flex{
+    >div:nth-child(1){
+      width: 100%;
+    }
+    >div:nth-child(2){
+      width: 100%;
+    }
+
   }
 }
 </style>

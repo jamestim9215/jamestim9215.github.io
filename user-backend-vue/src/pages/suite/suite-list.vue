@@ -89,6 +89,59 @@ const suiteList = ref([
 
 ])
 
+const address = ref("");
+const category = ref("");
+const rentStart = ref(null);
+const rentEnd = ref(null);
+const addressOptions = [
+  {
+    value: "0",
+    label: "台北市"
+  },
+  {
+    value: "1",
+    label: "新北市"
+  },
+]
+const categoryOptions = [
+  {
+    value: "0",
+    label: "套房"
+  },
+  {
+    value: "1",
+    label: "雅房"
+  },
+  {
+    value: "2",
+    label: "整層住家"
+  },
+  {
+    value: "3",
+    label: "店面"
+  },
+]
+
+const getAddressLabel = () => {
+  let label = "";
+  addressOptions.forEach((item) => {
+    if(item.value === address.value){
+      label = item.label;
+    }
+  })
+  return label;
+}
+
+const getCategoryLabel = () => {
+  let label = "";
+  categoryOptions.forEach((item) => {
+    if(item.value === category.value){
+      label = item.label;
+    }
+  })
+  return label;
+}
+
 const previewHandler = (item) => {
   router.push(`/suite-list/${item.id}`)
 }
@@ -122,6 +175,27 @@ const deleteHandler = (item) => {
     })
 }
 
+const isRent = (type) => {
+  if(type === 'rentStart'){
+    if(rentStart.value < 0 || rentStart.value > 1000000){
+      rentStart.value = 0;
+    }
+    
+    if(rentStart.value > rentEnd.value && rentEnd.value != null){
+      rentStart.value = rentEnd.value;
+    }
+    rentStart.value = Number(rentStart.value);
+  }else{
+    if(rentEnd.value < 0 || rentEnd.value > 1000000){
+      rentEnd.value = 1000000;
+    }
+    if(rentEnd.value < rentStart.value){
+      rentEnd.value = rentStart.value;
+    }
+    rentEnd.value = Number(rentEnd.value);
+  }
+}
+
 onMounted(() => {
   
 })
@@ -135,7 +209,13 @@ onMounted(() => {
         
       </div>
       <div class="subHeader-btn">
+
+        <button class="btn btn-primary mr-0" style="cursor: initial;" v-if="address">{{ getAddressLabel() }}</button>
+        <button class="btn btn-primary mr-0" style="cursor: initial;" v-if="category">{{ getCategoryLabel() }}</button>
+        <button class="btn btn-primary mr-0" style="cursor: initial;" v-if="rentStart != null && rentEnd != null">  {{ rentStart }}$ ~ {{ rentEnd }}$</button>
         
+        <div class="line" v-if="(rentStart != null && rentEnd != null) || category || address"></div>
+
         <div class="dropdown dropdown-primary filter">
           <span class="material-icons-outlined">
           filter_alt
@@ -144,20 +224,24 @@ onMounted(() => {
           <div>
             <div>
               <label>地址</label>
-              <select>
+              <select v-model="address">
                 <option value="">--請選擇--</option>
+                <option :value="key.value" v-for="(key, index) in addressOptions" :key="index">{{key.label}}</option>
               </select>
             </div>
             <div>
               <label>類型</label>
-              <select>
-                <option value="">--請選擇--</option>
+              <select v-model="category">
+                <option value="">--請選擇類型--</option>
+                <option :value="key.value" v-for="(key, index) in categoryOptions" :key="index">{{key.label}}</option>
               </select>
             </div>
             <div>
               <label>租金</label>
               <div class="flex">
-                <input type="number"> ~ <input type="number">
+                <input type="number" v-model="rentStart" min="0" @blur="isRent('rentStart')"> 
+                ~ 
+                <input type="number" :min="rentStart" :max="1000000"  @blur="isRent('rentEnd')" v-model="rentEnd">
               </div>
             </div>
             <hr>
