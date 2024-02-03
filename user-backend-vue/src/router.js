@@ -9,6 +9,7 @@ import SuiteList from '@/pages/suite/suite-list.vue'
 import SuiteInfo from '@/pages/suite/suite-info.vue'
 
 import AddressList from '@/pages/address/address-list.vue'
+import AddressInfo from '@/pages/address/address-info.vue'
 
 import TenantList from '@/pages/tenant/tenant-list.vue'
 
@@ -59,6 +60,15 @@ const routes = [
     meta: { 
       keepAlive: true, 
       title: '地址列表'
+    } 
+  },
+  {
+    path: '/address-list/:addressId',
+    name: 'address-info',
+    component: AddressInfo,
+    meta: { 
+      keepAlive: false, 
+      title: '地址詳細資料'
     } 
   },
   // {

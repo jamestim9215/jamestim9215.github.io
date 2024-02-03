@@ -14,8 +14,8 @@ const router = useRouter();
 const route = useRoute();
 
 const pageType = computed(() => {
-  if(route.params.suiteId == 'add'){
-    contentType.value = 4;
+  if(route.params.addressId == 'add'){
+    contentType.value = 2;
     return 'add';
   }
 
@@ -27,33 +27,27 @@ const confirm = ref(null);
 const confirmDel = ref(null);
 
 const contentType = ref(1);
-const name = ref('A01');
+const name = ref('M01');
 
 
 const infoCardTypeList = ref([
   {
     id: 1,
-    name: "歷年數據",
+    name: "目前狀態與數據",
     iconName: "analytics",
     isShow: pageType.value == 'edit' ? true : false,
   },
   {
     id: 2,
-    name: "歷年租客與合約",
-    iconName: "history",
-    isShow: pageType.value == 'edit' ? true : false,
+    name: "編輯地址資訊",
+    iconName: "edit",
+    isShow: true,
   },
   {
     id: 3,
-    name: "歷年收支",
-    iconName: "account_balance",
+    name: "工作人員列表",
+    iconName: "manage_accounts",
     isShow: pageType.value == 'edit' ? true : false,
-  },
-  {
-    id: 4,
-    name: "編輯物件",
-    iconName: "edit",
-    isShow: true,
   },
 ])
 
@@ -83,48 +77,21 @@ const imgUserUrl = (url) => {
 const tableHeaders = ref([
   { text: "#", value: "id" , width: 30 },
   { text: "", value: "photo" , width: 60 },
-  { text: "房客姓名", value: "name" , width: 220},
-  { text: "租金", value: "rent"  },
-  { text: "合約內容", value: "options" , width:120 },
-]);
-const tableHeaders2 = ref([
-  { text: "#", value: "id" , width: 30 },
-  { text: "帳單", value: "bill" , width: 180},
-  { text: "應付款日", value: "payableDate", width: 180},
-  { text: "", value: "photo" , width: 60 },
-  { text: "付款人", value: "name"  },
-  { text: "帳單狀態", value: "billStaus" , width: 120 },
+  { text: "管理員姓名", value: "name" , width: 220},
+  { text: "工作內容", value: "manageType"  },
 ]);
 const tableItems = ref([
   {
     id: 1,
     name: "大壯",
     options: ["view"],
-    startDate: "2023-01-01",
-    endDate: "2023-12-31",
-    phoneNumber: "0912345678",
     photo: imgUserUrl('01.webp'),
-    gender: "男",
-    country: "台灣",
-    rent: 15000,
+    manageType: '房仲',
   },
 ]);
-const tableItems2 = ref([
-  {
-    id: 1,
-    name: "大壯",
-    options: ["view"],
-    bill: "2024年02月 費用",
-    payableDate: "2024-02-01",
-    photo: imgUserUrl('01.webp'),
-    billStaus: "已付款",
-  },
-])
 
 const serverItemsLength = ref(30);
-const serverItemsLength2 = ref(30);
 const tableLoading = ref(false);
-const tableLoading2 = ref(false);
 
 const currentPageFirstIndex = computed(() => dataTable.value?.currentPageFirstIndex);
 const currentPageLastIndex = computed(() => dataTable.value?.currentPageLastIndex);
@@ -136,27 +103,11 @@ const currentPaginationNumber = computed(() => dataTable.value?.currentPaginatio
 const rowsPerPageOptions = computed(() => dataTable.value?.rowsPerPageOptions);
 const rowsPerPageActiveOption = computed(() => dataTable.value?.rowsPerPageActiveOption);
 
-const currentPageFirstIndex2 = computed(() => dataTable2.value?.currentPageFirstIndex);
-const currentPageLastIndex2 = computed(() => dataTable2.value?.currentPageLastIndex);
-const clientItemsLength2 = computed(() => dataTable2.value?.clientItemsLength);
-const isFirstPage2 = computed(() => dataTable2.value?.isFirstPage);
-const isLastPage2 = computed(() => dataTable2.value?.isLastPage);
-const maxPaginationNumber2 = computed(() => dataTable2.value?.maxPaginationNumber);
-const currentPaginationNumber2 = computed(() => dataTable2.value?.currentPaginationNumber);
-const rowsPerPageOptions2 = computed(() => dataTable2.value?.rowsPerPageOptions);
-const rowsPerPageActiveOption2 = computed(() => dataTable2.value?.rowsPerPageActiveOption);
-
 const nextPage = () => {
   dataTable.value.nextPage();
 };
 const prevPage = () => {
   dataTable.value.prevPage();
-};
-const nextPage2 = () => {
-  dataTable2.value.nextPage();
-};
-const prevPage2 = () => {
-  dataTable2.value.prevPage();
 };
 
 const LineChartData = ref({
@@ -320,7 +271,7 @@ onMounted(() => {
         </div>
         
         <div class="info-card-footer" v-if="pageType=='edit'">
-          <button class="btn btn-block btn-outline-danger">刪除物件</button>
+          <button class="btn btn-block btn-outline-danger">刪除地址</button>
         </div>
 
       </div>
@@ -364,13 +315,70 @@ onMounted(() => {
           </div>
         </div>
 
-
         <div v-if="contentType==2">
+          <div class="title" v-if="pageType=='edit'">
+            <span class="material-icons-outlined">
+              edit
+            </span>
+            編輯地址資訊
+          </div>
+          <div class="title" v-if="pageType=='add'">
+            <span class="material-icons-outlined">
+              edit
+            </span>
+            新增地址資訊
+          </div>
+          <div class="content">
+            <div class="flex upload-img">
+              <div v-if="imgPreviewList.length>0">
+                <img :src="imgPreviewList[0].img" alt="">
+                <span class="material-icons-outlined delete-btn" @click="deleteImgHandler(imgPreviewIndex)">
+                  remove_circle_outline
+                </span>
+              </div>
+              <div class="input-div file" v-if="imgPreviewList.length <= 11">
+                <input type="file" id="address-image" accept=".png, .jpg, .jpeg" @change="fileOnSelected" multiple>
+                <label class="uploadBtn" for="address-image">
+                  <span>選擇檔案</span>
+                  <div>沒有選擇檔案</div>
+                </label>
+              </div>
+            </div>
+            <div class="flex img-preview-list" v-if="imgPreviewList.length > 1">
+              <div class="img-preview" v-for="(imgPreviewItem, imgPreviewIndex) in imgPreviewList" :key="imgPreviewIndex" v-show="imgPreviewIndex!=0">
+                <img :src="imgPreviewItem.img" alt="">
+                <span class="material-icons-outlined delete-btn" @click="deleteImgHandler(imgPreviewIndex)">
+                  remove_circle_outline
+                </span>
+              </div>
+            </div>
+            <hr class="my-2">
+            <div class="flex">
+              <div class="input-div text">
+                <input type="text" class="form-control" v-model="name">
+                <label for="">別名</label>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="input-div text">
+                <input type="text" class="form-control" v-model="address">
+                <label for="">地址</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="footer">
+            <button class="btn btn-outline-primary">儲存</button>
+          </div>
+        </div>
+
+
+        <div v-if="contentType==3">
           <div class="title">
             <span class="material-icons-outlined">
-            history
+            manage_accounts
             </span>
-            歷年租客與合約
+            工作人員列表
           </div>
           <div class="content">
             
@@ -392,8 +400,7 @@ onMounted(() => {
                 alternating
             > 
               <template #item-name="row" >
-                {{ row.name }} ({{row.country}}) <br> 
-                {{ row.startDate }} ~ {{ row.endDate }}
+                {{ row.name }}
               </template>
               <template #item-rent="row" >
                 租金：{{ row.rent }} $
@@ -407,111 +414,6 @@ onMounted(() => {
                   <img :src="row.photo" class="img-fluid" />
               </template>
             </EasyDataTable>
-          </div>
-        </div>
-
-        <div v-if="contentType==3">
-          
-          <div class="title">
-            <span class="material-icons-outlined">
-              account_balance
-            </span>
-            歷年收支
-          </div>
-          <div class="content">
-            <EasyDataTable
-                ref="dataTable2"
-                buttons-pagination
-                theme-color="#6c5dd3"
-                v-model:server-options="serverOptions2"
-                :server-items-length="serverItemsLength2"
-                :headers="tableHeaders2"
-                :items="tableItems2"
-                :loading="tableLoading2"
-                :sort-by="['sys_create_date']"
-                table-class-name="customize-table"
-                body-text-direction="left"
-                rowsPerPageMessage="顯示"
-                rowsOfPageSeparatorMessage="至"
-                emptyMessage="查無資料"
-                alternating
-            > 
-              <template #item-photo="row" >
-                  <img :src="row.photo" class="img-fluid" />
-              </template>
-            </EasyDataTable>
-          </div>
-        </div>
-
-        <div v-if="contentType==4">
-          <div class="title" v-if="pageType=='edit'">
-            <span class="material-icons-outlined">
-              edit
-            </span>
-            編輯物件
-          </div>
-          <div class="title" v-if="pageType=='add'">
-            <span class="material-icons-outlined">
-              edit
-            </span>
-            新增物件
-          </div>
-          <div class="content">
-            <div class="flex upload-img">
-              <div v-if="imgPreviewList.length>0">
-                <img :src="imgPreviewList[0].img" alt="">
-                <span class="material-icons-outlined delete-btn" @click="deleteImgHandler(imgPreviewIndex)">
-                  remove_circle_outline
-                </span>
-              </div>
-              <div class="input-div file" v-if="imgPreviewList.length <= 11">
-                <input type="file" id="suite-image" accept=".png, .jpg, .jpeg" @change="fileOnSelected" multiple>
-                <label class="uploadBtn" for="suite-image">
-                  <span>選擇檔案</span>
-                  <div>沒有選擇檔案</div>
-                </label>
-              </div>
-            </div>
-            <div class="flex img-preview-list" v-if="imgPreviewList.length > 1">
-              <div class="img-preview" v-for="(imgPreviewItem, imgPreviewIndex) in imgPreviewList" :key="imgPreviewIndex" v-show="imgPreviewIndex!=0">
-                <img :src="imgPreviewItem.img" alt="">
-                <span class="material-icons-outlined delete-btn" @click="deleteImgHandler(imgPreviewIndex)">
-                  remove_circle_outline
-                </span>
-              </div>
-            </div>
-            <hr class="my-2">
-            <div class="flex">
-              <div class="input-div text">
-                <input type="text" class="form-control" v-model="name">
-                <label for="">物件名稱</label>
-              </div>
-            </div>
-            <div class="flex">
-              <div class="input-div select">
-                <select class="form-select" v-model="category">
-                  <option value="">--請選擇類型--</option>
-                  <option :value="key.value" v-for="(key, index) in categoryOptions" :key="index">{{key.label}}</option>
-                </select>
-                <label for="">類型</label>
-              </div>
-            </div>
-            <div class="flex">
-              <div class="input-div text">
-                <input type="text" class="form-control" v-model="address">
-                <label for="">地址</label>
-              </div>
-            </div>
-            <div class="flex">
-              <div class="input-div text">
-                <input type="number" min="0" class="form-control" v-model="rent">
-                <label for="">預設租金</label>
-              </div>
-            </div>
-
-          </div>
-          <div class="footer">
-            <button class="btn btn-outline-primary">儲存</button>
           </div>
         </div>
 

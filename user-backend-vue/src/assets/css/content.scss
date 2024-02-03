@@ -342,6 +342,7 @@ hr{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
     >span{
         color: var(--bs-gray);
         font-size: 20px;
@@ -359,7 +360,7 @@ hr{
         border-radius: 3px;
         padding: 5px;
         display: none;
-        z-index: 1;
+        z-index: 2;
         >button{
             color: var(--bs-gray);
             background: transparent;
@@ -400,8 +401,50 @@ hr{
 .chart-container{
   position: relative;
   width: 100%;
+  &.piechart{
+    padding: 15px;
+  }
 }
 
+.img-preview-list{
+    margin: 10px 0;
+    padding: 10px;
+    background: var(--bs-gray-200);
+    flex-wrap: wrap;
+    justify-content: start;
+    border-radius: 5px;
+    >.img-preview{
+        position: relative;
+        width: 100px;
+        margin: 5px;
+        border-radius: 5px;
+        background: var(--bs-white);
+        font-size: 0;
+        >img{
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+    
+}
+.delete-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    color: var(--bs-danger);
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    opacity: 0.3;
+    &:hover{
+        opacity: 1;
+    }
+}
 
 @media (max-width: 1400px) {
     .card-list{
@@ -473,6 +516,24 @@ hr{
     .subHeader{
         margin: -10px -10px 10px -10px;
     }
+
+    
+
+.img-preview-list{
+    justify-content: start;
+    flex-direction: inherit;
+    >.img-preview{
+        width: calc(33.33% - 10px);
+        >img{
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+    
+}
 
     
 }
