@@ -2,11 +2,12 @@
 import { ref, watch, computed, onMounted } from 'vue'
 import {useRouter,useRoute } from 'vue-router';
 
-import { LineChart, PieChart } from 'vue-chart-3';
+import { LineChart, PieChart, DoughnutChart } from 'vue-chart-3';
 import { Chart, registerables } from "chart.js";
 
 
 import "@/assets/css/content.scss";
+
 
 Chart.register(...registerables);
 
@@ -159,23 +160,38 @@ const prevPage2 = () => {
   dataTable2.value.prevPage();
 };
 
+
+const chartLine = ref(null);
+
 const LineChartData = ref({
-  labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12'],
+  // labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
   datasets: [
     {
-      data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56],
-      backgroundColor: ['#4d69fa'],
+      data: [0, 3000, 5000 , 4000, 6000, 3000, 5000, 4000, 6000, 3000, 5000, 4000],
+      borderColor: '#19ECD3',
+      pointBackgroundColor: 'white',
+      borderWidth: 3,
+      radius: 0,
+      fill: true,
+      pointBorderColor: 'white',
+      tension: 0.25,
+      backgroundColor: ()=>{
+        const ctx = chartLine.value.canvasRef.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, '#E6FDFA');
+        gradient.addColorStop(1, 'rgba(255,255,255, 0)');
+        return gradient;
+      },
     },
-    {
-      data: [28, 48, 40, 19, 86, 27, 90],
-      backgroundColor: ['#ffa2c0'],
-    }
   ],
+
 })
 
 const LineChartOption = ref({
   responsive: true,
   maintainAspectRatio: false,
+  scaleFontColor: 'red',
   plugins: {
     legend: {
       display: false,
@@ -191,43 +207,163 @@ const LineChartOption = ref({
         display: false,
       },
       ticks: {
-        color: '#000',
+        color: '#999',
+      },
+      border: {
+        color: 'rgba(0,0,0,0.1)'
       },
     },
     y: {
       grid: {
-        display: false,
+        display: true,
       },
       ticks: {
-        color: '#000',
+        color: '#999',
       },
+      border: {
+        color: 'rgba(0,0,0,0)'
+      }
     },
   },
 })
 
-const PieChartData = ref({
-  labels: ['水費', '電費'],
+const doughnutChart1 = ref(null);
+const doughnutChart2 = ref(null);
+
+const DoughnutChart1Data = ref({
+  labels: ['A', 'B'],
   datasets: [
     {
-      data: [300, 50],
-      backgroundColor: ['#e7eaff', '#fff9e6'],
+      label: 'Dataset 1',
+      data: [30, 70],
+      backgroundColor: [
+        '#4d69fa',
+        '#ccc',
+      ],
     },
   ],
 })
 
-const PieChartOption = ref({
+const DoughnutChart2Data = ref({
+  labels: ['A', 'B'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [90, 10],
+      backgroundColor: [
+        '#4d69fa',
+        '#ccc',
+      ],
+    },
+  ],
+})
+
+const DoughnutChart1Option = ref({
+  cutout: '70%',
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: false,
+      text: '報修金額',
+    }
+  },
+})
+
+const DoughnutChart2Option = ref({
+  cutout: '70%',
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: true,
-      position: 'left', 
+      display: false,
     },
     title: {
       display: false,
-    },
+      text: '報修金額',
+    }
   },
 })
+
+const DoughnutChart1plugins = ref([
+  {
+    beforeDraw: function(chart) {
+      const width = chart.width,
+            height = chart.height,
+            ctx = chart.ctx;
+      ctx.restore();
+      const fontSize = (height / 114).toFixed(2);
+      ctx.font = fontSize + "em sans-serif";
+      ctx.fillStyle = '#000';
+      ctx.textBaseline = "bold";
+      const text = '30%',
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+
+      ctx.fillText(text, textX, textY);
+      ctx.save();
+
+      // 百分比底下有文字 
+      ctx.restore();
+      ctx.font = (fontSize / 2).toFixed(2) + "em sans-serif";
+      ctx.fillStyle = '#4d69fa';
+      ctx.textBaseline = "bold";
+      const text2 = '入住率',
+            textX2 = Math.round((width - ctx.measureText(text2).width) / 2),
+            textY2 = height / 2 + 20;
+      //顏色:#4d69fa
+
+      ctx.fillText(text2, textX2, textY2);
+      ctx.save();
+
+      
+    }
+  }
+])
+
+const DoughnutChart2plugins = ref([
+  {
+    beforeDraw: function(chart) {
+      const width = chart.width,
+            height = chart.height,
+            ctx = chart.ctx;
+      ctx.restore();
+      const fontSize = (height / 114).toFixed(2);
+      ctx.font = fontSize + "em sans-serif";
+      ctx.fillStyle = '#000';
+      ctx.textBaseline = "bold";
+      const text = '30%',
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+
+      ctx.fillText(text, textX, textY);
+      ctx.save();
+
+      // 百分比底下有文字 
+      ctx.restore();
+      ctx.font = (fontSize / 2).toFixed(2) + "em sans-serif";
+      ctx.textBaseline = "bold";
+      const text2 = '入住率',
+            textX2 = Math.round((width - ctx.measureText(text2).width) / 2),
+            textY2 = height / 2 + 20;
+      //顏色:#4d69fa
+      ctx.fillStyle = '#4d69fa';
+
+      ctx.fillText(text2, textX2, textY2);
+      ctx.save();
+
+      
+    }
+  }
+])
+
+
+
+
+
 
 // 11張 張圖 第一張是預設大圖
 const imgPreviewList = ref([
@@ -287,7 +423,6 @@ watch(serverOptions, (value) => {
 }, { deep: true });
 
 onMounted(() => {
-  
 })
 
 </script>
@@ -324,30 +459,54 @@ onMounted(() => {
         </div>
 
       </div>
-      <div class="info-setting">
-        
-
-        <div v-if="contentType==1">
-          
-          <div class="title">
-            <span class="material-icons-outlined">
-              analytics
-            </span>
-            歷年數據
+      <div class="info-setting" v-if="contentType==1">
+        <div>
+          <div class="flex">
+            <div class="title">
+              <span class="material-icons-outlined">
+                analytics
+              </span>
+              統計數據
+            </div>
+            <div class="center-btns">
+              <button class="btn">
+                Week
+              </button>
+              <button class="btn active">
+                Month
+              </button>
+              <button class="btn">
+                Year
+              </button>
+            </div>
+            <div class="right-btns">
+              <button class="btn btn-sm">
+                <span class="material-icons-outlined">
+                keyboard_arrow_left
+                </span>
+              </button>
+              <button class="btn active">
+                2024
+              </button>
+              <button class="btn btn-sm">
+                <span class="material-icons-outlined">
+                keyboard_arrow_right
+                </span>
+              </button>
+            </div>
           </div>
           <div class="content">
-            <div>
-              <select name="" id="">
-                <option value="">2021</option>
-                <option value="">2022</option>
-                <option value="">2023</option>
-                <option value="">2024</option>
-              </select>
+            <div class="chart-flex-div">
+              <div>
+                <button class="btn btn-block btn-chart-left">報修金額</button>
+                <button class="btn btn-block btn-chart-left">電費</button>
+                <button class="btn btn-block btn-chart-left">水費</button>
+              </div>
+              <div class="chart-container">
+                <LineChart ref="chartLine" :chartData="LineChartData" :options="LineChartOption" />
+              </div>
             </div>
-            <div class="chart-container">
-              <LineChart :chartData="LineChartData" :options="LineChartOption" />
-            </div>
-            <div class="flex chart-flex mt-2">
+            <!-- <div class="flex chart-flex mt-2">
               <div class="chart-container piechart">
                 <PieChart :chartData="PieChartData" :options="PieChartOption" />
               </div>
@@ -360,12 +519,77 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            
+             -->
           </div>
         </div>
+      </div>
+
+      <div class="info-setting info-setting-2" v-if="contentType==1">
+        <div>
+          <div class="flex">
+            <div class="title">
+              <span class="material-icons-outlined">
+                analytics
+              </span>
+              數據
+            </div>
+          </div>
+          <div class="content flex">
+            <div style="width:50%;padding: 20px 60px">
+              <DoughnutChart ref="doughnutChart1" :chartData="DoughnutChart1Data" :options="DoughnutChart1Option" :plugins="DoughnutChart1plugins" />
+            </div>
+            <div style="width:50%;padding: 20px 60px" >
+              <DoughnutChart ref="doughnutChart2" :chartData="DoughnutChart2Data" :options="DoughnutChart2Option" :plugins="DoughnutChart2plugins" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-setting info-setting-2" v-if="contentType==1">
+        <div>
+          <div class="flex">
+            <div class="title">
+              <span class="material-icons-outlined">
+                analytics
+              </span>
+              歷年數據
+            </div>
+          </div>
+          <div class="content">
+              <table class="chart-table">
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>金額</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>月平均電費</td>
+                    <td>$ 1000</td>
+                  </tr>
+                  <tr>
+                    <td>報修金額</td>
+                    <td>$ 8000</td>
+                  </tr>
+                  <tr>
+                    <td>月平均水費</td>
+                    <td>$ 1200</td>
+                  </tr>
+                  <tr>
+                    <td>月平均水費</td>
+                    <td>$ 600</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+          </div>
+        </div>
+      </div>
 
 
-        <div v-if="contentType==2">
+      <div class="info-setting" v-if="contentType==2">
+        <div>
           <div class="title">
             <span class="material-icons-outlined">
             history
@@ -409,8 +633,12 @@ onMounted(() => {
             </EasyDataTable>
           </div>
         </div>
+      </div>
 
-        <div v-if="contentType==3">
+
+      <div class="info-setting" v-if="contentType==3">
+
+        <div>
           
           <div class="title">
             <span class="material-icons-outlined">
@@ -442,8 +670,11 @@ onMounted(() => {
             </EasyDataTable>
           </div>
         </div>
+      </div>
 
-        <div v-if="contentType==4">
+
+      <div class="info-setting" v-if="contentType==4">
+        <div>
           <div class="title" v-if="pageType=='edit'">
             <span class="material-icons-outlined">
               edit
@@ -525,6 +756,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .info-card{
+  position: relative;
   width: 100%;
   height: calc(100dvh - 130px);
   display: flex;
@@ -586,6 +818,30 @@ onMounted(() => {
 
 }
 
+.chart-flex-div{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  >div:nth-child(1){
+    padding: 10px;
+    margin-right: 30px;
+    .btn-chart-left{
+      width: 100%;
+      margin-bottom: 10px;
+      background: #fff;
+      color: var(--bs-info);
+      border: 1px solid var(--bs-gray-200);
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .chart-container{
+    width: 100%;
+    max-width: 1120px;
+  }
+
+}
 
 .chart-flex{
   >div:nth-child(1){
@@ -605,6 +861,43 @@ onMounted(() => {
       margin-bottom: 10px;
       &:last-child{
         margin-bottom: 0;
+      }
+    }
+  }
+
+}
+
+.chart-table{
+  width: 100%;
+  // border-collapse: collapse;
+  border-spacing: 0;
+  thead{
+    background: var(--bs-gray-100);
+    th{
+      padding: 10px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--bs-dark);
+      &:nth-last-child(1){
+        text-align: right;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--bs-dark);
+        text-align: left;
+        &:nth-last-child(1){
+          text-align: right;
+        }
+      }
+      &:nth-child(even){
+        background: var(--bs-gray-100);
       }
     }
   }

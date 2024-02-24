@@ -169,12 +169,12 @@ hr{
 
 .info-page{
     position: relative;
-    display: flex;
-    justify-content: space-between;
+    height: calc(100vh - 120px);
     margin: -15px;
     >div{
-
-        // min-height: 300px;
+        position: relative;
+        display: inline-block;
+        float: left;
         background: var(--bs-white);
         border-radius: 5px;
         border: 1px solid var(--bs-light);
@@ -183,8 +183,8 @@ hr{
         width: 300px;
         }
         &:nth-child(2){
-        flex-grow: 1;
-        width: calc(100% - 300px);
+        height: auto;
+        width: calc(100% - 300px - 40px);
         }
 
         .vue3-easy-data-table div.vue3-easy-data-table__main {
@@ -204,14 +204,19 @@ hr{
 
 
 .info-setting{
+    position: relative;
     padding: 20px;
+    &.info-setting-2{
+        margin: 10px;
+        width: calc((100% - 300px - 60px) / 2);
+    }
     >div{
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        >.title{
+        .title{
             font-size: 16px;
             font-weight: 700;
             color: var(--bs-dark);
@@ -236,6 +241,37 @@ hr{
             justify-content: flex-end;
             align-items: center;
             margin-top: 20px;
+        }
+    }
+    .center-btns{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        >button{
+            margin: 0 10px;
+            background: transparent;
+            color: var(--bs-info);
+            &.active{
+                background: #EDF0FF;
+                color: var(--bs-info);
+            }
+        }
+
+    }
+    .right-btns{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+        >button{
+            height: 100%;
+            background: #EDF0FF;
+            color: var(--bs-info);
+            &.active{
+                background: #EDF0FF;
+                color: var(--bs-info);
+            }
         }
     }
 }
@@ -466,6 +502,14 @@ hr{
             }
         }
     }
+    .info-setting{
+        // padding: 10px;
+        
+        &.info-setting-2{
+            width: calc((100% - 0px));
+        }
+    }
+
 
 }
 @media (max-width: 1000px) {
