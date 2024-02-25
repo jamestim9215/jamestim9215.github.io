@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import {useRouter,useRoute } from 'vue-router';
+import { decodeCredential,googleTokenLogin } from 'vue3-google-login'
+
 const route = useRoute();
 const router = useRouter();
 
@@ -8,6 +10,24 @@ const type = ref(0);
 
 const loginHandler = () => {
   router.push('/');
+}
+
+const loginByToken = () => {
+  googleTokenLogin().then((response) => {
+    console.log("Handle the response", response)
+  })
+}
+
+
+const callback = (response) => {
+  // This callback will be triggered when the user selects or login to
+  // his Google account from the popup
+  const userData = decodeCredential(response.credential)
+  console.log("Handle the userData", userData)
+
+  localStorage.setItem('user', JSON.stringify(userData))
+  // console.log("Handle the response", response)
+  loginHandler()
 }
 
 </script>
@@ -27,7 +47,14 @@ const loginHandler = () => {
         <template v-if="type==0">
           <div class="title">Welcome,</div>
           <div class="subTitle">Sign in to continue!</div>
-          <div class="input-div">
+
+          
+          test 登入取token 只能https
+          <button class="btn btn-warning btn-block py-1" @click="loginByToken">Login Using Google</button>
+          <br>
+          test 登入取一般資料 <br>
+          <GoogleLogin :callback="callback" prompt  auto-login style="max-width:100%" />
+          <!-- <div class="input-div">
             <input id="accountEmail" type="text"  required pattern="\S+"/>
             <label for="accountEmail">Your email or username</label>
           </div>
@@ -35,7 +62,7 @@ const loginHandler = () => {
             <input id="accountPassword" type="password" required pattern="\S+"/>
             <label for="accountPassword">Password</label>
           </div>
-          <button class="btn btn-warning btn-block py-1" @click="loginHandler()">Login</button>
+          <button class="btn btn-warning btn-block py-1" @click="loginHandler()">Login</button> -->
         </template>
         <template v-if="type==1">
           <div class="title">Create Account,</div>

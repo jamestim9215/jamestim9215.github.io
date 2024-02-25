@@ -20,6 +20,11 @@ const isShowMobileMenu = ref(false);
 showLoading();
 
 onMounted(() => {
+
+  if(localStorage.getItem('user') == null){
+    router.push('/login');
+  }
+
   hideLoading();
 });
 

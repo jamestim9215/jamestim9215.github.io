@@ -1,6 +1,8 @@
 <script setup>
 import { ref, watch } from 'vue'
 import {useRouter,useRoute } from 'vue-router';
+import { googleLogout } from "vue3-google-login"
+
 
 const props = defineProps({
   isMinMenu: {
@@ -170,6 +172,8 @@ const isShowMobileMenuHandler = () => {
 }
 
 const logoutHandler = () => {
+  localStorage.removeItem('user');
+  googleLogout();
   router.push('/login');
 }
 
