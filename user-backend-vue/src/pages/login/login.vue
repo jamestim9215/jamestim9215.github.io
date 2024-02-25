@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import {useRouter,useRoute } from 'vue-router';
-import { decodeCredential,googleTokenLogin } from 'vue3-google-login'
+import { decodeCredential, googleTokenLogin } from 'vue3-google-login'
 
 const route = useRoute();
 const router = useRouter();
@@ -15,6 +15,8 @@ const loginHandler = () => {
 const loginByToken = () => {
   googleTokenLogin().then((response) => {
     console.log("Handle the response", response)
+    localStorage.setItem('user', JSON.stringify(response))
+    loginHandler()
   })
 }
 
