@@ -1,3 +1,20 @@
+<script setup>
+import { ref, onMounted, computed } from 'vue';
+
+import { storeToRefs } from "pinia";
+import { useStore } from "@/store/index.js";
+
+const store = useStore();
+const { getMenuList } = storeToRefs(store);
+
+const menuList = computed(() => { return getMenuList.value });
+const path = ref('');
+onMounted(() => {
+  path.value = location.pathname;
+  
+});
+</script>
+
 <template>
   <div class="tag-div">
     <router-link
@@ -19,24 +36,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {},
-  computed: {
-    menuList() {
-      return this.$store.getters.getMenuList;
-    },
-  },
-  data() {
-    return {
-      path: "",
-    };
-  },
-  mounted() {
-    this.path = location.pathname;
-  },
-};
-</script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
@@ -49,6 +49,10 @@ export default {
   margin: 0 auto;
   margin-top: 30px;
 
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
   button {
     position: relative;
     border: 1px solid #d9ff00;
@@ -57,10 +61,10 @@ export default {
     font-size: 16px;
     border-radius: 5px;
     color: #d9ff00;
-    margin: 0 10px 10px 0;
     cursor: pointer;
     transition: 0.5s all;
     overflow: hidden;
+    width: 150px;
     z-index: 0;
     &::before {
       content: "";
@@ -112,10 +116,10 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .tag-div {
-    button {
-      width: 100%;
-    }
-  }
+  // .tag-div {
+  //   button {
+  //     width: 100%;
+  //   }
+  // }
 }
 </style>

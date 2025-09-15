@@ -1,32 +1,22 @@
-<template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
-  <router-view />
-</template>
 
+<script setup>
+import { onMounted, ref,computed,watch } from 'vue';
+import { useRouter, useRoute } from "vue-router";
 
-<script>
-// @ is an alias to /src
-// import {
-//   loadingStart,
-//   loadingOver
-// } from "@/module/common";
+const router = useRouter();
+const route = useRoute();
+const fullPath = computed(() => route.fullPath);
 
-export default {
-  // mounted() {
-  //   loadingOver();
-  // },
-  // beforeRouteLeave (to, from, next) {
-  //   console.log('App beforeRouterLeave.');
-  //   loadingStart();
-  //   setTimeout(()=>{
-  //     next();
-  //   },1000)
-  // }
-};
 </script>
+
+<template>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" :key="$route.path" v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <component :is="Component" :key="$route.path" v-if="!$route.meta.keepAlive"/>
+  </router-view>
+</template>
 
 <style lang="scss">
 html,
@@ -115,7 +105,8 @@ body {
 
 @media (max-width: 768px) {
   .page-content{
-    width: 100%;
+    width: calc(100% - 30px);
+    padding: 60px 15px 0 15px;
   }
 }
 </style>

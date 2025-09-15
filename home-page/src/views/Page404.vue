@@ -1,3 +1,21 @@
+<script setup>
+import { onMounted } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+import { loadingStart, loadingOver } from "@/module/common"
+import BoxAnimation from "@/components/common/boxArea.vue"
+
+onMounted(() => {
+  loadingOver()
+})
+
+onBeforeRouteLeave((to, from, next) => {
+  loadingStart()
+  setTimeout(() => {
+    next()
+  }, 1000)
+})
+</script>
+
 <template>
   <div class="page-404">
     <div class="message">
@@ -9,32 +27,7 @@
     </div>
   </div>
   <BoxAnimation/>
-  
 </template>
-
-<script>
-import {
-  loadingStart,
-  loadingOver
-} from "@/module/common";
-
-import BoxAnimation from "@/components/common/boxArea.vue"
-
-export default {
-  components: {
-    BoxAnimation
-  },
-  mounted() {
-    loadingOver();
-  },
-  beforeRouteLeave (to, from, next) {
-    loadingStart();
-    setTimeout(()=>{
-      next();
-    },1000)
-  }
-};
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
@@ -63,9 +56,6 @@ export default {
     }
   }
 }
-
-
-
 
 @media (max-width: 768px) {
   

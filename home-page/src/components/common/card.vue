@@ -1,76 +1,131 @@
+<script setup>
+import { computed } from 'vue';
+
+import { storeToRefs } from "pinia";
+import { useStore } from "@/store/index.js";
+
+const props = defineProps({
+  random: {
+    type: Boolean,
+    default: false
+  },
+  randomCount: {
+    type: Number,
+    default: 0
+  }
+});
+
+const store = useStore();
+const { getProjectList } = storeToRefs(store);
+
+const projectList = computed(() => {
+  const arr = getProjectList.value;
+  if (props.random) {
+    const shuffled = arr.slice();
+    let i = arr.length;
+    const min = i - props.randomCount;
+    let temp, index;
+    while (i-- > min) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
+  } else {
+    return arr;
+  }
+});
+</script>
+
 <template>
-  <div class="card-div">
-    <div class="card" v-for="key in projectList" :key="key.name">
-      <a :href="key.link" :target="key.link?'_blank':''" :title="key.name">
-        <div>
-          <img :src="key.img" :alt="key.name">
-          <span class="tag">
-            <span v-for="tagItem in key.tag" :key="tagItem">{{tagItem}}</span>
-          </span>
-          <span class="localize" v-if="key.localize" :title="key.localizeCount + '個地區語言'">
-            <i class="fa-solid fa-globe"></i>
-            {{key.localizeCount}}
-          </span>
-          <div class="title">{{key.name}}</div>
-          <div class="content">
-            {{key.detail}}
-            <div class="technology">
-              <span v-for="technologyItem in key.technology" :key="technologyItem">{{technologyItem}}</span>
+  <div class="card-box">
+    <div class="filter" v-if="!props.random">
+      <select name="" id="">
+        <option value="all">全部</option>
+        <option value="Work"></option>
+        <option value="Web"></option>
+        <option value="RWD"></option>
+      </select>
+    </div>
+    <div class="card-div">
+      <div class="card" v-for="key in projectList" :key="key.name">
+        <a :href="key.link" :target="key.link?'_blank':''" :title="key.name">
+          <div>
+            <img :src="key.img" :alt="key.name">
+            <span class="tag">
+              <span v-for="tagItem in key.tag" :key="tagItem">{{tagItem}}</span>
+            </span>
+            <span class="localize" v-if="key.localize" :title="key.localizeCount + '個地區語言'">
+              <i class="fa-solid fa-globe"></i>
+              {{key.localizeCount}}
+            </span>
+            <div class="title">{{key.name}}</div>
+            <div class="content">
+              {{key.detail}}
+              <div class="technology">
+                <span v-for="technologyItem in key.technology" :key="technologyItem">{{technologyItem}}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
 
-export default {
-  props: {
-    random:{
-      type: Boolean,
-      default: false
-    },
-    randomCount: {
-      type: Number,
-      default: 0
-    }
-  },
-  computed: {
-    projectList() {
-      if(this.random){
-        var arr = this.$store.getters.getProjectList;
-        var shuffled = arr.slice(0), i = arr.length, min = i - this.randomCount, temp, index;
-        while (i-- > min) {
-            index = Math.floor((i + 1) * Math.random());
-            temp = shuffled[index];
-            shuffled[index] = shuffled[i];
-            shuffled[i] = temp;
-        }
-        return shuffled.slice(min);
-      }else{
-        return this.$store.getters.getProjectList;
-      }
-      
-    },
-  },
-};
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+.card-box{
+  display: flex;
+  flex-direction: column;
+  >.filter{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+
+    >select{
+      position: relative;
+      width: 150px;
+      height: 35px;
+      border: 1px solid #d9ff00;
+      background: #222;
+      color: #d9ff00;
+      padding: 0 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      option{
+        background: #222;
+        color: #d9ff00;
+      }
+    }
+  }
+}
+
 .card-div{
   position: relative;
   width: calc(100% - 30px);
   height: auto;
-  padding: 15px;
+  padding: 0 15px 15px 15px;
   background: #131313;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  
 }
 .card-div .card{
   position: relative;
-  display:  inline-block;
-  width: calc(33% - 20px);
+  max-width: 500px;
+  width: calc(33.33% - 30px);
   padding: 10px;
   >a>div{
     position: relative;
@@ -166,27 +221,15 @@ export default {
   }
 }
 
-@media (max-width: 3840px) {
-  .card-div .card{
-    width: calc(25% - 20px);
+@media (max-width: 1300px) {
+  .card-div .card {
+    width: calc(50% - 30px);
   }
 }
 
-@media (max-width: 2560px) {
-  .card-div .card{
-    width: calc(33% - 20px);
-  }
-}
-
-@media (max-width: 1400px) {
-  .card-div .card{
-    width: calc(50% - 20px);
-  }
-}
-
-@media (max-width: 768px) {
-  .card-div .card{
-    width: calc(100% - 20px);
+@media (max-width: 1000px) {
+  .card-div .card {
+    width: 100%;
   }
 }
 </style>

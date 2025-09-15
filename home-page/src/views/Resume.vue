@@ -1,3 +1,21 @@
+<script setup>
+import { onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+import { loadingStart, loadingOver } from "@/module/common"
+import Menu from "@/components/common/menu.vue"
+
+onMounted(() => {
+  loadingOver()
+})
+
+onBeforeRouteLeave((to, from, next) => {
+  loadingStart()
+  setTimeout(() => {
+    next()
+  }, 1000)
+})
+</script>
+
 <template>
   <div class="resume">
     <Menu/>
@@ -29,30 +47,6 @@
     </div>
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import {
-  loadingStart,
-  loadingOver
-} from "@/module/common";
-import Menu from "@/components/common/menu.vue";
-
-export default {
-  components: {
-    Menu,
-  },
-  mounted() {
-    loadingOver();
-  },
-  beforeRouteLeave (to, from, next) {
-    loadingStart();
-    setTimeout(()=>{
-      next();
-    },1000)
-  }
-};
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">

@@ -1,3 +1,24 @@
+<script setup>
+import { onMounted } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+import { loadingStart, loadingOver } from "@/module/common"
+import Banner from "@/components/home/banner.vue"
+import MenuButton from "@/components/common/menuButton.vue"
+import CardRandom from "@/components/common/card.vue"
+import BoxAnimation from "@/components/common/boxArea.vue"
+
+onMounted(() => {
+  loadingOver()
+})
+
+onBeforeRouteLeave((to, from, next) => {
+  loadingStart()
+  setTimeout(() => {
+    next()
+  }, 1000)
+})
+</script>
+
 <template>
   <BoxAnimation/>
   <div class="home">
@@ -48,39 +69,6 @@
   </div>
 </template>
 
-<script>
-import {
-  loadingStart,
-  loadingOver
-} from "@/module/common";
-
-import Banner from "@/components/home/banner.vue";
-import MenuButton from "@/components/common/menuButton.vue";
-import CardRandom from "@/components/common/card.vue";
-import BoxAnimation from "@/components/common/boxArea.vue"
-
-export default {
-  name: "Home",
-  components: {
-    Banner,
-    MenuButton,
-    CardRandom,
-    BoxAnimation
-  },
-  mounted() {
-    loadingOver();
-  },
-  data() {
-    return {};
-  },
-  beforeRouteLeave (to, from, next) {
-    loadingStart();
-    setTimeout(()=>{
-      next();
-    },1000)
-  }
-};
-</script>
 <style scoped lang="scss">
 .content {
   position: relative;
