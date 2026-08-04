@@ -1,46 +1,25 @@
 <script setup>
-import { ref,computed  } from 'vue'
+import { computed } from 'vue'
+import { useOrientation } from '../../composables/useOrientation'
+import { useThemeColor } from '../../composables/useThemeColor'
 
 const props = defineProps({
   speed: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 })
 
-const maxSpeed = ref(150);
+const maxSpeed = 150
 
-const themeColor = ref(1)
+const { circleStyle } = useOrientation('90%')
+const { themeColor, changeColor } = useThemeColor()
 
-const windowWidth = ref(window.innerWidth)
-const windowHeight = ref(window.innerHeight)
-
-// 判斷視窗 是直的還是橫的
-const isVertical = computed(() => {
-  return windowWidth.value < windowHeight.value
-})
-
-// 判斷視窗 是直的還是橫的 如果是直 回傳style width:80% 如果是橫 回傳style height:80%
-const circleStyle = computed(() => {
-  return isVertical.value ? 'width:90%' : 'height:90%'
-})
-
-// 取得指針的角度 -120deg to 120deg 對應 0 to 150
+// 指針角度：0 → -120deg，maxSpeed → 120deg
 const speedIndicatorDeg = computed(() => {
-  return ((props.speed > maxSpeed.value)?maxSpeed.value:props.speed) * 1.6 - 120
+  const clamped = Math.min(props.speed, maxSpeed)
+  return clamped * 1.6 - 120
 })
-
-// 變更顏色 1~7
-const changeColor = () => {
-  themeColor.value = themeColor.value === 7 ? 1 : themeColor.value + 1
-}
-
-// 監聽直式橫式
-window.addEventListener('resize', () => {
-  windowWidth.value = window.innerWidth
-  windowHeight.value = window.innerHeight
-})
-
 </script>
 
 <template>

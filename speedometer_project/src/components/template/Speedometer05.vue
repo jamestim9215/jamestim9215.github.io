@@ -1,63 +1,36 @@
 <script setup>
-import { ref,computed  } from 'vue'
+import { useOrientation } from '../../composables/useOrientation'
+import { useThemeColor } from '../../composables/useThemeColor'
 
 const props = defineProps({
   speed: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 })
 
-const maxSpeed = ref(300);
+const maxSpeed = 300
+const lineCount = 30
 
-const themeColor = ref(1)
+// 05 是條狀 UI，這裡沿用 circleStyle 名稱改用 boxStyle 供 template 使用
+const { circleStyle: boxStyle } = useOrientation('80%')
+const { themeColor, changeColor } = useThemeColor()
 
-const lineCount = ref(30)
-
-const windowWidth = ref(window.innerWidth)
-const windowHeight = ref(window.innerHeight)
-
-// 判斷視窗 是直的還是橫的
-const isVertical = computed(() => {
-  return windowWidth.value < windowHeight.value
-})
-
-// 判斷視窗 是直的還是橫的 如果是直 回傳style width:80% 如果是橫 回傳style height:80%
-const boxStyle = computed(() => {
-  return isVertical.value ? 'width:80%' : 'height:80%'
-})
-
-// 判斷時速 顯示於第幾格 1~ lineCount : 時速格子對應 0~ maxSpeed 背景顏色 #fff 並依照順序顯示白色格子 transition-delay
+// 判斷時速對應到第幾格；依序點亮並用 transition-delay 產生「流動」效果
 const activeStyle = (i) => {
-  if(i==1 && props.speed==0) return {
-    'background': '#333',
-    'transition-duration': '1s'
+  if (i === 1 && props.speed === 0) {
+    return { background: '#333', 'transition-duration': '1s' }
   }
 
-  if((props.speed >= ((i-1) * (maxSpeed.value / lineCount.value))) ){
+  if (props.speed >= (i - 1) * (maxSpeed / lineCount)) {
     return {
-      'background': 'var(--meter-color-'+themeColor.value+')',
-      'transition-delay': (i-1) * 0.005 + 's',
-    }
-  }else{
-    return {
-      'background': '#333',
-      'transition-duration': '1s'
+      background: `var(--meter-color-${themeColor.value})`,
+      'transition-delay': `${(i - 1) * 0.005}s`,
     }
   }
+
+  return { background: '#333', 'transition-duration': '1s' }
 }
-
-// 變更顏色 1~7
-const changeColor = () => {
-  themeColor.value = themeColor.value === 7 ? 1 : themeColor.value + 1
-}
-
-// 監聽直式橫式
-window.addEventListener('resize', () => {
-  windowWidth.value = window.innerWidth
-  windowHeight.value = window.innerHeight
-})
-
 </script>
 
 <template>
