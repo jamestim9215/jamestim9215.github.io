@@ -1,177 +1,138 @@
-.loading-cover {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  background: #222;
-  z-index: 9999;
-  opacity: 1;
-  transition: 0.5s all;
+/* ============================================================
+   Ray.dev — Loading Cover (Cyber Terminal Style)
+   ============================================================ */
+
+:root {
+  --brand: #d9ff00;
+  --brand-cy: #00e5ff;
+  --bg-0: #050505;
+  --bg-1: #0b0d10;
+  --tx-3: #9aa1ac;
+  --tx-4: #5b626d;
 }
 
-.loading-cover.d-none{
+.loading-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-1);
+  background-image:
+    radial-gradient(600px 400px at 30% 20%, rgba(217, 255, 0, 0.08), transparent 60%),
+    radial-gradient(500px 400px at 70% 80%, rgba(0, 229, 255, 0.06), transparent 60%);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+.loading-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 255, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 255, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  pointer-events: none;
+}
+
+.loading-cover.d-none {
   opacity: 0;
+  pointer-events: none;
 }
 
 .loading-cover > .loading {
   position: relative;
-  width: 30px;
-  height: 30px;
-  margin: 0 auto;
-  margin-top: calc(50vh - 15px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  z-index: 2;
 }
+
+/* -- Brand mark -- */
+.loading-cover > .loading::before {
+  content: 'RAY.DEV';
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.24em;
+  background: linear-gradient(120deg, var(--brand), var(--brand-cy));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(217, 255, 0, 0.3);
+}
+
+/* -- Spinner (rotating hex frame) -- */
 .loading-cover > .loading > div {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.loading-cover > .loading > div > div {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+  inset: 0;
+  border: 1.5px solid transparent;
+  border-radius: 50%;
 }
 
 .loading-cover > .loading > div > div:nth-child(1) {
-  position: absolute;
-  height: 2px;
-  left: 0;
-  top: 0;
-  background: #d9ff00;
-
-  animation-name: loadingTop;
-  animation-duration: 2s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
+  border-top-color: var(--brand);
+  border-right-color: var(--brand);
+  animation: spin 1.2s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
+  box-shadow: 0 0 16px rgba(217, 255, 0, 0.35);
 }
-.loading-cover > .loading > div > div:nth-child(2) {
-  position: absolute;
-  width: 2px;
-  right: 0;
-  background: #d9ff00;
 
-  animation-name: loadingRight;
-  animation-duration: 2s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
+.loading-cover > .loading > div > div:nth-child(2) {
+  border-bottom-color: var(--brand-cy);
+  border-left-color: var(--brand-cy);
+  animation: spin 1.6s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite reverse;
+  transform: scale(0.75);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
 }
 
 .loading-cover > .loading > div > div:nth-child(3) {
-  position: absolute;
-  height: 2px;
-  background: #d9ff00;
-  bottom: 0;
-  right: 0;
-
-  animation-name: loadingBottom;
-  animation-duration: 2s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
+  width: 6px;
+  height: 6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--brand);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--brand);
+  animation: pulse 1s ease-in-out infinite;
 }
 
 .loading-cover > .loading > div > div:nth-child(4) {
-  position: absolute;
-  width: 2px;
-  left: 0;
-  bottom: 0;
-  background: #d9ff00;
-
-  animation-name: loadingLeft;
-  animation-duration: 2s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
+  display: none;
 }
 
-@keyframes loadingTop {
-  0% {
-    left: 0;
-    width: 0%;
-  }
-  25% {
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  50% {
-    left: auto;
-    right: 0;
-    width: 100%;
-  }
-  75% {
-    left: auto;
-    right: 0;
-    width: 0%;
-  }
-  100% {
-    left: 0;
-    right: auto;
-    width: 0%;
-  }
+/* -- Status text -- */
+.loading-cover > .loading::after {
+  content: '> initializing session...';
+  font-size: 12px;
+  color: var(--tx-3);
+  letter-spacing: 0.08em;
+  animation: fade-pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes loadingRight {
-  0% {
-    top: 0;
-    height: 0;
-  }
-  25% {
-    top: 0;
-    height: 0;
-  }
-  50% {
-    bottom: 0;
-    height: 100%;
-  }
-  75% {
-    bottom: 0;
-    height: 100%;
-  }
-  100% {
-    top: auto;
-    bottom: 0;
-    height: 0;
-  }
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-@keyframes loadingBottom {
-  0% {
-    right: 0;
-    width: 0;
-  }
-  25% {
-    right: 0;
-    width: 100%;
-  }
-  50% {
-    right: 0;
-    width: 100%;
-  }
-  75% {
-    left: 0;
-    width: 0%;
-  }
-  100% {
-    right: 0;
-    width: 0%;
-  }
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.4; }
 }
-@keyframes loadingLeft {
-  0% {
-    bottom: 0;
-    height: 0;
-  }
-  25% {
-    top: auto;
-    bottom: 0;
-    height: 0;
-  }
-  50% {
-    bottom: 0;
-    height: 100%;
-  }
-  75% {
-    bottom: 0;
-    height: 100%;
-  }
-  100% {
-    top: 0;
-    height: 0;
-  }
+
+@keyframes fade-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
