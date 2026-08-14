@@ -1,4 +1,4 @@
-import{_,c as a,a as t,F as d,D as h,b as s,e as n,h as c,o,t as u,Z as m,x as p,J as g}from"./index-BvxodZ6i.js";const v={class:"settings-page"},f={class:"tabs",role:"tablist"},x=["innerHTML"],k={class:"label"},w={__name:"Settings",setup(b){const r=[{name:"SettingsAccount",label:"帳號設定",icon:`<svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' stroke-width='2'>
+import{_,c as a,a as t,F as d,D as h,b as s,e as n,h as c,o,t as u,Z as m,x as p,J as g}from"./index-rJ7pAoe5.js";const v={class:"settings-page"},f={class:"tabs",role:"tablist"},x=["innerHTML"],k={class:"label"},w={__name:"Settings",setup(b){const r=[{name:"SettingsAccount",label:"帳號設定",icon:`<svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' stroke-width='2'>
       <circle cx='12' cy='8' r='4'/>
       <path d='M4 21a8 8 0 0 1 16 0'/>
     </svg>`},{name:"SettingsFinance",label:"記帳設定",icon:`<svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' stroke-width='2'>
