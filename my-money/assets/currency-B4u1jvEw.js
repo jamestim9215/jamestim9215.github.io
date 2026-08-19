@@ -1,0 +1,1 @@
+const o=new Intl.NumberFormat("zh-TW",{maximumFractionDigits:0}),a=new Intl.NumberFormat("zh-TW",{maximumFractionDigits:2});function e(n,{cents:m=!1,prefix:t="NT$ "}={}){if(n==null||n===""||isNaN(Number(n)))return`${t}0`;const r=Number(n);return`${t}${m?a.format(r):o.format(Math.round(r))}`}export{e as f};
